@@ -13,6 +13,9 @@
 
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
 
+  {% block canonical_url %}
+  {% endblock canonical_url %}
+
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="{{ get_url(path="css/bootstrap.min.css") }}">
   <!-- Custom fonts for this template -->

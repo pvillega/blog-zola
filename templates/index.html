@@ -1,4 +1,10 @@
 {% extends "zola-clean-blog/templates/index.html" %}
+
+{% block canonical_url %}
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="{{current_url}}" />
+{% endblock canonical_url %}
+
 {% block copyright %}
 &copy; Pere Villega
 <br />
