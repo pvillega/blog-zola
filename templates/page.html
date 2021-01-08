@@ -5,12 +5,12 @@
 <meta name="twitter:site" content="@pvillega">
 <meta name="twitter:title" content="{{ page.title }}" />
 <meta name="twitter:description" content="" />
-<meta name="twitter:image" content="{{ get_url(path=" /favicon.png")}}">
+<meta name="twitter:image" content="{{ get_url(path="/favicon.png")}}">
 {% endblock twitter_meta %}
 
 {% block header %}
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('{{ get_url(path=" /img/post-bg.jpg")}}')">
+<header class="masthead" style="background-image: url('{{ get_url(path="/img/post-bg.jpg")}}')">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
@@ -35,7 +35,7 @@
         <div class="post-tags">
           <p>Tags:
             {% for tag in page.taxonomies.tags %}
-            <a href="{{ get_taxonomy_url(kind=" tags", name=tag) }}">#{{ tag }}</a>
+            <a href="{{ get_taxonomy_url(kind="tags", name=tag) }}">#{{ tag }}</a>
             {% endfor %}
           </p>
         </div>
