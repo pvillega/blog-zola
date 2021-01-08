@@ -74,5 +74,6 @@ clean_blog_social = [
     {url = "https://twitter.com/pvillega", icon="fab fa-twitter"},
     {url = "https://github.com/pvillega", icon="fab fa-github"},
     {url = "http://linkedin.com/in/perevillega", icon="fab fa-linkedin"},
-    {url = "$BASE_URL/atom.xml", icon="fas fa-rss"}
+    {url = "https://dev.to/pvillega", icon="fab fa-dev"},
+    {url = "$BASE_URL/atom.xml", icon="fas fa-rss"},
 ]
