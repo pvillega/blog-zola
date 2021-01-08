@@ -1,21 +1,31 @@
-
 # On every push this script is executed
 on: push
 
 name: Build and deploy GH Pages
+
+env:
+  ZONE: ${{ secrets.CLOUDFLARE_ZONE }}
+  ID: ${{ secrets.CLOUDFLARE_ID }}
+  SECRET: ${{ secrets.CLOUDFLARE_SECRET }}
 
 jobs:
   build:
     name: shalzz/zola-deploy-action
     runs-on: ubuntu-latest
     steps:
-    # Checkout
-    - uses: actions/checkout@master
-    # Build & deploy
-    - name: shalzz/zola-deploy-action
-      uses: shalzz/zola-deploy-action@v0.12.0
-      env:
-        # Target branch
-        PAGES_BRANCH: gh-pages
-        # Provide personal access token
-        TOKEN: ${{ secrets.TOKEN }}
+      # Checkout
+      - uses: actions/checkout@master
+      # Build & deploy
+      - name: shalzz/zola-deploy-action
+        uses: shalzz/zola-deploy-action@v0.12.0
+        env:
+          # Target branch
+          PAGES_BRANCH: gh-pages
+          # Provide personal access token
+          TOKEN: ${{ secrets.TOKEN }}
+      - name: Purge cache in Cloudflare
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/zones/$ZONE/purge_cache" \
+          -H "Authorization: Bearer $SECRET" \
+          -H "Content-Type: application/json" \
+          --data '{"purge_everything":true}'
