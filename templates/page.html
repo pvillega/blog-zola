@@ -4,9 +4,21 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:site" content="@pvillega">
 <meta name="twitter:title" content="{{ page.title }}" />
-<meta name="twitter:description" content="" />
-<meta name="twitter:image" content="{{ get_url(path="/favicon.png")}}">
+<meta name="twitter:description" content="{{ page.summary | as_str | striptags }}" />
+<meta name="twitter:image:src" content="{{ get_url(path="/favicon.png")}}">
+<meta name="twitter:card" content="summary" />
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="{{ page.title }}" />
+<meta name="og:url" content="{{current_url}}" />
+<meta name="og:description" content="{{ page.summary | as_str | striptags }}" />
+<meta name="og:image" content="{{ get_url(path="/favicon.png")}}">
 {% endblock twitter_meta %}
+
+{% block canonical_url %}
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="{{current_url}}" />
+{% endblock canonical_url %}
 
 {% block header %}
 <!-- Page Header -->
