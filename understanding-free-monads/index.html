@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="On Free Monads" />
+<meta name="twitter:description" content="The concept of Free Monad is becoming popular, or at least I&#x27;ve seen plenty of mentions about it in the Scala Functional Programming community as of late. Why is it relevant?
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="On Free Monads">
+<meta itemprop="description" content="The concept of Free Monad is becoming popular, or at least I&#x27;ve seen plenty of mentions about it in the Scala Functional Programming community as of late. Why is it relevant?
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="On Free Monads" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;understanding-free-monads&#x2F;" />
+<meta name="og:description" content="The concept of Free Monad is becoming popular, or at least I&#x27;ve seen plenty of mentions about it in the Scala Functional Programming community as of late. Why is it relevant?
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  On Free Monads
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;understanding-free-monads&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>On Free Monads</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on 28 May 2016. Reading time: 30 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>The concept of <a href="http://typelevel.org/cats/datatypes/freemonad.html">Free Monad</a> is becoming popular, or at least I've seen plenty of mentions about it in the Scala Functional Programming community as of late. Why is it relevant?</p>
+<span id="continue-reading"></span>
+<p>A couple of warnings before I start. Judging by the code I wrote, this will be a <em>very long</em> post. You can look at the <a href="https://github.com/pvillega/free-monad-sample">code</a> and come back to read this post later. Also, I'm going to take a <em>practical</em> approach to Free Monad. I'll provide a list of relevant links at the end you can use to learn more about Free Monad and its nuisances, including Cat's explanation on <a href="http://typelevel.org/cats/datatypes/freemonad.html#what-is-free-in-theory">the theory behind Free</a>. But no theory here, sorry :)</p>
+<p>Let's do this.</p>
+<h2 id="why-should-i-care-about-free-monad">Why should I care about Free Monad?</h2>
+<p>Anything related to <a href="http://typelevel.org/cats/typeclasses/monad.html">Monads</a> seems scary and complex for the uninitiated. Why should I spend time learning that? What's the benefit?</p>
+<p>There are descriptions of <a href="http://typelevel.org/cats/datatypes/freemonad.html">Free Monad</a> that give a good overview on why to use it. In my humble opinion, the main benefit that Free provides is separation between the program definition and its execution.</p>
+<p>You start by building an embedded DSL, which can be understood by the business. Using that language, you define a program as a series of actions that cover a business case, without any implementation details associated.</p>
+<p>At this point you can test the business-defined logic in isolation (with fast unit tests, no need of mocks). You can <em>talk the same language</em> as the business. And only at the end, when needed, you provide a <em>real-world</em> implementation that interacts with 3rd party services and such.</p>
+<p>This has the potential to provide more robust code, that can be tested easily, and which is a better fit to the business requirements. Also, replacing implementations (say, you change your sms provider) has minimal impact in the codebase as you only modify the interpreter, nothing else. Wether you do <a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> or not, all this must sound <em>very appealing</em> ;)</p>
+<p>In addition, implementations of Free Monad (both in Cats and Scalaz) provide other benefits, for example the use of Trampolining for stack-safe recursion.</p>
+<p>A bit like with <a href="http://typelevel.org/cats/typeclasses/monad.html">Monad</a>, a <a href="http://typelevel.org/cats/datatypes/freemonad.html">Free Monad</a> is a relatively simple concept behind a scary name. Easier than it seems, and very useful. Either that, or I've understood nothing and need to go back to the study desk ;)</p>
+<h2 id="a-business-case">A business case</h2>
+<p>I'll start with a very simplistic business case. We want to implement an application to buy and sell stocks. Our standard approach may generate code similar to:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">object</span><span style="color:#dcdcdc;"> Orders {
+	</span><span style="color:#569cd6;">type </span><span style="color:#4ec9b0;">Symbol </span><span style="color:#dcdcdc;">= String
+	</span><span style="color:#569cd6;">type </span><span style="color:#4ec9b0;">Response </span><span style="color:#dcdcdc;">= String
+	</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">buy(stock: Symbol, amount: </span><span style="color:#569cd6;">Int</span><span style="color:#dcdcdc;">): Response = </span><span style="color:#569cd6;">???
+	def </span><span style="color:#dcdcdc;">sell(stock: Symbol, amount: </span><span style="color:#569cd6;">Int</span><span style="color:#dcdcdc;">): Response = </span><span style="color:#569cd6;">???
+</span><span style="color:#dcdcdc;">}
+</span></code></pre>
+<p>But we have heard about this new thing called <code>Free Monad</code> and we want to use it. We start by creating a DSL, a business language, that describes our actions. For example, we convert</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">  </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">buy(stock: Symbol, amount: </span><span style="color:#569cd6;">Int</span><span style="color:#dcdcdc;">): Response
+</span></code></pre>
+<p>into</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">  </span><span style="color:#569cd6;">case class</span><span style="color:#dcdcdc;"> Buy(stock: Symbol, amount: </span><span style="color:#569cd6;">Int</span><span style="color:#dcdcdc;">) </span><span style="color:#569cd6;">extends </span><span style="color:#4ec9b0;">Orders</span><span style="color:#dcdcdc;">[Response]
+</span></code></pre>
+<p>You can see there is an equivalence in meaning between the two forms: case class parameters and method parameters, return value and type parameter in our case class (specifically in <code>Orders[Response]</code>). We are converting our methods into a language, but one that has no implementation associated.</p>
+<p>If we do this with both methods, we get:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">  </span><span style="color:#569cd6;">sealed trait</span><span style="color:#dcdcdc;"> Orders[A]
+  </span><span style="color:#569cd6;">case class</span><span style="color:#dcdcdc;"> Buy(stock: Symbol, amount: </span><span style="color:#569cd6;">Int</span><span style="color:#dcdcdc;">) </span><span style="color:#569cd6;">extends </span><span style="color:#4ec9b0;">Orders</span><span style="color:#dcdcdc;">[Response]
+  </span><span style="color:#569cd6;">case class</span><span style="color:#dcdcdc;"> Sell(stock: Symbol, amount: </span><span style="color:#569cd6;">Int</span><span style="color:#dcdcdc;">) </span><span style="color:#569cd6;">extends </span><span style="color:#4ec9b0;">Orders</span><span style="color:#dcdcdc;">[Response]
+</span></code></pre>
+<p>Please take a moment to see and understand the parallelisms between the above implementation, using case classes, and our original methods. Note that the parent trait <code>Orders</code> is similar to a <code>Functor</code> (a structure with a hole); this is a requirement of <code>Free</code>, all the languages you define <em>must</em> follow a similar structure.</p>
+<p>So, what do we have at this point? We have a language that defines buying or selling a stock. But it has no logic associated, and creating an instance does nothing (besides instantiating the case class). Furthermore, we can't try to compile something like:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">  </span><span style="color:#569cd6;">for </span><span style="color:#dcdcdc;">{
+	r &lt;- </span><span style="color:#b5cea8;">Buy</span><span style="color:#dcdcdc;">(</span><span style="color:#d69d85;">&quot;FB&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+  } </span><span style="color:#569cd6;">yield</span><span style="color:#dcdcdc;"> r
+</span></code></pre>
+<p>as it won't work. We need to turn this into a Monad, somehow.</p>
+<h2 id="lifting-to-free">Lifting to Free</h2>
+<p>To be able to use the language in our programs, we want to convert it into something we can run. For example, a Monad. That's the task of a Free Monad, and Cats provides a very easy way to do that:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">  </span><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> cats.free.Free
+
+  </span><span style="color:#569cd6;">type </span><span style="color:#4ec9b0;">OrdersF</span><span style="color:#dcdcdc;">[A] = Free[Orders, A]
+</span></code></pre>
+<p>We have defined a new type, a <code>Free</code> Monad on <code>Orders</code> and a parameter <code>A</code>. But that's not enough, we need to map our case classes to instances of <code>Free</code>. Thankfully <code>Free</code> itself makes this step easy:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">  </span><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> cats.free.Free._
+
+  </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">buy(stock: Symbol, amount: </span><span style="color:#569cd6;">Int</span><span style="color:#dcdcdc;">): OrdersF[Response] = liftF[Orders, Response](</span><span style="color:#b5cea8;">Buy</span><span style="color:#dcdcdc;">(stock, amount))
+  </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">sell(stock: Symbol, amount: </span><span style="color:#569cd6;">Int</span><span style="color:#dcdcdc;">): OrdersF[Response] = liftF[Orders, Response](</span><span style="color:#b5cea8;">Sell</span><span style="color:#dcdcdc;">(stock, amount))
+</span></code></pre>
+<p>Notice that the return types of the methods, <code>OrdersF[Response]</code>, match the Free Monad (as defined above). Also, the type parameter returned, <code>Response</code>, matches the parameter in the <code>extends</code> portion of our case class definition, which we mapped to work akin to <em>return type</em> when converting from methods to case classes.</p>
+<p>Now we can use these support methods, <code>buy</code> and <code>sell</code>, to obtain our monads. And it works:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">  </span><span style="color:#569cd6;">val </span><span style="color:#dcdcdc;">flatMapThat = buy(</span><span style="color:#d69d85;">&quot;APPL&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">).flatMap(rsp </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;"> sell(</span><span style="color:#d69d85;">&quot;GOOG&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">))
+</span></code></pre>
+<p>The code above builds and returns a <code>Free</code> structure. This means that we can use the monads to define some business logic. For example, we can define a smart algorithm to buy and sell shares:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">val </span><span style="color:#dcdcdc;">smartTrade: OrdersF[Response] = </span><span style="color:#569cd6;">for </span><span style="color:#dcdcdc;">{
+    _ &lt;- buy(</span><span style="color:#d69d85;">&quot;APPL&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">50</span><span style="color:#dcdcdc;">)
+    _ &lt;- buy(</span><span style="color:#d69d85;">&quot;MSFT&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">10</span><span style="color:#dcdcdc;">)
+    rsp &lt;- sell(</span><span style="color:#d69d85;">&quot;GOOG&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">200</span><span style="color:#dcdcdc;">)
+  } </span><span style="color:#569cd6;">yield</span><span style="color:#dcdcdc;"> rsp
+</span></code></pre>
+<p>We are using a for-comprehension to chain a series of actions. <code>buy</code> and <code>sell</code> are used to obtain the monads that define the steps of the algorithm. As you can see, the return type is <code>OrdersF[Response]</code> as expected by the logic, which yields the result of calling <code>sell</code>.</p>
+<p>At this point we have built a language for our business case, along algorithms that use that language. But this code still does nothing else than defining the steps, we have no way to obtain a result from it. We need a way to execute, or interpret, our language.</p>
+<h2 id="our-first-interpreter">Our first interpreter</h2>
+<p>An interpreter is something that will read our program and do something with it. Technically, an interpreter is a <code>natural transformation</code>, but as I said at the start I don't want to focus on the theory right now. The key thing to know is that an interpreter requires a monad as the end-part of the transformation. This means you can use an interpreter to obtain <code>Option</code>, <code>Xor</code>, or some other monad, but not to obtain anything that is not a monad.</p>
+<p>As usual an example is better than a thousand words, so let's use the simplest monad, <code>Id</code>, to build an interpreter:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> cats.{Id, ~&gt;}
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">orderPrinter: Orders ~&gt; Id =
+    </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">(Orders ~&gt; Id) {
+      </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">apply[A](fa: Orders[A]): Id[A] = fa </span><span style="color:#569cd6;">match </span><span style="color:#dcdcdc;">{
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Buy</span><span style="color:#dcdcdc;">(stock, amount) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+          println(s</span><span style="color:#d69d85;">&quot;Buying </span><span style="color:#dcdcdc;">$amount</span><span style="color:#d69d85;"> of </span><span style="color:#dcdcdc;">$stock</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">)
+          </span><span style="color:#d69d85;">&quot;ok&quot;
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Sell</span><span style="color:#dcdcdc;">(stock, amount) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+          println(s</span><span style="color:#d69d85;">&quot;Selling </span><span style="color:#dcdcdc;">$amount</span><span style="color:#d69d85;"> of </span><span style="color:#dcdcdc;">$stock</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">)
+          </span><span style="color:#d69d85;">&quot;ok&quot;
+      </span><span style="color:#dcdcdc;">}
+    }
+</span></code></pre>
+<p>This squiggly sign <code>~&gt;</code> is the syntax sugar for <code>natural transformation</code>. Note that in the interpreter we do a pattern match over each member of our language. As <code>Buy</code> is of type <code>Order[Response]</code> (equivalent to <code>Order[String]</code> in this scenario), the method signature forces us to return a result of <code>Id[String]</code>. The same for <code>Sell</code>.</p>
+<p>As you can see, we are also executing some <code>println</code> statements before returning the result. The only restriction given by the signature is the return type, we can have side effects in our code (as we do in this case). Obviously this is not advisable, but it can be useful when we create interpreters for testing purposes.</p>
+<p>We have our interpreter, which means that we have all the pieces we need to execute the program. We can do this via the <code>foldMap</code> operation:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;"> smartTrade.foldMap(orderPrinter)
+</span></code></pre>
+<p>and we will see the result of the <code>println</code> operations in our terminal:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">Buying 50 of APPL
+Buying 10 of MSFT
+Selling 200 of GOOG
+</span></code></pre>
+<p>It's working! We have built our first Free Monad, and it works. Take your time to understand what we have done, and remember the <a href="https://github.com/pvillega/free-monad-sample">code</a> is available to download.</p>
+<h2 id="xor-interpreters">Xor Interpreters</h2>
+<p>We have built our first interpreter, but let's be honest: <code>Id</code> is not so useful, and we want to avoid side-effects in our code. If we aim to do something akin to <a href="http://fsharpforfunandprofit.com/posts/recipe-part2/">railway oriented programming</a> we may want to use <code>Xor</code> instead.</p>
+<p>But this reveals a slight issue: the natural transformation expects a monad with shape <code>G[_]</code>, and <code>Xor</code> is <code>Xor[+A, +B]</code>. There is a mismatch in the number of <em>holes</em>. Thankfully we can fix that with a small trick, by fixing the type of the left side of <code>Xor</code>, like:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">type </span><span style="color:#4ec9b0;">ErrorOr</span><span style="color:#dcdcdc;">[A] = Xor[String, A]
+</span></code></pre>
+<p>This creates a new monadic type with a single type parameter, which fits the requirements of natural transformation. You may want to use an ADT instead of <code>String</code> on the left side, to make it more flexible. In any case, we can now construct a new interpreter:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> cats.syntax.xor._
+</span><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> cats.data.Xor
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">xorInterpreter: Orders ~&gt; ErrorOr =
+ </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">(Orders ~&gt; ErrorOr) {
+   </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">apply[A](fa: Orders[A]): ErrorOr[A] =
+     fa </span><span style="color:#569cd6;">match </span><span style="color:#dcdcdc;">{
+       </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Buy</span><span style="color:#dcdcdc;">(stock, amount) </span><span style="color:#569cd6;">=&gt;
+         </span><span style="color:#dcdcdc;">s</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">$stock</span><span style="color:#d69d85;"> - </span><span style="color:#dcdcdc;">$amount</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">.right
+       </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Sell</span><span style="color:#dcdcdc;">(stock, amount) </span><span style="color:#569cd6;">=&gt;
+         </span><span style="color:#d69d85;">&quot;Why are you selling that?&quot;</span><span style="color:#dcdcdc;">.left
+     }
+ }
+</span></code></pre>
+<p>and if we execute it</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;"> smartTrade.foldMap(xorInterpreter)
+</span></code></pre>
+<p>we will see that the result is a left:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">Left(Why are you selling that?)
+</span></code></pre>
+<p>Which brings us to a very important point: you are using your interpreter in a for-comprehension (usually). If you return a monadic value that would usually shortcut the process, like <code>Xor.Left</code> or <code>Nil</code> or <code>None</code>, the remainder of the program won't we executed.
+This may be what you want, but be aware of this behaviour. For a relevant example, if we had a case class extending <code>Orders[Unit]</code> and a natural transformation to <code>Option</code>, we may want to return <code>Some(())</code> instead of <code>None</code> to avoid this behaviour.</p>
+<p>Ok, so we have built another interpreter, and it works. But our language is still very simple, let's make it a bit more useful.</p>
+<h2 id="extending-the-language">Extending the language</h2>
+<p>We want smart algorithms, and hardcoding the stocks to buy won't help. We are aiming to build programs similar to:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;"> </span><span style="color:#569cd6;">val </span><span style="color:#dcdcdc;">smartTradeWithList: Free[Orders, String] = </span><span style="color:#569cd6;">for </span><span style="color:#dcdcdc;">{
+    st &lt;- listStocks()
+    _ &lt;- buy(st, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+    rsp &lt;- sell(</span><span style="color:#d69d85;">&quot;GOOG&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+  } </span><span style="color:#569cd6;">yield</span><span style="color:#dcdcdc;"> rsp
+</span></code></pre>
+<p>So we can start by defining a new case class and lifting it to a Free Monad instance:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">case class</span><span style="color:#dcdcdc;"> ListStocks() </span><span style="color:#569cd6;">extends </span><span style="color:#4ec9b0;">Orders</span><span style="color:#dcdcdc;">[List[Symbol]]
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">listStocks(): OrdersF[List[Symbol]] =
+  liftF[Orders, List[Symbol]](</span><span style="color:#b5cea8;">ListStocks</span><span style="color:#dcdcdc;">())
+</span></code></pre>
+<p>If you execute the program above (<code>smartTradeWithList</code>) you will see it doesn't compile. The reason is that <code>buy</code> expects a single <code>Symbol</code>, but <code>st</code> is <code>List[Symbol]</code>. Ah, but of course! We are flatmapping over <code>OrdersF[A]</code> and, as expected, the left side of the for-comprehension binds to the <code>A</code> value. In our case, as <code>listStocks</code> returns <code>OrdersF[List[Symbol]]</code> then <code>st</code> will be <code>List[Symbol]</code>.</p>
+<p>So what now? If we couldn't work around this restriction, the utility of Free Monads would be very limited, as this is a common use case. Luckily, the <a href="http://eed3si9n.com/herding-cats/Traverse.html">Traverse</a> typeclass solves exactly this kind of issue. We can rewrite our program as:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> cats.std.list._
+</span><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> cats.syntax.traverse._
+
+</span><span style="color:#569cd6;">val </span><span style="color:#dcdcdc;">smartTradeWithList: Free[Orders, String] = </span><span style="color:#569cd6;">for </span><span style="color:#dcdcdc;">{
+    st &lt;- listStocks()
+    _ &lt;- st.traverseU(buy(_, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">))
+    rsp &lt;- sell(</span><span style="color:#d69d85;">&quot;GOOG&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+  } </span><span style="color:#569cd6;">yield</span><span style="color:#dcdcdc;"> rsp
+</span></code></pre>
+<p>and, with slightly more verbose code, it will compile. We could always hide the extra verbosity behind a helper method, if we want. We must also update our <code>orderPrinter</code> to tackle the new <code>ListStocks</code> case:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;"> </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">orderPrinter: Orders ~&gt; Id =
+    </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">(Orders ~&gt; Id) {
+      </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">apply[A](fa: Orders[A]): Id[A] =
+	  fa </span><span style="color:#569cd6;">match </span><span style="color:#dcdcdc;">{
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">ListStocks</span><span style="color:#dcdcdc;">() </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+          println(s</span><span style="color:#d69d85;">&quot;Getting list of stocks: FB, TWTR&quot;</span><span style="color:#dcdcdc;">)
+          </span><span style="color:#b5cea8;">List</span><span style="color:#dcdcdc;">(</span><span style="color:#d69d85;">&quot;FB&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;TWTR&quot;</span><span style="color:#dcdcdc;">)
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Buy</span><span style="color:#dcdcdc;">(stock, amount) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+          println(s</span><span style="color:#d69d85;">&quot;Buying </span><span style="color:#dcdcdc;">$amount</span><span style="color:#d69d85;"> of </span><span style="color:#dcdcdc;">$stock</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">)
+          </span><span style="color:#d69d85;">&quot;ok&quot;
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Sell</span><span style="color:#dcdcdc;">(stock, amount) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+          println(s</span><span style="color:#d69d85;">&quot;Selling </span><span style="color:#dcdcdc;">$amount</span><span style="color:#d69d85;"> of </span><span style="color:#dcdcdc;">$stock</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">)
+          </span><span style="color:#d69d85;">&quot;ok&quot;
+      </span><span style="color:#dcdcdc;">}
+    }
+</span></code></pre>
+<p>And now we can execute the new program:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">smartTradeWithList.foldMap(orderPrinter)
+</span></code></pre>
+<p>to see the expected output:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">Getting list of stocks: FB, TWTR
+Buying 100 of FB
+Buying 100 of TWTR
+Selling 100 of GOOG
+</span></code></pre>
+<p>The language works. We can now build our smart programs and release into production to, hopefully, earn us a lot of money. Well, almost. The programs work, but if someone makes a mistake, how will we know? We might want to add some logging, but we don't want to use side effects. How to do it?</p>
+<h2 id="adding-logs">Adding Logs</h2>
+<p>Logging is a language in itself. We want to embed log messages in the application, but how to manage them is another matter: we may want to ignore them on testing, to send them to a log file, or even to several destination. As such, using a Free Monad for logs makes sense. So let's define the language and create the associated Free Monad:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">sealed trait</span><span style="color:#dcdcdc;"> Log[A]
+
+</span><span style="color:#569cd6;">case class</span><span style="color:#dcdcdc;"> Info(msg: String) </span><span style="color:#569cd6;">extends </span><span style="color:#4ec9b0;">Log</span><span style="color:#dcdcdc;">[</span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">]
+
+</span><span style="color:#569cd6;">case class</span><span style="color:#dcdcdc;"> Error(msg: String) </span><span style="color:#569cd6;">extends </span><span style="color:#4ec9b0;">Log</span><span style="color:#dcdcdc;">[</span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">]
+
+</span><span style="color:#569cd6;">type </span><span style="color:#4ec9b0;">LogF</span><span style="color:#dcdcdc;">[A] = Free[Log, A]
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">info(msg: String): LogF[</span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">] =
+  liftF[Log, </span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">](</span><span style="color:#b5cea8;">Info</span><span style="color:#dcdcdc;">(msg))
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">error(msg: String): LogF[</span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">] =
+  liftF[Log, </span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">](</span><span style="color:#b5cea8;">Error</span><span style="color:#dcdcdc;">(msg))
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">logPrinter: Log ~&gt; Id =
+  </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">(Log ~&gt; Id) {
+    </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">apply[A](fa: Log[A]): Id[A] =
+	  fa </span><span style="color:#569cd6;">match </span><span style="color:#dcdcdc;">{
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Info</span><span style="color:#dcdcdc;">(msg) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+		  println(s</span><span style="color:#d69d85;">&quot;[Info] - </span><span style="color:#dcdcdc;">$msg</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">)
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Error</span><span style="color:#dcdcdc;">(msg) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+		  println(s</span><span style="color:#d69d85;">&quot;[Error] - </span><span style="color:#dcdcdc;">$msg</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">)
+      }
+  }
+</span></code></pre>
+<p>We have seen this before, nothing new here. We can now log <code>info</code> and <code>error</code> messages and we have an interpreter to <code>Id</code> that will send some output to the terminal. Let's add some logging to our program, then:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">val </span><span style="color:#dcdcdc;">smartTradeWithLogs = </span><span style="color:#569cd6;">for </span><span style="color:#dcdcdc;">{
+    _ &lt;- info(</span><span style="color:#d69d85;">&quot;I&#39;m going to trade smartly&quot;</span><span style="color:#dcdcdc;">)
+    _ &lt;- buy(</span><span style="color:#d69d85;">&quot;APPL&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+    _ &lt;- info(</span><span style="color:#d69d85;">&quot;I&#39;m going to trade even more smartly&quot;</span><span style="color:#dcdcdc;">)
+    _ &lt;- buy(</span><span style="color:#d69d85;">&quot;MSFT&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+    rsp &lt;- sell(</span><span style="color:#d69d85;">&quot;GOOG&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+    _ &lt;- error(</span><span style="color:#d69d85;">&quot;Wait, what?!&quot;</span><span style="color:#dcdcdc;">)
+  } </span><span style="color:#569cd6;">yield</span><span style="color:#dcdcdc;"> rsp
+</span></code></pre>
+<p>and, no, this doesn't compile. The reason is clear once you look at the signature of <code>flatMap</code>, <code>flatMap[A,B](a: F[A])(f: A =&gt; F[B]): F[B]</code>. The initial and final monad must be the same when using <code>flatMap</code>, but in here we are mixing <code>OrdersF</code> and <code>LogF</code> monads in the same for-comprehension. So it won't compile.</p>
+<p>The solution, in Cats, is to use an alternative way to lift our case classes to Monads. Instead of using the <code>liftF</code> method from <code>Free</code> we will use a slightly more complex structure that will help us later to mix both Monads. Let's start with an example:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> cats.free.{Free, Inject}
+
+</span><span style="color:#569cd6;">class</span><span style="color:#dcdcdc;"> OrderI[F[_]](</span><span style="color:#569cd6;">implicit </span><span style="color:#dcdcdc;">I: Inject[Orders, F]) {
+  </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">buyI(stock: Symbol, amount: </span><span style="color:#569cd6;">Int</span><span style="color:#dcdcdc;">): Free[F, Response] = </span><span style="color:#b5cea8;">Free</span><span style="color:#dcdcdc;">.inject[Orders, F](</span><span style="color:#b5cea8;">Buy</span><span style="color:#dcdcdc;">(stock, amount))
+
+  </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">sellI(stock: Symbol, amount: </span><span style="color:#569cd6;">Int</span><span style="color:#dcdcdc;">): Free[F, Response] = </span><span style="color:#b5cea8;">Free</span><span style="color:#dcdcdc;">.inject[Orders, F](</span><span style="color:#b5cea8;">Sell</span><span style="color:#dcdcdc;">(stock, amount))
+}
+
+</span><span style="color:#608b4e;">// We need this implicit
+</span><span style="color:#569cd6;">implicit def </span><span style="color:#dcdcdc;">orderI[F[_]](</span><span style="color:#569cd6;">implicit </span><span style="color:#dcdcdc;">I: Inject[Orders, F]): OrderI[F] = </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">OrderI[F]
+</span></code></pre>
+<p>As you can see we create a class <code>OrderI</code> that contains two methods which will lift our case classes into monads, by using <code>Free.inject</code>. The key part here is the implicit <code>Inject[Orders, F]</code> which, on compilation, will resolve to a type that binds everything together. The implicit method <code>orderI</code> is there to facilitate using this construct in our program, as we will see later on.</p>
+<p>Take this as a template to follow, a bit of boilerplate to lift case classes into monads, no need to understand all the details right now. Note that we can use both <code>liftF</code> and this <em>new</em> way to lift our case classes into monads, they are not exclusive nor incompatible.</p>
+<p>Let's do the same for our new language <code>Log</code>:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> cats.free.{Free, Inject}
+
+</span><span style="color:#569cd6;">class</span><span style="color:#dcdcdc;"> LogI[F[_]](</span><span style="color:#569cd6;">implicit </span><span style="color:#dcdcdc;">I: Inject[Log, F]) {
+  </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">infoI(msg: String): Free[F, </span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">] =
+    </span><span style="color:#b5cea8;">Free</span><span style="color:#dcdcdc;">.inject[Log, F](</span><span style="color:#b5cea8;">Info</span><span style="color:#dcdcdc;">(msg))
+
+  </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">errorI(msg: String): Free[F, </span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">] =
+    </span><span style="color:#b5cea8;">Free</span><span style="color:#dcdcdc;">.inject[Log, F](</span><span style="color:#b5cea8;">Error</span><span style="color:#dcdcdc;">(msg))
+}
+
+</span><span style="color:#569cd6;">implicit def </span><span style="color:#dcdcdc;">logI[F[_]](</span><span style="color:#569cd6;">implicit </span><span style="color:#dcdcdc;">I: Inject[Log, F]): LogI[F] = </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">LogI[F]
+</span></code></pre>
+<p>Now that we have a way to lift both languages into monads, we need a way to use both in a for-comprehension. The solution here is given by <code>Coproduct</code> (explanation on this typeclass outside of the scope, sorry!) which will allow us to wire both types together.</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> cats.data.Coproduct
+
+</span><span style="color:#569cd6;">type </span><span style="color:#4ec9b0;">TradeApp</span><span style="color:#dcdcdc;">[A] = Coproduct[Orders, Log, A]
+</span></code></pre>
+<p>With this we can now define our program, again:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">smartTradeWithLogs(</span><span style="color:#569cd6;">implicit </span><span style="color:#dcdcdc;">O: OrderI[TradeApp],
+                                L: LogI[TradeApp]): Free[TradeApp, Response] = {
+  </span><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> L._
+  </span><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> O._
+
+  </span><span style="color:#608b4e;">// Look, ma, both monads at once!
+  </span><span style="color:#569cd6;">for </span><span style="color:#dcdcdc;">{
+    _ &lt;- infoI(</span><span style="color:#d69d85;">&quot;I&#39;m going to trade smartly&quot;</span><span style="color:#dcdcdc;">)
+    _ &lt;- buyI(</span><span style="color:#d69d85;">&quot;APPL&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+    _ &lt;- infoI(</span><span style="color:#d69d85;">&quot;I&#39;m going to trade even more smartly&quot;</span><span style="color:#dcdcdc;">)
+    _ &lt;- buyI(</span><span style="color:#d69d85;">&quot;MSFT&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+    rsp &lt;- sellI(</span><span style="color:#d69d85;">&quot;GOOG&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+    _ &lt;- errorI(</span><span style="color:#d69d85;">&quot;Wait, what?!&quot;</span><span style="color:#dcdcdc;">)
+  } </span><span style="color:#569cd6;">yield</span><span style="color:#dcdcdc;"> rsp
+}
+</span></code></pre>
+<p>This compiles. We are using the implicit methods defined before to create instances of <code>OrderI</code> and <code>LogI</code>. By receiving our <code>Coproduct</code> as the type parameter, their implicit <code>Inject</code> will help us build a compatibility layer between both monads. You can check the source code of <code>Inject</code> to understand how this works.</p>
+<p>We have our program, with both behaviour and logs in it. Now we want to execute it. Unfortunately, the interpreters we defined before can't be used as they are, we need an interpreter for the new <code>TradeApp</code> type. The good news are that this new interpreter can be built on top of the existing ones:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">composedInterpreter: TradeApp ~&gt; Id = orderPrinter or logPrinter
+</span></code></pre>
+<p>This interpreter is defining a natural transformation from <code>TradeApp</code> (a monad) to <code>Id</code> (another monad). As <code>TradeApp</code> is a <code>Coproduct</code>, and we already have interpreters from each of its elements to <code>Id</code>, we can take advantage of the <code>or</code> method in a natural transformation and delegate the task to our existing interpreters. Reuse is always good :)</p>
+<p>We can run this:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">smartTradeWithLogs.foldMap(composedInterpreter)
+</span></code></pre>
+<p>and we will see the output in our terminal, including the logs:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">[Info] - I&#39;m going to trade smartly
+Buying 100 of APPL
+[Info] - I&#39;m going to trade even more smartly
+Buying 100 of MSFT
+Selling 100 of GOOG
+[Error] - Wait, what?!
+</span></code></pre>
+<p>There you have it. Two full languages working together to define a program, that we can later on run with a specific interpreter. Isn't it neat? Although the code seems more verbose that with the original example, remember that we are defining all these elements (implicit classes and interpreters) just once, and they will work with all our programs using these languages. Not a bad trade-off.</p>
+<h2 id="what-s-better-than-2-languages">What's better than 2 languages?</h2>
+<p>So we can build programs with two languages, but... what if we want three? We are managing money and shares, so besides logs we may be required to add auditing to the application. How easy is that? Let's start by defining a third language, <code>Audit</code>, as we just did with the other two:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">sealed trait</span><span style="color:#dcdcdc;"> Audit[A]
+
+</span><span style="color:#569cd6;">case class</span><span style="color:#dcdcdc;"> UserActionAudit(user: UserId, action: String, values: List[Values]) </span><span style="color:#569cd6;">extends </span><span style="color:#4ec9b0;">Audit</span><span style="color:#dcdcdc;">[</span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">]
+
+</span><span style="color:#569cd6;">case class</span><span style="color:#dcdcdc;"> SystemActionAudit(job: JobId, action: String, values: List[Values]) </span><span style="color:#569cd6;">extends </span><span style="color:#4ec9b0;">Audit</span><span style="color:#dcdcdc;">[</span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">]
+
+</span><span style="color:#569cd6;">class</span><span style="color:#dcdcdc;"> AuditI[F[_]](</span><span style="color:#569cd6;">implicit </span><span style="color:#dcdcdc;">I: Inject[Audit, F]) {
+  </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">userAction(user: UserId, action: String, values: List[Values]): Free[F, </span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">] =
+    </span><span style="color:#b5cea8;">Free</span><span style="color:#dcdcdc;">.inject[Audit, F](</span><span style="color:#b5cea8;">UserActionAudit</span><span style="color:#dcdcdc;">(user, action, values))
+
+  </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">systemAction(job: JobId, action: String, values: List[Values]): Free[F, </span><span style="color:#569cd6;">Unit</span><span style="color:#dcdcdc;">] =
+    </span><span style="color:#b5cea8;">Free</span><span style="color:#dcdcdc;">.inject[Audit, F](</span><span style="color:#b5cea8;">SystemActionAudit</span><span style="color:#dcdcdc;">(job, action, values))
+}
+
+</span><span style="color:#569cd6;">implicit def </span><span style="color:#dcdcdc;">auditI[F[_]](</span><span style="color:#569cd6;">implicit </span><span style="color:#dcdcdc;">I: Inject[Audit, F]): AuditI[F] = </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">AuditI[F]
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">auditPrinter: Audit ~&gt; Id =
+  </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">(Audit ~&gt; Id) {
+    </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">apply[A](fa: Audit[A]): Id[A] =
+	  fa </span><span style="color:#569cd6;">match </span><span style="color:#dcdcdc;">{
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">UserActionAudit</span><span style="color:#dcdcdc;">(user, action, values) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+		  println(s</span><span style="color:#d69d85;">&quot;[USER Action] - user </span><span style="color:#dcdcdc;">$user</span><span style="color:#d69d85;"> called </span><span style="color:#dcdcdc;">$action</span><span style="color:#d69d85;"> with values </span><span style="color:#dcdcdc;">$values</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">)
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">SystemActionAudit</span><span style="color:#dcdcdc;">(job, action, values) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+		  println(s</span><span style="color:#d69d85;">&quot;[SYSTEM Action] - </span><span style="color:#dcdcdc;">$job</span><span style="color:#d69d85;"> called </span><span style="color:#dcdcdc;">$action</span><span style="color:#d69d85;"> with values </span><span style="color:#dcdcdc;">$values</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">)
+      }
+}
+</span></code></pre>
+<p>Again, you have seen all this before. We have a language, we lift the case classes to Free Monad and we create an interpreter to <code>Id</code>. Easy. The complex part comes when we want to define our <code>Coproduct</code> and the typeclass is declared as <code>Coproduct[F[_], G[_], A]</code>, which means we have room for only two monads, <code>F</code> and <code>G</code>. But we need 3. Ouch!</p>
+<p>But, wait! In the previous section we defined the <code>TradeApp</code> coproduct. Which is a coproduct, yes, but also behaves like our Free Monads, so we can consider it a Monad (I'm not sure if it is technically correct to call it a Monad, but let's ignore that by now). This means, in fact, we have only two monads: <code>Audit</code> and <code>TradeApp</code>. So we can build the <code>Coproduct</code>:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">type </span><span style="color:#4ec9b0;">AuditableTradeApp</span><span style="color:#dcdcdc;">[A] = Coproduct[Audit, TradeApp, A]
+</span></code></pre>
+<p>A note of interest: due to the way <code>Inject</code> is implemented, our <code>TradeApp</code> class needs to be on the right hand side, otherwise this code won't compile.</p>
+<p>We have the type, what about the interpreter? Yes, we can reuse our existing ones, this has not changed:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">auditableInterpreter: AuditableTradeApp ~&gt; Id = auditPrinter or composedInterpreter
+</span></code></pre>
+<p>Notice that in the interpreter the order also matters, due to the implementation details of <code>or</code>. But, at this point, we have all the pieces we need and we can build our program:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">smartTradeWithAuditsAndLogs(</span><span style="color:#569cd6;">implicit </span><span style="color:#dcdcdc;">O: OrderI[AuditableTradeApp],
+                                         L: LogI[AuditableTradeApp],
+										 A: AuditI[AuditableTradeApp]
+							    ): Free[AuditableTradeApp, Response] = {
+  </span><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> A._
+  </span><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> L._
+  </span><span style="color:#569cd6;">import</span><span style="color:#dcdcdc;"> O._
+
+  </span><span style="color:#569cd6;">for </span><span style="color:#dcdcdc;">{
+    _ &lt;- infoI(</span><span style="color:#d69d85;">&quot;I&#39;m going to trade smartly&quot;</span><span style="color:#dcdcdc;">)
+    _ &lt;- userAction(</span><span style="color:#d69d85;">&quot;ID102&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;buy&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">List</span><span style="color:#dcdcdc;">(</span><span style="color:#d69d85;">&quot;APPL&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;100&quot;</span><span style="color:#dcdcdc;">))
+    _ &lt;- buyI(</span><span style="color:#d69d85;">&quot;APPL&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">200</span><span style="color:#dcdcdc;">)
+    _ &lt;- infoI(</span><span style="color:#d69d85;">&quot;I&#39;m going to trade even more smartly&quot;</span><span style="color:#dcdcdc;">)
+    _ &lt;- userAction(</span><span style="color:#d69d85;">&quot;ID102&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;buy&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">List</span><span style="color:#dcdcdc;">(</span><span style="color:#d69d85;">&quot;MSFT&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;100&quot;</span><span style="color:#dcdcdc;">))
+    _ &lt;- buyI(</span><span style="color:#d69d85;">&quot;MSFT&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">100</span><span style="color:#dcdcdc;">)
+    _ &lt;- userAction(</span><span style="color:#d69d85;">&quot;ID102&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;sell&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">List</span><span style="color:#dcdcdc;">(</span><span style="color:#d69d85;">&quot;GOOG&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;100&quot;</span><span style="color:#dcdcdc;">))
+    rsp &lt;- sellI(</span><span style="color:#d69d85;">&quot;GOOG&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">300</span><span style="color:#dcdcdc;">)
+    _ &lt;- systemAction(</span><span style="color:#d69d85;">&quot;BACKOFFICE&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;tradesCheck&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">List</span><span style="color:#dcdcdc;">(</span><span style="color:#d69d85;">&quot;ID102&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;lastTrades&quot;</span><span style="color:#dcdcdc;">))
+    _ &lt;- errorI(</span><span style="color:#d69d85;">&quot;Wait, what?!&quot;</span><span style="color:#dcdcdc;">)
+  } </span><span style="color:#569cd6;">yield</span><span style="color:#dcdcdc;"> rsp
+}
+</span></code></pre>
+<p>and on execution</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">smartTradeWithAuditsAndLogs.foldMap(auditableInterpreter)
+</span></code></pre>
+<p>we see</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">[Info] - I&#39;m going to trade smartly
+[USER Action] - user ID102 called buy with values List(APPL, 100)
+Buying 200 of APPL
+[Info] - I&#39;m going to trade even more smartly
+[USER Action] - user ID102 called buy with values List(MSFT, 100)
+Buying 100 of MSFT
+[USER Action] - user ID102 called sell with values List(GOOG, 100)
+Selling 300 of GOOG
+[SYSTEM Action] - BACKOFFICE called tradesCheck with values List(ID102, lastTrades)
+[Error] - Wait, what?!
+</span></code></pre>
+<p>We did it. We have three languages working together in our program. And the only additional definitions are a couple of <code>Coproduct</code> types as well as interpreters, which are built reusing existing interpreters for our types. Not a lot of work for the benefits we get, if I can say so.</p>
+<p>At this stage we could try to add more languages, but we see the pattern on how it would work. So let's try something different.</p>
+<h2 id="free-monads-all-the-way-down">Free Monads all the way down</h2>
+<p>Our original <code>Orders</code> language didn't specify how would we send an order to someone. We could code that into an interpreter, true. But we can safely assume that Orders will be propagated via either HTTP requests or Messages to some system. Given the recent popularity of event-sourcing and Kafka, let's say some publish-subscribe system. It would be wasteful to redefine the details to interact with that system in each interpreter that needed so.</p>
+<p>In fact, we can think that a language exists to interact with that system, so we should be able to define a Free Monad to work with that language. Let's do so:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">sealed trait</span><span style="color:#dcdcdc;"> Messaging[A]
+</span><span style="color:#569cd6;">case class</span><span style="color:#dcdcdc;"> Publish(channelId: ChannelId, source: SourceId, messageId: MessageId, payload: Payload) </span><span style="color:#569cd6;">extends </span><span style="color:#4ec9b0;">Messaging</span><span style="color:#dcdcdc;">[Response]
+</span><span style="color:#569cd6;">case class</span><span style="color:#dcdcdc;"> Subscribe(channelId: ChannelId, filterBy: Condition) </span><span style="color:#569cd6;">extends </span><span style="color:#4ec9b0;">Messaging</span><span style="color:#dcdcdc;">[Payload]
+
+</span><span style="color:#569cd6;">type </span><span style="color:#4ec9b0;">MessagingF</span><span style="color:#dcdcdc;">[A] = Free[Messaging, A]
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">publish(channelId: ChannelId, source: SourceId, messageId: MessageId, payload: Payload): MessagingF[Response] =
+  liftF[Messaging, Response](</span><span style="color:#b5cea8;">Publish</span><span style="color:#dcdcdc;">(channelId, source, messageId, payload))
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">subscribe(channelId: ChannelId, filterBy: Condition): MessagingF[Payload] =
+  liftF[Messaging, Payload](</span><span style="color:#b5cea8;">Subscribe</span><span style="color:#dcdcdc;">(channelId, filterBy))
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">messagingPrinter: Messaging ~&gt; Id =
+  </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">(Messaging ~&gt; Id) {
+    </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">apply[A](fa: Messaging[A]): Id[A] =
+	  fa </span><span style="color:#569cd6;">match </span><span style="color:#dcdcdc;">{
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Publish</span><span style="color:#dcdcdc;">(channelId, source, messageId, payload) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+          println(s</span><span style="color:#d69d85;">&quot;Publish [</span><span style="color:#dcdcdc;">$channelId</span><span style="color:#d69d85;">] From: [</span><span style="color:#dcdcdc;">$source</span><span style="color:#d69d85;">] Id: [</span><span style="color:#dcdcdc;">$messageId</span><span style="color:#d69d85;">] Payload: [</span><span style="color:#dcdcdc;">$payload</span><span style="color:#d69d85;">]&quot;</span><span style="color:#dcdcdc;">)
+          </span><span style="color:#d69d85;">&quot;ok&quot;
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Subscribe</span><span style="color:#dcdcdc;">(channelId, filterBy) </span><span style="color:#569cd6;">=&gt;
+          val </span><span style="color:#dcdcdc;">payload = </span><span style="color:#d69d85;">&quot;Event fired&quot;</span><span style="color:#dcdcdc;">
+          println(s</span><span style="color:#d69d85;">&quot;Received message from [</span><span style="color:#dcdcdc;">$channelId</span><span style="color:#d69d85;">](filter: [</span><span style="color:#dcdcdc;">$filterBy</span><span style="color:#d69d85;">]): [</span><span style="color:#dcdcdc;">$payload</span><span style="color:#d69d85;">]&quot;</span><span style="color:#dcdcdc;">)
+          payload
+      }
+   }
+</span></code></pre>
+<p>Nothing new here either, we defined another language, this time using <code>liftF</code>, along an interpreter to <code>Id</code> to print messages to the terminal. By now, you should be able to do this with your eyes closed ;)</p>
+<p>We have the language. How to make <code>Orders</code> work with this language, such that we can define our orders in terms of operations against a publish-subscribe network? The answer is natural transformation. If you remember, a natural transformation allows us to convert our original language to a new monad. And <code>MessagingF</code> is a monad, a free one. Which means we can do the following:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">orderToMessageInterpreter: Orders ~&gt; MessagingF =
+  </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">(Orders ~&gt; MessagingF) {
+    </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">apply[A](fa: Orders[A]): MessagingF[A] = {
+      fa </span><span style="color:#569cd6;">match </span><span style="color:#dcdcdc;">{
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">ListStocks</span><span style="color:#dcdcdc;">() </span><span style="color:#569cd6;">=&gt;
+          for </span><span style="color:#dcdcdc;">{
+            _ &lt;- publish(</span><span style="color:#d69d85;">&quot;001&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;Orders&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">UUID</span><span style="color:#dcdcdc;">.randomUUID().toString, </span><span style="color:#d69d85;">&quot;Get Stocks List&quot;</span><span style="color:#dcdcdc;">)
+            payload &lt;- subscribe(</span><span style="color:#d69d85;">&quot;001&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;*&quot;</span><span style="color:#dcdcdc;">)
+          } </span><span style="color:#569cd6;">yield </span><span style="color:#b5cea8;">List</span><span style="color:#dcdcdc;">(payload)
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Buy</span><span style="color:#dcdcdc;">(stock, amount) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+          publish(</span><span style="color:#d69d85;">&quot;001&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;Orders&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">UUID</span><span style="color:#dcdcdc;">.randomUUID().toString, s</span><span style="color:#d69d85;">&quot;Buy </span><span style="color:#dcdcdc;">$stock $amount</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">)
+        </span><span style="color:#569cd6;">case </span><span style="color:#b5cea8;">Sell</span><span style="color:#dcdcdc;">(stock, amount) </span><span style="color:#569cd6;">=&gt;</span><span style="color:#dcdcdc;">
+          publish(</span><span style="color:#d69d85;">&quot;001&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;Orders&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">UUID</span><span style="color:#dcdcdc;">.randomUUID().toString, s</span><span style="color:#d69d85;">&quot;Sell </span><span style="color:#dcdcdc;">$stock $amount</span><span style="color:#d69d85;">&quot;</span><span style="color:#dcdcdc;">)
+      }
+    }
+  }
+</span></code></pre>
+<p>This compiles (and works, as we will see later). And yes, you can use a for-comprehension inside the interpreter, as we do in our <code>ListStocks</code> case. This specific transformation is simpler due to the fact that <code>publish</code>, <code>buy</code> and <code>sell</code> have the same response type <code>Response</code>, but as you can see adapting the results wouldn't be a problem, if required.</p>
+<p>That was easy, wasn't it? So what about our interpreter? How do we bridge from <code>Orders</code> to <code>Id</code> while using <code>MessagingF</code>? For this case we need to build a small bridge between interpreters. Let me show you what I mean:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">messagingFreePrinter: MessagingF ~&gt; Id =
+  </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">(MessagingF ~&gt; Id) {
+    </span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">apply[A](fa: MessagingF[A]): Id[A] =
+	  fa.foldMap(messagingPrinter)
+  }
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">ordersToTerminalViaMessage: Orders ~&gt; Id =
+  orderToMessageInterpreter andThen messagingFreePrinter
+</span></code></pre>
+<p>We can chain natural transformations via their <code>andThen</code> method. In this case, though, we have a small mismatch of parameters: <code>orderToMessageInterpreter</code> returns a <code>MessagingF</code> but <code>messagingPrinter</code> expects <code>Messaging</code>. The solution is to create a new interpreter from <code>MessagingF</code> to <code>Id</code>. The good news is that this interpreter can reuse our existing <code>messagingPrinter</code> via <code>foldMap</code>, which means this bridge is not adding risk (as in new logic) to our application.</p>
+<p>If we use all this together to run our original program, without logging nor auditing:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">smartTrade.foldMap(ordersToTerminalViaMessage)
+</span></code></pre>
+<p>we see</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">Publish [001] From: [Orders] Id: [c7f22b1e-b688-4f61-82cb-39b421b8ab6c] Payload: [Buy APPL 50]
+Publish [001] From: [Orders] Id: [94bbf71d-1c95-4c26-97a3-ce0b970893aa] Payload: [Buy MSFT 10]
+Publish [001] From: [Orders] Id: [27311809-97f9-4e04-b813-7a2cf9743415] Payload: [Sell GOOG 200]
+</span></code></pre>
+<p>So now we are running our orders via another Free Monad that represents a lower-level layer in the stack. This means we can compose this new monad with other languages, as needed. This has the benefit that improvements to the interpreters of this new <code>Messaging</code> language will be automatically propagated to any program indirectly using it, as well as reducing the amount of code that needs to be tested thanks to reuse.</p>
+<p>We have one last task left: use this new <code>Messaging</code> language with our program that has logs and audit commands.</p>
+<h2 id="all-together">All together</h2>
+<p>The last step is to put all this together. We have a program, <code>smartTradeWithAuditsAndLogs</code>, that has logging and auditing. We want to run it against an interpreter that also uses our <code>Orders</code> to <code>Messaging</code> to <code>Id</code> interpreter defined above, <code>ordersToTerminalViaMessage</code>.</p>
+<p>To do this, we need to define two new interpreters. The reason is that our original <code>TradeApp ~&gt; Id</code> interpreter wasn't running through our <code>Messaging</code> language, and by changing the interpreter for <code>TradeApp</code> we will also need to define a new one for <code>AuditableTradeApp</code>:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">composedViaMessageInterpreter: TradeApp ~&gt; Id =
+  ordersToTerminalViaMessage or logPrinter
+
+</span><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">auditableToTerminalViaMessage: AuditableTradeApp ~&gt; Id =
+  auditPrinter or composedViaMessageInterpreter
+</span></code></pre>
+<p>As before, the good news is that we are reusing our previous original interpreters, just modifying how we combine them. When you think about it, we have only 4 interpreters to <code>Id</code>, one per language. All the other interpreters are combinations of these. Which means that, although it seems we are reimplementing them often, in fact we are not.</p>
+<p>With this last interpreter we can run our full program:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">smartTradeWithAuditsAndLogs.foldMap(auditableToTerminalViaMessage)
+</span></code></pre>
+<p>and see in our terminal</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">[Info] - I&#39;m going to trade smartly
+[USER Action] - user ID102 called buy with values List(APPL, 100)
+Publish [001] From: [Orders] Id: [1198b3b5-c4bd-4f96-90e7-56553f0d2a54] Payload: [Buy APPL 200]
+[Info] - I&#39;m going to trade even more smartly
+[USER Action] - user ID102 called buy with values List(MSFT, 100)
+Publish [001] From: [Orders] Id: [98b19c50-6b61-4f92-b28e-59395c103362] Payload: [Buy MSFT 100]
+[USER Action] - user ID102 called sell with values List(GOOG, 100)
+Publish [001] From: [Orders] Id: [8f95b6ae-47d4-4a70-aea3-feca73d63e7a] Payload: [Sell GOOG 300]
+[SYSTEM Action] - BACKOFFICE called tradesCheck with values List(ID102, lastTrades)
+[Error] - Wait, what?!
+</span></code></pre>
+<p>And that's it. We have defined a program using 4 different languages, used at different levels of abstraction. Quite a comprehensive case, if the length of this post is any indication :) I hope this showcases the main uses of Free Monad and gives you a better understanding on the subject.</p>
+<p>Remember that you can clone the <a href="https://github.com/pvillega/free-monad-sample">code</a> to play with all this yourself.</p>
+<p>Now, let's talk about a couple of issues with Free Monads.</p>
+<h2 id="performance-impact">Performance impact</h2>
+<p>Every time we add an abstraction, performance may diminish. I've not done any tests on performance using Free Monads as doing a proper benchmark is very hard, but I found a couple of references on the subject which may help understanding the impact.</p>
+<p>This <a href="http://okmij.org/ftp/Computation/free-monad.html">Free Monad explanation</a> is quite comprehensive, and it says about performance:</p>
+<blockquote>
+<p>Do we have to pay for all the benefits of free and freer monads in performance?
+With the simplest free and freer monads described so far: yes, the performance suffers.
+One should keep in mind that performance does not always matter: a large portion of software
+we successfully interact with every day is written in Python, Perl or Ruby, and which are not
+exactly speed kings.</p>
+</blockquote>
+<p>I agree with the statement above in that most of our applications are not performance sensitive, within certain limits. For most operations the overhead introduced by Free Monad is not relevant, but don't use it if performance is critical to your business case.</p>
+<p><a href="https://twitter.com/mandubian">Pascal Voitot</a> wrote last year a post on <a href="http://mandubian.com/2015/04/09/freer/">better implementations</a> of Free. As far as I understand, some of the concepts are already implemented in Cats and may reduce the impact of Free a bit.</p>
+<p>As usual, each use case is different. You should test your implementation to ensure resulting performance is acceptable to you.</p>
+<h2 id="the-criticisms">The criticisms</h2>
+<p>I've left this part to the last, at the point where saw a full implementation of Free and we can judge the criticisms from a more informed perspective. Shouldn't come as a surprise that not everybody likes Free Monad, and there are some justified criticisms to it.</p>
+<p>As an example, recently <a href="https://twitter.com/alexelcu">Alexandru Nedelcu</a>, of <a href="https://monix.io/">Monix</a> fame, tweeted a series of <a href="https://twitter.com/alexelcu/status/736090380999888898">opinions</a> where he highlights some trade offs you make when you decide to use Free Monads.</p>
+<p>This <a href="http://event.scaladays.org/scaladays-nyc-2016#!#schedulePopupExtras-7558">talk</a> by <a href="https://twitter.com/kelleyrobinson">Kelley Robinson</a> gave a bit more detail on situations in which Free Monad may not be a good fit. The video has not been published yet, but there are <a href="http://www.slideshare.net/KelleyRobinson1/why-the-free-monad-isnt-free-61836547">slides</a> available.</p>
+<p>Unfortunately I've lost a couple of references I had with people raising concerns about Free Monad. But I hope these two give you an idea of the general issues people have with this pattern.</p>
+<p>In the end, you have to remember the Free Monad is just a tool, and no tool is a silver bullet. It may be a perfect fit for your application and team, right now, but you should understand the trade offs you are accepting. Unfortunately you can only understand that through experience; my advice is to start using it in areas of the code where the impact will be small and spread it as you learn.</p>
+<h2 id="thanks">Thanks</h2>
+<p>With concepts like Free Monad, existing literature and people's help are crucial to navigate the hard parts. It would be unfair to not mention all contributions that helped me to understand (or so I hope) Free Monad, and to write this post.</p>
+<p>There's plenty of information online that has been extremely useful. The most relevant links are listed in the next section. A big thanks to all the authors, the time spent on that documentation has helped at least one person :)</p>
+<p>I need to thank <a href="https://twitter.com/milessabin">Miles Sabin</a>, <a href="https://twitter.com/channingwalton">Channing Walton</a>, and <a href="https://twitter.com/lancewalton">Lance Walton</a>, as experimentation we did with Free Monad provided a foundation for this post.</p>
+<p>Many thanks to <a href="https://twitter.com/julientruffaut">Julien Truffaut</a>. He pointed to <code>traversableU</code> as the solution to mixing <code>List</code> results in the program for <code>Orders</code>. I got stuck in that case and, without his contribution, I'd be giving a horribly wrong solution to you, my reader.</p>
+<p>Last, but not least, I need to thank <a href="https://gitter.im/typelevel/cats">Cat's Gitter channel</a>, in particular <a href="https://twitter.com/adelbertchang">Adelbert Chang</a>, as he corrected a few misconceptions I had whilst porting a Free Monad built using Scalaz to a version using Cats.</p>
+<h2 id="references">References</h2>
+<p>I've used a lot of sources to improve my understanding on Free Monad. Below you can find a list of links that I found very relevant and helpful:</p>
+<ul>
+<li>Cats definition (very good explanation): <a href="http://typelevel.org/cats/datatypes/freemonad.html">http://typelevel.org/cats/datatypes/freemonad.html</a></li>
+<li>Free Monad technical explanation: <a href="http://okmij.org/ftp/Computation/free-monad.html">http://okmij.org/ftp/Computation/free-monad.html</a></li>
+<li>Tim Perrett's blog post (uses Scalaz): <a href="http://timperrett.com/2013/11/21/free-monads-part-1/">http://timperrett.com/2013/11/21/free-monads-part-1/</a></li>
+<li>Underscore post by Noel Welsh (uses Scalaz): <a href="http://underscore.io/blog/posts/2015/04/14/free-monads-are-simple.html">http://underscore.io/blog/posts/2015/04/14/free-monads-are-simple.html</a></li>
+<li>A second post by Noel Welsh: <a href="http://underscore.io/blog/posts/2015/04/23/deriving-the-free-monad.html">http://underscore.io/blog/posts/2015/04/23/deriving-the-free-monad.html</a></li>
+<li>The always useful Tutorial for Cats: <a href="http://eed3si9n.com/herding-cats/Free-monads.html">http://eed3si9n.com/herding-cats/Free-monads.html</a></li>
+<li><em>A year living Freely</em> by Chris Myers: <a href="https://www.youtube.com/watch?v=rK53C-xyPWw">https://www.youtube.com/watch?v=rK53C-xyPWw</a></li>
+<li>A post by John A De Goes (uses Haskell) <a href="http://degoes.net/articles/modern-fp">http://degoes.net/articles/modern-fp</a></li>
+</ul>
+<p>That's all for now, I hope this was informative and useful. As always, feedback via Twitter/Email is more than welcome. Cheers!</p>
+<p>PS: Hold the door.</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;scala&#x2F;">#scala</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;monad&#x2F;">#monad</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;fp&#x2F;">#fp</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;free-monad&#x2F;">#free monad</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

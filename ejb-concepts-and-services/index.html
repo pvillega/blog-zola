@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="EJB Concepts and Services" />
+<meta name="twitter:description" content="This page contains a brief summary of EJB 3.0 Services and related concepts. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="EJB Concepts and Services">
+<meta itemprop="description" content="This page contains a brief summary of EJB 3.0 Services and related concepts. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="EJB Concepts and Services" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;ejb-concepts-and-services&#x2F;" />
+<meta name="og:description" content="This page contains a brief summary of EJB 3.0 Services and related concepts. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  EJB Concepts and Services
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;ejb-concepts-and-services&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>EJB Concepts and Services</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on 16 February 2010. Reading time: 7 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>This page contains a brief summary of <strong>EJB 3.0 Services</strong> and related concepts. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like <strong>EJB3 in Action</strong>.</p>
+<span id="continue-reading"></span>
+<p>Next I will describe some key concepts related to EJB 3.0</p>
+<h2 id="ejb-context">EJB Context</h2>
+<p>The EJBContext interface (definition available <a href="http://docs.oracle.com/javaee/5/api/javax/ejb/EJBContext.html">here</a>) provides methods to interact with services like transaction, security, timer or even to do JNDI lookups. Both Session and Message beans implement this interface through inheritance.</p>
+<p>You can access this interface through the SessionContext object to be able to call its methods. Depending on which bean are you using (Session or MDB) the container will add some extra methods to the object that may be useful for your bean. Examples of use of context in Session and Message-Driven beans:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">
+@Stateless
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">PlaceBean </span><span style="color:#569cd6;">implements </span><span style="color:#4ec9b0;">PlaceLocal </span><span style="color:#dcdcdc;">{
+
+  @Resource
+  </span><span style="color:#569cd6;">private </span><span style="color:#dcdcdc;">SessionContext context;
+
+}
+
+
+@MessageDriven
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">MDBTestBean </span><span style="color:#569cd6;">implements </span><span style="color:#4ec9b0;">MessageListener </span><span style="color:#dcdcdc;">{
+
+  @Resource
+  </span><span style="color:#569cd6;">private </span><span style="color:#dcdcdc;">MessageDrivenContext context;
+
+}
+
+</span></code></pre><h2 id="dependency-injection">Dependency Injection</h2>
+<p>JEE 5 introduces dependency injection to remove all the hassle related to JNDI calls. You still can do JNDI calls using SessionContext objects but the easiest and recommended way is to use DI.</p>
+<p>There are several annotations for this purpose. @EJB is used to inject beans while @Resource can be used as a more versatile mechanism of DI. @Resource allows you to provide a JNDI name of a resource defined in the container and it processes all the calls needed to load that resource, and it can be related to an instance variable or a setter method that follows java bean format.</p>
+<p>Examples of dependency injection:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">
+@Stateless
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">OtherBeanBean </span><span style="color:#569cd6;">implements </span><span style="color:#4ec9b0;">OtherBeanLocal </span><span style="color:#dcdcdc;">{
+
+ @Resource(name = </span><span style="color:#d69d85;">&quot;jms/ShippingErrorQueue&quot;</span><span style="color:#dcdcdc;">)
+ </span><span style="color:#569cd6;">private </span><span style="color:#dcdcdc;">Destination errorQueue;
+
+}
+
+@Stateless
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">PlaceBean </span><span style="color:#569cd6;">implements </span><span style="color:#4ec9b0;">PlaceLocal </span><span style="color:#dcdcdc;">{
+
+ @EJB
+ </span><span style="color:#569cd6;">private </span><span style="color:#dcdcdc;">OtherBeanLocal otherBeanBean;
+
+}
+
+</span></code></pre><h2 id="interceptors">Interceptors</h2>
+<p>Interceptors are a form of Aspect-Oriented Programming (AOP) in EJB 3. They are objects that are automatically triggered when some EJB method is invoked.</p>
+<p>This is achieved using the @Interceptors annotation, which can be applied to a method or an entire class (in that case it will affect all methods of the class, you can use the annotation @ExcludeClassInterceptors on a method to ignore the interceptor for that method). The annotation receives as parameters a list of class objects that are used as interceptors.</p>
+<p>Each interceptor class must contain one (and only one) method annotated as @AroundInvoke, that signals the method to be used as interceptor. This method always has the same format, returning an Object and receiving as its only parameter an InvocationContext object. This class provides methods to check the name of the method called, parameters and other details and allows us to modify the parameters passed to the business method if needed.</p>
+<p>The interceptor to end always with a call to the &quot;proceed&quot; method of InvocationContext to signal the container it can proceed with the next step (next interceptor or the original method itself). Not calling proceed will halt the chain and the business method will never be accessed. One example of an interceptor and the method intercepted:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">InterceptorExample {
+
+  @AroundInvoke
+  </span><span style="color:#569cd6;">public </span><span style="color:#dcdcdc;">Object logMethod(InvocationContext invocationContext)
+    </span><span style="color:#569cd6;">throws </span><span style="color:#dcdcdc;">Exception{
+      log.warn(</span><span style="color:#d69d85;">&quot;Method: &quot;</span><span style="color:#dcdcdc;">+invocationContext.getMethod().getName());
+      </span><span style="color:#569cd6;">return</span><span style="color:#dcdcdc;"> invocationContext.proceed();
+  }
+
+}
+
+
+
+@Stateless
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">PlaceBean </span><span style="color:#569cd6;">implements </span><span style="color:#4ec9b0;">PlaceLocal </span><span style="color:#dcdcdc;">{
+
+  @Interceptors(InterceptorExample.class)
+  </span><span style="color:#569cd6;">public void </span><span style="color:#dcdcdc;">method(){
+
+  }
+
+}
+
+</span></code></pre><h2 id="timer">Timer</h2>
+<p>EJB 3 includes a basic timer service to schedule jobs. You can queue objects into the timer inside a bean and assign a method of that bean to process the timer events. Timer can be used to schedule single-events or recurring ones.</p>
+<p>One bean can have only one @Timeout method and it must follow the same structure (void return and receiving a Timer as parameter). You can only receive timer events in the same bean they were created (not same instance!) so you can't use Timer to send message across beans by itself, you will need to use JMS in the @Timeout method.</p>
+<p>Example of a simple timer service with a method setting the timer and the @Timeout consumer:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">
+@Stateless
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">PlaceBean </span><span style="color:#569cd6;">implements </span><span style="color:#4ec9b0;">PlaceLocal </span><span style="color:#dcdcdc;">{
+
+  @Resource
+  TimerService timerService;
+
+  </span><span style="color:#569cd6;">public void </span><span style="color:#dcdcdc;">createTimer(){
+    String attachment = </span><span style="color:#d69d85;">&quot;attachment&quot;</span><span style="color:#dcdcdc;">;
+    timerService.createTimer(</span><span style="color:#b5cea8;">10</span><span style="color:#dcdcdc;">*</span><span style="color:#b5cea8;">1000</span><span style="color:#dcdcdc;">, </span><span style="color:#b5cea8;">10</span><span style="color:#dcdcdc;">*</span><span style="color:#b5cea8;">1000</span><span style="color:#dcdcdc;">, attachment);
+  }
+
+  @Timeout
+  </span><span style="color:#569cd6;">public void </span><span style="color:#dcdcdc;">scheduledMethod(Timer timer){
+    String attachment = (String) timer.getInfo();
+  }
+
+}
+
+</span></code></pre><h2 id="transactions">Transactions</h2>
+<p>The JEE container does most of the heavy lifting on transactions, as implementing a working transaction manager is no easy task and is prone to errors. You should review concepts like ACID (atomicity, Consistency, Isolation, Durability) and two-phase commit before proceeding, to properly understand what's going on behind the scenes. In JEE the JTA API is responsible of transaction management.</p>
+<p>There are two kind of transactions, container managed transaction (CMT) and bean managed transaction (BMT). CMT is simpler and the container does most of the work while the BMT provides more control over the process in exchange of more coding effort.</p>
+<p>To use CMT we annotate with @TransactionManagement the class of the bean, indicating with the parameter the transaction will be managed by the container. Then we can flag the class or any transactional methods with @TransactionAttribute. This annotation tells the container how to behave when running the bean/method annotated: create a new transaction, reuse any existing transaction, never use a transaction... We must be aware our method may be called form another method that has started its own transaction, so its important to specify the behaviour of our bean. It has 6 choices: Required, Requires New, Supports, Mandatory, Not Supported and Never.</p>
+<p>To rollback a transaction you must use the EJBContext, calling its &quot;setRollbackOnly&quot; method. You can check if any underlying CMT transaction has been marked for rollback using &quot;getRollbackOnly&quot;, that way you can exit long operations before they finish as the transaction will fail anyway. An example of a CMT bean:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">
+@Stateless
+@TransactionManagement(TransactionManagementType.</span><span style="color:#b4cea8;">CONTAINER</span><span style="color:#dcdcdc;">)
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">CMTBean </span><span style="color:#569cd6;">implements </span><span style="color:#4ec9b0;">CMTLocal </span><span style="color:#dcdcdc;">{
+
+  @Resource
+  </span><span style="color:#569cd6;">private </span><span style="color:#dcdcdc;">SessionContext context;
+
+  @TransactionAttribute(TransactionAttributeType.</span><span style="color:#b4cea8;">REQUIRED</span><span style="color:#dcdcdc;">)
+  </span><span style="color:#569cd6;">public void </span><span style="color:#dcdcdc;">transactionMethod(String p1, String p2) {
+    </span><span style="color:#569cd6;">try</span><span style="color:#dcdcdc;">{
+        </span><span style="color:#608b4e;">//code
+    </span><span style="color:#dcdcdc;">}</span><span style="color:#569cd6;">catch</span><span style="color:#dcdcdc;">(Exception e){
+        context.setRollbackOnly();
+    }
+  }
+
+}
+
+</span></code></pre>
+<p>BMT is the other type of transaction, one which gives us a granular control over the transaction itself. Instead of it being related to a method we can specify the start of the transaction and its end. It works around the UserTransaction interface of the JTA API, using this interface to start, commit and rollback the transaction. The only annotation used is @TransactionManagement, to tell the container this bean is BMT.</p>
+<p>The interface also contains some additional methods to manage the transactions. The method &quot;setRollbackOnly&quot; is used to mark the transaction as &quot;roll back&quot; if our BMT interacts with CMT beans, The method &quot;getStatus&quot; gives us detailed information of the transactional status, while &quot;setTransactionTimeout&quot; allows us to change the timeout of the transaction.</p>
+<p>An example of BMT:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">
+@Stateless
+@TransactionManagement(TransactionManagementType.</span><span style="color:#b4cea8;">BEAN</span><span style="color:#dcdcdc;">)
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">BMTBean </span><span style="color:#569cd6;">implements </span><span style="color:#4ec9b0;">CMTLocal </span><span style="color:#dcdcdc;">{
+
+  @Resource
+  </span><span style="color:#569cd6;">private </span><span style="color:#dcdcdc;">UserTransaction userTransaction;
+
+  </span><span style="color:#569cd6;">public void </span><span style="color:#dcdcdc;">transactionMethod(String p1, String p2) {
+    </span><span style="color:#569cd6;">try</span><span style="color:#dcdcdc;">{
+        userTransaction.begin();
+        </span><span style="color:#608b4e;">//code
+</span><span style="color:#dcdcdc;">        userTransaction.commit();
+    }</span><span style="color:#569cd6;">catch</span><span style="color:#dcdcdc;">(Exception e){
+        userTransaction.rollback();
+    }
+  }
+
+}
+
+</span></code></pre><h2 id="security">Security</h2>
+<p>JEE provides a flexible security model, based on the standard concepts of users, groups and roles, that manages both authentication and authorization. This is achieved using the JASS API, that abstract the underlying authentication systems (like LDAP). If you use a web front-end you will probably define some security aspects in web.xml. This section will only review the part related to EJB.</p>
+<p>The most common use case is called &quot;declarative security&quot;, consisting on some annotations that tell the container who can access which method. One example should be enough to understand it:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">
+@DeclareRoles({</span><span style="color:#d69d85;">&quot;RoleA&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;RoleB&quot;</span><span style="color:#dcdcdc;">, </span><span style="color:#d69d85;">&quot;RoleC&quot;</span><span style="color:#dcdcdc;">})
+@Stateless
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">DeclarativeSecurityBean </span><span style="color:#569cd6;">implements </span><span style="color:#4ec9b0;">DeclarativeSecurityLocal </span><span style="color:#dcdcdc;">{
+
+  @RolesAllowed({</span><span style="color:#d69d85;">&quot;RoleA&quot;</span><span style="color:#dcdcdc;">,</span><span style="color:#d69d85;">&quot;RoleC&quot;</span><span style="color:#dcdcdc;">})
+  </span><span style="color:#569cd6;">public void </span><span style="color:#dcdcdc;">businessMethod1() {
+  }
+
+  @PermitAll
+  </span><span style="color:#569cd6;">public void </span><span style="color:#dcdcdc;">businessMethod2() {
+  }
+
+  @DenyAll
+  </span><span style="color:#569cd6;">public void </span><span style="color:#dcdcdc;">businessMethod3() {
+  }
+
+}
+
+</span></code></pre>
+<p>On the other hand, programmatic security uses the EJBContext to check the role of the user. This system should not be used unless completely necessary due to requirements, as it makes the security layer much harder to manage, One good point about this kind of security is that it can be used along interceptors, but even with this advantage if we have several roles managing the system is no easy task.</p>
+<p>One example will show why it's not recommended (think about an application with several beans and roles):</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">
+@Stateless
+</span><span style="color:#569cd6;">public class </span><span style="color:#dcdcdc;">ProgrammaticSecBean </span><span style="color:#569cd6;">implements </span><span style="color:#4ec9b0;">ProgrammaticSecurityLocal </span><span style="color:#dcdcdc;">{
+
+  @Resource
+  </span><span style="color:#569cd6;">private </span><span style="color:#dcdcdc;">SessionContext context;
+
+  </span><span style="color:#569cd6;">public void </span><span style="color:#dcdcdc;">businessMethod() {
+    </span><span style="color:#569cd6;">if</span><span style="color:#dcdcdc;">(</span><span style="color:#569cd6;">!</span><span style="color:#dcdcdc;">context.isCallerInRole(</span><span style="color:#d69d85;">&quot;RoleA&quot;</span><span style="color:#dcdcdc;">)
+       </span><span style="color:#569cd6;">&amp;&amp; !</span><span style="color:#dcdcdc;">context.isCallerInRole(</span><span style="color:#d69d85;">&quot;RoleB&quot;</span><span style="color:#dcdcdc;">)){
+       </span><span style="color:#569cd6;">return</span><span style="color:#dcdcdc;">;
+    }
+    </span><span style="color:#608b4e;">//code for other roles
+  </span><span style="color:#dcdcdc;">}
+
+}
+
+</span></code></pre>
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;java&#x2F;">#java</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;ejb&#x2F;">#ejb</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;ejb3&#x2F;">#ejb3</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="Emacs and Scala in Mac OS X Yosemite" />
+<meta name="twitter:description" content="After hearing a lot about the benefits of using Emacs to code in Scala, I&#x27;ve decided to give it a go and also to document the steps to work with it, in case anyone else feels crazy enough to try this.
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Emacs and Scala in Mac OS X Yosemite">
+<meta itemprop="description" content="After hearing a lot about the benefits of using Emacs to code in Scala, I&#x27;ve decided to give it a go and also to document the steps to work with it, in case anyone else feels crazy enough to try this.
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="Emacs and Scala in Mac OS X Yosemite" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;emacs-and-scala-in-mac-os-x-yosemite&#x2F;" />
+<meta name="og:description" content="After hearing a lot about the benefits of using Emacs to code in Scala, I&#x27;ve decided to give it a go and also to document the steps to work with it, in case anyone else feels crazy enough to try this.
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  Emacs and Scala in Mac OS X Yosemite
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;emacs-and-scala-in-mac-os-x-yosemite&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Emacs and Scala in Mac OS X Yosemite</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on 20 September 2015. Reading time: 5 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>After hearing a lot about the benefits of using Emacs to code in Scala, I've decided to give it a go and also to document the steps to work with it, in case anyone else feels crazy enough to try this.</p>
+<span id="continue-reading"></span><h2 id="why">Why?</h2>
+<p>I guess first I should explain why would I use Emacs when there are products like <a href="https://www.jetbrains.com/idea/?fromMenu">IntelliJ IDEA</a> which provide a lot of functionality and are easy (easier?) to use. This is a personal decision, but some reasons I've found to try Emacs are:</p>
+<ul>
+<li>
+<p>IDEA sometimes shows misleading errors with Scalaz. Add some EitherT or similar to your code and suddenly correct code that is built by Sbt with no complains is flagged red by IDEA. This is because they use their own compiler, and although it seems a minor issue it can become annoying (is this IDEA acting or did I break it?) and fixing it requires adding explicit type annotations to your code, which means more verbosity and less readable code.</p>
+</li>
+<li>
+<p>Resource efficiency. This last summer, due to me changing jobs, I had to bring back to life my 7 year old desktop with its non-ssd hard drive and only 4 Gb of ram. Trying to code in it was extremely annoying. I had only IDEA, a browser and a terminal open, but it felt clunky and focussing was hard due to constant system slowdowns. Replacing IDEA by a simple text editor helped a lot, but there was a lack of syntax highlighting and other tooling I was used to. I don't know if/when I may find myself in a similar situation again, so being comfortable with a leaner IDE has become relevant.</p>
+</li>
+<li>
+<p><a href="http://www.nhs.uk/conditions/Repetitive-strain-injury/Pages/Introduction.aspx">RSI</a>. Luckily I'm not suffering from it but I'm a frequent customer of physiotherapy due to heavy mouse use harming my shoulders. I've been told repeatedly that Emacs is a great environment to reduce these muscular issues, better than IDEA, so it's worth the effort.</p>
+</li>
+<li>
+<p>I don't mind the new <a href="https://www.jetbrains.com/company/press/pr_030915.html">payment policy</a> of Jetbrains; I've been paying for my license for years and renewing for each new version, so it would make no difference to me. But the change highlights the dangers of being tied to a proprietary tool and unexpected changes to them. If we believe in the software craftsmanship movement and we care about our tools, we need full control on them.</p>
+</li>
+<li>
+<p>Let's be honest, knowing Emacs sounds cool. I may fail on the task and realise I'm not the nerd I expected to be, but it's worth the test ;)</p>
+</li>
+</ul>
+<h2 id="environment">Environment</h2>
+<p>I'm going to install Emacs in a MacBook Pro with Yosemite.</p>
+<p>There are several Emacs packages you can choose from, the one I've been recommended is <a href="https://github.com/syl20bnr/spacemacs">Scapemacs</a> so I'll be trying this one.</p>
+<p>For Scala goodness I'll use <a href="https://github.com/ensime">Ensime</a> and its Emacs plugin.</p>
+<p>I won't research any other plugins by now, geting used to Emacs is enough.</p>
+<h2 id="installing-spacemacs">Installing Spacemacs</h2>
+<p>Spacemacs is a bundle of configuration and plugins for Emacs, as a consequence before starting you will need Emacs installed. As of today Spacemacs recommends to use the <code>emacs-mac-port</code> package, available in Homebrew:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">	$ brew tap railwaycat/emacsmacport
+	$ brew install emacs-mac --with-spacemacs-icon
+</span></code></pre>
+<p>After that, it is recommended to backup your current Emacs config:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">	cd ~
+	mv .emacs.d .emacs.bak
+</span></code></pre>
+<p>To install Spacemacs, just clone the repo along its submodules to <code>~/.emacs.d</code>:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">	git clone --recursive https://github.com/syl20bnr/spacemacs ~/.emacs.d
+</span></code></pre>
+<p>Once done, launch Emacs and wait for the set up to be done:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">	$ emacs
+</span></code></pre><h2 id="scala-and-emacs">Scala and Emacs</h2>
+<p>Spacemacs provides integration with <a href="https://github.com/ensime">Ensime</a> via <a href="https://github.com/syl20bnr/spacemacs/tree/master/contrib/!lang/scala">this package</a>. It works as a layer, to install it just edit your <code>~/.spacemacs</code> file and find <code>dotspacemacs-configuration-layers</code> near the top of the file. Add <code>scala</code> as a new layer:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">	dotspacemacs-configuration-layers
+	   &#39;(
+	     ;; ----------------------------------------------------------------
+	     ;; Example of useful layers you may want to use right away.
+	     ;; Uncomment some layer names and press &lt;SPC f e R&gt; (Vim style) or
+	     ;; &lt;M-m f e R&gt; (Emacs style) to install them.
+	     ;; ----------------------------------------------------------------
+	     ;; auto-completion
+	     ;; better-defaults
+	     emacs-lisp
+	     ;; git
+	     ;; markdown
+	     ;; org
+	     ;; (shell :variables
+	     ;;        shell-default-height 30
+	     ;;        shell-default-position &#39;bottom)
+	     ;; syntax-checking
+	     version-control
+	     scala
+	     )
+</span></code></pre>
+<p>Then restart Emacs. Next create a global <code>plugins.sbt</code> at <code>~/.sbt/0.13/plugins/plugin.sbt</code> and add to it:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">	resolvers += Resolver.sonatypeRepo(&quot;snapshots&quot;)
+
+	addSbtPlugin(&quot;org.ensime&quot; % &quot;ensime-sbt&quot; % &quot;0.1.5-SNAPSHOT&quot;)
+</span></code></pre>
+<p>Run sbt once in some of your projects to download the dependency.</p>
+<p>To work with a Scala project you will need to create a <code>.ensime</code> file by running</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">	sbt gen-ensime
+</span></code></pre>
+<p>At the root.  To load Ensime, type <code>SPC : ensime</code> and wait until the environment is configured, which may take a while the first time.</p>
+<h2 id="learning-spacemacs">Learning Spacemacs</h2>
+<p>After Emacs loads all the configuration you are welcomed by... an ugly yellow screen. Ugh. Yes, it will take a while to get used to this, no one said it would be easy ;) There are two resources I'm using to get started:</p>
+<ul>
+<li><a href="http://sachachua.com/blog/wp-content/uploads/2013/05/How-to-Learn-Emacs-v2-Large.png">How to Learn Emacs</a></li>
+<li><a href="https://github.com/syl20bnr/spacemacs#learning-spacemacs">Learning Spacemacs</a></li>
+</ul>
+<p>I started with the Evil-adapted Vimtutor to get familiar with the key bindings. Press <code>SPC h T</code> to launch it.</p>
+<h2 id="first-day-feelings">First day feelings</h2>
+<p>This is hard. I'm ashamed to acknowledge how long did it take me to open a file in Emacs, much less to compile it via Sbt.</p>
+<p>I can see the benefits of learning Emacs and not having to use the mouse much, but it will take effort to get used to this and to get the 'right' environment setup working.</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;scala&#x2F;">#scala</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;emacs&#x2F;">#emacs</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;macos&#x2F;">#macos</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

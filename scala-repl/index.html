@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="Scala REPL" />
+<meta name="twitter:description" content="One of the things people love about Scala is the REPL. I have to be honest;
+I never paid too much attention to it as IntelliJ provides a handy Scala Worksheet. But it is time to fix this..
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Scala REPL">
+<meta itemprop="description" content="One of the things people love about Scala is the REPL. I have to be honest;
+I never paid too much attention to it as IntelliJ provides a handy Scala Worksheet. But it is time to fix this..
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="Scala REPL" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;scala-repl&#x2F;" />
+<meta name="og:description" content="One of the things people love about Scala is the REPL. I have to be honest;
+I never paid too much attention to it as IntelliJ provides a handy Scala Worksheet. But it is time to fix this..
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  Scala REPL
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;scala-repl&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Scala REPL</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on  3 July 2015. Reading time: 6 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>One of the things people love about Scala is the <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>. I have to be honest;
+I never paid too much attention to it as IntelliJ provides a handy <a href="http://blog.jetbrains.com/scala/2014/05/23/meet-the-new-scala-worksheets-in-intellij-idea/">Scala Worksheet</a>. But it is time to fix this..</p>
+<span id="continue-reading"></span>
+<p>The main reason is that my old desktop started misbehaving and running IntelliJ slows it down to a crawl. While I find a suitable replacement, I had to settle with using Sublime Text 2 to toy around with some Scala code. Is at this point that my lack of knowledge of the REPL became obvious, and a hindrance. And what better way to help fix that issue than to document the relevant parts :)</p>
+<p>Most likely you are using the new <a href="http://www.typesafe.com/community/core-tools/activator-and-sbt">Activator</a> to generate your projects. Activator has a lot of commands:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">$ ./activator
+[info] Loading project definition from /home/pvillega/Dropbox/Projectes/scala-fp-exercises/project
+[info] Set current project to scala-fp-exercises (in build file:/home/pvillega/Dropbox/Projectes/scala-fp-exercises/)
+&gt; help
+
+  help                                    Displays this help message or prints detailed help on requested commands (run &#39;help &lt;command&gt;&#39;).
+  completions                             Displays a list of completions for the given argument string (run &#39;completions &lt;string&gt;&#39;).
+  about                                   Displays basic information about sbt and the build.
+  tasks                                   Lists the tasks defined for the current project.
+  settings                                Lists the settings defined for the current project.
+  reload                                  (Re)loads the current project or changes to plugins project or returns from it.
+  projects                                Lists the names of available projects or temporarily adds/removes extra builds to the session.
+  project                                 Displays the current project or changes to the provided `project`.
+  set [every] &lt;setting&gt;                   Evaluates a Setting and applies it to the current project.
+  session                                 Manipulates session settings.  For details, run &#39;help session&#39;.
+  inspect [uses|tree|definitions] &lt;key&gt;   Prints the value for &#39;key&#39;, the defining scope, delegates, related definitions, and dependencies.
+  &lt;log-level&gt;                             Sets the logging level to &#39;log-level&#39;.  Valid levels: debug, info, warn, error
+  plugins                                 Lists currently available plugins.
+  ; &lt;command&gt; (; &lt;command&gt;)*              Runs the provided semicolon-separated commands.
+  ~ &lt;command&gt;                             Executes the specified command whenever source files change.
+  last                                    Displays output from a previous command or the output from a specific task.
+  last-grep                               Shows lines from the last output for &#39;key&#39; that match &#39;pattern&#39;.
+  export &lt;tasks&gt;+                         Executes tasks and displays the equivalent command lines.
+  exit                                    Terminates the build.
+  --&lt;command&gt;                             Schedules a command to run before other commands on startup.
+  show &lt;key&gt;                              Displays the result of evaluating the setting or task associated with &#39;key&#39;.
+  all &lt;task&gt;+                             Executes all of the specified tasks concurrently.
+
+More command help available using &#39;help &lt;command&gt;&#39; for:
+  !, +, ++, &lt;, alias, append, apply, eval, iflast, onFailure, reboot, shell
+</span></code></pre>
+<p>The snippet above only shows the most relevant ones, but there are plenty more (278 as I write this) although just a few are used very often:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">&gt; projects        # lists the projects available
+&gt; project &lt;name&gt;  # changes to the given project (run will execute the selected project now)
+&gt; plugins         # lists all plugins
+&gt; reload          # reloads all the config and plugins without leaving the session
+&gt; run             # runs the current project
+&gt; ~test           # runs the tests. The initial ~ means it will run them all every time a source file changes, handy for TDD
+&gt; exit            # leaves activator
+&gt; console         # launches Scala REPL
+</span></code></pre>
+<p>As you can see with a few commands you cover most of your development needs. But as we were talking about REPL the command I want to focus on is <code>console</code>, which starts a REPL in the currently selected project:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">&gt; console
+[info] Starting scala interpreter...
+[info]
+Welcome to Scala version 2.11.6 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_45).
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala&gt; :help
+All commands can be abbreviated, e.g., :he instead of :help.
+:edit &lt;id&gt;|&lt;line&gt;        edit history
+:help [command]          print this summary or command-specific help
+:history [num]           show the history (optional num is commands to show)
+:h? &lt;string&gt;             search the history
+:imports [name name ...] show import history, identifying sources of names
+:implicits [-v]          show the implicits in scope
+:javap &lt;path|class&gt;      disassemble a file or class name
+:line &lt;id&gt;|&lt;line&gt;        place line(s) at the end of history
+:load &lt;path&gt;             interpret lines in a file
+:paste [-raw] [path]     enter paste mode or paste a file
+:power                   enable power user mode
+:quit                    exit the interpreter
+:replay [options]        reset the repl and replay all previous commands
+:require &lt;path&gt;          add a jar to the classpath
+:reset [options]         reset the repl to its initial state, forgetting all session entries
+:save &lt;path&gt;             save replayable session to a file
+:sh &lt;command line&gt;       run a shell command (result is implicitly =&gt; List[String])
+:settings &lt;options&gt;      update compiler options, if possible; see reset
+:silent                  disable/enable automatic printing of results
+:type [-v] &lt;expr&gt;        display the type of an expression without evaluating it
+:kind [-v] &lt;expr&gt;        display the kind of expression&#39;s type
+:warnings                show the suppressed warnings from the most recent line which had any
+</span></code></pre>
+<p>As you can see there aren't many commands in the REPL, which makes it very easy to use even for the uninitiated. Some of them deserve additional attention as you will run them often.</p>
+<p>For example <code>:implicits</code> will show a list of all implicits in scope. Given implicits are problematic (judging by <a href="http://stackoverflow.com/search?q=%5Bscala%5D+implicit">Stack Overflow</a> questions), this may help when debugging your app.</p>
+<p>One of the main drawbacks of a REPL is to type all the context (imports, type definitions, etc) you need before you can test stuff. Two commands remove this pain: <code>:load &lt;path&gt;</code> will read and interpret a file as if you had typed it into the terminal; the command <code>:paste</code> works similarly by starting a <em>paste mode</em> that allows you to copy-paste relevant code into the REPL.</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">scala&gt; :paste
+// Entering paste mode (ctrl-D to finish)
+
+val s = 3
+def g = (x: Int) =&gt; x*x
+
+// Exiting paste mode, now interpreting.
+
+s: Int = 3
+g: Int =&gt; Int
+</span></code></pre>
+<p>Alongside <code>:load</code> there is a corresponding <code>:save &lt;path&gt;</code> command which saves the current status of the REPL into a file that can be loaded later on to continue your work at that point.</p>
+<p>There are other commands you may want to check, like <code>:require</code> or <code>:history</code>, but with just the ones above working inside the REPL becomes a much more pleasant experience and not having a full fledge IDE is less of an issue.</p>
+<p>That's all. As always, feedback via Twitter/Email is more than welcome. Cheers!</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;scala&#x2F;">#scala</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;repl&#x2F;">#repl</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

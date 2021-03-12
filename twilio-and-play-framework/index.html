@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="Twilio and Play Framework" />
+<meta name="twitter:description" content="Another year, more technology to test :) Busy as I am in Gumtree, I&#x27;ve been able to test some interesting stuff. You know, evaluation of technologies to see if they make sense from a business perspective. Or playing around, it depends on the point of view ;)
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Twilio and Play Framework">
+<meta itemprop="description" content="Another year, more technology to test :) Busy as I am in Gumtree, I&#x27;ve been able to test some interesting stuff. You know, evaluation of technologies to see if they make sense from a business perspective. Or playing around, it depends on the point of view ;)
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="Twilio and Play Framework" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;twilio-and-play-framework&#x2F;" />
+<meta name="og:description" content="Another year, more technology to test :) Busy as I am in Gumtree, I&#x27;ve been able to test some interesting stuff. You know, evaluation of technologies to see if they make sense from a business perspective. Or playing around, it depends on the point of view ;)
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  Twilio and Play Framework
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;twilio-and-play-framework&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Twilio and Play Framework</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on 10 January 2014. Reading time: 1 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Another year, more technology to test :) Busy as I am in <a href="http://www.gumtree.com/">Gumtree</a>, I've been able to test some interesting stuff. You know, evaluation of technologies to see if they make sense from a business perspective. Or playing around, it depends on the point of view ;)</p>
+<span id="continue-reading"></span>
+<p>This time the testing platform has been <a href="https://www.twilio.com/">Twilio</a>. I built a prototype using Play Framework, Scala and the Twilio API to see how things work and if we could use some of them in the site. Granted, by prototype I mean 2 pages to test some calls to the API, but I guess this covers the core of Twilio, and extending it should be quite straightforward.</p>
+<p>I've written about it in a post in the <a href="https://medium.com/@GumtreeDevTeam/using-twilio-from-within-play-framework-81b174e31a84">Gumtree dev blog</a>, where I also link to the sample code in Github.</p>
+<p>As always, feedback via Twitter/Email is more than welcome.</p>
+<p>Oh, and Happy 2014! May the (reactive?) code be with you ;)</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;scala&#x2F;">#scala</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;play2&#x2F;">#play2</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;playframework&#x2F;">#playframework</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;twilio&#x2F;">#twilio</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

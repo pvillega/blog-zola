@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Pere Villega&#x27;s blog - builder</title>
+	<subtitle>If at first you don’t succeed, call it version 1.0</subtitle>
+	<link href="https://perevillega.com/tags/builder/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://perevillega.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2014-02-23T00:00:00+00:00</updated>
+	<id>https://perevillega.com/tags/builder/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Builder Pattern and Inheritance in Java</title>
+		<published>2014-02-23T00:00:00+00:00</published>
+		<updated>2014-02-23T00:00:00+00:00</updated>
+		<link href="https://perevillega.com/builder-pattern-and-inheritance-in-java/" type="text/html"/>
+		<id>https://perevillega.com/builder-pattern-and-inheritance-in-java/</id>
+		<content type="html">&lt;p&gt;At &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt; we are currently doing some changes to the back-end of the site. To that aim we have spent some weeks building tools and scaffolding that will facilitate our next tasks. Planning is important if you want quality.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Given that for this particular project we are using &lt;a href=&quot;http:&#x2F;&#x2F;docs.spring.io&#x2F;spring&#x2F;docs&#x2F;current&#x2F;spring-framework-reference&#x2F;html&#x2F;mvc.html&quot;&gt;Spring MVC&lt;&#x2F;a&gt;, we wanted a way to build our model objects without duplication and to keep things in sync with minimal effort. The builder pattern is a fit, but adding inheritance makes things much more complex than they seem at first glance.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve written about it in a post in our &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;builder-pattern-and-inheritance-in-java-25ccd2d70c9d&quot;&gt;Gumtree dev blog&lt;&#x2F;a&gt;, where you can find some code samples along the explanation of the issue.&lt;&#x2F;p&gt;
+&lt;p&gt;As always, feedback via Twitter&#x2F;Email is more than welcome.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="Raspberry Pi as NAS with Samba" />
+<meta name="twitter:description" content="This year I&#x27;ve bought a Raspberry Pi. I&#x27;ve wanted to play with it for a long time, but it was one of these things you keep delaying as I wasn&#x27;t sure what to use it for. After moving to London, and given that my NAS died, I found myself in need of a replacement, one that allowed me to install Crashplan on it if possible (for cloud backup).
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Raspberry Pi as NAS with Samba">
+<meta itemprop="description" content="This year I&#x27;ve bought a Raspberry Pi. I&#x27;ve wanted to play with it for a long time, but it was one of these things you keep delaying as I wasn&#x27;t sure what to use it for. After moving to London, and given that my NAS died, I found myself in need of a replacement, one that allowed me to install Crashplan on it if possible (for cloud backup).
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="Raspberry Pi as NAS with Samba" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;raspberry-pi-as-nas-with-samba&#x2F;" />
+<meta name="og:description" content="This year I&#x27;ve bought a Raspberry Pi. I&#x27;ve wanted to play with it for a long time, but it was one of these things you keep delaying as I wasn&#x27;t sure what to use it for. After moving to London, and given that my NAS died, I found myself in need of a replacement, one that allowed me to install Crashplan on it if possible (for cloud backup).
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  Raspberry Pi as NAS with Samba
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;raspberry-pi-as-nas-with-samba&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Raspberry Pi as NAS with Samba</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on 12 January 2014. Reading time: 14 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>This year I've bought a <a href="http://www.raspberrypi.org/">Raspberry Pi</a>. I've wanted to play with it for a long time, but it was one of these things you keep delaying as I wasn't sure what to use it for. After moving to London, and given that my NAS died, I found myself in need of a replacement, one that allowed me to install <a href="http://www.code42.com/crashplan/">Crashplan</a> on it if possible (for cloud backup).</p>
+<span id="continue-reading"></span>
+<p>A commercial NAS unit was a no go even if they had support for Crashplan: they are quite expensive and my experience with Lacie units has not been the best. Having a desktop on 24/7 to manage backups would allow me to install Crashplan on it, but it seemed a waste of cpu and electricity. And here is when Raspberry Pi came to save the day: it can be used as a low power PC, but it has enough RAM and CPU to work as NAS and provide some other services. Low power consumption (some estimates are £5-10 per year) and my files are safe. Success!</p>
+<p>As I write this I have my Raspberry Pi connected to 1 Tb storage, using <a href="http://www.samba.org/">Samba</a> to allow access to the files across the network and backing up all my data via Crashplan. It can even serve videos to my TV via <a href="http://www.dlna.org/">DLNA</a>. It is not complex to do, but it required browsing a few articles online and putting together some information. In this post I summarise the steps on how to achieve this. I apologise in advance as the post has no images, which makes it a bit dry, but hopefully it is easy to follow.</p>
+<h1 id="requirements">Requirements</h1>
+<p>To follow these steps you need:</p>
+<ul>
+<li>Raspberry Pi B with 8 Gb SD card. Take the B model as it has 512Mb of RAM (and you WILL need them). Also buy the SD card they sell, as it has the default operating system (Raspbian) preloaded. It saves time and problems.</li>
+<li>Seagate Backup Plus (1 Tb). This hard drive doesn't require an external power cable, it only uses 1 USB cable to connect it to the Raspberry unit, which makes it convenient.</li>
+<li>Power supply for Raspberry Pi. They sell one in their shop, but you can also use any mini USB power supply you have that follows their specifications.</li>
+<li>HDMI cable. To connect Raspberry Pi to a monitor during the initial setup.</li>
+<li>USB keyboard. For the first configuration steps.</li>
+<li>Network cable. You will have one USB port taken by the HD, so it's better to keep the other free for a keyboard and connect the Raspberry to the network by cable.</li>
+</ul>
+<p>Once you have all the pieces, you can start. I have added references to the sources where I found how to set up the Raspberry in each section, but if you get stuck check <a href="http://raspberrypi.stackexchange.com/">Stack Exchange</a> as they have a forum dedicated to Raspberry with a lot of useful information.</p>
+<h1 id="setup-of-raspberry-pi">Setup of Raspberry Pi</h1>
+<p>Raspberry has a helpful <a href="http://www.raspberrypi.org/wp-content/uploads/2012/04/quick-start-guide-v2_1.pdf">guide to set up</a> the unit. If you bought the SD card with NOOBS preinstalled then you can skip the few first steps and go straight to the part talking about the first boot.</p>
+<p>Basically, select Raspbian (the recommended OS for Raspberry, <a href="http://www.debian.org/">Debian</a> based) and wait for it to be installed. It will take a while. Then you will be prompted to restart the unit. After rebooting Raspbian will automatically load a configuration menu, in which we will tweak some options:</p>
+<ul>
+<li>Option 1, expand filesystem. It is not needed in NOOBS but run it just in case</li>
+<li>Option 2, set a new password for the user pi. Given that we will log via ssh, you need this</li>
+<li>Option 8, in advanced options make sure that ssh is enabled. I also overclocked the unit (middle option) as it will be running quite a few services.</li>
+</ul>
+<p>Once you are done, exit and reboot the unit. Then log into it and install <a href="http://en.wikipedia.org/wiki/Avahi_(software)">avahi</a>:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo apt-get install avahi-daemon
+</span></code></pre>
+<p>This will allow us to ssh to the Raspberry via the hostname <em>raspberrypi.local</em>, removing the need to keep track of its ip. Once installed, reboot again the unit and try to log into it via ssh:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">ssh pi@raspberrypi.local
+</span></code></pre>
+<p>This is the recommended way to connect to the Raspberry Pi. You can remove the HDMI cable and the keyboard from the unit and use ssh from now on to operate on it.</p>
+<p>Here is <a href="http://www.howtogeek.com/138281/the-htg-guide-to-getting-started-with-raspberry-pi/">another guide</a> that can help you by covering areas that may not be clear.</p>
+<h1 id="raspberry-as-nas">Raspberry as NAS</h1>
+<p>After setting our Raspberry Pi, we will turn it into a NAS system using Samba, so we can copy files across the network. This requires the external HD to be connected to the unit. There are a couple of step by step <a href="http://www.howtogeek.com/139433/how-to-turn-a-raspberry-pi-into-a-low-power-network-storage-device/">guides</a> <a href="http://www.makeuseof.com/tag/turn-your-raspberry-pi-into-a-nas-box/">available</a> which can help you through the process. The guides also mention how to use a second hard drive for local data redundancy. I only use one HD by now, but it can be a recommended step to ensure you don't lose data.</p>
+<p>As per the guides, the HD is left in NTFS. It is slower than EXT4, but allows us to connect it to a Windows machine directly in case of need. To be able to use that filesystem we need some extra packages, installed via:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo apt-get install ntfs-3g
+</span></code></pre><h2 id="mounting-the-hd">Mounting the HD</h2>
+<p>The external hard drive (if you only use one) will be recognised as <strong>/dev/sda1</strong> by Raspbian. We need to mount it permanently in our filesystem. I chose to mount it in the folder <em>/media/hd1</em>, by doing the following:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo mkdir /media/hd1
+sudo mount -t auto /dev/sda1 /media/hd1
+</span></code></pre>
+<p>This creates the folder, and mounts the external HD into it. We now need to tell the system to mount the unit every time it boots. Edit <em>fstab</em>:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo nano /etc/fstab
+</span></code></pre>
+<p>and add the following line at the bottom:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">/dev/sda1 /media/hd1 auto noatime 0 0
+</span></code></pre>
+<p>Save and you can restart the Raspberry Pi to check that the disk is mounted at <em>/media/hd1</em>.</p>
+<h2 id="samba">Samba</h2>
+<p>We use a specific folder in the HD for our Samba share, so we can isolate the shared folder from other files we may want to store in the disk.</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo mkdir /media/hd1/share
+</span></code></pre>
+<p>Install Samba, do a backup of the default configuration and edit it by running:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo apt-get install samba samba-common-bin
+sudo cp /etc/samba/smb.conf /etc/samba/smb.conf.old
+sudo nano /etc/samba/smb.conf
+</span></code></pre>
+<p>In the config file, uncomment the line:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">security = user
+</span></code></pre>
+<p>and add at the bottom of the file:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">[Share]
+comment = My share
+path = /media/hd1/share
+valid users = @users
+force group = users
+create mask = 0660
+directory mask = 0771
+read only = no
+</span></code></pre>
+<p>I also took a page of this <a href="https://calomel.org/samba_optimize.html">guide</a> on optimising Samba and replaced the <em>socket options</em> in the file by:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">socket options = TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=65536 SO_SNDBUF=65536
+</span></code></pre>
+<p>with the aim of improving performance.</p>
+<p>The next step is creating a user that can access the share when connecting via the network. I created a user called <em>nas</em>, typing the password I chose when prompted:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">useradd nas -m -G users
+passwd nas
+smbpasswd -a nas
+</span></code></pre>
+<p>Restart Samba:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">service samba restart
+</span></code></pre>
+<p>and you should be able to access the share in your network by using the user <em>nas</em> and its credentials.</p>
+<h1 id="crashplan">Crashplan</h1>
+<p>Crashplan is my tool of choice for remote backups, sending the data in our NAS to the cloud. We will run it as a headless client, which means that we run the service in Raspberry but the client, which we use to configure the backup options, runs in another computer and connects via the network.</p>
+<p>The service is a Java application, which means that we have to install the <em>jvm</em> into Raspberry Pi. Given that the Oracle implementation is much better than the OpenJDK one, the first step is to purge OpenJDK and install Oracle's Java, ensuring it is the default choice in the system:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo apt-get purge openjdk-\* icedtea-\* icedtea6-\*
+sudo apt-get install oracle-java7-jdk
+sudo update-alternatives --list java
+sudo update-alternatives —config java
+</span></code></pre>
+<p>At this point, we can follow the steps in <a href="http://www.bionoren.com/blog/2013/02/raspberry-pi-crashplan/">this guide</a> to install Crashplan in our Raspberry.  The guide also install Java 8, we skip that and go straight to point 8. I summarise the steps in here as a quick reference.</p>
+<p>First <a href="http://www.crashplan.com/consumer/download.html?os=Linux">Download</a> Crashplan for Linux, copy it to the Raspberry (via scp) and extract it there. Then run the installer:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo Crashplan-install/install.sh
+</span></code></pre>
+<p>Accept the license and select the default locations for the installation. Then you need to patch <a href="http://www.jonrogers.co.uk/wp-content/uploads/2012/05/libjtux.so">libjtux</a> and <a href="http://www.jonrogers.co.uk/wp-content/uploads/2012/05/libmd5.so">md5 library</a> by downloading the linked files and copying them to <em>/usr/local/crashplan/</em>.</p>
+<p>You also need to install <em>libjna</em> for Java:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo apt-get install libjna-java
+</span></code></pre>
+<p>Once done, edit <em>/usr/local/crashplan/bin/CrashPlanEngine</em> and find the line that begins with <em>FULL_CP=</em>, around the start case, and edit it so it looks like:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">FULL_CP=&quot;/usr/share/java/jna.jar:$TARGETDIR/lib/com.backup42.desktop.jar:$TARGETDIR/lang&quot;
+</span></code></pre>
+<p>The last step is to run the Crashplan engine at boot time by editing <em>/etc/rc.local</em> and adding on the line above <em>exit 0</em>:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">/usr/local/crashplan/bin/CrashPlanEngine start
+</span></code></pre>
+<p>Restart the unit and if everything worked when you run:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">/usr/local/crashplan/bin/CrashPlanEngine status
+</span></code></pre>
+<p>you should see the service is running.</p>
+<p>There is <a href="http://www.bionoren.com/blog/2013/02/raspberry-pi-crashplan/#comment-97">a comment</a> in the above guide that shows how to modify the swap to point to another file. There are two good reasons for this. First of all, the default swap in Raspberry is not much, and Raspbian may kill processes heavy in RAM when running low on memory, increasing the swap will avoid it killing Crashplan on a whim. Secondly, Java may do heavy use of the swap and thus shorten the life of the SD card by doing many writes to it, which we can fix by moving the swap to our external disk. I created a swap file in the external hd by following the instructions:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">dd if=/dev/zero of=/media/hd1/swapfile bs=1M count=1024
+mkswap /media/hd1/swapfile
+chown root:root /media/hd1/swapfile
+chmod 0600 /media/hd1/swapfile
+swapon /media/hd1/swapfile
+sudo apt-get purge dphys-swapfile
+</span></code></pre>
+<p>Then we apply this change on each boot by editing <em>/etc/fstab</em> and adding to the bottom (to ensure the disk that contains the swap is mounted first):</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">/media/hd1/swapfile swap swap defaults 0 0
+</span></code></pre>
+<p>Restart the Raspberry and execute <em>free</em>. You should see a swap of 1Gb.</p>
+<p>I won't enter into detail on how to connect a headless client as the <a href="http://support.code42.com/CrashPlan/Latest/Configuring/Configuring_A_Headless_Client">official guide</a> explains it perfectly. Just remember that you will need to run the tunnel every time you connect via the client, and the tunnels timeout from time to time.</p>
+<p>Now configure Crashplan to backup the files in <em>/media/hd1/share</em> to their cloud and you are done.</p>
+<p>There is an optional last step you can follow. The settings above should ensure that Crashplan is not killed by Raspbian, but this may happen. To fix this without us having to ssh into the box every day, I've added a <em>cronjob</em> that restarts the Raspberry every day at 2 am. If you are not a <em>crontab</em> expert you can see how to do this <a href="http://raspberrypi.stackexchange.com/questions/2150/how-do-i-reboot-at-a-specific-time">in this stack exchange</a> question, just replace the <em>0,8</em> by a <em>2</em>. In my case 2am is not a time when I will be using the NAS, so a restart should not be an issue and it will ensure that any services that were killed are restarted accordingly.</p>
+<h1 id="torrents">Torrents</h1>
+<p>We have a NAS backed up in the cloud. Given that it will be running 24/7, we can try to squeeze it a bit more by adding a torrent client to the box. That way you can download you latest Linux distro without having to keep your desktop on all night, Raspberry rakes care about it. There is a guide on how to <a href="http://www.howtogeek.com/142044/how-to-turn-a-raspberry-pi-into-an-always-on-bittorrent-box/">install deluge</a> as a headless server, which we can then access via a remote client or a web interface.</p>
+<p>To start, we install <em>deluged</em> and we run it so it creates the default config files:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo apt-get install deluged
+sudo apt-get install deluge-console
+deluged
+</span></code></pre>
+<p>Wait for a couple of minutes so all the files are created, and then kill the process:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo pkill deluged
+</span></code></pre>
+<p>Now we backup the authentication file and edit it to add a new user:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">cp ~/.config/deluge/auth ~/.config/deluge/auth.old
+nano ~/.config/deluge/auth
+</span></code></pre>
+<p>There you can add a user in the format <em>user:password:10</em>. The user and password don't need to match any existing user, they are the credentials you will use to remotely connect to the server via the client. Now we start the service again and we enter into the console:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">deluged
+deluge-console
+</span></code></pre>
+<p>In the console we run the following commands to allow for remote connections to the service:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">config -s allow_remote True
+config allow_remote
+exit
+</span></code></pre>
+<p>And to apply the new configuration we restart the service:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo pkill deluged
+deluged
+</span></code></pre>
+<p>The last step is to run <em>deluged</em> at boot time by editing <em>/etc/rc.local</em> and adding on the line above <em>exit 0</em>:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">/usr/bin/deluged
+</span></code></pre>
+<p>I won't explain how to connect via the client as the guide linked above has a complete explanation, with images, and it is quite straightforward. I just recommend you to only download 1 torrent at once and to set the destination folder for all the torrents to a path inside the <em>samba share</em>, so you can access it from the network. Just make sure Crashplan doesn't backup that folder. As we have plenty of memory in use in this Raspberry I've not installed the web interface as I thought it was of little benefit and we can use that RAM for other things.</p>
+<h1 id="dlna">DLNA</h1>
+<p>Given the amount of storage in the NAS, we will probably keep plenty of photos and videos in it. We can install a <a href="http://www.dlna.org/">DLNA</a> compliant server in our Raspberry that will index all the media files in our share and make them available to any DLNA compatible device: smartphones, laptops or TVs. We do this by installing <em>minidlna</em>, an open source implementation of the protocol.</p>
+<p>The process, taken from <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?t=16352">this guide</a>, is extremely simple. Be aware that the guide does many other things we already took care of, just skip them and scroll down to the part that says <em>install minidlna</em>. In your Raspberry run:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo apt-get install minidlna
+sudo update-rc.d minidlna defaults
+</span></code></pre>
+<p>With this minidlna is installed and ready to run when rebooting the unit. Modify the configuration by editing <em>/etc/minidlna.conf</em> (as root). In the config, look for the following sections and update accordingly:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">media_dir=A,/media/hd1/share/Music
+media_dir=V,/media/hd1/share/Video
+media_dir=P,/media/hd1/share/Photos
+
+db_dir=/media/hd1/dlna
+
+log_dir=/media/hd1/dlna
+</span></code></pre>
+<p>The media folders are an example, set them accordingly as per your <em>share</em> folder structure. The other two entries store minidlna metadata and logs in the external hd so we have enough room for them.</p>
+<p>Restart the service via:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">sudo service minidlna force-reload
+</span></code></pre>
+<p>And wait for the service to index all the files. It is quite fast, depending on how many media files you own, but until a file is indexed you won't be able to access it.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>You are done, you have a NAS with full cloud backup, torrenting capabilities and that can act as a media centre and show videos or photos in your TV. Congratulations! Enjoy it as much as I do enjoy mine :)</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;devops&#x2F;">#devops</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;raspberry&#x2F;">#raspberry</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;crashplan&#x2F;">#crashplan</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;deluged&#x2F;">#deluged</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

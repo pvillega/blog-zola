@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="Using Docker in Heroku" />
+<meta name="twitter:description" content="Heroku has announced beta support for Docker containers running in its platform. As I have some time in my hands, I&#x27;ve tried how well it integrates.
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Using Docker in Heroku">
+<meta itemprop="description" content="Heroku has announced beta support for Docker containers running in its platform. As I have some time in my hands, I&#x27;ve tried how well it integrates.
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="Using Docker in Heroku" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;using-docker-in-heroku&#x2F;" />
+<meta name="og:description" content="Heroku has announced beta support for Docker containers running in its platform. As I have some time in my hands, I&#x27;ve tried how well it integrates.
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  Using Docker in Heroku
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;using-docker-in-heroku&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Using Docker in Heroku</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on 11 May 2015. Reading time: 9 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Heroku has announced <a href="https://devcenter.heroku.com/articles/getting-started-with-scala-and-heroku-local-docker-development">beta support</a> for Docker containers running in its platform. As I have some time in my hands, I've tried how well it integrates.</p>
+<span id="continue-reading"></span>
+<p><strong>Updated 15/5/2015:</strong> Michael Friss from Heroku sent me an email regarding the concerns I raised, update at the end with his comments.</p>
+<p>I have a confession to make before I start: I was a Heroku convert that left the flock but is heading back to it. Years ago, when Heroku added support for Play apps, I made the same mistake as many developers before: I built my own (crappy) blog engine. I don't know if the code is still around but for the sake of my employability I won't surface any link to it ;)</p>
+<p>At that time Heroku was very convenient, albeit expensive: $37/month for a personal blog with dozens of visits per month... not a sound idea. I ended up looking for alternatives and realised the obvious: AWS, Linode and others were way cheaper and provided much more power. So I moved away.</p>
+<p>Recently I've come full cycle. A couple of weeks ago, at a HackTheTower event organised by <a href="https://twitter.com/jr0cket">John Stevenson</a>, who's a Heroku evangelist, I asked him why should I use Heroku as it is quite pricey. His answer: you pay for a 3rd party DevOps team. Obvious an answer as it is, the experience acquired between the time I used Heroku and now made me realise how valuable that is if you are building a serious app.</p>
+<p>With the advent of Docker I went ballistic trying to run things in my computer, even trying to migrate some components at Gumtree. Shiny new thing and all that. The outcome wasn't one I enjoyed: lots of issues and nothing fully working, plus the realisation that I'm a horrible sysadmin and, although I enjoy the theory of putting servers together, I'd rather focus on developing the app and let someone else manage all the other stuff.</p>
+<p>So if I ever build a sizeable app I'd go back to Heroku . With that in my mind the announcement of Docker for Heroku really picked my interest. Thus, this post.</p>
+<p>Ok, boring interlude is over, let's hack!</p>
+<h2 id="set-up">Set up</h2>
+<p>The instructions to use <a href="https://devcenter.heroku.com/articles/getting-started-with-scala-and-heroku-local-docker-development">docker in Heroku</a> are missing some crucial info: you need to install both Docker and a specific plugin in your machine.</p>
+<p>I'm using Linux Mint, based on Ubuntu. Installing Docker <a href="https://docs.docker.com/installation/ubuntulinux/">seems easy</a> until you hit this error when trying to run it:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">FATA[0000] Get http:///var/run/docker.sock/v1.17/version: dial unix /var/run/docker.sock:
+no such file or directory.
+Are you trying to connect to a TLS-enabled daemon without TLS</span><span style="color:#569cd6;">?
+</span></code></pre>
+<p>As always, StackOverflow to the rescue. The <a href="http://stackoverflow.com/questions/29294286/fata0000-get-http-var-run-docker-sock-v1-17-version-dial-unix-var-run-doc">first answer</a> fixed the issue for me. If you see the same error and you are not using Ubuntu or a derivative Google the error, there's a lot of information about it. Such a common error and no steps to avoid it in the installation document... <em>ouch</em></p>
+<p>You can find how to install the plugin for Heroku <a href="https://devcenter.heroku.com/articles/introduction-local-development-with-docker?preview=1">here</a>. Run the following to ensure all is working as expected:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">$ heroku help docker
+Usage: heroku docker
+  Use Docker to build and deploy Heroku apps
+[...]
+</span></code></pre><h2 id="running-the-app">Running the app</h2>
+<p>With Docker and the plugin working, just follow <a href="https://devcenter.heroku.com/articles/getting-started-with-scala-and-heroku-local-docker-development">the steps</a>. A quick summary of the relevant commands follows:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">$ git clone https://github.com/heroku/scala-getting-started.git
+$ cd scala-getting-started
+$ sbt stage                 </span><span style="color:#608b4e;"># let&#39;s build the code
+</span><span style="color:#dcdcdc;">$ heroku docker:init        </span><span style="color:#608b4e;"># create dockerfile
+</span><span style="color:#dcdcdc;">$ heroku docker:start       </span><span style="color:#608b4e;"># run the app. You may or may not need sudo for this
+</span></code></pre>
+<p>This will generate a local <a href="http://docs.docker.com/reference/builder/">Dockerfile</a> and run the app. The Dockerfile generated is:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">FROM heroku/cedar:14
+
+RUN useradd -d /app -m app
+USER app
+WORKDIR /app
+
+ENV HOME /app
+ENV PATH /app/heroku/jdk/bin:$PATH
+ENV PORT 3000
+
+RUN mkdir -p /app/heroku/jdk
+RUN mkdir -p /app/.profile.d
+RUN curl -s http://lang-jvm.s3.amazonaws.com/jdk/openjdk1.8.0_40-cedar14.tar.gz </span><span style="color:#569cd6;">| </span><span style="color:#dcdcdc;">tar xz -C /app/heroku/jdk
+RUN echo </span><span style="color:#d69d85;">&quot;export JAVA_HOME=</span><span style="color:#e3bbab;">\&quot;</span><span style="color:#d69d85;">/app/heroku/jdk&quot; </span><span style="color:#dcdcdc;">&gt; /app/.profile.d/jdk.sh
+RUN echo </span><span style="color:#d69d85;">&quot;export PATH=</span><span style="color:#e3bbab;">\&quot;</span><span style="color:#d69d85;">/app/heroku/jdk/bin:</span><span style="color:#e3bbab;">\$</span><span style="color:#d69d85;">PATH&quot; </span><span style="color:#dcdcdc;">&gt;&gt; /app/.profile.d/jdk.sh
+
+ONBUILD COPY target /app/target
+
+ONBUILD USER root
+ONBUILD RUN chown -R app /app/target
+ONBUILD USER app
+
+ONBUILD EXPOSE 3000
+</span></code></pre>
+<p>Most of the file is just setting the environment: open ports, install JDK, etc. The relevant part is the series of <em>ONBUILD</em> actions at the end. They are the ones copying the contents of our <em>target</em> folder as the app to run and exposing the port used to connect to it. But the fact they are <em>ONBUILD</em> means this image will be extended by another Dockerfile, as otherwise they would not be executed.</p>
+<p>And, indeed, if you look at the output of <em>docker:start</em>:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">Step 16 : ONBUILD expose 3000
+ ---&gt; Running in b6ff244c054f
+ ---&gt; </span><span style="color:#b5cea8;">81</span><span style="color:#dcdcdc;">c9310081ff
+Removing intermediate container b6ff244c054f
+Successfully built 81c9310081ff
+building image...
+Sending build context to Docker daemon 21.44 MB
+Sending build context to Docker daemon
+Step 0 : FROM heroku-docker-ef389ffce157641fd8a8a903641ab592
+</span><span style="color:#608b4e;"># Executing 5 build triggers
+</span><span style="color:#dcdcdc;">Trigger 0, COPY target /app/target
+Step 0 : COPY target /app/target
+Trigger 1, USER root
+Step 0 : USER root
+ ---&gt; Running in 783a26569081
+Trigger 2, RUN chown -R app /app/target
+Step 0 : RUN chown -R app /app/target
+ ---&gt; Running in 0cc41d250626
+Trigger 3, USER app
+Step 0 : USER app
+ ---&gt; Running in cad1a44eaeac
+Trigger 4, EXPOSE 3000
+Step 0 : EXPOSE 3000
+ ---&gt; Running in c816b4ac395a
+ ---&gt; ca0051ac830e
+</span></code></pre>
+<p>Did you notice that <code>FROM heroku-docker-ef389ffce157641fd8a8a903641ab592</code>? A bit of magic in here, but we will allow it as it is the point of Heroku: devops as a  black box. In any case, time to go to production:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">$ heroku create
+$ heroku docker:release
+$ heroku open
+</span></code></pre>
+<p>A new image is built (you can see the triggers being actioned again) and the locally generated slug is uploaded to Heroku, a total of 63MB of a maximum allowed of 300Mb. The app works as expected, all good. A very similar experience to what you expect with the standard Heroku process.</p>
+<h2 id="concerns">Concerns</h2>
+<p>Using Docker within Heroku makes me uneasy. I like Docker, but I see this integration as trying to marry two contradicting approaches. Docker requires you to know what are you doing, you can hack it blissfully ignorant but then it hits back with a dose of reality and a pile of errors. Heroku, on the other hand, is a fire-and-forget heaven for developers: care about the services, not about how are they being run.</p>
+<p>Arguably the tools Heroku provides hide this pain as the Dockerfile is built for you and it is a very basic Dockerfile. But then, is it necessary? And is it a complete abstraction?</p>
+<p>Every time I built my app for either local or remote deployment, the build process happened locally in my machine. The issue here is that the base image (the Dockerfile generated) is not rebuild, there is no need as the key steps are triggers (ONBUILD) that will be run later.</p>
+<p>Now, I may be missing something obvious as I'm not an expert, but as far as I understand this means that if the <em>cedar-14</em> base image contains a component with a serious vulnerability, unless I wipe all the local caches from my system (for both <em>cedar-14</em> and my app) my built slug will contain that vulnerability. Obviously I don't know which magic happens inside the Dockerfile used by Heroku that extends mine, but that doesn't ease my concerns at all.</p>
+<p>It seems by trying to adopt a new technology now the developer needs to worry a bit more about sysadmin things. And also, not critical but still relevant, we need to upload the locally-built slug to the system. This can be up to 300Mb, which kind of defeats the speed increase of doing the build process in your beefy machine. Asymmetric connections are still the norm, unfortunately.</p>
+<p>So, I get why is Heroku trying to do this, but I'm not sure it has any real benefit as unfortunately not all developers may realise some implications. Or maybe that's the point: get people on-board via Docker and then show them a simpler and maybe safer way, the old and tested one.</p>
+<p><strong>UPDATE:</strong> As I mentioned above, I received an email from Michael Friss (from Heroku) about the concerns I had. I feel they address the issues and it is fair to mention it:</p>
+<blockquote>
+<p>You stack concerns are valid and interesting, so I want to address them in detail.</p>
+</blockquote>
+<blockquote>
+<p><code>heroku docker:release</code> does not (currently) release the entire heroku/cedar:14 that you created locally. It only extracts the <code>/app</code> contents and packages that into a slug (containing a JVM, your packages and your app) that's released to Heroku. That's deployed to the same Heroku runtime stack as slugs from normal buildpacks, and we keep that patched and updated. We also keep the <code>heroku/cedar:14</code> image updated on Docker-hub for you to pull.</p>
+</blockquote>
+<blockquote>
+<p>As we make progress on the Docker-stuff, and if it graduates out of beta, we'll build supported and hands-off flows similar to how the Heroku-supported buildpacks work. (We'll probably also rely more on Buildpacks to make the Docker-flow work. Check out how Python works right now: https://github.com/heroku/heroku-docker/blob/master/platforms/python/Dockerfile.t#L31</p>
+</blockquote>
+<blockquote>
+<p>You're correct that there's ALSO an option to break out of the supported flow and tweak the Dockerfile. This has roughly the same semantics as forking a Heroku buildpack or creating a buildpack from scratch. Something that 1000s of Heroku users do.</p>
+</blockquote>
+<p>That's all. As always, feedback via Twitter/Email is more than welcome. Cheers!</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;scala&#x2F;">#scala</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;docker&#x2F;">#docker</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;heroku&#x2F;">#heroku</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

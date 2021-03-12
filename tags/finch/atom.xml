@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Pere Villega&#x27;s blog - finch</title>
+	<subtitle>If at first you don’t succeed, call it version 1.0</subtitle>
+	<link href="https://perevillega.com/tags/finch/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://perevillega.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2017-01-25T00:00:00+00:00</updated>
+	<id>https://perevillega.com/tags/finch/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Finch post at Underscore blog</title>
+		<published>2017-01-25T00:00:00+00:00</published>
+		<updated>2017-01-25T00:00:00+00:00</updated>
+		<link href="https://perevillega.com/finch-underscore-post/" type="text/html"/>
+		<id>https://perevillega.com/finch-underscore-post/</id>
+		<content type="html">&lt;p&gt;This is just a short entry to make you aware of a new post by yours truly at &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2017&#x2F;01&#x2F;24&#x2F;finch-functional-web-development.html&quot;&gt;Underscore&#x27;s&lt;&#x2F;a&gt; blog.&lt;&#x2F;p&gt;
+&lt;p&gt;Many thanks to Underscore for all the suggestions and review, and for publishing it.&lt;&#x2F;p&gt;
+&lt;p&gt;Now please go to &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2017&#x2F;01&#x2F;24&#x2F;finch-functional-web-development.html&quot;&gt;Underscore&#x27;s blog&lt;&#x2F;a&gt; and enjoy the post. Cheers!&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

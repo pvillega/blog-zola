@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Pere Villega&#x27;s blog - files</title>
+	<subtitle>If at first you don’t succeed, call it version 1.0</subtitle>
+	<link href="https://perevillega.com/tags/files/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://perevillega.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2010-05-09T00:00:00+00:00</updated>
+	<id>https://perevillega.com/tags/files/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Renaming Files</title>
+		<published>2010-05-09T00:00:00+00:00</published>
+		<updated>2010-05-09T00:00:00+00:00</updated>
+		<link href="https://perevillega.com/renaming-files/" type="text/html"/>
+		<id>https://perevillega.com/renaming-files/</id>
+		<content type="html">&lt;p&gt;I own a Lacie Big5 to backup my files, which amount to almost 2 Tb right now. Lately I&#x27;ve had some compatibility issues as some files I copied from my Windows Vista machine were not readable from my Kubuntu 9.10.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;After checking I&#x27;ve seen the issue arose from Spanish characters like &#x27;á&#x27;. Surprising, as Linux should support them, but oh well. A bit of Googling and the solution was found: &lt;a href=&quot;http:&#x2F;&#x2F;file-folder-ren.sourceforge.net&#x2F;&quot;&gt;Métamorphose&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Run it with the following reg exp:&lt;&#x2F;p&gt;
+&lt;pre style=&quot;background-color:#1e1e1e;&quot;&gt;
+&lt;code&gt;&lt;span style=&quot;color:#dcdcdc;&quot;&gt;[ñÑáéíóúÁÉÍÓÚüÜ@¡¿—àèìòùÀÈÌÒÙ$£¥€¢ƒäÄïÏöÖçÇãêß]
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and issue solved! You may need to tweak the reg exp according to your language if you use some extra &amp;quot;non-ASCII&amp;quot; characters, but it&#x27;s easy to do.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

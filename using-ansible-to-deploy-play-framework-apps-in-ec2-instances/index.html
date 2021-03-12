@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="Using Ansible to deploy Play Framework apps in EC2 instances" />
+<meta name="twitter:description" content="TL;DR: Clone Ansible for Play Framework to automate the task of deploying Play 2.x projects from a git repository into an EC2 instance.
+As many developers I&#x27;m not a good sysadmin. That&#x27;s why I was happy to see the raise of PaaS like Heroku, which facilitated deploying a webapp without having to spend time in sysadmin tasks which I didn&#x27;t know how to do correctly and which took me too much time.
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Using Ansible to deploy Play Framework apps in EC2 instances">
+<meta itemprop="description" content="TL;DR: Clone Ansible for Play Framework to automate the task of deploying Play 2.x projects from a git repository into an EC2 instance.
+As many developers I&#x27;m not a good sysadmin. That&#x27;s why I was happy to see the raise of PaaS like Heroku, which facilitated deploying a webapp without having to spend time in sysadmin tasks which I didn&#x27;t know how to do correctly and which took me too much time.
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="Using Ansible to deploy Play Framework apps in EC2 instances" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;using-ansible-to-deploy-play-framework-apps-in-ec2-instances&#x2F;" />
+<meta name="og:description" content="TL;DR: Clone Ansible for Play Framework to automate the task of deploying Play 2.x projects from a git repository into an EC2 instance.
+As many developers I&#x27;m not a good sysadmin. That&#x27;s why I was happy to see the raise of PaaS like Heroku, which facilitated deploying a webapp without having to spend time in sysadmin tasks which I didn&#x27;t know how to do correctly and which took me too much time.
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  Using Ansible to deploy Play Framework apps in EC2 instances
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;using-ansible-to-deploy-play-framework-apps-in-ec2-instances&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Using Ansible to deploy Play Framework apps in EC2 instances</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on  1 April 2013. Reading time: 4 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p><strong>TL;DR:</strong> Clone <a href="https://github.com/pvillega/ansible-ec2-play">Ansible for Play Framework</a> to automate the task of deploying Play 2.x projects from a git repository into an EC2 instance.</p>
+<p>As many developers I'm not a good sysadmin. That's why I was happy to see the raise of PaaS like <a href="http://www.heroku.com/">Heroku</a>, which facilitated deploying a webapp without having to spend time in sysadmin tasks which I didn't know how to do correctly and which took me too much time.</p>
+<span id="continue-reading"></span>
+<p>Unfortunately, as with most abstractions, the PaaS environments are simple to use but also quite limited in options. Heroku offering of 512Mb per dyno plus limitations on what you can do can be a problem, and the third party addons get expensive quickly. Then you have Amazon EC2, cheaper and quite flexible, but in exchange you need a bit more of &quot;sysadmin knowledge&quot;. Not a big deal for apps like this blog, running in a Micro instance, but if your app is bigger and spans several servers, it may become time consuming.</p>
+<p>I wanted to automate the task of managing the server so I did not have to worry too much about it. I looked at both <a href="http://www.opscode.com/chef/">Chef</a> and <a href="https://puppetlabs.com/">Puppet</a>, but somehow I couldn't bring myself to spend enough time with them. The release of <a href="http://aws.amazon.com/opsworks/">Amazon OpsWorks</a> raised the issue again as they don't have a Play Framework 2 script ready out of the box, but it was hard to try to focus on that task.</p>
+<p>That was it until this last weekend when I discovered, somehow, <a href="http://ansible.cc/">Ansible</a>. Ansible is a tool in the same category as Chef and Puppet (purists will start pointing at relevant differences here, but I only care about the fact that they automate my sysadmin tasks). For some reason Ansible seemed much simpler to understand and use, and I got hooked. Ansible Playbooks consist on a series of yaml files that declare the steps to execute, in order. Ansible itself manages the execution of the steps across servers, so you can run one script on as many servers as you need all at the same time. I won't enter into details as <a href="http://ansible.cc/">Ansible</a> has good enough documentation, but to put an example let's see a possible Ansible Playbook to install <code>Authbind</code> into an EC2 instance:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    # Run with: ansible-playbook -i hosts.ini playenv.yaml -u ubuntu
+    ---
+    - hosts: ec2Instance
+      vars:
+      - ubuntu_release: quantal
+
+    tasks:
+      - name: Install Authbind
+        action: apt pkg=authbind state=latest install_recommends=yes
+</span></code></pre>
+<p>Having the tool the task ahead was clear: my main 3 sysadmin issues with EC2 (given my current usage level) are securing the Ubuntu AMI, deploying a Play environment and deploying the app itself. With Ansible, I should be able to automate these steps so I won't do mistakes like forgetting one step as well as reducing the time I have to spend on these tasks.</p>
+<p>It wasn't easy (as I said I'm not a sysadmin) and the scripts could be better, but I managed to create something that works: <a href="https://github.com/pvillega/ansible-ec2-play">Ansible for Play Framework in EC2</a>. Instructions for execution are included in the Github repository.</p>
+<p>There are 3 relevant scripts:</p>
+<ul>
+<li>
+<p><strong>bootstrap.yaml:</strong> runs a series of commands to enhance security of an EC2 Ubuntu AMI. I'm not a sysadmin so some step may be wrong or incomplete, but what's in there seems to work fine. Requires sudo privilege in the target machine to run.</p>
+</li>
+<li>
+<p><strong>playenv.yaml:</strong> sets some Play Framework dependencies (basically pvm and java 7) as well as Authbind so Play can use port 80 without root privileges. Requires sudo privilege in the target machine to run.</p>
+</li>
+<li>
+<p><strong>deploy.yaml:</strong> clones a Play project from a given Git repository and deploys it on the target machine. The script assumes the repository contains a <code>start</code> file in the format provided with the script (see <code>exec</code> folder) to be able to successfully launch the app. Customise the <code>start</code> file as required. No sudo required, the script uses authbind to link Play to port 80. Be aware that in EC2 Micro instances this script will fail due to low memory as Linux memory manager kills the JVM when building the distributable zip for the app.</p>
+</li>
+</ul>
+<p>If you have a project in Github (or any publicly available Git repository) and an EC2 instance, run the scripts through Ansible and there you go, app deployed and running!</p>
+<p>So, that's all. If you see something that can be improved, please contribute with a pull request. I hope with this you can save some time on your next deployment.</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;scala&#x2F;">#scala</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;play2&#x2F;">#play2</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;ansible&#x2F;">#ansible</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;ec2&#x2F;">#ec2</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

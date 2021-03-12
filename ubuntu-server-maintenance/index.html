@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="Ubuntu Server Maintenance" />
+<meta name="twitter:description" content="This guide will show some basic stuff you might need to maintain an Ubuntu server. You might not need all of them, but thy are handy enough and I&#x27;ve had to use them at least once.
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Ubuntu Server Maintenance">
+<meta itemprop="description" content="This guide will show some basic stuff you might need to maintain an Ubuntu server. You might not need all of them, but thy are handy enough and I&#x27;ve had to use them at least once.
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="Ubuntu Server Maintenance" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;ubuntu-server-maintenance&#x2F;" />
+<meta name="og:description" content="This guide will show some basic stuff you might need to maintain an Ubuntu server. You might not need all of them, but thy are handy enough and I&#x27;ve had to use them at least once.
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  Ubuntu Server Maintenance
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;ubuntu-server-maintenance&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Ubuntu Server Maintenance</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on 18 August 2009. Reading time: 7 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>This guide will show some basic stuff you might need to maintain an Ubuntu server. You might not need all of them, but thy are handy enough and I've had to use them at least once.</p>
+<span id="continue-reading"></span><h2 id="secure-a-fresh-ubuntu-installation">Secure a fresh Ubuntu installation</h2>
+<p>Original source: <a href="http://www.mensk.com/webmaster-toolbox/perfect-ubuntu-hardy-nginx-mysql5-php5-wordpress/">Mensk</a></p>
+<p>When you install your fresh server, you have a completely unsafe Ubuntu installation. To make it a bit safer, follow these steps (change names and ports accordingly): Login as root (via ssh or using the console, it depends on your physical access to the machine) and change root password:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">passwd
+</span></code></pre>
+<p>Add new username - yourself:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    adduser jsmith
+    visudo
+</span></code></pre>
+<p>Append this line to end of file (to navigate within 'vi' editor to create next line - use these: L, $, a, <ENTER>):</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    jsmith ALL=(ALL) ALL
+</span></code></pre>
+<p>To save and exit do: <ESC>, :wq, <ENTER>. Now let's set up SSH configuration:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    nano /etc/ssh/sshd_config
+</span></code></pre>
+<p>Find Port 22 and change number to something different (12345) to make hacking more difficult.Then change the following settings:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    PermitRootLogin no
+    X11Forwarding no
+    UsePAM no
+</span></code></pre>
+<p>Append these lines to the very end:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    UseDNS no
+    AllowUsers jsmith
+</span></code></pre>
+<p>After this, we must secure the server with iptables</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    iptables-save &gt; /etc/iptables.up.rules
+    nano /etc/iptables.test.rules
+</span></code></pre>
+<p>Copy contents of <a href="http://articles.slicehost.com/assets/2007/9/4/iptables.txt">this file</a> (content below) and paste it into 'iptables.test.rules'</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    *filter
+
+
+    #  Allows all loopback (lo0) traffic and drop all traffic to 127/8 that doesn&#39;t use lo0
+    -A INPUT -i lo -j ACCEPT
+    -A INPUT -i ! lo -d 127.0.0.0/8 -j REJECT
+
+
+    #  Accepts all established inbound connections
+    -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+
+    #  Allows all outbound traffic
+    #  You can modify this to only allow certain traffic
+    -A OUTPUT -j ACCEPT
+
+
+    # Allows HTTP and HTTPS connections from anywhere (the normal ports for websites)
+    -A INPUT -p tcp --dport 80 -j ACCEPT
+    -A INPUT -p tcp --dport 443 -j ACCEPT
+
+    #  Allows SSH connections
+    #
+    # THE -dport NUMBER IS THE SAME ONE YOU SET UP IN THE SSHD_CONFIG FILE
+    #
+    -A INPUT -p tcp -m state --state NEW --dport 30000 -j ACCEPT
+
+    # Allow ping
+    -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+
+
+    # log iptables denied calls
+    -A INPUT -m limit --limit 5/min -j LOG --log-prefix &quot;iptables denied: &quot; --log-level 7
+
+    # Reject all other inbound - default deny unless explicitly allowed policy
+    -A INPUT -j REJECT
+    -A FORWARD -j REJECT
+
+    COMMIT
+</span></code></pre>
+<p>Change port number to your SSH port number on this line:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    -A INPUT -p tcp -m state --state NEW --dport 30000 -j ACCEPT
+</span></code></pre>
+<p>Save and exit (Ctrl+O, Ctrl+X). To apply new iptables rules:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    iptables-restore &lt; /etc/iptables.test.rules
+</span></code></pre>
+<p>Then save iptables rules permanently:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    iptables-save &gt; /etc/iptables.up.rules
+</span></code></pre>
+<p>Make sure iptables rules will apply when server is rebooted as well:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    nano /etc/network/interfaces
+</span></code></pre>
+<p>Add new line after these 2:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    auto lo
+
+    iface lo inet loopbackpre-up iptables-restore &lt; /etc/iptables.up.rules
+</span></code></pre>
+<p>Save and exit. Reload SSH to use new ports and configurations:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">     /etc/init.d/ssh reload
+</span></code></pre>
+<p>Keep 'root' session running and open second session. SSH login to your slice to new port, with your new username and password:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    ssh -p 12345 jsmith@123.45.6.78
+</span></code></pre>
+<p>If you logged on successfully via your new username: 'jsmith' - you may close 'root' session now. If not - you still have 'root' session opened to fix problems. As your user, edit .bashrc file to make terminal window a bit more helpful:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    nano ~/.bashrc
+</span></code></pre>
+<p>Append these lines to the end of it:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    export PS1=&quot;\[\e[32;1m\]\u\[\e[0m\]\[\e[32m\]@\h\[\e[36m\]\w \[\e[33m\]\$ \[\e[0m\]&quot;
+    alias ll=&quot;ls -la&quot;
+    alias a2r=&quot;sudo /etc/init.d/apache2 stop &amp;&amp; sleep 2 &amp;&amp; sudo /etc/init.d/apache2 start&quot;
+    alias n2r=&quot;sudo /etc/init.d/nginx stop &amp;&amp; sleep 2 &amp;&amp; sudo /etc/init.d/nginx start&quot;
+    alias ver=&quot;cat /etc/lsb-release&quot;
+</span></code></pre>
+<p>Save and exit. Reload .bashrc to make changes active:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    source ~/.bashrc
+</span></code></pre>
+<p>Update sources:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo aptitude update
+</span></code></pre>
+<p>Set system locale:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo locale-gen en_US.UTF-8
+    sudo /usr/sbin/update-locale LANG=en_US.UTF-8
+</span></code></pre>
+<p>Upgrade system now:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo aptitude -y safe-upgrade
+    sudo aptitude -y full-upgrade
+</span></code></pre><h2 id="clean-the-server-via-ubuntugeek">Clean the server (via <a href="http://www.ubuntugeek.com/ubucleaner-simple-bash-script-to-keep-your-ubuntu-system-clean.html">UbuntuGeek</a>)</h2>
+<p>I have a special fixation on cleaning my servers. I don't want any extra file (package, log, whatever) to be there if it is not needed. That's why when I discovered UbuntuCleaner I got quite happy. This tools does this for you:</p>
+<ul>
+<li>
+<p>Cleans apt cache</p>
+</li>
+<li>
+<p>Removes config files left from uninstalled .deb packages(it happens if you don’t use the --purge switch with apt-get)</p>
+</li>
+<li>
+<p>Removes every kernel except the one you are using</p>
+</li>
+<li>
+<p>Empties the trashes of every user(including root)</p>
+</li>
+</ul>
+<p>It uses apt and the kernel removing thing searches for ubuntu-only packages, so it can’t work on non-debian system and the result is undetermined for other debian-based system, but you can still use the other features of the script(you’ll just have to comment the parts you don’t want).</p>
+<p>The script assumes that you are using the text-based Aptitude application, rather than apt-get and dpkg. If you are not using Aptitude, you should also replace the reference to aptitude clean with apt-get clean and the reference to aptitude purge to dpkg –purge.This can be done done by editing the following script. First you need to download the script from <a href="http://opendesktop.org/content/show.php/Ubucleaner?content=71529">here</a> or using the following command</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    wget http://www.opendesktop.org/CONTENT/content-files/71529-ubucleaner.sh
+</span></code></pre>
+<p>Now you should have 71529-ubucleaner.sh file you need to give execute permissions using the following command</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo chmod +x 71529-ubucleaner.sh
+</span></code></pre>
+<p>Run the script using the following command</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    ./71529-ubucleaner.sh
+</span></code></pre><h2 id="upgrading-to-a-new-release-via-howtoforge">Upgrading to a new release (via <a href="http://www.howtoforge.com/how-to-upgrade-ubuntu-8.04-to-ubuntu-8.10-desktop-and-server">HowToForge</a>)</h2>
+<p>For an Ubuntu server, the main advice is to stick to LTS releases, due to their stability. That said, sometimes you might need to upgrade to a non-LTS release, as it happened to me when Launchpad was released and I wanted to install it (it required 9.04). So here I will describe the steps needed to update your distribution. It assumes you are running a server (no X11 installed) and this is your first upgrade:</p>
+<p>First become root:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo su
+</span></code></pre>
+<p>Then run</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    apt-get update
+</span></code></pre>
+<p>and install the package update-manager-core:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    apt-get install update-manager-core
+</span></code></pre>
+<p>If you are running a LTS release, open the file /etc/update-manager/release-upgrades</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    vi /etc/update-manager/release-upgrades
+</span></code></pre>
+<p>and change Prompt=lts to Prompt=normal. Then run</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    do-release-upgrade
+</span></code></pre>
+<p>to start the distribution upgrade.</p>
+<h2 id="enabling-php-fastcgi-via-howtoforge">Enabling PHP-FastCGI (via <a href="http://www.howtoforge.com/installing-nginx-with-php5-and-mysql-support-on-ubuntu-9.04">HowToForge</a>)</h2>
+<p>If you need to run fastcgi scripts on your Ubuntu 9.04 machine, you are lucky as this version provides a FastCGI-enabled PHP5 package. To activate it: Install PHP5 on Ubuntu:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    aptitude install php5-cgi php5-mysql php5-curl
+    php5-gd php5-idn php-pear php5-imagick php5-imap php5-mcrypt
+    php5-memcache php5-mhash php5-ming php5-pspell php5-recode php5-snmp
+    php5-sqlite php5-tidy php5-xmlrpc php5-xsl
+</span></code></pre>
+<p>Then open /etc/php5/cgi/php.ini and add the line</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">     cgi.fix_pathinfo = 1
+</span></code></pre>
+<p>right at the end of the file. This enables the FastCGI package. But there's no standalone FastCGI daemon package for Ubuntu 9.04, therefore we use the spawn-fcgi program from lighttpd. We install lighttpd as follows:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    aptitude install lighttpd
+    update-rc.d -f lighttpd remove
+</span></code></pre>
+<p>so that lighttpd will not start at boot time, as we've installed lighttpd because we need just one program that comes with the package, /usr/bin/spawn-fcgi, which we can use to start FastCGI processes. Of course, you don't want to type in that command manually whenever you boot the system, so to have the system execute the command automatically at boot time, open /etc/rc.local</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    vi /etc/rc.local
+</span></code></pre>
+<p>and add the command at the end of the file (before the exit line):</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    /usr/bin/spawn-fcgi -a 127.0.0.1 -p 9000 -u www-data -g www-data -f /usr/bin/php5-cgi -P /var/run/fastcgi-php.pid
+</span></code></pre>
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;devops&#x2F;">#devops</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;ubuntu&#x2F;">#ubuntu</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

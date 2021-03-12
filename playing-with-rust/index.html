@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="Playing with Rust" />
+<meta name="twitter:description" content="Rust is not, at this stage, a new language. But I have to confess that I had not checked it out until now. I built a small tool to test it out. In this post I&#x27;ll briefly talk about how it felt working with Rust from the point of view of a Scala developer.
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Playing with Rust">
+<meta itemprop="description" content="Rust is not, at this stage, a new language. But I have to confess that I had not checked it out until now. I built a small tool to test it out. In this post I&#x27;ll briefly talk about how it felt working with Rust from the point of view of a Scala developer.
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="Playing with Rust" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;playing-with-rust&#x2F;" />
+<meta name="og:description" content="Rust is not, at this stage, a new language. But I have to confess that I had not checked it out until now. I built a small tool to test it out. In this post I&#x27;ll briefly talk about how it felt working with Rust from the point of view of a Scala developer.
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  Playing with Rust
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;playing-with-rust&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Playing with Rust</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on  5 February 2019. Reading time: 7 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p><a href="https://www.rust-lang.org">Rust</a> is not, at this stage, a new language. But I have to confess that I had not checked it out until now. I built a <a href="https://crates.io/crates/twitter_privacy">small tool</a> to test it out. In this post I'll briefly talk about how it felt working with Rust from the point of view of a Scala developer.</p>
+<span id="continue-reading"></span>
+<p>During the last <a href="https://skillsmatter.com/conferences/10488-scala-exchange-2018">Scala Exchange</a> I heard a lot of people talking about Rust. As a consequence, learning more about the language became a higher priority, as it is always good to listen to people with more experience :). It was also an excuse to use <a href="https://code.visualstudio.com">Visual Studio Code</a> a bit more, to familiarise with its bindings so I can get the most out of <a href="https://github.com/scalameta/metals">Metals</a>.</p>
+<p>The best way to learn a new language is to build something with it, as that is the scenario when you hit all the common problems. What I wanted to avoid is to fight not only Rust but also some web framework or library on top of it. Time ago I built a tool to delete old tweets from my account, using Scala: <a href="https://github.com/pvillega/twitter-privacy">twitter privacy</a>. It works well, but the nature of the program (running in a cron job once a day) makes it much slower than it should be, due to cold-start time of the JVM.</p>
+<p>Rust is known as a fast language, and a replacement of this tool using Rust seemed like a good fit for learning the language without having too many libraries involved. You can find the source code of the outcome  <a href="https://github.com/pvillega/twitter_privacy">in github</a>, and it has been published <a href="https://crates.io/crates/twitter_privacy">to cargo.io</a>.</p>
+<p>If you want to use it for your own social media maintenance, instructions on how to run it are in the <a href="https://github.com/pvillega/twitter_privacy/blob/master/Readme.md">Readme file</a> in Github.</p>
+<h2 id="rust-as-a-language">Rust as a language</h2>
+<p>As a Scala developer, I found Rust a very interesting language. For example, I've heard very often criticism towards the duality OO-FP of Scala,
+pointing it was a bad decision. Rust clearly states in <a href="https://doc.rust-lang.org/stable/book/">their book</a> that they support both, having a chapter dedicated
+to each one, and on how to work in that particular way with the language.</p>
+<p>Rust has a very active community and very good documentation for their tooling and libraries. For example, check the documentation for <a href="https://doc.rust-lang.org/cargo/">Cargo</a>, it's build tool. Or for one of the libraries I used, <a href="https://tonberry.quietmisdreavus.net/doc/egg_mode/index.html">Egg_Mode</a>.</p>
+<p>The community is actively trying to exploit the advantages of Rust (speed, memory management). There's a lot of work to build libraries using Rust in domains like <a href="http://arewegameyet.com">game development</a>, <a href="https://www.arewelearningyet.com">machine learning</a>, or <a href="https://www.arewewebyet.org">web development</a>.</p>
+<p>A key area for Rust growth may be <a href="https://webassembly.org">WebAssembly</a>, a binary format enabling deployment on the web for client and server applications. Rust already compiles to it and has good tolling and  <a href="https://rustwasm.github.io/book/introduction.html">documentation</a>. This could enable a real 'build once and deploy anywhere' development mode, without the issues caused by nuances of different platforms.</p>
+<p>In general working with it felt familiar and there weren't many unexpected surprises. The following comments come from someone which has been working extensively in the JVM world, with some non-professional experience in non-JVM languages.</p>
+<h2 id="the-good">The Good</h2>
+<p>I liked the language and I felt comfortable with it, but there are some things worth of mention:</p>
+<ul>
+<li>
+<p>Speed. It's been so many years using Scala that I forgot how fast can a CPU. Both compilation and execution are <em>fast</em>, and help with keeping the development flow. No time for a small break on Twitter, or similar.</p>
+</li>
+<li>
+<p>Typeclasses (using Traits). I got too used to Typeclasses and it would be hard to move to a language without them. The restriction on implementing instances of a Typeclass which doesn't belong to your package have been a bit of a nuisance at some stages, but I understand the motivation behind that call, and it's not a deal breaker.</p>
+</li>
+<li>
+<p>Cargo. It's what <code>sbt</code> should be. The only tool you need as a developer to compile, test, benchmark, or publish to a central repository. Which, by the way, is a trivial to do (compared to the nightmare of publishing to Sonatype).</p>
+</li>
+<li>
+<p>Local documentation. The fact that you can, with a single cargo command, open the documentation of your dependencies for the specific version you are using is a life-saver. In this particular project the library that interacts with Twitter has changed a lot between the last published version and the current version under development, thus going to the online documentation could be very confusing.</p>
+</li>
+</ul>
+<h2 id="the-less-good">The Less Good</h2>
+<p>Nothing is perfect, less so when you are experimenting with a new language. Some aspects that made the learning-curve harder:</p>
+<ul>
+<li>
+<p>Lifetimes. It's one of the main features of Rust, it comes with major benefits, but it was a pain to manage. I had to refactor a lot of code because at the top level a closure would give me a lifetime error that I couldn't fix. I guess with experience you get better at it, and it forces you to make smaller methods to avoid odd dependencies, but... it can be a pain. Garbage collection is a blessing, sometimes.</p>
+</li>
+<li>
+<p>Semicolons. Used to Scala, having to add semicolons at the end of most of the lines wasn't a great experience. The worst is exactly that <em>most of the lines</em> part, as there are lines in which you don't want semicolons as they change the meaning of the expression. Not hard to grasp, but feels like a step backwards.</p>
+</li>
+<li>
+<p>Snake Case. Ok, it's something minor, but after so many years in the JVM world, moving to Snake case wasn't easy, habits die hard. And <a href="https://github.com/rust-lang/rust-clippy">clippy</a> was complaining non-stop about it.</p>
+</li>
+<li>
+<p>Bigger files. In Rust it is idiomatic to add your unit tests at the end of the file. The issue is that you end up having very long files, which are harder to navigate. It may be due to being used to the JVM way, but having a separate test folder with specific code in there feels, somehow, cleaner.</p>
+</li>
+</ul>
+<h2 id="conclusions">Conclusions</h2>
+<p>I feel that Rust is great for low level work, but currently it can't replace a stack like <code>http4s</code> and <code>cats</code> due to a lack of libraries supporting it. There are a set of community pages (the <code>AreWe</code> pages, as seen before) that explain the progress in some areas. Looking at, for example, <a href="https://areweasyncyet.rs">Are We Async</a> one can see that today (February 2019) several <code>RFC</code> are still in progress and some <code>unresolved</code> questions remain open.</p>
+<p>I hope they catch up soon, as the speed on both compilation and execution plus the FP support may make it a worthy alternative to Scala. But, right now, I think I'll stick to my trusted tools for backend development, and dable with Rust only for specific needs.</p>
+<p>That's all for now, I hope this was informative and useful. As always, feedback via Twitter/Email is more than welcome. Cheers!</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;rust&#x2F;">#rust</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;twitter&#x2F;">#twitter</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

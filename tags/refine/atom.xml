@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Pere Villega&#x27;s blog - refine</title>
+	<subtitle>If at first you don’t succeed, call it version 1.0</subtitle>
+	<link href="https://perevillega.com/tags/refine/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://perevillega.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2017-03-09T00:00:00+00:00</updated>
+	<id>https://perevillega.com/tags/refine/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Refining your data post at Underscore blog</title>
+		<published>2017-03-09T00:00:00+00:00</published>
+		<updated>2017-03-09T00:00:00+00:00</updated>
+		<link href="https://perevillega.com/refining-your-data/" type="text/html"/>
+		<id>https://perevillega.com/refining-your-data/</id>
+		<content type="html">&lt;p&gt;This is just a short entry to make you aware of a new post (again!) at &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2017&#x2F;03&#x2F;07&#x2F;refined-data-config-database.html&quot;&gt;Underscore&#x27;s&lt;&#x2F;a&gt; blog.&lt;&#x2F;p&gt;
+&lt;p&gt;As usual, many thanks to Underscore for all the suggestions and reviews, and for publishing it. Contributions were crucial!&lt;&#x2F;p&gt;
+&lt;p&gt;Now please go to &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2017&#x2F;03&#x2F;07&#x2F;refined-data-config-database.html&quot;&gt;Underscore&#x27;s blog&lt;&#x2F;a&gt; and enjoy the post. Cheers!&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

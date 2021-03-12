@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Pere Villega&#x27;s blog - java8</title>
+	<subtitle>If at first you don’t succeed, call it version 1.0</subtitle>
+	<link href="https://perevillega.com/tags/java8/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://perevillega.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2014-03-08T00:00:00+00:00</updated>
+	<id>https://perevillega.com/tags/java8/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Java 8 is coming</title>
+		<published>2014-03-08T00:00:00+00:00</published>
+		<updated>2014-03-08T00:00:00+00:00</updated>
+		<link href="https://perevillega.com/java-8-is-coming/" type="text/html"/>
+		<id>https://perevillega.com/java-8-is-coming/</id>
+		<content type="html">&lt;p&gt;It&#x27;s March and Java 8 is &lt;a href=&quot;https:&#x2F;&#x2F;blogs.oracle.com&#x2F;java&#x2F;entry&#x2F;java_se_8_schedule&quot;&gt;coming soon&lt;&#x2F;a&gt;. A delayed and very expected release of Java with plenty of new tools: lambdas, default methods, etc.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I&#x27;ve written about Java 8 and some of the new tools it provides in the &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;java-8-is-coming-66d89c4e332b&quot;&gt;Gumtree dev blog&lt;&#x2F;a&gt;. There I list the changes along small code samples showing them in action.&lt;&#x2F;p&gt;
+&lt;p&gt;As always, feedback via Twitter&#x2F;Email is more than welcome.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="Free Monads and Stockfighter" />
+<meta name="twitter:description" content="StockFighter is a game by Patrick McKenzie (Hi Patrick!) and others that makes you compete in a virtual Stock Exchange to accomplish certain objectives. They use it as a recruitment tool (kind of, read their website) but it&#x27;s a very entertaining game, even if you are not looking for a new job.
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Free Monads and Stockfighter">
+<meta itemprop="description" content="StockFighter is a game by Patrick McKenzie (Hi Patrick!) and others that makes you compete in a virtual Stock Exchange to accomplish certain objectives. They use it as a recruitment tool (kind of, read their website) but it&#x27;s a very entertaining game, even if you are not looking for a new job.
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="Free Monads and Stockfighter" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;free-monads-and-stockfighter&#x2F;" />
+<meta name="og:description" content="StockFighter is a game by Patrick McKenzie (Hi Patrick!) and others that makes you compete in a virtual Stock Exchange to accomplish certain objectives. They use it as a recruitment tool (kind of, read their website) but it&#x27;s a very entertaining game, even if you are not looking for a new job.
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  Free Monads and Stockfighter
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;free-monads-and-stockfighter&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Free Monads and Stockfighter</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on 22 August 2016. Reading time: 15 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p><a href="https://www.stockfighter.io/">StockFighter</a> is a game by <a href="https://twitter.com/patio11/">Patrick McKenzie</a> (Hi Patrick!) and <a href="https://www.starfighters.io/about">others</a> that makes you compete in a virtual Stock Exchange to accomplish certain objectives. They use it as a recruitment tool (kind of, read their website) but it's a very entertaining game, even if you are not looking for a new job.</p>
+<span id="continue-reading"></span>
+<p>Why am I talking about <a href="https://www.stockfighter.io/">StockFighter</a>? Well, as you can guess from the title, because <a href="http://typelevel.org/cats/tut/freemonad.html">Free Monads</a>! Care to join?</p>
+<h2 id="the-mission">The Mission</h2>
+<p><a href="https://www.stockfighter.io/">StockFighter</a> provides an environment which is limited in scope, but still complex enough that showcases limitations/strengths for a given tool. I've had in my backlog, for a looong while, the <em>mission</em> of completing the game. Building an API to do so using Free seemed like the perfect match.</p>
+<p>The aim was to build a Free Monad wrapper on top of the <a href="https://starfighter.readme.io/docs/">Stockfighter API</a>, using <a href="https://github.com/ProjectSeptemberInc/freek">Freek</a>, which allows us to solve the levels of the game. The API would only focus on the <em>Trading</em> part of the game as the other component, <em>Jailbreak</em>, is not fully ready to be used.</p>
+<h2 id="caveats">Caveats</h2>
+<p>Before we start, I want to make you aware that I am a beginner regarding Free. I've heard a lot about the subject, and I previously wrote two posts about them: <a href="/understanding-free-monads">Free Monad</a> and <a href="/freek-and-free-monads">Freek and Free Monads</a> as a result of my research around the concept.</p>
+<p>But these posts approached the subject in a very theoretical way; they described how to build a Free Monad and potential applications, but you don't really understand something until you have used it in production or, at least, in a realistic environment.</p>
+<p>This is my first <em>real(ish)</em> experience using Free for something more than a proof of concept, and as such I may have missed something obvious. If you believe so, please contact me via twitter (<a href="https://twitter.com/pvillega">@pvillega</a>) as I'm very keen on fixing gaps in my knowledge :)</p>
+<h2 id="the-implementation">The Implementation</h2>
+<p>Releasing your code to the public is scary, isn't it? Oh, well, <a href="https://github.com/pvillega/stockfighter">here you have it</a>. The code took longer than I wanted, as during its conception I realised several misconceptions I had regarding Free Monads and their implementation. I also experimented a bit with unrelated stuff which delayed this post <em>slightly</em> more. Ah, shiny baubles...</p>
+<p>You may want to start by opening <code>Introduction.scala</code> and reading it top to bottom, as it exposes the API and usage cases.</p>
+<p>If we ignore all the stuff not purely related to Free Monads, there are three files to focus on: <code>LogApi.scala</code>, <code>TradeApi.scala</code>, and <code>TradingAppHelpers.scala</code>.</p>
+<h3 id="the-free-monads">The Free Monads</h3>
+<p>Files <code>LogApi.scala</code> and <code>TradeApi.scala</code> implement the Free Monads for the library. I won't enter into the implementation details as they should be straightforward, and you can refer to my previous post on <a href="/freek-and-free-monads">Freek</a> for guidance.</p>
+<p>What I want to discuss is: why these two DSL and not more?</p>
+<p>We can argue about the abstraction levels, but I've come to these two as a natural evolution of the API. My initial idea was to build everything based on Free. When I say <em>everything</em> I mean it: my http calls would be a Free DSL (Get, Post, etc). Logs? Free. Free all the way down (and then turtles). It even sounded easy: Freek <a href="https://github.com/ProjectSeptemberInc/freek/blob/master/src/test/scala/AppSpec.scala">examples</a> showcase a Log and Http DSL, so why not?</p>
+<p>Well, it may be possible, in fact it's my next aim (v 2.0?) to experiment more around this area. But it makes things more complex than needed.</p>
+<p>Let's take an example: Http DSL. Given the way natural transformations work, and that you want a generic DSL, you'll end up with two DSL for your Http calls: a <em>request</em> one and one to manage <em>responses</em>. This is ok, the problem comes when you want to start defining <code>TradeAPI</code> using these DSL.</p>
+<p>A natural transformation converts a monad into another. Although Free is a monad, I had lots of problems trying to compile a Natural transformation from <code>TradeApi.DSL</code> to <code>Task</code> that internally used <code>Http.DSL</code>, as it wasn't a one-to-one transformation, but a one-to-for-comprehension transformation. It just didn't work.</p>
+<p>The easy solution was to implement the calls in <code>TradeApi</code> as for-comprehensions that used <code>Http.DSL</code> to define the behaviour. So <code>buy</code> would call the corresponding <code>Http.DSL</code> helpers, and so on. Something like:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">buy(stock: String) = </span><span style="color:#569cd6;">for </span><span style="color:#dcdcdc;">{
+	body &lt;- </span><span style="color:#b5cea8;">Post</span><span style="color:#dcdcdc;">(buyUrl, toBody(stock))
+	rsp &lt;- </span><span style="color:#b5cea8;">DecodeResponse</span><span style="color:#dcdcdc;">[OrderStatus](body)
+} </span><span style="color:#569cd6;">yield</span><span style="color:#dcdcdc;"> rsp
+</span></code></pre>
+<p>At this point, though, we won't have an interpreter for <code>TradeAPI</code>, only for <code>Http.DSL</code>. And there may be scenarios where we want to go that path. But, in this one, we may as well use our own interpreter for <code>TradeAPI</code> that manages the http calls and decoding inside, like a black box. We end up using a single interpreter anyway, but a slightly saner one.</p>
+<p><code>LogApi</code> survived because, despite the option of doing the logging within the interpreter, it makes sense to allow the user to document the intention of programs built using <code>TradeAPI</code>.</p>
+<p>So, in the end, we only need these two. Yes, we could go deeper and replace <code>TradeAPI</code> by several lower-level API, but the current form seemed simpler and more usable.</p>
+<h3 id="helper-class">Helper class</h3>
+<p><code>TradingAppHelpers.scala</code> is mostly support methods and declarations: it defines the Onion we will use in our program, as well as some common methods like <code>run</code> to abstract calling the interpreter for our program and managing the lifecycle of our http client (to avoid leaking connections). I believe the comments in the file suffice to explain the intentions.</p>
+<p>There are three parts of its code I want to elaborate a bit on.</p>
+<h4 id="onion-type">Onion type</h4>
+<p>Below we have the declaration for API and Onion, as usual when using Freek to work with several DSL at once.</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">type </span><span style="color:#4ec9b0;">API </span><span style="color:#dcdcdc;">= LogApi.PRG :||: TradeApi.PRG
+</span><span style="color:#569cd6;">val </span><span style="color:#dcdcdc;">API = </span><span style="color:#b5cea8;">Program</span><span style="color:#dcdcdc;">[API]
+</span><span style="color:#569cd6;">type </span><span style="color:#4ec9b0;">O </span><span style="color:#dcdcdc;">= Result[?] :&amp;: List :&amp;: Bulb
+</span></code></pre>
+<p>Note that the Onion declaration, <code>O</code>, includes both <code>Result</code> (an alias to <code>Xor</code>) and <code>List</code>. Without adding <code>List</code> I could not make it compile with result types of the form <code>Result[List[A]]</code>.</p>
+<p>The side effect of this is that using the Onion causes all the programs to return <code>Result[List[A]]</code> results. We can avoid this if we know we won't use a call that return <code>Result[List[A]]</code> inside a program. In that case we may avoid the Onion and obtain just <code>Result[A]</code> at the end (using <code>.freek</code> and not <code>.freeko</code>), but I've provided no helper methods similar to <code>run</code> for this use case. Feel free to send a pull-request with one ;)</p>
+<p>There's a better discussion on the matter in <a href="https://github.com/mandubian/freek/issues/5">this issue</a>.</p>
+<h4 id="task-interpreter">Task Interpreter</h4>
+<p>Our Task interpreter, the natural transformation from the DSL to <code>Task</code>, is declared as:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">taskInterpreter(httpClient: </span><span style="color:#608b4e;">/*...*/</span><span style="color:#dcdcdc;">) = </span><span style="color:#b5cea8;">LogApiTaskInterpreter</span><span style="color:#dcdcdc;"> :&amp;: </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">TradeApiTaskInterpreter(</span><span style="color:#608b4e;">/*...*/</span><span style="color:#dcdcdc;">)
+</span></code></pre>
+<p>In this implementation <code>TradeApiTaskInterpreter</code> depends on an <code>httpClient</code> to be able to contact Stockfighter. Encapsulating the <code>httpClient</code> inside the interpreter is problematic, as we can't control the lifecycle of the client itself. At no point during the natural transformation are you aware that this is the last step (unless you add an explicit <em>last step</em> command, but kind of defeats the point). Which means that closing your http connections needs to be done outside the interpreter itself.</p>
+<p>I know it sounds obvious, and it is. But the examples I've seen regarding interpreters and natural transformations showcase them as static objects with no dependencies, although the interpreters are the areas where we will perform side effects, like an http request. This mislead me, initially, to try to encapsulate everything inside the interpreter itself. I'm open to suggestions on improving the code, if you believe there's a better way to manage the client.</p>
+<h4 id="run-the-onion">Run the Onion</h4>
+<p>The code to run an interpreter on a given Onion is always the same, which means we can abstract it:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#569cd6;">def </span><span style="color:#dcdcdc;">run[A](program: OnionT[Free, API.Cop, O, A], waitTime: Duration = </span><span style="color:#b5cea8;">10</span><span style="color:#dcdcdc;"> seconds) = {
+    </span><span style="color:#569cd6;">val </span><span style="color:#dcdcdc;">client = </span><span style="color:#569cd6;">new </span><span style="color:#dcdcdc;">GigahorseHttpClientManager()
+    </span><span style="color:#569cd6;">try </span><span style="color:#dcdcdc;">{
+      </span><span style="color:#569cd6;">val </span><span style="color:#dcdcdc;">interpreter = taskInterpreter(client)
+      </span><span style="color:#569cd6;">val </span><span style="color:#dcdcdc;">taskResult = program.value.interpret(interpreter)
+      </span><span style="color:#b5cea8;">Await</span><span style="color:#dcdcdc;">.result(taskResult.runAsync, waitTime)
+    } </span><span style="color:#569cd6;">finally </span><span style="color:#dcdcdc;">{
+      client.close()
+    }
+  }
+</span></code></pre>
+<p>As you can see the function <code>run</code> instantiates its own <code>TradeApiTaskInterpreter</code> to manage the <code>httpClient</code>, as discussed in the previous section.</p>
+<p>The relevant part of this code is the type of the parameter <code>program</code>: <code>OnionT[Free, API.Cop, O, A]</code>. It's another obvious thing, but when I tried to generalise the signature from my existing programs the values <code>sbt</code> gave me didn't compile properly due to several implicit-related errors. Freek uses quite a few of them implicits, and you can find yourself in a tangle trying to derive the implicit you need for your program. Next time, just copy this method's signature.</p>
+<p>Or, as I discovered a bit too late (to my chagrin) pay more attention when reading the Freek instructions. That type is declared in the Readme file. D'oh!</p>
+<h3 id="the-case-for-freek">The case for Freek</h3>
+<p>I want to explicitly comment on <a href="https://github.com/ProjectSeptemberInc/freek">Freek</a>, as it deserves all praise I can give it.</p>
+<p>My experience building these monads is a vindication for the library. Honestly, if you are going to use Free Monads in your code, add it to your dependencies. Right now. I'll wait. Done?</p>
+<p>I tried the Cats approach I described in my old post about <a href="/understanding-free-monads">Free Monad</a> to implement the API, stubborn in <em>keeping it simple and using few dependencies</em>. The pain was real, oh so real, when trying to work with the different answer types the DSL provides.</p>
+<p>In fact, it didn't work. Without Freek, the compiler was beating me. No chances, full surrender.</p>
+<p>Yes, it is not perfect. For example see <a href="https://github.com/mandubian/freek/issues/5">this issue</a> related to the return types of Onions. It's slightly cumbersome to having to manually peel responses each time you use the Onion. But given the alternative, I found it perfectly acceptable. And, come on, it's barely version 0.6.0 and improving fast!</p>
+<p>If you are a Scala magician at the level of Pascal, Travis, or Miles you may not need it. Otherwise, just use it and spend your valuable time in something else.</p>
+<h2 id="what-are-free-monads-for">What are Free Monads for</h2>
+<p>Based on the, arguably limited, experience I've had while building the API and running programs using it there are several things to consider when using Free.</p>
+<h3 id="free-monads-are-for-api">Free Monads are for API</h3>
+<p>Free Monads are intended to abstract your API. You define your DSLs, you build a program that uses them, and your construct interpreters to match. They are not for doing business logic, though.</p>
+<p>What do I mean by that?</p>
+<p>When I read about them, my naive mind thought you could buy a stack of Free on top of Free and only at the end you'd use the interpreter, creating a kind of pure universe untouched by side effects. Crazy, maybe.</p>
+<p>Let's start by the fact that Free doesn't (can't?) implement <code>filter</code>. This removes the capability of using <code>if</code> statements inside your for-comprehension. At some point in your application you'll need to make decisions based on results, and avoiding <code>filter</code> gets complicated, fast.</p>
+<p>For example, using the API provided try to create a program that buys a stock if the quote is lower than a value, and otherwise sells but only if you have enough shares and doing so would generate a benefit. Most likely you will end up with programs that mix Free statements with non-Free statements. You may argue the API is limited, so how complex do you want it to become to cover all particular once-off cases?</p>
+<p>So, Free is great when you define a contract to hide implementation details. Think interfaces that do IO behind the scenes, or other side-effects, or combine calls to several services in one go. But it's doubtful you'll build your application (unless trivial) with <em>only</em> Free.</p>
+<h3 id="ddd-ready">DDD ready</h3>
+<p><a href="https://en.wikipedia.org/wiki/Domain-driven_design">DDD</a> is popular and you most likely use it. Bounded contexts and ubiquitous languages are a great fit for Free.</p>
+<p>Your context is defined by a contract, an API that other components will use. Your logic will often use more than one context to achieve something, for example communicating with Authentication, User data, and Image storage to get the information it needs. Free are perfectly suited for this task.</p>
+<h3 id="interpreters-are-your-io-monad">Interpreters are your IO Monad</h3>
+<p>I hear somebody screaming due to this statement. Apologies! But, in a sense, your interpreters can be considered a black box that will have side effects inside, which you don't care much about.</p>
+<p>Your Free programs define steps to be done against a certain API, but nothing else. They are pure, no side effects, nothing, just a list of steps. Only when interpreted is when they really do something useful.</p>
+<p>This means all the side effects happen in your interpreter. And that is good. We want to isolate side-effects in our codebases, but when trying to do so we may end up with some cumbersome stuff:</p>
+<blockquote>
+<p>This is your return type: Int.
+This is your return type on microservices: IO (Logger (Either HttpError Int))</p>
+<ul>
+<li>Credit to <a href="https://twitter.com/krisajenkins/status/762901550696194048">Kris Jenkins</a></li>
+</ul>
+</blockquote>
+<p>Jokes aside, we want to push side effects to the boundaries, which means we get horrible return types piling Task on top of Writer on top of Xor on top of any other monad we found. Within the interpreter we don't need that. We know things will happen there, we can be ok with logging and running an IO fest within that black box. Because it's isolated, and won't leak, and we run it at the end, anyway.</p>
+<p>And we get a cleaner return type as a consequence.</p>
+<h3 id="interpreters-should-be-your-test-target">Interpreters should be your test target</h3>
+<p>In the codebase you'll see a blunder I realised too late. Initially I tried to test programs by using an accumulating interpreter that stored the calls to the api in a State monad, returning some default values. This allowed me to compare expected output of the program vs the real output.</p>
+<p>The accumulating interpreter can be good to see what happens with a program (print all the calls, to the bottom of the stack), but it's not a great fit for testing due to hardcoded values. I experimented with another interpreter that allowed me to mock expected responses, so I could test most complex values, but this wasn't ideal nor satisfactory.</p>
+<p>Then I realised I was approaching it wrong.</p>
+<p>Without Free, what I'd usually do is test a method for expected outputs given certain input. And that's what I tried to do here. But with Free your method is nothing. I mean, it's a description, so the test will be fully tangled with the program you defined.</p>
+<p>What you want to test is the interpreter, or its core. You want to make sure the output for a given DSL call is what you expect. In our scenario, <code>TradeApiTaskInterpreter</code> uses a client to to http calls. The return types are enforced during compilation of the DSL (we know a call to <code>buy</code> will return an object of a certain type), but we may want to guarantee we are passing values like <code>price</code> or <code>quantity</code> correctly, or that if the http client returns an error we are capturing it and returning the proper <code>Left</code>.</p>
+<p>This is where we want to focus our test efforts, which incidentally reduces the surface of code to be tested a lot, arguably giving us much robust code. Of course, there will be methods that mix Free monads with logical statements (if x call this monad, otherwise the other) which you will want to test as usual. But for methods that only use Free, focus on testing the interpreters.</p>
+<h3 id="beware-the-layers">Beware the layers</h3>
+<p>I talked about it when discussing why I implemented the two DSL I chose, but it's worth repeating.</p>
+<p>Remember that your interpreter (as a natural transformation) has limitations. Start with the top level API and consider if you need a lower level DSL for your purposes. It may be, as in our case, that a single layer is good enough. It may as well be that you have a case that justifies building your Free on a lower layer.</p>
+<p>In any case, stacking Free is not trivial and may cause pain. Thread carefully.</p>
+<h3 id="they-are-not-easy">They are not easy</h3>
+<p>People talking about Free mention they are not easy and that new teams (or teams without much experience in functional programming) should not adopt them directly. I realised I didn't fully understand the warning when I started using them for this library. They seem easy, they are misleadingly so. But you will find yourself scratching your head many, many times, due to subtleties that arise when using them.</p>
+<p>Don't underestimate them.</p>
+<h2 id="aims-achieved">Aims achieved?</h2>
+<p>I have to make a confession: I've not completed StockFighter. I got sidetracked while experimenting with the API  using their test server, so I've only solved the first (and trivial) level. Someday I'll finish it :) I failed that aim.</p>
+<p>But it's been an enlightening experiment, which made me realise the limitations and strengths of Free. That said, it's a first step on the path and most likely in a few months I'll revisit this and realise I was wrong. But, hey, learning. Or something ;)</p>
+<p>So, yes, Free Monad are useful, but they are no silver bullet. What a surprise, isn't it? Like everything else in IT.</p>
+<p>That's all for now, I hope this was informative and useful. As always, feedback via Twitter/Email is more than welcome. Cheers!</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;scala&#x2F;">#scala</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;monad&#x2F;">#monad</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;fp&#x2F;">#fp</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;free-monad&#x2F;">#free monad</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;stockfighter&#x2F;">#stockfighter</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>

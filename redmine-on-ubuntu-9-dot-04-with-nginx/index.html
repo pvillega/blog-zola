@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f388854834be446682ec7ce7d1247f0c"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Pere Villega's blog">
+  <meta name="author" content="Pere Villega">
+
+  
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@pvillega">
+<meta name="twitter:title" content="Redmine on Ubuntu 9.04 with NGinx" />
+<meta name="twitter:description" content="Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, only available for Ubuntu 9.04, which doesn&#x27;t work too well on a server. I&#x27;ll keep an eye on it as I like the way Canonical does things (and applications), but in the meantime I decided to use Redmine as I found Trac lacking on some areas.
+" />
+<meta name="twitter:image:src" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+<!-- Google / Search Engine Tags -->
+<meta itemprop="name" content="Redmine on Ubuntu 9.04 with NGinx">
+<meta itemprop="description" content="Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, only available for Ubuntu 9.04, which doesn&#x27;t work too well on a server. I&#x27;ll keep an eye on it as I like the way Canonical does things (and applications), but in the meantime I decided to use Redmine as I found Trac lacking on some areas.
+">
+<meta itemprop="image" content="http://perevillega.com/apple-touch-icon-144x144-precomposed.png">
+
+<!-- Facebook Meta Tags -->
+<meta name="og:site_name" content="Pere Villega's blog">
+<meta name="og:type" content="Article" />
+<meta name="og:title" content="Redmine on Ubuntu 9.04 with NGinx" />
+<meta name="og:url" content="https:&#x2F;&#x2F;perevillega.com&#x2F;redmine-on-ubuntu-9-dot-04-with-nginx&#x2F;" />
+<meta name="og:description" content="Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, only available for Ubuntu 9.04, which doesn&#x27;t work too well on a server. I&#x27;ll keep an eye on it as I like the way Canonical does things (and applications), but in the meantime I decided to use Redmine as I found Trac lacking on some areas.
+" />
+<meta name="og:image" content="https:&#x2F;&#x2F;perevillega.com&#x2F;apple-touch-icon-144x144-precomposed.png">
+
+
+  <title>
+  Redmine on Ubuntu 9.04 with NGinx
+</title>
+
+  
+<!-- Mark url as canonical for duplicate content purposes -->
+<link rel="canonical" href="https:&#x2F;&#x2F;perevillega.com&#x2F;redmine-on-ubuntu-9-dot-04-with-nginx&#x2F;" />
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;bootstrap.min.css">
+  <!-- Custom fonts for this template -->
+  <link href=" https:&#x2F;&#x2F;perevillega.com&#x2F;css&#x2F;all.min.css" rel=" stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+    type='text/css'>
+  <link
+    href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+    rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="https:&#x2F;&#x2F;perevillega.com&#x2F;clean-blog.css">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Pere Villega&#x27;s blog</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+        data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+        aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com">Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link"
+              href="https:&#x2F;&#x2F;perevillega.com&#x2F;about">About</a>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https:&#x2F;&#x2F;perevillega.com&#x2F;img&#x2F;post-bg.jpg')">
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <div class="post-heading">
+          
+<h1>Redmine on Ubuntu 9.04 with NGinx</h1>
+<span class="meta">Posted by
+    <a href="#">Pere Villega</a>
+    on 17 August 2009. Reading time: 9 minutes
+</span>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+  
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, only available for Ubuntu 9.04, which doesn't work too well on a server. I'll keep an eye on it as I like the way Canonical does things (and applications), but in the meantime I decided to use <a href="http://www.redmine.org/">Redmine</a> as I found Trac lacking on some areas.</p>
+<span id="continue-reading"></span><h2 id="redmine">Redmine</h2>
+<p>Redmine is an open source, web-based project management and bug-tracking tool, written in Ruby on Rails and heavily influenced by Trac. It improves on several areas, like providing multiple project support, integrating with several source control systems (from popular SVN to less popular Bazaar or Darcs) and allowing extension of its functionalities through plugins. This guide describes how to install Redmine in an Ubuntu 9.04 server using Mongrel as web server, Nginx as proxy and MySQL as database. To achieve this we have to follow 3 steps:</p>
+<ul>
+<li>install ruby and rails and MySQL</li>
+<li>install Redmine</li>
+<li>install Mongrel and Nginx</li>
+</ul>
+<p>This guide can be adapted to older versions of Ubuntu and most Linux distributions, just replacing the tools/packages by the specific ones available in that distribution. The guide is a quick overview of the main steps, for  more information on configuration options check the documentation of the corresponding tool.</p>
+<h2 id="install-ruby-and-rails-and-mysql">Install Ruby and Rails and MySQL</h2>
+<p>To install the components first ensure the system is up to date:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo apt-get update
+    sudo apt-get dist-upgrade
+</span></code></pre>
+<p>Then run the following command:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo apt-get install build-essential ruby ri rdoc mysql-server libmysql-ruby ruby1.8-dev irb1.8 libdbd-mysql-perl libdbi-perl
+          libmysql-ruby1.8 libmysqlclient15off libnet-daemon-perl libplrpc-perl libreadline-ruby1.8 libruby1.8 rdoc1.8 ri1.8 ruby1.8
+          irb libopenssl-ruby libopenssl-ruby1.8 libhtml-template-perl mysql-client-5.0 mysql-common mysql-server-5.0 mysql-server-core-5.0
+</span></code></pre>
+<p>Now that we have Ruby installed, we use Gems to install Rails:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo gem update
+    sudo gem install rails --no-rdoc –no-ri
+</span></code></pre>
+<p>The flags –no-rdoc and –no-ri are included to reduce the RAM footprint of the component, feel free to remove them if your machine has more than enough RAM. To finish this part, open the MySQL client and create the Redmine database:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    create database redmine character set utf8;
+</span></code></pre><h2 id="install-redmine">Install Redmine</h2>
+<p>Get the code from the <a href="http://www.redmine.org/projects/redmine/wiki/Download">download</a> page. Although the stable release is recommended, if you are going to use Bazaar the svn contains some fixes you want to use, so do an export from the trunk and use that. (Note: if you use the trunk, you'll have to install a newer Rails using Gems due to version requirements). Select a folder in your server (from now on, APP) and copy the downloaded code there. Move to the APP folder and run:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo cp config/database.yml.example config/database.yml
+    sudo cp config/email.yml.example config/email.yml
+</span></code></pre>
+<p>Edit the new yml files and change the configuration as required (MySQL details, mail server, etc).  Now run these commands to create the database and populate it:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    rake db:migrate RAILS_ENV=&quot;production&quot;
+    rake redmine:load_default_data RAILS_ENV=&quot;production&quot;
+</span></code></pre>
+<p>We also need ImageMagick  (although is optional):</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo apt-get install imagemagick libmagickwand-dev
+    sudo gem install rmagick
+</span></code></pre><h2 id="install-mongrel-and-nginx">Install Mongrel and Nginx</h2>
+<p>To run Redmine we will use a standard setup for Rails applications, consistent on Mongrel as web server and Nginx as proxy that interacts with the network. We will run Mongrel as Mongrel Cluster, to improve the performance as Mongrel is single threaded and we will need multiple instances to server multiple clients. First we need to install Mongrel and Mongrel Cluster:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo gem install mongrel
+    sudo gem install mongrel_cluster
+</span></code></pre>
+<p>Now move to APP folder and run:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    mongrel_rails cluster::configure -e production -p 8000 -N 2 -c APP -a 127.0.0.1
+</span></code></pre>
+<p>The flag -p indicates the initial port to use by Mongrel. Flag -N tells how many instances you want running in the cluster. Flag -a shows the bind address of the cluster. Once created, we need to set it up so it starts automatically with the server:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo mkdir /etc/mongrel_cluster
+    sudo ln -s APP/config/mongrel_cluster.yml /etc/mongrel_cluster/your-app-name.yml
+    sudo cp /var/lib/gems/1.8/gems/mongrel_cluster-1.0.5/resources/mongrel_cluster /etc/init.d/
+    sudo chmod +x /etc/init.d/mongrel_cluster
+    sudo /usr/sbin/update-rc.d mongrel_cluster defaults
+</span></code></pre>
+<p>Now you can control the cluster with the commands:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    mongrel_cluster_ctl start
+    mongrel_cluster_ctl stop
+    mongrel_cluster_ctl restart
+</span></code></pre>
+<p>Now install nginx (if you don't have it):</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo apt-get install nginx
+</span></code></pre>
+<p>We need to create a virtual host for Nginx, that will receive the requests and forward them to Redmine. Assuming your public domain will be “domain.com”:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo nano /usr/local/nginx/sites-available/domain.com
+</span></code></pre>
+<p>And copy inside:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    upstream domain1 {
+
+     server 127.0.0.1:5000;
+     server 127.0.0.1:5001;
+     server 127.0.0.1:5002;
+
+    }
+
+    server {
+
+     listen   80;
+     server_name  www.domain.com;
+     rewrite ^/(.*) http://domain.com/$1 permanent;
+
+    }
+
+    server {
+
+     listen   80;
+     server_name domain.com;
+
+     access_log /home/demo/public_html/railsapp/log/access.log;
+     error_log /home/demo/public_html/railsapp/log/error.log;
+
+     root   /home/demo/public_html/railsapp/public/;
+
+     index  index.html;
+
+     location / {
+
+          proxy_set_header  X-Real-IP  $remote_addr;
+          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $http_host;
+          proxy_redirect false;
+
+          if (-f $request_filename/index.html) {
+            rewrite (.*) $1/index.html break;
+          }
+
+          if (-f $request_filename.html) {
+            rewrite (.*) $1.html break;
+          }
+
+          if (!-f $request_filename) {
+            proxy_pass http://domain1;
+            break;
+          }
+
+     }
+
+    }
+</span></code></pre>
+<p>Be careful to change the port numbers and domain name to the ones you'll use on your server. Now enable the site:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    sudo ln -s /usr/local/nginx/sites-available/domain.com /usr/local/nginx/sites-enabled/domain.com
+</span></code></pre>
+<p>and once you restart Nginx your Redmine installation is ready to go. Configure Bazaar First we need to edit the file config/environment.rb to add new environment variables related to Python, to avoid problems while accessing Bazaar:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    ENV[&#39;PYTHONPATH&#39;] = &#39;/usr/lib/python2.6&#39;
+    ENV[&#39;PATH&#39;] = &quot;#{ENV[&#39;PATH&#39;]}:/usr/bin&quot;
+</span></code></pre>
+<p>When you create a project you just need to point Redmine to your Bazaar main folder, this will allow you to browse the repository. Be aware it still has some limitations when displaying contents, but it works quite well. To work with Bazaar, let's set up a repository on  our server. This will be a dumb repository, it means is nothing more than a  folder that can be accessed via sftp that stores the data of the repository. First of all, in Ubuntu 9.04 (our server) let's install the needed tools (sftp) and enable them as accepted shell:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    $apt-get install ssh openssh-server
+    $echo &#39;/usr/lib/sftp-server&#39; &gt;&gt; /etc/shells
+</span></code></pre>
+<p>Then create a user to connect via sftp to the server:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    $sudo useradd --create-home --home-dir /home/bzr --shell /usr/lib/sftp-server bzr
+</span></code></pre>
+<p>And that's it, we have a folder (/home/bzr/) ready to receive our Bazaar projects. Is a good practice to give write rights to that folder to members of group “bzr”, and to add a password to the 'bzr' user. On your client machine, install Bazaar (using apt-get or similar). Then download the Uploader plugin which eases the task to commit changes to “dumb servers”:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    $ mkdir /home/pvillega/.bazaar/plugins
+    $ bzr co lp:bzr-upload ~/.bazaar/plugins/upload
+</span></code></pre>
+<p>or if you use Ubuntu/Debian with:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    $sudo apt-get install bzr-upload
+</span></code></pre>
+<p>Then create the base repository. There are two ways of doing this, you can create a shared repository which stores every child branch revision, or you can create standalone repositories, which are good if you don’t want to share revision information with other branches. Here we create a shared repository:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    bzr init-repository some_directory
+    bzr init some_directory/trunk
+    bzr init some_directory/branches
+</span></code></pre>
+<p>Now, to interact with the server we created before, first run:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    bzr push --create-prefix sftp://bzr@server:port/~/test
+</span></code></pre>
+<p>This pushes the project to the server and creates the folder 'test' if needed. After that, all the interaction with the server can be (usually) reduced to:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">     bzr pull sftp://bzr@server:port/~/test   #update changes from the server to our client
+     bzr co sftp://bzr@server:port/~/test      #checkout the project
+     bzr push sftp://bzr@server:port/~/test  #push changes to the server
+</span></code></pre>
+<p>Ok, is not the nicest way to do that, but remember this is a distributed repository, you won't update or push changes too often, usually only when you are done with a piece of work.  There's an alternative method, using what is called a “smart server”, which is faster than the previous way (but not always possible to use for several reasons). In this case we will use an ssh connection to communicate with the repository, but this requires that our user belongs to the group “bzr” to be able to write in that folder. The command for the first commit is:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">    bzr push --create-prefix bzr+ssh://server:port/home/bzr/test #requires full path, from root
+</span></code></pre>
+<p>In a similar way we interact with the server using:</p>
+<pre style="background-color:#1e1e1e;">
+<code><span style="color:#dcdcdc;">     bzr pull bzr+ssh://bzr@server:port/~/test   #update changes from the server to our client
+     bzr co bzr+ssh://bzr@server:port/~/test      #checkout the project
+     bzr push bzr+ssh://bzr@server:port/~/test  #push changes to the server
+</span></code></pre><h2 id="install-redmine-themes">Install Redmine Themes</h2>
+<p>You can install some new themes for Redmine, available <a href="http://www.redmine.org/projects/redmine/wiki/Theme_List">here</a>. Although is mainly a cosmetic change, some themes provide enhancements like colouring tickets according to priority and they are really easy to manage. For example, to install the <a href="http://theill.com/stuff/redmine/">Basecamp</a> theme:</p>
+<ul>
+<li>Download application.css</li>
+<li>Create required directories: mkdir -p redmine/public/themes/basecamp/stylesheets</li>
+<li>Copy downloaded file:  cp application.css redmine/public/themes/basecamp/stylesheets</li>
+</ul>
+<p>That's it .. now restart your instance running Redmine and select the new basecamp theme from /settings</p>
+<h2 id="install-redmine-plugins">Install Redmine Plugins</h2>
+<p>Redmine provides several plugins that enhance the capabilities of the tool. Amongst them you can find some nice ones like:</p>
+<ul>
+<li>Bots Filter: avoids bots from accessing certain areas of the application</li>
+<li>Charts: adds some project based charts</li>
+<li>Exception Handler: notifies admins when an exception occurs</li>
+<li>Hudson: integrates Redmine and Hudson, allowing you to see Hudson reports</li>
+<li>Status updates: allows users to say what are they doing, kind of Twitter per project.</li>
+<li>Vote: allows users to vote on issues so you see which ones are important to them</li>
+</ul>
+<p>You can find these and many more in this <a href="http://www.redmine.org/projects/redmine/wiki/Plugin_List">page</a> . To install a plugin, follow the instructions on the “Installation” section of its page. Then restart Redmine and you are good to go.</p>
+<h2 id="connect-mylyn-to-redmine">Connect Mylyn to Redmine</h2>
+<p>If you use Mylyn (and you should!) use these <a href="http://www.redmine.org/projects/redmine/wiki/HowTo_Mylyn">instructions</a> to connect it to your Redmine repository.</p>
+
+        
+        <div class="post-tags">
+          <p>Tags:
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;devops&#x2F;">#devops</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;redmine&#x2F;">#redmine</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;nginx&#x2F;">#nginx</a>
+            
+            <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;tags&#x2F;ubuntu&#x2F;">#ubuntu</a>
+            
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+
+  <hr>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            <li class="list-inline-item">
+              <a href="mailto:pvillega+blog@aracon.com">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;twitter.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;github.com&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="http:&#x2F;&#x2F;linkedin.com&#x2F;in&#x2F;perevillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-linkedin fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;dev.to&#x2F;pvillega">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-dev fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+            <li class="list-inline-item">
+              <a href="https:&#x2F;&#x2F;perevillega.com&#x2F;atom.xml">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            
+          </ul>
+          <p class="copyright text-muted">
+&copy; Pere Villega
+<br />
+This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+    Attribution-ShareAlike 4.0 International License</a>.
+<br />
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+    <img alt="Creative Commons Licence" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" />
+</a>
+</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;jquery.min.js"></script>
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;bootstrap.bundle.min.js"></script>
+
+  <!--Custom scripts for this template-->
+  <script src="https:&#x2F;&#x2F;perevillega.com&#x2F;js&#x2F;clean-blog.min.js"></script>
+
+  <!--- Additional scripts -->
+  
+  
+</body>
+
+</html>
