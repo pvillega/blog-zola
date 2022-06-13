@@ -3,6 +3,7 @@ title = "Raspberry Pi as NAS with Samba"
 date = 2014-01-12
 
 [taxonomies]
+
 categories = ["devops"]
 tags = ["devops", "raspberry", "crashplan", "deluged"]
 +++

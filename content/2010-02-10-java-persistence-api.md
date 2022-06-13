@@ -3,6 +3,7 @@ title = "Java Persistence API"
 date = 2010-02-10
 
 [taxonomies]
+
 categories = ["java"]
 tags = ["java", "ejb", "jpa"]
 +++

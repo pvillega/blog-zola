@@ -3,6 +3,7 @@ title = "QCon London - Microservices"
 date = 2015-03-07
 
 [taxonomies]
+
 categories = ["development"]
 tags = ["qcon", "development", "microservices"]
 +++

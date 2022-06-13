@@ -3,6 +3,7 @@ title = "Third post"
 date = 2019-01-03
 
 [taxonomies]
+
 categories = ["Odd"]
 tags = ["placeholder posts", "tag1"]
 +++

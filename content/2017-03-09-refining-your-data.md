@@ -3,6 +3,7 @@ title = "Refining your data post at Underscore blog"
 date = 2017-03-09
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "pureconfig", "refine", "doobie", "fp", "underscore"]
 +++

@@ -3,6 +3,7 @@ title = "Scala Exchange 2015 Day Two"
 date = 2015-12-11
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "scalax"]
 +++

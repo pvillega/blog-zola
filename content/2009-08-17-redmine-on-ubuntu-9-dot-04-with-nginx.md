@@ -3,6 +3,7 @@ title = "Redmine on Ubuntu 9.04 with NGinx"
 date = 2009-08-17
 
 [taxonomies]
+
 categories = ["devops"]
 tags = ["devops", "redmine", "nginx", "ubuntu"]
 +++

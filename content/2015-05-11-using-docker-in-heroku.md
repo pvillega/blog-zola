@@ -3,6 +3,7 @@ title = "Using Docker in Heroku"
 date = 2015-05-11
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "docker", "heroku"]
 +++

@@ -3,6 +3,7 @@ title = "On Free Monads"
 date = 2016-05-28
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "monad", "fp", "free monad"]
 +++

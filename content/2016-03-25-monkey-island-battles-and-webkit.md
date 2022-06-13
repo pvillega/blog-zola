@@ -3,6 +3,7 @@ title = "Monkey Island Battles and WebKit"
 date = 2016-03-25
 
 [taxonomies]
+
 categories = ["development"]
 tags = ["lambda", "development", "webkit"]
 +++

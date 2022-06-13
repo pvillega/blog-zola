@@ -3,6 +3,7 @@ title = "Renaming Files"
 date = 2010-05-09
 
 [taxonomies]
+
 categories = ["miscellanea"]
 tags = ["miscellanea", "files"]
 +++

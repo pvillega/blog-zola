@@ -3,6 +3,7 @@ title = "Emacs and Scala in Mac OS X Yosemite"
 date = 2015-09-20
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "emacs", "macos"]
 +++

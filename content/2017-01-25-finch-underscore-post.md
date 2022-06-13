@@ -3,6 +3,7 @@ title = "Finch post at Underscore blog"
 date = 2017-01-25
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "finch", "fp", "underscore"]
 +++

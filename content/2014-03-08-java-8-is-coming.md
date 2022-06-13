@@ -3,6 +3,7 @@ title = "Java 8 is coming"
 date = 2014-03-08
 
 [taxonomies]
+
 categories = ["java"]
 tags = ["java", "java8"]
 +++

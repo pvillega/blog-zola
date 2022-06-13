@@ -3,6 +3,7 @@ title = "On Learn Startup and Personal Waste"
 date = 2013-10-20
 
 [taxonomies]
+
 categories = ["miscellanea"]
 tags = ["miscellanea", "waste", "lean startup"]
 +++

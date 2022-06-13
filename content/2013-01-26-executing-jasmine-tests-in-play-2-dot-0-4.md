@@ -3,6 +3,7 @@ title = "Executing Jasmine Tests in Play 2.0.4"
 date = 2013-01-26
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "play2", "playframework", "angularjs", "jasmine"]
 +++

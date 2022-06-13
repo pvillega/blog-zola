@@ -3,6 +3,7 @@ title = "Iteratees and Play 2"
 date = 2012-11-18
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "play2", "playframework", "iteratee"]
 +++

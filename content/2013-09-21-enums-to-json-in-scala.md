@@ -3,6 +3,7 @@ title = "Enums to JSON in Scala"
 date = 2013-09-21
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "json", "enumerations"]
 +++

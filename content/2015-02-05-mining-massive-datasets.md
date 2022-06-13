@@ -3,6 +3,7 @@ title = "Mining Massive Datasets"
 date = 2015-02-05
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "coursera", "datasets"]
 +++

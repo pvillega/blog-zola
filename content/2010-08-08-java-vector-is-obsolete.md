@@ -3,6 +3,7 @@ title = "Java Vector is Obsolete"
 date = 2010-08-08
 
 [taxonomies]
+
 categories = ["java"]
 tags = ["java", "vector"]
 +++

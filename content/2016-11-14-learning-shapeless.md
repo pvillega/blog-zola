@@ -3,6 +3,7 @@ title = "Learning Shapeless"
 date = 2016-11-14
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "shapeless", "generic programming"]
 +++

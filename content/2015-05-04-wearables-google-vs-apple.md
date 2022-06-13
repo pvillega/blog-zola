@@ -3,6 +3,7 @@ title = "Wearables: Google vs Apple"
 date = 2015-05-04
 
 [taxonomies]
+
 categories = ["miscellanea"]
 tags = ["miscellanea", "google", "ml", "apple"]
 +++

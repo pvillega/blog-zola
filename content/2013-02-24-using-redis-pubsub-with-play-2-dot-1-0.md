@@ -3,6 +3,7 @@ title = "Using Redis PubSub with Play 2.1.0"
 date = 2013-02-24
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "play2", "redis", "pubsub"]
 +++

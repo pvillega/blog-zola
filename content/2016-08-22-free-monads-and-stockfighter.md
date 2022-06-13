@@ -3,6 +3,7 @@ title = "Free Monads and Stockfighter"
 date = 2016-08-22
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "monad", "fp", "free monad", "stockfighter"]
 +++

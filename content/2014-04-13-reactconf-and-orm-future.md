@@ -3,6 +3,7 @@ title = "ReactConf and ORM future"
 date = 2014-04-13
 
 [taxonomies]
+
 categories = ["miscellanea"]
 tags = ["miscellanea", "reactconf"]
 +++

@@ -3,6 +3,7 @@ title = "Breaking the 1000ms Time to Glass Mobile Barrier"
 date = 2013-08-26
 
 [taxonomies]
+
 categories = ["development"]
 tags = ["webapp", "performance", "mobile"]
 +++

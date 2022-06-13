@@ -3,6 +3,7 @@ title = "EJB Concepts and Services"
 date = 2010-02-16
 
 [taxonomies]
+
 categories = ["java"]
 tags = ["java", "ejb", "ejb3"]
 +++

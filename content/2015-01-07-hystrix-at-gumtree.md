@@ -3,6 +3,7 @@ title = "Hystrix at Gumtree"
 date = 2015-01-07
 
 [taxonomies]
+
 categories = ["java"]
 tags = ["java", "hystrix"]
 +++

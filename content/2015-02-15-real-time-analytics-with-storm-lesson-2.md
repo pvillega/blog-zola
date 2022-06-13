@@ -3,6 +3,7 @@ title = "Real-Time Analytics With Storm - Lesson 2"
 date = 2015-02-15
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "udacity", "storm"]
 +++

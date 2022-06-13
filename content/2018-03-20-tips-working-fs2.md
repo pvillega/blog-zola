@@ -3,6 +3,7 @@ title = "Tips for working with FS2 at Underscore blog"
 date = 2018-03-20
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "fs2", "fp", "underscore"]
 +++

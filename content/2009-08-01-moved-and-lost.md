@@ -3,6 +3,7 @@ title = "Moved and Lost"
 date = 2009-08-01
 
 [taxonomies]
+
 categories = ["miscellanea"]
 tags = ["miscellanea", "blog"]
 +++

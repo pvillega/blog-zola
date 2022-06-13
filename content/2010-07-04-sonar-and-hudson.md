@@ -3,6 +3,7 @@ title = "Sonar and Hudson"
 date = 2010-07-04
 
 [taxonomies]
+
 categories = ["devops"]
 tags = ["devops", "sonar", "hudson", "java"]
 +++

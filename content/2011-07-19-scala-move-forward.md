@@ -3,6 +3,7 @@ title = "Scala: Move Forward"
 date = 2011-07-19
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["jvm", "scala"]
 +++

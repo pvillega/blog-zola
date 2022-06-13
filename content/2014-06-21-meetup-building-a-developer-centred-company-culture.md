@@ -3,6 +3,7 @@ title = "Meetup: Building a Developer Centred Company Culture"
 date = 2014-06-21
 
 [taxonomies]
+
 categories = ["miscellanea"]
 tags = ["miscellanea", "company culture"]
 +++

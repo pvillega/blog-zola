@@ -3,6 +3,7 @@ title = "Estatut de Catalunya: a Review"
 date = 2010-07-12
 
 [taxonomies]
+
 categories = ["miscellanea"]
 tags = ["miscellanea", "barcelona"]
 +++

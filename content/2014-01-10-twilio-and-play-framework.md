@@ -3,6 +3,7 @@ title = "Twilio and Play Framework"
 date = 2014-01-10
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "play2", "playframework", "twilio"]
 +++

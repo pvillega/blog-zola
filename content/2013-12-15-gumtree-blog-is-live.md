@@ -3,6 +3,7 @@ title = "Gumtree blog is live"
 date = 2013-12-15
 
 [taxonomies]
+
 categories = ["miscellanea"]
 tags = ["miscellanea", "gumtree"]
 +++

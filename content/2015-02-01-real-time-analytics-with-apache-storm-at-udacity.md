@@ -3,6 +3,7 @@ title = "Real-Time Analytics With Apache Storm at Udacity"
 date = 2015-02-01
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "udacity", "storm"]
 +++

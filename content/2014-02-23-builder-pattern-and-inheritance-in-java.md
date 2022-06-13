@@ -3,6 +3,7 @@ title = "Builder Pattern and Inheritance in Java"
 date = 2014-02-23
 
 [taxonomies]
+
 categories = ["java"]
 tags = ["java", "pattern", "builder"]
 +++

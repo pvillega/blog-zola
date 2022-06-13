@@ -3,6 +3,7 @@ title = "Learning Scala in Coursera"
 date = 2012-10-15
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["coursera", "scala"]
 +++

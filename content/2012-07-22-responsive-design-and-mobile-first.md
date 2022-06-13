@@ -3,6 +3,7 @@ title = "Responsive Design and Mobile First"
 date = 2012-07-22
 
 [taxonomies]
+
 categories = ["development"]
 tags = ["webapp", "responsive", "mobile"]
 +++

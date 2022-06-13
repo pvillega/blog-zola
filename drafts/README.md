@@ -9,6 +9,7 @@ date = 2020-05-09
 draft = true
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "sbt", "vscode", "linode", "triplequote"]
 +++

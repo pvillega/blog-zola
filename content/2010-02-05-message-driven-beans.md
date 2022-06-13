@@ -3,6 +3,7 @@ title = "Message-Driven Beans"
 date = 2010-02-05
 
 [taxonomies]
+
 categories = ["java"]
 tags = ["java", "ejb", "ejb3", "mdb"]
 +++

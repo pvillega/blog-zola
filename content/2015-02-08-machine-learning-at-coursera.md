@@ -3,6 +3,7 @@ title = "Machine Learning at Coursera"
 date = 2015-02-08
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "coursera", "ml"]
 +++

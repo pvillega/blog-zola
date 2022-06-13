@@ -3,6 +3,7 @@ title = "Java 7: What's New"
 date = 2011-07-14
 
 [taxonomies]
+
 categories = ["java"]
 tags = ["java", "java7"]
 +++

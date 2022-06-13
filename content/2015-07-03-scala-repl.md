@@ -3,6 +3,7 @@ title = "Scala REPL"
 date = 2015-07-03
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "repl"]
 +++

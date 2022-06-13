@@ -3,6 +3,7 @@ title = "I'm from Barcelona"
 date = 2010-07-02
 
 [taxonomies]
+
 categories = ["miscellanea"]
 tags = ["miscellanea", "barcelona"]
 +++

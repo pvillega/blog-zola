@@ -3,6 +3,7 @@ title = "WebAssembly, Rust, and Edge Computing"
 date = 2019-05-07
 
 [taxonomies]
+
 categories = ["rust"]
 tags = ["rust", "edge computing", "webassembly"]
 +++

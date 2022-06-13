@@ -3,6 +3,7 @@ title = "Using Ansible to deploy Play Framework apps in EC2 instances"
 date = 2013-04-01
 
 [taxonomies]
+
 categories = ["scala"]
 tags = ["scala", "play2", "ansible", "ec2"]
 +++
