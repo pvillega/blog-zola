@@ -1,0 +1,55 @@
+{% extends "DeepThought/templates/base.html" %}
+
+{% block user_custom_stylesheet %}
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:url" content="{{config.base_url | safe}}">
+	<meta property="og:site_name" content="{{config.title}}">
+    {% if config.extra.author.name -%}
+    <meta name="author" content="{{ config.extra.author.name }}" />
+    {%- endif %}
+
+	{% if title %}
+    <meta property="og:title" content="{{ title }}">
+    {% endif %}
+    {% if page.title %}
+    <meta property="og:title" content="{{ page.title }}">
+    {% endif %}
+    {% if section.title %}
+    <meta property="og:title" content="{{ section.title }}">
+    {% endif %}
+    {% if description %}
+	<meta property="og:description" content="{{ description }}">
+    {% endif %}
+    {% if page.description %}
+	<meta property="og:description" content="{{ page.description }}">
+    {% endif %}
+    {% if section.description %}
+	<meta property="og:description" content="{{ section.description }}">
+    {% endif %}
+
+	<meta property="og:image" content="{{ config.extra.author.avatar | safe }}">
+
+    {% if page.reading_time %}
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:label1" content="Est. reading time">
+	<meta name="twitter:data1" content="{{ page.reading_time }}">
+    <meta property="article:modified_time" content="{{ page.date }}">
+    {% else %}
+    <meta property="og:type" content="website">
+    {% endif %}
+
+
+    {% if current_url %}
+    <!-- Mark url as canonical for duplicate content purposes -->
+    <link rel="canonical" href="{{current_url | safe}}" />
+    {% endif %}
+{% endblock %}
+
+{% block user_custom_js %}
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e0b48ab9fad64e7db40770b98890b6c8"}'></script>
+<!-- End Cloudflare Web Analytics -->
+{% endblock %}

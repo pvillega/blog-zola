@@ -5,7 +5,17 @@
 Built using:
 
 - Zola: https://www.getzola.org
-- Theme: https://github.com/dave-tucker/zola-clean-blog
+- Theme: <https://www.getzola.org/themes/deepthought/>
+
+On first clone, remember to run `init_submodules.sh` to initialise the submodules added for the themes
+## Important files:
+
+- `run.sh`: starts the blog in http://localhost:1111
+- `update_theme.sh`: updates the theme submodule
+
+## Future work
+
+- Add a section like the series panel at https://fasterthanli.me/series using the `docs` example for the theme
 
 ## Contribution policy
 

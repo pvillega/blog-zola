@@ -1,2 +1,0 @@
-User-agent: *
-Sitemap: https://perevillega.com/sitemap.xml

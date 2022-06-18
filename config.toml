@@ -2,15 +2,15 @@
 base_url = "https://perevillega.com"
 
 # The site title and description; used in feeds by default.
-title = "Pere Villega's blog"
-description = "If at first you don’t succeed, call it version 1.0"
+title = "A tinkerer's musings"
+description = "Pere Villega's blog"
 
 # The default language; used in feeds.
 default_language = "en"
 
 # Theme -
 # Note theme is not cloned as a submodule
-theme = "zola-clean-blog"
+theme = "DeepThought"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
@@ -44,15 +44,19 @@ taxonomies = [
     {name = "categories", feed = true, paginate_by=10},
 ]
 
-
 # Whether to build a search index to be used later on by a JavaScript library
-build_search_index = false
+build_search_index = true
 
 [markdown]
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
-highlight_theme = "material-light"
+highlight_theme = "css"
+
+highlight_themes_css = [
+  { theme = "ayu-dark", filename = "syntax-dark.css" },
+  { theme = "ayu-light", filename = "syntax-light.css" },
+]
 
 smart_punctuation = true
 
@@ -68,16 +72,65 @@ include_content = true
 # truncate_content_length = 100
 
 [extra]
-author = "Pere Villega"
-clean_blog_menu = [
-    {url = "$BASE_URL", name = "Home"},
-    {url = "$BASE_URL/about", name = "About"}
+katex.enabled = true
+katex.auto_render = true
+
+chart.enabled = true
+mermaid.enabled = true
+galleria.enabled = true
+
+navbar_items = [
+ { code = "en", nav_items = [
+  { url = "$BASE_URL/", name = "Home" },
+  { url = "$BASE_URL/posts", name = "Posts" },
+  { url = "$BASE_URL/projects/", name = "Current Projects" },
+#   { url = "$BASE_URL/docs", name = "Docs" },
+#   { url = "$BASE_URL/tags", name = "Tags" },
+#   { url = "$BASE_URL/categories", name = "Categories" },
+ ]},
 ]
-clean_blog_social = [
-    {url = "mailto:pvillega+blog@aracon.com", icon="fa fa-envelope"},
-    {url = "https://twitter.com/pvillega", icon="fab fa-twitter"},
-    {url = "https://github.com/pvillega", icon="fab fa-github"},
-    {url = "http://linkedin.com/in/perevillega", icon="fab fa-linkedin"},
-    {url = "https://dev.to/pvillega", icon="fab fa-dev"},
-    {url = "$BASE_URL/atom.xml", icon="fas fa-rss"},
-]
+
+# Add links to favicon, you can use https://realfavicongenerator.net/ to generate favicon for your site
+[extra.favicon]
+favicon_16x16 = "/icons/favicon-16x16.png"
+favicon_32x32 = "/icons/favicon-32x32.png"
+apple_touch_icon = "/icons/apple-touch-icon.png"
+safari_pinned_tab = "/icons/safari-pinned-tab.svg"
+webmanifest = "/icons/site.webmanifest"
+
+# Author details
+[extra.author]
+name = "Pere Villega"
+avatar = "/images/avatar.png"
+
+# Social links
+[extra.social]
+email = "pvillega+blog@aracon.com"
+# facebook = "<facebook_username>"
+github = "pvillega"
+# gitlab = "<gitlab_username>"
+# keybase = "<keybase_username>"
+linkedin = "perevillega"
+stackoverflow = "116791"
+twitter = "pvillega"
+# instagram = "<instagram_username>"
+# behance = "<behance_username>"
+# google_scholar = "<googlescholar_userid>"
+# orcid = "<orcid_userid>"
+# mastodon = "<mastadon_username>"
+
+
+# To add google analytics
+# [extra.analytics]
+# enabled = false
+# google = "<your_gtag>"
+
+# To add disqus comments
+# [extra.commenting]
+# enabled = false
+# disqus = "<your_disqus_shortname>"
+
+# To enable mapbox maps
+# [extra.mapbox]
+# enabled = false
+# access_token = "<your_access_token>"
