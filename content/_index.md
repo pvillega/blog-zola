@@ -9,7 +9,7 @@ Outside of clients and other work-related projects, I spend too much time on Twi
 
 I'm originally from Barcelona, and I've spent various years in Dublin (Ireland), London (United Kingdom), and Basel (Switzerland). As a result, I'm fluent in Spanish, English, and Catalan, while currently learning German (A2 level).
 
-I may be available for contract engagements; I'm based in Switzerland, but I have many years of experience with remote work, from before Covid-19 made it more common. If you want to hire me,  reach out via the email linked above, and we can arrange an online chat to discuss the opportunity.
+I may be available for contract engagements; I'm based in Switzerland, but I have many years of experience with remote work, from before Covid-19 made it more common. If you want to hire me, reach out via the email linked above or [book a meeting with me](https://calendly.com/pvillega/30min).
 
 The contents of this website are licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/)
 
