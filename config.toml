@@ -112,12 +112,12 @@ github = "pvillega"
 # keybase = "<keybase_username>"
 linkedin = "perevillega"
 stackoverflow = "116791"
-twitter = "pvillega"
+# twitter = "pvillega"
 # instagram = "<instagram_username>"
 # behance = "<behance_username>"
 # google_scholar = "<googlescholar_userid>"
 # orcid = "<orcid_userid>"
-# mastodon = "<mastadon_username>"
+mastodon = "pvillega@functional.cafe"
 
 
 # To add google analytics
