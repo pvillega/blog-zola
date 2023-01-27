@@ -1,6 +1,6 @@
 +++
 title = "Chaordic collaboration: Why you have Shadow IT"
-date = 2022-12-05
+date = 2022-12-04
 
 [taxonomies]
 
