@@ -35,9 +35,7 @@ In `Settings`, go to the `Branches` section and create a new `Branch protection 
 
 - `Require status checks to pass before merging`. In the search box, find the Github action that builds your project. Keep `Require branches to be up to date` disabled.
 
-##
-
-Workflows
+## Workflows
 
 Save the changes to your repository settings. Now you need to add the following three workflows to your repository. You can copy the contents into the indicated files.
 
