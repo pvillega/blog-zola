@@ -1,6 +1,6 @@
 +++
 title = "Chaordic collaboration: Is your LLM use compliant?"
-date = 2023-04-25
+date = 2023-07-05
 
 [taxonomies]
 
