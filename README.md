@@ -6,6 +6,7 @@ Built using:
 
 - Zola: https://www.getzola.org
 - Theme: <https://www.getzola.org/themes/deepthought/>
+- Uses shortcodes for diagrams, see <https://deepthought-theme.netlify.app/docs/extended-shortcodes/> 
 
 On first clone, remember to run `init_submodules.sh` to initialise the submodules added for the themes
 ## Important files:
@@ -24,4 +25,3 @@ Contributions via GitHub pull requests are gladly accepted from their original a
 ## License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
-
