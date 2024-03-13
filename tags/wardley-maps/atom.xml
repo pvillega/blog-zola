@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>A tinkerer&#x27;s musings - wardley maps</title>
+	<subtitle>Pere Villega&#x27;s blog</subtitle>
+	<link href="https://perevillega.com/tags/wardley-maps/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://perevillega.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2023-03-02T00:00:00+00:00</updated>
+	<id>https://perevillega.com/tags/wardley-maps/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Chaordic collaboration: Use Wardley Maps to stop software development waste</title>
+		<published>2023-03-02T00:00:00+00:00</published>
+		<updated>2023-03-02T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://perevillega.com/posts/wardley-maps-stop-waste/" type="text/html"/>
+		<id>https://perevillega.com/posts/wardley-maps-stop-waste/</id>
+		<content type="html">&lt;p&gt;I’ve written a new blog post, a collaboration with &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&quot;&gt;Chaordic&lt;&#x2F;a&gt;, that you can read in their blog: &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&#x2F;blog&#x2F;stop-wasting-money-on-software-development&#x2F;&quot;&gt;Use Wardley Maps to stop software development waste&lt;&#x2F;a&gt;. I hope you enjoy it.&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

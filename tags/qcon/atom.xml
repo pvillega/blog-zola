@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>A tinkerer&#x27;s musings - qcon</title>
+	<subtitle>Pere Villega&#x27;s blog</subtitle>
+	<link href="https://perevillega.com/tags/qcon/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://perevillega.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2015-03-07T00:00:00+00:00</updated>
+	<id>https://perevillega.com/tags/qcon/atom.xml</id>
+	<entry xml:lang="en">
+		<title>QCon London - Microservices</title>
+		<published>2015-03-07T00:00:00+00:00</published>
+		<updated>2015-03-07T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://perevillega.com/posts/qcon-london-microservices/" type="text/html"/>
+		<id>https://perevillega.com/posts/qcon-london-microservices/</id>
+		<content type="html">&lt;p&gt;Yesterday I was at &lt;a href=&quot;http:&#x2F;&#x2F;qconlondon.com&#x2F;schedule#day-5&quot;&gt;QCon London&lt;&#x2F;a&gt; thanks to &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I’ve posted a summary of the talks I attended in &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;devteam&#x2F;2015-03-07-qcon-london-day-3.html&quot;&gt;Gumtree developer’s blog&lt;&#x2F;a&gt;. Any feedback is appreciated :)&lt;&#x2F;p&gt;
+&lt;p&gt;Update: the post was lost when Gumtree moved blog :(&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

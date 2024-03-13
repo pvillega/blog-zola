@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>A tinkerer&#x27;s musings - uoc</title>
+	<subtitle>Pere Villega&#x27;s blog</subtitle>
+	<link href="https://perevillega.com/tags/uoc/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://perevillega.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2010-06-05T00:00:00+00:00</updated>
+	<id>https://perevillega.com/tags/uoc/atom.xml</id>
+	<entry xml:lang="en">
+		<title>MyNet</title>
+		<published>2010-06-05T00:00:00+00:00</published>
+		<updated>2010-06-05T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://perevillega.com/posts/mynet/" type="text/html"/>
+		<id>https://perevillega.com/posts/mynet/</id>
+		<content type="html">&lt;p&gt;One of the many reasons I’ve been barely posting these past weeks is that I’m finishing my Master in Open Source Software by UOC. I’ve had to develop a project for it, and I’ve chosen to develop a portal similar to Pirate Bay. You can checkout the code &lt;a href=&quot;https:&#x2F;&#x2F;bitbucket.org&#x2F;pvillega&#x2F;mynet&quot;&gt;here&lt;&#x2F;a&gt; at Bitbucket.The project is a Java web application and it uses Seam as framework.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I warn you the project is under development and more of a “minimal viable product” than anything else. Don’t expect awesome code, but it has served me to work with Seam in something “serious” and I learned a lot. Sadly code is only 30% of the final grade, so now it’s time to polish it a bit and document, document, document…&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>
