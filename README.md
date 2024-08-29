@@ -9,14 +9,14 @@ Built using:
 - Uses shortcodes for diagrams, see <https://deepthought-theme.netlify.app/docs/extended-shortcodes/> 
 
 On first clone, remember to run `init_submodules.sh` to initialise the submodules added for the themes
+
+NOTE: we are not using DeepThought as a submodule as it stopped being updated, but we want to keep the layout for now. 
+So it is not a submodule, but instead it is part of the project
+
 ## Important files:
 
 - `run.sh`: starts the blog in http://localhost:1111
 - `update_theme.sh`: updates the theme submodule
-
-## Future work
-
-- Add a section like the series panel at https://fasterthanli.me/series using the `docs` example for the theme
 
 ## Contribution policy
 

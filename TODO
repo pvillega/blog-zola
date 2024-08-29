@@ -1,0 +1,5 @@
+- find new theme
+- new theme may need changes to gitmodules and gitignore
+
+- update zola toml config to latest version and to theme setting
+- review zola new stuff and adjust publish, submodules, etc

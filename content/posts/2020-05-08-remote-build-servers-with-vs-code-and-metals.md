@@ -53,7 +53,7 @@ Important note: on new accounts with Linode, you need to open a ticket with supp
 
 Once the machine is up, ssh into it. The next step is to install a valid JDK. You can use [Adopt OpenJDK](https://medium.com/adoptopenjdk/adoptopenjdk-rpm-and-deb-files-7003ba38144e) by running the following:
 
-```$bash
+```bash
 > wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add
 > add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
 > apt-get update
@@ -62,7 +62,7 @@ Once the machine is up, ssh into it. The next step is to install a valid JDK. Yo
 
 Then edit your `.profile` and add an export for `JAVA_HOME` to it:
 
-```$bash
+```bash
 export JAVA_HOME='/usr/lib/jvm/adoptopenjdk-11-hotspot-amd64/'
 ```
 
@@ -71,7 +71,7 @@ and add to the bottom of the file `fs.inotify.max_user_watches=524288` and run `
 
 We also want `sbt` and `npm` (for `scala.js`), which we can install as follows:
 
-```$bash
+```bash
 > echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
 > apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
 > apt-get update
@@ -80,7 +80,7 @@ We also want `sbt` and `npm` (for `scala.js`), which we can install as follows:
 
 To be able to work with Github, you will need to add the ssh public key of this instance to your profile. To generate a key, run:
 
-```$bash
+```bash
 > ssh-keygen -t rsa -b 4096 -C "your_email@example.com"  # don't add a password
 > cat ~/.ssh/id_rsa.pub
 ```
@@ -89,7 +89,7 @@ Copy the output of the last command and add it to your SSH key list in Github.
 
 As the last step, clone the repository of `cats` so that we can run some tests on it later:
 
-```$bash
+```bash
 git clone git@github.com:typelevel/cats.git
 ```
 
