@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>Bits, Business, and Beyond: Engineering Insights - health</title>
+	<subtitle>Pere Villega&#x27;s blog</subtitle>
+	<link href="https://perevillega.com/tags/health/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://perevillega.com"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2010-07-10T00:00:00+00:00</updated>
+	<id>https://perevillega.com/tags/health/atom.xml</id>
+	<entry xml:lang="en">
+		<title>How to Heal and Prevent Computer Injury (RSI)</title>
+		<published>2010-07-10T00:00:00+00:00</published>
+		<updated>2010-07-10T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://perevillega.com/posts/how-to-heal-and-prevent-computer-injury-rsi/" type="text/html"/>
+		<id>https://perevillega.com/posts/how-to-heal-and-prevent-computer-injury-rsi/</id>
+		<content type="html">&lt;p&gt;As somebody who spends too many hours in front of a computer I’ve developed some injuries in my tendons, specially in the right arm. It’s not nice to work with pain (and I blame my low APM to it!). Although I go to physio and I’m recovering well, it would be good to avoid this happening again in the future.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Luckily, the other day I found &lt;a rel=&quot;noopener&quot; target=&quot;_blank&quot; href=&quot;http:&#x2F;&#x2F;www.teamliquid.net&#x2F;forum&#x2F;viewmessage.php?topic_id=134466&quot;&gt;this post&lt;&#x2F;a&gt; about treating and preventing your RSI, created by a suffering gamer. Gamers do cry. I think it’s important to spread this information. Nowadays all of us spend too much time in front of electronic devices (computers, tablets and more) and this can mess our bodies quite badly. So, read it and hopefully avoid RSI!&lt;&#x2F;p&gt;
+</content>
+	</entry>
+</feed>

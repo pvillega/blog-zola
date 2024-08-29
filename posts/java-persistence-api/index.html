@@ -1,0 +1,347 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><meta content=#ffffff name=theme-color><meta content=#da532c name=msapplication-TileColor><link href=/icons/site.webmanifest rel=manifest><link color=#5bbad5 href=/icons/safari-pinned-tab.svg rel=mask-icon><link href=/icons/favicon-16x16.png rel=icon sizes=16x16 type=image/png><link href=/icons/favicon-32x32.png rel=icon sizes=32x32 type=image/png><link href=/icons/apple-touch-icon.png rel=apple-touch-icon sizes=180x180><link href=/icons/android-chrome-512x512.png rel=android-chrome sizes=512x512><link href=/icons/android-chrome-192x192.png rel=android-chrome sizes=192x192><link crossorigin=anonymous href=https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/themes/folio/galleria.folio.min.css integrity=sha384-+rY0QD+LRnTOquDMzGa9lXU6jIwdiQuwCJQ2cdcW0qeP/0UbjQCZlXnRsUMA+9pH rel=stylesheet><link crossorigin=anonymous href=https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1.9.1/css/academicons.min.css integrity=sha384-FIue+PI4SsI9XfHCz8dBLg33b0c1fMJgNU3X//L26FYbGnlSEfWmNT7zgWc2N9b6 rel=stylesheet><link integrity="sha256-AbA177XfpSnFEvgpYu1jMygiLabzPCJCRIBtR5jGc0k=" crossorigin=anonymous href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css rel=stylesheet><link href=https://perevillega.com/deep-thought.css rel=stylesheet><meta content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" name=robots><meta content=en_GB property=og:locale><meta content=https://perevillega.com property=og:url><meta content="Bits, Business, and Beyond: Engineering Insights" property=og:site_name><meta content="Pere Villega" name=author><meta content="Java Persistence API" property=og:title><meta content=/images/avatar.png property=og:image><meta content=article property=og:type><meta content=summary_large_image name=twitter:card><meta content="Est. reading time" name=twitter:label1><meta content=19 name=twitter:data1><meta content=2010-02-10 property=article:modified_time><link href=https://mastodon.social/@pvillega@mastodon.social rel=me><link href=https://perevillega.com/posts/java-persistence-api/ rel=canonical><title> Bits, Business, and Beyond: Engineering Insights | Java Persistence API </title><link crossorigin=anonymous href=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css integrity=sha384-R4558gYOUz8mP9YWpZJjofhk+zx0AS11p36HnD2ZKj/6JR5z27gSSULCNHIRReVs rel=stylesheet><script crossorigin=anonymous defer integrity=sha384-z1fJDqw8ZApjGO3/unPWUPsIymfsJmyrDVWC8Tv/a1HeOtGmkwNd/7xUS0Xcnvsx src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js></script><script crossorigin=anonymous defer integrity=sha384-jiBVvJ8NGGj5n7kJaiWwWp9AjC+Yh8rhZY3GtAX8yU28azcLgoRo4oukO87g7zDT src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/mathtex-script-type.min.js></script><script crossorigin=anonymous defer integrity=sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR src=https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/contrib/auto-render.min.js></script><body class=has-background-white><nav aria-label="section navigation" class="navbar is-light" role=navigation><div class=container><div class=navbar-brand><a class="navbar-item is-size-5 has-text-weight-bold" href=https://perevillega.com>Bits, Business, and Beyond: Engineering Insights</a><a class="navbar-burger burger" aria-expanded=false aria-label=menu data-target=navMenu role=button> <span aria-hidden=true></span> <span aria-hidden=true></span> <span aria-hidden=true></span> </a></div><div class=navbar-menu id=navMenu><div class="navbar-end has-text-centered"><a class="navbar-item has-text-weight-semibold" href=https://perevillega.com/> Home </a><a class="navbar-item has-text-weight-semibold" href=https://perevillega.com/posts> Posts </a><a class=navbar-item data-target=#search-modal id=nav-search title=Search> <span class=icon> <i class="fas fa-search"></i> </span> </a><a title="Switch to dark theme" class=navbar-item id=dark-mode> <span class=icon> <i class="fas fa-adjust"></i> </span> </a></div></div></div></nav><section class=section><div class=container><div class=columns><div class="column is-8 is-offset-2"><article class=box><h1 class=title>Java Persistence API</h1><p class=subtitle><div class="columns is-multiline is-gapless"><div class="column is-8"><span class="icon-text has-text-grey"> <span class=icon> <i class="fas fa-user"></i> </span> <span>Pere Villega published on</span> <span class=icon> <i class="far fa-calendar-alt"></i> </span> <span><time datetime=2010-02-10>February 10, 2010</time></span> </span></div><div class="column is-4 has-text-right-desktop"><span class="icon-text has-text-grey"> <span class=icon> <i class="far fa-clock"></i> </span> <span>19 min,</span> <span class=icon> <i class="fas fa-pencil-alt"></i> </span> <span>3692 words</span> </span></div><div class=column><p>Categories: <a class="has-text-info-dark has-text-weight-semibold" href=https://perevillega.com/categories/java/> <span class=icon-text> <span class=icon> <i class="fas fa-cube"></i> </span> <span>java</span> </span> </a></div><div class="column has-text-right-desktop"><p>Tags: <a class="has-text-info-dark has-text-weight-semibold" href=https://perevillega.com/tags/java/> <span class=icon-text> <span class=icon> <i class="fas fa-tag"></i> </span> <span>java</span> </span> </a> <a class="has-text-info-dark has-text-weight-semibold" href=https://perevillega.com/tags/ejb/> <span class=icon-text> <span class=icon> <i class="fas fa-tag"></i> </span> <span>ejb</span> </span> </a> <a class="has-text-info-dark has-text-weight-semibold" href=https://perevillega.com/tags/jpa/> <span class=icon-text> <span class=icon> <i class="fas fa-tag"></i> </span> <span>jpa</span> </span> </a></div></div><div class="content mt-2"><p>This page contains a brief summary of <strong>Java Persistence API (JPA)</strong>. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like <strong>EJB3 in Action</strong>.</p><span id=continue-reading></span><p>Persistence is probably one of the biggest concerns of most enterprise applications. Data is key and we have to be sure it’s consistent and our application can manage its changes properly. To that end lots of alternatives have been developed, with O/R mapping systems taking the led in the latest years due to the benefits of using an intermediate API that’s closer to the OO model used in the business layer instead of direct interaction with the RDBMS.<p>EJB entities are the answer of EJB 3,0 to the persistence issue and it’s implementation using JPA follows the same basic patterns as other components like session beans. That means they are POJOs with specific annotations (@Entity for JPA entities) that are capable of inheritance and whose non-abstract classes requires a public or protected no-argument constructor.<p>JPA is the most complex part of EJB 3.0. Not only controls the most critical component of our application but it provides a large number of options for a developer to be able to adapt it to his needs. I will try to break this complexity in some sections, like they do in the book EJB in Action, focussing on a few aspects of JPA. Remember this is just a quick summary that won’t cover lots of aspects of JPA.<h2 id=basic-domain-concepts-entities-and-primary-keys>Basic domain concepts: entities and primary keys</h2><p>As said above JPA is an O/R mapping system. That means it maps Java POJOs (objects) to data stored in the database as tables and rows (relational data). To achieve this JPA does a heavy use of annotations. In this section I will show basic POJOs with some common annotations and explain how they are used. That will enables us to map our tables to the application, although by itself it won’t let our application work. Let’s start with a basic entity:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>BasicEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>private static final long </span><span style=color:#eff1f5;>serialVersionUID </span><span>= </span><span style=color:#d08770;>1</span><span style=color:#b48ead;>L</span><span style=color:#eff1f5;>;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>GeneratedValue</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>strategy </span><span>= </span><span style=color:#ebcb8b;>GenerationType</span><span style=color:#eff1f5;>.</span><span style=color:#d08770;>AUTO</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>private </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Transient
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>private </span><span style=color:#ebcb8b;>String </span><span style=color:#eff1f5;>disposableCode;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>/**
+</span><span style=color:#65737e;>   * Get the value of disposableCode
+</span><span style=color:#65737e;>   *
+</span><span style=color:#65737e;>   * </span><span style=color:#b48ead;>@return</span><span style=color:#65737e;> the value of disposableCode
+</span><span style=color:#65737e;>   */
+</span><span style=color:#65737e;>  public String getDisposableCode() {
+</span><span style=color:#65737e;>    return disposableCode;
+</span><span style=color:#65737e;>  }
+</span><span style=color:#65737e;>
+</span><span style=color:#65737e;>  /**
+</span><span style=color:#65737e;>   * Set the value of disposableCode
+</span><span style=color:#65737e;>   *
+</span><span style=color:#65737e;>   * </span><span style=color:#b48ead;>@param </span><span style=color:#bf616a;>disposableCode</span><span style=color:#65737e;> new value of disposableCode
+</span><span style=color:#65737e;>   */
+</span><span style=color:#65737e;>  public void setDisposableCode(String name) {
+</span><span style=color:#65737e;>    this.disposableCode = name;
+</span><span style=color:#65737e;>  }
+</span><span style=color:#65737e;>
+</span><span style=color:#65737e;>  public Long getId() {
+</span><span style=color:#65737e;>    return id;
+</span><span style=color:#65737e;>  }
+</span><span style=color:#65737e;>
+</span><span style=color:#65737e;>
+</span><span style=color:#65737e;>  public void setId(Long id) {
+</span><span style=color:#65737e;>    this.id = id;
+</span><span style=color:#65737e;>  }
+</span><span style=color:#65737e;>
+</span><span style=color:#65737e;>  @Override
+</span><span style=color:#65737e;>  public int hashCode() {
+</span><span style=color:#65737e;>    int hash = 0;
+</span><span style=color:#65737e;>    hash += (id != null ? id.hashCode() : 0);
+</span><span style=color:#65737e;>    return hash;
+</span><span style=color:#65737e;>  }
+</span><span style=color:#65737e;>
+</span><span style=color:#65737e;>  @Override
+</span><span style=color:#65737e;>  public boolean equals(Object object) {
+</span><span style=color:#65737e;>    // TODO: Warning - this method won't work if id fields are not set
+</span><span style=color:#65737e;>    if (!(object instanceof BasicEntity)) {
+</span><span style=color:#65737e;>        return false;
+</span><span style=color:#65737e;>    }
+</span><span style=color:#65737e;>
+</span><span style=color:#65737e;>    BasicEntity other = (BasicEntity) object;
+</span><span style=color:#65737e;>    if ((this.id == null && other.id != null)
+</span><span style=color:#65737e;>        || (this.id != null && !this.id.equals(other.id))) {
+</span><span style=color:#65737e;>        return false;
+</span><span style=color:#65737e;>    }
+</span><span style=color:#65737e;>
+</span><span style=color:#65737e;>    return true;
+</span><span style=color:#65737e;>  }
+</span><span style=color:#65737e;>
+</span><span style=color:#65737e;>  @Override
+</span><span style=color:#65737e;>  public String toString() {
+</span><span style=color:#65737e;>    return "jpa.BasicEntity[id=" + id + "]";
+</span><span style=color:#65737e;>  }
+</span><span style=color:#65737e;>
+</span><span style=color:#65737e;>}
+</span><span style=color:#65737e;>
+</span></code></pre><p>In this example we can see some interesting characteristics of an entity. First one, the entity is marked with the @Entity annotation, that identifies this POJO as an EJB 3,0 entity. Another important step is to override the methods hashcode, equals and toString. This is not mandatory but it’s considered a best practice to implement hashcode and equals so they use our primary key to identify our entity, and changing toString allows us to log and debug the application easily.<p>The persistence provider will store the values of any property or field that has public or protected setters and getters, which can’t be declared final, so no especial annotation is required to enable their persistence. In this example you can see we use a @Transient annotation in one field. This is equivalent to the transient keyword related to Serialization and tells the persistence manager to not persist that specific field.<p>Another detail about the annotations: in this example they are on the fields of the classes. You could write them on the getter methods of those fields, but whatever system you choose you have to stick to it for all you entities. The only difference is that using field-annotation you could make your fields public and not use any getter or setter method and they would be persisted, while using the annotation in the getter method obliges you to implement all the getters/setters and make the field private. Given that the first way is a very dangerous and bad practice, so you will have a private field with getter and setters in your entities, choosing one over the other is usually a matter of taste.<p>I’ve left the @Id annotation for last. This annotation, as you can guess, tells the entity where is stored our unique id. The field that can be marked as Id has some restrictions: it must be a primitive, its wrapper or a Serializable type. Types like double or float are forbidden due to their lack of precision (due to the way computers work, you should know what I mean) and that could cause two different entities to be considered the same.<p>But the @Id annotation is marking only one field and we can’t have more than one @Id in our class, so what happens if we have a primary key that uses several fields? There are two approaches to it.<p>The first approach uses the @IdClass annotation as follows:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span>@</span><span style=color:#bf616a;>IdClass</span><span>(</span><span style=color:#ebcb8b;>BasicEntityPK</span><span>.</span><span style=color:#bf616a;>class</span><span>)
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>BasicEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>private </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>private </span><span style=color:#ebcb8b;>String </span><span style=color:#eff1f5;>name;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//other non Id fields
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//no need to implement equals and hashcode
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//getters and setters
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>BasicEntityPK </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>   </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>   </span><span style=color:#ebcb8b;>String </span><span style=color:#eff1f5;>name;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>   </span><span style=color:#b48ead;>public </span><span style=color:#8fa1b3;>BasicEntityPK</span><span style=color:#eff1f5;>(){}
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span></code></pre><p>As you can see we have our main entity class with several @Id fields assigned and a related class that contains the same fields. In this case we implement the equals and hashcode methods in the PK class, not in our entity. With this approach the container will use the entity to persist data and will map internally the fields to the PK class, which will be used when it needs to compare two entities.<p>The other alternative is the use of the @EmbeddedId annotation, like this:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>BasicEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>EmbeddedId
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>private </span><span style=color:#ebcb8b;>BasicEntityPK </span><span style=color:#eff1f5;>basicEntityPk;
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//other fields
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//no need to implement equals and hashcode
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//getters and setters
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span><span>@</span><span style=color:#bf616a;>Embeddable
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>BasicEntityPK</span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>  </span><span style=color:#ebcb8b;>String </span><span style=color:#eff1f5;>name;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>public </span><span style=color:#8fa1b3;>BasicEntityPK</span><span style=color:#eff1f5;>(){}
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//implement equals and hashcode
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span></code></pre><p>The skeleton is quite similar to the @IdClass one but in this case instead of having the primary key fields on both classes, we just put them in our PK class, and we embed that class into our entity as its primary key. Choosing between any of those methods is a matter of personal taste: one is harder to maintain due to replication, the other makes access to PK fields more awkward. Keep in mind that although you can use those structures sometimes is preferable the use of a surrogate key (we will review it later) as Id, as it will free you code from extra classes and it has better performance.<p>Now that we have talk about the @Embeddable annotation it might be a good time to explain its meaning. In our data model we may have some data that’s always related to a certain object but that has sense by itself, like the address of a user. This address contains several fields (city, street) so it may be an entity but it’s always related to a user. So in the object model it makes sense to implement it as its own object but in the relational model it will be in the same table as the user. To solve this JPA has the option to embed objects into entities, allowing us to declare this kind of relationship. An example:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>UserEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>String </span><span style=color:#eff1f5;>name;
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//other fields
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Embedded
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Address </span><span style=color:#eff1f5;>address;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//implement equals and hashcode
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//getters and setters
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span><span>
+</span><span>@</span><span style=color:#bf616a;>Embeddable
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>Address </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>String </span><span style=color:#eff1f5;>street;
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>String </span><span style=color:#eff1f5;>city;
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//other fields
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//implement equals and hashcode
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span></code></pre><h2 id=basic-domain-concepts-entities-relationships>Basic domain concepts: entities relationships</h2><p>The data components in our model will have some kind of relationships between them: one-to-one, one-to-many, many-to-one or many-to-many. These relationships must be defined in our entities so the persistence provider can maintain the proper relations and the data consistency. In this section I will describe the annotations that manage that.<p>First one is the @OneToOne annotation, that defines a one-to-one relationship.This relationship can be unidirectional or bidirectional. Let’s start with a bidirectional one:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>UserEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>OneToOne
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>VisaInfoEntity </span><span style=color:#eff1f5;>visaInfoEntity;
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//other fields
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//implement equals and hashcode
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//getters and setters
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>VisaInfoEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>OneToOne</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>mapedBy </span><span>= "</span><span style=color:#a3be8c;>visaInfoEntity</span><span>"</span><span style=color:#eff1f5;>, </span><span style=color:#bf616a;>optional </span><span>= "</span><span style=color:#a3be8c;>false</span><span>"</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>UserEntity </span><span style=color:#eff1f5;>userEntity;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//other fields
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//implement equals and hashcode
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//getters and setters
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span></code></pre><p>In this example we see the relation defined by the annotations in the parameters. Each class contain a parameter of the class that represents the entity related to it marked with @OneToOne. Notice that VisaInfoEntity adds some parameters to it’s annotation, telling the persistence provider that the “owner” of the relation is the UserEntity class and which field is leading that mapping. The optional parameter set to false tells us there will always be a VisaInfoEntity for each user and a user for each VisaInfoEntity. If we want to convert this to a unidirectional link we just need to remove the reference to UserEntity and its annotation from VisaInfoEntity. With that the container will know our UserEntity may have zero or one VisaInfoEntity related to it.<p>The second type of relation is defined by the annotations @OneToMany and @ManyToOne. Those annotations usually go in pair to define both sides of the relation one-to-many. Usually in these relations one entity has a field of type Set or List of the other entity. One example:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>UserEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>OneToMany </span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>mappedBy </span><span>="</span><span style=color:#a3be8c;>userEntity</span><span>"</span><span style=color:#eff1f5;>);
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Set </span><span style=color:#eff1f5;>visaInfoEntity;
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//other fields
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//implement equals and hashcode
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//getters and setters
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>VisaInfoEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>ManyToOne
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>UserEntity </span><span style=color:#eff1f5;>userEntity;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//other fields
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//implement equals and hashcode
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//getters and setters
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span></code></pre><p>As you can see the owning part of the relation is VisaInfoEntity. In these type of relations the many-to-one part is always the leader, something to be aware of.<p>Last type of relations is defined by the annotation @ManyToMany. The relation is quite similar to the one-to-many explained above, but we can choose which entity is leading the relationship. An example:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>UserEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>ManyToMany </span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>mappedBy </span><span>="</span><span style=color:#a3be8c;>userEntity</span><span>"</span><span style=color:#eff1f5;>);
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Set </span><span style=color:#eff1f5;>visaInfoEntity;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//other fields
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//implement equals and hashcode
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//getters and setters
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>VisaInfoEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>ManyToMany
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Set </span><span style=color:#eff1f5;>userEntity;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//other fields
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//implement equals and hashcode
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//getters and setters
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span></code></pre><h2 id=mapping-entities-to-db>Mapping entities to DB</h2><p>We know how to build entities and define relations between them. Now we need to map those entities to the tables of the database, as we will see next. Before looking at the example, be aware that using annotations for that purpose hard-codes the structure, so any changes to it will require a new version of the application. This is usually not a big deal but if you need to be able to change the mappings without compiling, use the XML descriptor version of the fields.<p>Next there’s an example of a mapped entity. The meaning of the annotations is quite obvious, I will comment them after the code:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span>@</span><span style=color:#bf616a;>Table</span><span>(</span><span style=color:#bf616a;>name </span><span>= "</span><span style=color:#a3be8c;>USERS</span><span>")
+</span><span>@</span><span style=color:#bf616a;>SecondaryTable</span><span>(</span><span style=color:#bf616a;>name </span><span>= "</span><span style=color:#a3be8c;>USER_PICTURES</span><span>",
+</span><span>   </span><span style=color:#bf616a;>pkJoinColumns </span><span>= @</span><span style=color:#bf616a;>PrimaryKeyJoinColumn</span><span>(</span><span style=color:#bf616a;>name </span><span>= "</span><span style=color:#a3be8c;>USER_ID</span><span>"))
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>UserEntity </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>private static final long </span><span style=color:#eff1f5;>serialVersionUID </span><span>= </span><span style=color:#d08770;>1</span><span style=color:#b48ead;>L</span><span style=color:#eff1f5;>;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Id
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Column</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>name </span><span>= "</span><span style=color:#a3be8c;>USER_ID</span><span>"</span><span style=color:#eff1f5;>, </span><span style=color:#bf616a;>nullable </span><span>= </span><span style=color:#d08770;>false</span><span style=color:#eff1f5;>,
+</span><span style=color:#eff1f5;>     </span><span style=color:#bf616a;>insertable</span><span>=</span><span style=color:#d08770;>false</span><span style=color:#eff1f5;>, </span><span style=color:#bf616a;>updatable</span><span>=</span><span style=color:#d08770;>false</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>GeneratedValue</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>strategy </span><span>= </span><span style=color:#ebcb8b;>GenerationType</span><span style=color:#eff1f5;>.</span><span style=color:#d08770;>AUTO</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Long </span><span style=color:#eff1f5;>id;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Column</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>name </span><span>= "</span><span style=color:#a3be8c;>USER_NAME</span><span>"</span><span style=color:#eff1f5;>, </span><span style=color:#bf616a;>nullable </span><span>= </span><span style=color:#d08770;>false</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>String </span><span style=color:#eff1f5;>name;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Column</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>name </span><span>= "</span><span style=color:#a3be8c;>USER_LOGIN</span><span>"</span><span style=color:#eff1f5;>, </span><span style=color:#bf616a;>nullable </span><span>= </span><span style=color:#d08770;>false</span><span style=color:#eff1f5;>, </span><span style=color:#bf616a;>length </span><span>= </span><span style=color:#d08770;>5</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>String </span><span style=color:#eff1f5;>login; @</span><span style=color:#bf616a;>Enumerated</span><span style=color:#eff1f5;>(</span><span style=color:#ebcb8b;>EnumType</span><span style=color:#eff1f5;>.</span><span style=color:#d08770;>ORDINAL</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Column</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>name </span><span>= "</span><span style=color:#a3be8c;>USER_TYPE</span><span>"</span><span style=color:#eff1f5;>, </span><span style=color:#bf616a;>nullable </span><span>= </span><span style=color:#d08770;>false</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>UserType </span><span style=color:#eff1f5;>userType;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Column</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>name </span><span>= "</span><span style=color:#a3be8c;>PICTURE</span><span>"</span><span style=color:#eff1f5;>, </span><span style=color:#bf616a;>table </span><span>= "</span><span style=color:#a3be8c;>USER_PICTURES</span><span>"</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Lob
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Basic</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>fetch </span><span>= </span><span style=color:#ebcb8b;>FetchType</span><span style=color:#eff1f5;>.</span><span style=color:#d08770;>LAZY</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected byte[] </span><span style=color:#eff1f5;>picture;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Column</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>name </span><span>= "</span><span style=color:#a3be8c;>CREATION_DATE</span><span>"</span><span style=color:#eff1f5;>, </span><span style=color:#bf616a;>nullable </span><span>= </span><span style=color:#d08770;>false</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Temporal</span><span style=color:#eff1f5;>(</span><span style=color:#ebcb8b;>TemporalType</span><span style=color:#eff1f5;>.</span><span style=color:#d08770;>DATE</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Date </span><span style=color:#eff1f5;>creationDate;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>Embedded
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>protected </span><span style=color:#ebcb8b;>Address </span><span style=color:#eff1f5;>address;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//setters, getters, hashcode, equals, etc
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span><span>@</span><span style=color:#bf616a;>Embeddable
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>Address </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//fields, setters, getters, hashcode, equals, etc
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span></code></pre><p>The first annotation which we must pay attention to is @Table. This annotation specifies which table contains the columns we will use for the entity. If not specified (both the name or the tag) the system will use a table with the same name as the class.<p>The @Column annotation declares the mapping to a column of the table. As you can see, accepts some extra parameters to indicate if the field can be null or it can be modified using update or insert. The persistence manager assumes the columns exist in the class table, but you can specify another table if needed as you can see at the picture field. As with the @Table annotation, if you don’t define the name of the column or you8 don’t add the annotation it will be assumed the column has the same name as the field.<p>There are some extra annotations for specific types of data. The @Enumerated annotation allows us to store enumerations. We can use two modes: Ordinal or String. The first will store the integer associated to the enumeration value while the second will store the complete string.<p>The @Lob annotation tell the manager this field will be stored in a CLOB (for char[] or String fields) or BLOB (any other type) column in the database. Usually you add the @Basic annotation to a @Lob object to enable lazy loading, as @Lob objects are usually very memory intensive.<p>The @Temporal allows us to store date-related information. By default it uses a granularity of timestamp, but we can choose between DATE, TIME or TIMESTAMP.<p>For the primary key of the application you may use (if it’s a surrogate key) the @GeneratedValue annotation. This annotation will tell the persistence manager the field’s value is generated by the database. That means it will only exist once the entity has been committed, so we careful when accessing items not committed yet as they will have a null here.<p>The @GeneratedValue annotation has 4 available strategies to assign the value. The simplest one is IDENTITY and assigns an incremental value to the key. The second one is SEQUENCE, that requires a sequence to be defined both in the database and in EJB (using @SequenceGenerator). The third one is TABLE, which uses a a table as generator of the values (with @TableGenerator). The last strategy is AUTO, where the persistence manager decides which one is the best strategy.<p>I have skipped an annotation in the class header, @SecondaryTable. This one is used when we need to map an entity to several tables, in this case because we store the BLOB object in another table. As you can see, we tell the annotation which table it has to use and the name of join field. You can use several secondary tables in the same entity. Although this annotation doesn’t seem so useful, it allows you to distribute content on several tables, which can improve the performance of the RDBMS as it happens in this example where the BLOB would slow queries done to the user table. That said be aware that this annotation is not the same as @Embedded, which we saw before and refers to content in the same table.<p>As you look at the code, you might wonder if maybe we need to specify join keys for tables relationship as we did in the @SecondaryTable annotation. The answer is yes, there are some annotations (three) to that end. I will briefly comment them:<ul><li><strong>@JoinColumn</strong>: this annotation allows you to specify primary/foreign relations in the database model, when the referencing entity has a primary key and the referenced entity it’s own primary key and a foreign key mapped to the primary key of the referencing entity. It can be used in one-to-one and one-to-many/many-to-one relations.<li><strong>@PrimaryKeyJoinColumn</strong>: this annotation allows you to specify primary/foreign relations in the database model when both referencing and referenced entities share the primary key of the referencing table and the referenced table uses it’s primary key as foreign key. It can be used in one-to-one relations.<li><strong>@JoinTable</strong>: this annotation allows you to specify primary/foreign relations in the database model when you have a many-to-many relation so you need to use an intermediate table to store the mappings. Is used in conjunction with the @JoinColumn annotation to specify the relation between the main tables and the intermediate one.</ul><p>One last subject to talk about is how to map inheritance. As we said, JPA are POJO and they can use OO characteristics as inheritance, but how can we write that into the database? I won’t enter in too much detail, but to this aim we have the @Inheritance annotation. It has 3 related strategies:<ul><li><strong>Single table</strong>: all data of the different subclases will be stored in the same table and we use one column (specified in the @DiscriminatorColumn annotation) to differentiate between subclasses. Each subclass will be marked with @DiscriminatorValue to tell the persistence manager which value maps to that type of entity.<li><strong>Joined Tables</strong>: we use one-to-one relations to model the inheritance. @DiscriminatorColumn and @DiscriminatorValue are used the same way but we also need to define the @PrimaryKeyJoinColumn between the tables. Is the recommended method.<li><strong>Table per class</strong>: we use one table per class, including one for the parent entity. No relations must be defined, and the inherited columns are duplicated across tables.Due to possible issues with polymorphism and entity retrieving, is not recommended to use this method</ul><h2 id=entity-manager>Entity Manager</h2><p>We’ve seen how to map the entities to the database, but you’ll probably noticed I said nothing about how the entities are persisted. This section will talk about the Entity Manager, the interface responsible of all CRUD operations that allows you to retrieve and store entities from/into the database. An important consequence of this is that JPA being managed by this interface and not the container they don’t have access to services like injection, timers, etc. It’s not a big loose due to the way entities are (commonly) used but it’s something to be aware of. I won’t talk about the lifecycle in detail, just keep in mind the Entity Manager is only aware of entities in it’s context (that can be as short as a method call or as long as a session), and an entity is not managed until you persist it.<p>A basic demonstration of the use of the Entity Manager follows. I won’t comment the code as it’s quite obvious:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span>@</span><span style=color:#bf616a;>Stateless
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>ItemManagerBeanBean </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>ItemManagerBeanLocal </span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  @</span><span style=color:#bf616a;>PersistenceContext</span><span style=color:#eff1f5;>(</span><span style=color:#bf616a;>unitName</span><span>="</span><span style=color:#a3be8c;>contextName</span><span>"</span><span style=color:#eff1f5;>)
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>private </span><span style=color:#ebcb8b;>EntityManager </span><span style=color:#eff1f5;>em;
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>public </span><span style=color:#ebcb8b;>Item </span><span style=color:#8fa1b3;>addItem</span><span style=color:#eff1f5;>(</span><span style=color:#ebcb8b;>String</span><span style=color:#b48ead;>[] </span><span style=color:#eff1f5;>params...){
+</span><span style=color:#eff1f5;>    </span><span style=color:#ebcb8b;>Item</span><span style=color:#eff1f5;> it </span><span>= </span><span style=color:#b48ead;>new </span><span style=color:#ebcb8b;>Item</span><span style=color:#eff1f5;>();
+</span><span style=color:#eff1f5;>    </span><span style=color:#65737e;>//do something
+</span><span style=color:#eff1f5;>    em.</span><span style=color:#bf616a;>persist</span><span style=color:#eff1f5;>(it);
+</span><span style=color:#eff1f5;>    </span><span style=color:#b48ead;>return</span><span style=color:#eff1f5;> it;
+</span><span style=color:#eff1f5;>  }
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>public </span><span style=color:#ebcb8b;>Item </span><span style=color:#8fa1b3;>updateItem</span><span style=color:#eff1f5;>(</span><span style=color:#ebcb8b;>Item </span><span style=color:#bf616a;>it</span><span style=color:#eff1f5;>){
+</span><span style=color:#eff1f5;>    em.</span><span style=color:#bf616a;>merge</span><span style=color:#eff1f5;>(it);
+</span><span style=color:#eff1f5;>    </span><span style=color:#b48ead;>return</span><span style=color:#eff1f5;> it;
+</span><span style=color:#eff1f5;>  }
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>public </span><span style=color:#ebcb8b;>Item </span><span style=color:#8fa1b3;>undoItemChanges</span><span style=color:#eff1f5;>(</span><span style=color:#ebcb8b;>Item </span><span style=color:#bf616a;>it</span><span style=color:#eff1f5;>){
+</span><span style=color:#eff1f5;>    </span><span style=color:#65737e;>//we merge to attach to the entity manager before refreshing
+</span><span style=color:#eff1f5;>    em.</span><span style=color:#bf616a;>refresh</span><span style=color:#eff1f5;>(em.</span><span style=color:#bf616a;>merge</span><span style=color:#eff1f5;>(it));
+</span><span style=color:#eff1f5;>    </span><span style=color:#b48ead;>return</span><span style=color:#eff1f5;> it;
+</span><span style=color:#eff1f5;>  }
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>public void </span><span style=color:#8fa1b3;>deleteItem</span><span style=color:#eff1f5;>(</span><span style=color:#ebcb8b;>Item </span><span style=color:#bf616a;>it</span><span style=color:#eff1f5;>){
+</span><span style=color:#eff1f5;>    </span><span style=color:#65737e;>//we merge to attach to the entity manager before removing
+</span><span style=color:#eff1f5;>    em.</span><span style=color:#bf616a;>remove</span><span style=color:#eff1f5;>(em.</span><span style=color:#bf616a;>merge</span><span style=color:#eff1f5;>(it));
+</span><span style=color:#eff1f5;>  }
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>public </span><span style=color:#ebcb8b;>Item </span><span style=color:#8fa1b3;>getItem</span><span style=color:#eff1f5;>(</span><span style=color:#b48ead;>long </span><span style=color:#bf616a;>key</span><span style=color:#eff1f5;>){
+</span><span style=color:#eff1f5;>    </span><span style=color:#b48ead;>return</span><span style=color:#eff1f5;> em.</span><span style=color:#bf616a;>find</span><span style=color:#eff1f5;>(</span><span style=color:#ebcb8b;>Item</span><span style=color:#eff1f5;>.</span><span style=color:#bf616a;>class</span><span style=color:#eff1f5;>, key);
+</span><span style=color:#eff1f5;>  }
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span></code></pre><p>There’s a scenario that we must discuss in more detail. We may have an entity that contains another entity (maybe in a one-to-one relation) and both are new entities not stored (yet) in the database. Although it seems a logic behaviour that when we persist the enclosing entity both are saved into the database, this is not the default behaviour. This is justified as cascading can be resource intensive when propagating to several instances, and probably most of them have not been modified which means we are wasting resources.<p>This functionality is defined by the “cascade” property that you can set when declaring relationships between entities (@OneToOne, etc). By default this property is empty so no persistence operation applied to one entity is propagated to related entities. You can change this by setting cascade to one of these values: MERGE, PERSIST, REFRESH, REMOVE or ALL. The first four tell the Entity Manager to propagate only the selected operation while the last one propagates all the persistence operations.<h2 id=query-api>Query API</h2><p>The query API is a mechanism that allows you to find entities using SQL or JPQL, hiding the datasource behind the Entity Manager. It’s a complement to the find method that allows you to recover several related entities a once. It allows for two kind of queries: named and dynamic.<p>Named queries are intended to be stored and reused, allowing for some optimizations. They are defined at class level and can receive parameters, and one entity may have several named queries. Using named queries you can isolate the SQL/JPQL from the places where is used, making it more maintainable. You may even define them in xml descriptors, decoupling them from the code.<p>An example of a named query would be:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span>@</span><span style=color:#bf616a;>Entity
+</span><span>@</span><span style=color:#bf616a;>NameQuery</span><span>(</span><span style=color:#bf616a;>name</span><span>="</span><span style=color:#a3be8c;>findAll</span><span>",
+</span><span>   </span><span style=color:#bf616a;>query</span><span>="</span><span style=color:#a3be8c;>Select c from category c where c.name like :name</span><span>");
+</span><span style=color:#b48ead;>public class </span><span style=color:#ebcb8b;>category </span><span style=color:#b48ead;>implements </span><span style=color:#a3be8c;>Serializable</span><span style=color:#eff1f5;>{
+</span><span style=color:#eff1f5;>  </span><span style=color:#65737e;>//fields and methods
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>  </span><span style=color:#b48ead;>public </span><span style=color:#ebcb8b;>Category </span><span style=color:#8fa1b3;>getCategoryByName</span><span style=color:#eff1f5;>(</span><span style=color:#ebcb8b;>String </span><span style=color:#bf616a;>name</span><span style=color:#eff1f5;>){
+</span><span style=color:#eff1f5;>   </span><span style=color:#65737e;>//assume em is an instance of the Persistence Manager (Entity Manager)
+</span><span style=color:#eff1f5;>   </span><span style=color:#65737e;>//find named query by name
+</span><span style=color:#eff1f5;>   </span><span style=color:#ebcb8b;>Query</span><span style=color:#eff1f5;> query </span><span>=</span><span style=color:#eff1f5;> em.</span><span style=color:#bf616a;>createNamedQuery</span><span style=color:#eff1f5;>(</span><span>"</span><span style=color:#a3be8c;>findAll</span><span>"</span><span style=color:#eff1f5;>);
+</span><span style=color:#eff1f5;>   query.</span><span style=color:#bf616a;>setParamenter</span><span style=color:#eff1f5;>(</span><span>"</span><span style=color:#a3be8c;>name</span><span>"</span><span style=color:#eff1f5;>,name);
+</span><span style=color:#eff1f5;>   </span><span style=color:#b48ead;>return</span><span style=color:#eff1f5;> query.</span><span style=color:#bf616a;>getResultList</span><span style=color:#eff1f5;>(); </span><span style=color:#65737e;>//returns list of entities
+</span><span style=color:#eff1f5;>  }
+</span><span style=color:#eff1f5;>
+</span><span style=color:#eff1f5;>}
+</span><span>
+</span></code></pre><p>Dynamic queries are generated “on the fly”, usually queries received from some other component. When possible is recommended to work with named queries, due to the performance enhancements they allow. En example of a dynamic query:<pre class=language-java data-lang=java style=background-color:#2b303b;color:#c0c5ce;><code class=language-java data-lang=java><span>
+</span><span style=color:#65737e;>//assume em is an instance of the Persistence Manager (Entity Manager)
+</span><span style=color:#ebcb8b;>Query</span><span> query = em.</span><span style=color:#bf616a;>createQuery</span><span>("</span><span style=color:#a3be8c;>Select c from categories c</span><span>");
+</span><span style=color:#b48ead;>return</span><span> query.</span><span style=color:#bf616a;>getResultList</span><span>(); </span><span style=color:#65737e;>//returns list of entities
+</span><span>
+</span></code></pre><h2 id=jpql-and-sql>JPQL and SQL</h2><p>JPA accepts both JPQL and SQL for queries. Although they look quite similar, SQL works with the relational environment while JPQL works with entities, thus behaving in quite a different way behind the curtain. The recommendation for JPA is to use JPQL always, unless some odd exception requires us to use SQL.<p>I wont enter in details about JPQL as a brief tutorial won’t cut it. I recommend you to check a good book on the subject.</div></article></div></div></div></section><section class=modal id=search-modal><div class=modal-background></div><div class=modal-card><header class=modal-card-head><p class=modal-card-title>Search</header><section class=modal-card-body><div class="field mb-2"><div class=control><input placeholder="Search this website." class=input id=search type=search></div></div><div class=search-results><div class=search-results__items></div></div></section></div><button class="modal-close is-large" aria-label=close></button></section><section class=section><div class=container><div class="columns is-centered"><div class="column is-8"><nav class=level><div class="level-item has-text-centered"><a class="button is-black is-outlined" href=https://perevillega.com/posts/message-driven-beans/> <span class="icon mr-2"> <i class="fas fa-arrow-circle-left"></i> </span> Message-Driven Beans </a></div><div class="level-item has-text-centered"><a class="button is-black is-outlined" href=https://perevillega.com/posts/ejb-concepts-and-services/> EJB Concepts and Services<span class="icon ml-2"> <i class="fas fa-arrow-circle-right"></i> </span> </a></div></nav></div></div></div></section><footer class="footer py-4"><div class="content has-text-centered"><p>Built with <span class=icon-text> <span class=icon> <i class="fas fa-code"></i> </span> <span>code</span> </span> and <span class=icon-text> <span class=icon> <i class="fas fa-heart"></i> </span> <span>love</span> </span><p>Powered by <span class=icon-text> <span class=icon> <i class="fas fa-power-off"></i> </span> <span>zola</span> </span></div></footer><script crossorigin=anonymous integrity=sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK src=https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js></script><script crossorigin=anonymous integrity=sha384-QSfwGT8/EU536DKdtyP2D6SLlh8zBaZ0cVkwfrwhqzIU9VCfJT00CLVP5t+HAiYg src=https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/galleria.min.js></script><script crossorigin=anonymous integrity=sha384-DwpKI+deZB267+hPKwiOIc5Y2GKsVL0mR6hgz7GgIu7AgAMYqJwcJKY1YBNfhWcY src=https://cdn.jsdelivr.net/npm/galleria@1.6.1/dist/themes/folio/galleria.folio.min.js></script><script crossorigin=anonymous integrity=sha384-0yWn54pSGtfKCU+skfA69l25VsCw+MZt4LQov3xNRoS7YkAMrFokGgSBnAWSK4pv src=https://cdn.jsdelivr.net/npm/mermaid@8.13.5/dist/mermaid.min.js></script><script crossorigin=anonymous integrity=sha384-xC3h1+IHXK8seA+8KfT79Z4e0GPsznjXBoMa5nd8ooWKplPyXx92NOmljWxLC/cs src=https://cdn.jsdelivr.net/npm/chart.xkcd@1.1.13/dist/chart.xkcd.min.js></script><script src=https://perevillega.com/elasticlunr.min.js></script><script src=https://perevillega.com/search_index.en.js></script><script src=https://perevillega.com/js/site.js></script><script data-cf-beacon='{"token": "e0b48ab9fad64e7db40770b98890b6c8"}' defer src=https://static.cloudflareinsights.com/beacon.min.js></script>
