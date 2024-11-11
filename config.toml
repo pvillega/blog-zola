@@ -1,16 +1,15 @@
-# The URL the site will be built for
+# The base URL of the site; the only required configuration variable.
 base_url = "https://perevillega.com"
 
 # The site title and description; used in feeds by default.
-title = "Bits, Business, and Beyond: Engineering Insights"
+title = "Bits, Business, and Beyond"
 description = "Pere Villega's blog"
 
 # The default language; used in feeds.
 default_language = "en"
 
-# Theme -
-# Note theme is not cloned as a submodule
-theme = "DeepThought"
+# The site theme to use.
+theme = "tabi"
 
 # For overriding the default output directory `public`, set it to another value (e.g.: "docs")
 output_dir = "public"
@@ -21,7 +20,7 @@ preserve_dotfiles_in_output = false
 
 # When set to "true", the Sass files in the `sass` directory in the site root are compiled.
 # Sass files in theme directories are always compiled.
-compile_sass = true
+compile_sass = false
 
 # When set to "true", the generated HTML files are minified.
 minify_html = true
@@ -59,11 +58,11 @@ hard_link_static = false
 # The default author for pages
 author = "Pere Villega"
 
-# The taxonomies to be rendered for the site and their configuration.
+# The taxonomies to be rendered for the site and their configuration of the default languages
 # Example:
 #     taxonomies = [
 #       {name = "tags", feed = true}, # each tag will have its own feed
-#       {name = "tags", lang = "fr"}, # you can have taxonomies with the same name in multiple languages
+#       {name = "tags"}, # you can have taxonomies with the same name in multiple languages
 #       {name = "categories", paginate_by = 5},  # 5 items per page for a term
 #       {name = "authors"}, # Basic definition: no feed or pagination
 #     ]
@@ -73,7 +72,8 @@ taxonomies = [
     {name = "categories", feed = true, paginate_by=10},
 ]
 
-# Whether to build a search index to be used later on by a JavaScript library
+# When set to "true", a search index is built from the pages and section
+# content for `default_language`.
 build_search_index = true
 
 # When set to "false", Sitemap.xml is not generated
@@ -92,7 +92,7 @@ extra_syntaxes_and_themes = []
 
 # The theme to use for code highlighting.
 # See below for list of allowed values.
-highlight_theme = "base16-ocean-dark"
+highlight_theme = "css"
 
 # When set to "true", emoji aliases translated to their corresponding
 # Unicode emoji equivalent in the rendered Markdown files. (e.g.: :smile: => 😄)
@@ -149,12 +149,11 @@ anchors = "on"
 # When true, content/posts/2016-10-08_a-post-with-dates.md => posts/2016-10-08-a-post-with-dates
 paths_keep_dates = false
 
-
 [search]
 # Whether to include the title of the page/section in the index
 include_title = true
 # Whether to include the description of the page/section in the index
-include_description = true
+include_description = false
 # Whether to include the RFC3339 datetime of the page in the search index
 include_date = false
 # Whether to include the path of the page/section in the index (the permalink is always included)
@@ -195,72 +194,140 @@ index_format = "elasticlunr_javascript"
 # ]
 # build_search_index = false
 
-
-
+# You can put any kind of data here. The data
+# will be accessible in all templates
+# Example:
+#     [extra]
+#     author = "Famous author"
+#
+# author value will be available using {{ config.extra.author }} in templates
+#
 [extra]
-katex.enabled = true
-katex.auto_render = true
+# Enable Mermaid diagrams.
+mermaid = true
 
-chart.enabled = true
-mermaid.enabled = true
-galleria.enabled = true
+# Enable JavaScript theme toggler to allow users to switch between dark/light mode.
+# If disabled, your site will use the theme specified in the `default_theme` variable.
+theme_switcher = true
+# This setting determines the default theme on load ("light" or "dark").
+# To follow the user's OS theme, leave it empty or unset.
+default_theme = ""
+# Set browser theme colour. Can be a single colour or [light, dark].
+# Note: Bright colors may be ignored in dark mode.
+# More details: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name/theme-color
+browser_theme_color = "#087e96"
 
-navbar_items = [
-    { code = "en", nav_items = [
-        { url = "$BASE_URL/", name = "Home" },
-        { url = "$BASE_URL/posts", name = "Posts" },
-        #  { url = "$BASE_URL/projects/", name = "Current Projects" },
-        #   { url = "$BASE_URL/docs", name = "Docs" },
-        #   { url = "$BASE_URL/tags", name = "Tags" },
-        #   { url = "$BASE_URL/categories", name = "Categories" },
-    ]},
+# Add a "copy" button to codeblocks (loads ~700 bytes of JavaScript).
+# Can be set at page or section levels, following the hierarchy: page > section > config. See: https://welpo.github.io/tabi/blog/mastering-tabi-settings/#settings-hierarchy
+copy_button = true
+
+# Show the reading time of a page.
+# Can be set at page or section levels, following the hierarchy: page > section > config. See: https://welpo.github.io/tabi/blog/mastering-tabi-settings/#settings-hierarchy
+show_reading_time = true
+
+# Show the date of a page below its title.
+# Can be set at page or section levels, following the hierarchy: page > section > config. See: https://welpo.github.io/tabi/blog/mastering-tabi-settings/#settings-hierarchy
+show_date = true
+
+# Determines how dates are displayed in the post listing (e.g. front page or /blog). Options:
+# "date" - Show only the original date of the post (default if unset).
+# "updated" - Show only the last updated date of the post. If there is no last updated date, it shows the original date.
+# "both" - Show both the original date and the last updated date.
+post_listing_date = "date"
+
+# Full path after the base URL required. So if you were to place it in "static" it would be "/favicon.png"
+favicon = "icons/favicon.ico"
+
+# Path to the fallback image for social media cards (the preview image shown when sharing a link on WhatsApp, LinkedIn…).
+# Can be set at page or section levels, following the hierarchy: page > section > config. See: https://welpo.github.io/tabi/blog/mastering-tabi-settings/#settings-hierarchy
+# Learn how to create these images in batch and automatically:
+# https://osc.garden/blog/automating-social-media-cards-zola/
+social_media_card = "social_cards/index.png"
+
+menu = [
+    { name = "blog", url = "posts", trailing_slash = true },
+    #{ name = "archive", url = "archive", trailing_slash = true },
+    { name = "tags", url = "tags", trailing_slash = true },
+    #{ name = "projects", url = "projects", trailing_slash = true },
 ]
 
-# Add links to favicon, you can use https://realfavicongenerator.net/ to generate favicon for your site
-[extra.favicon]
-favicon = "/icons/favicon.ico"
-favicon_16x16 = "/icons/favicon-16x16.png"
-favicon_32x32 = "/icons/favicon-32x32.png"
-apple_touch_icon = "/icons/apple-touch-icon.png"
-android_chrome_512 = "/icons/android-chrome-512x512.png"
-android_chrome_192 = "/icons/android-chrome-192x192.png"
-safari_pinned_tab = "/icons/safari-pinned-tab.svg"
-webmanifest = "/icons/site.webmanifest"
+# The RSS icon will be shown if (1) it's enabled and (2) the following variable is set to true.
+# Note for Zola 0.19.X users: when `feed_filenames` has two filenames, only the first one will be linked in the footer.
+feed_icon = true
+# Show the full post content in the Atom feed.
+# If it's set to false, only the description or summary will be shown.
+full_content_in_feed = true
 
-# Author details
-[extra.author]
-name = "Pere Villega"
-avatar = "/images/avatar.png"
+# Email address for footer's social section.
+# Protect against spambots:
+# 1. Use base64 for email (convert at https://www.base64encode.org/ or `printf 'your@email.com' | base64`).
+# 2. Or, set 'encode_plaintext_email' to true for auto-encoding (only protects on site, not in public repos).
+email = "cHZpbGxlZ2ErYmxvZ0BhcmFjb24uY29t"
+# Decoding requires ~400 bytes of JavaScript. If JS is disabled, the email won't be displayed.
+encode_plaintext_email = true  # Setting is ignored if email is already encoded.
 
-# Social links
-[extra.social]
-email = "pvillega+blog@aracon.com"
-# facebook = "<facebook_username>"
-github = "pvillega"
-# gitlab = "<gitlab_username>"
-# keybase = "<keybase_username>"
-linkedin = "perevillega"
-stackoverflow = "116791"
-# twitter = "pvillega"
-# instagram = "<instagram_username>"
-# behance = "<behance_username>"
-# google_scholar = "<googlescholar_userid>"
-# orcid = "<orcid_userid>"
-mastodon = "pvillega@mastodon.social"
+# Social media links for the footer.
+# Built-in icons: https://github.com/welpo/tabi/tree/main/static/social_icons
+# To use a custom icon, add it to your site's `static/social_icons` directory.
+socials = [
+    { name = "github", url = "https://github.com/pvillega", icon = "github" },
+    { name = "bluesky", url = "https://bsky.app/profile/pvillega.bsky.social", icon = "bluesky" },
+    { name = "linkedin", url = "https://www.linkedin.com/in/perevillega/", icon = "linkedin" },
+    { name = "stack overflow", url = "https://stackoverflow.com/users/116791/pere-villega", icon = "stack-overflow" },
+    #{ name = "soundcloud", url = "https://soundcloud.com/oskerwyld", icon = "soundcloud" },
+    #{ name = "instagram", url = "https://instagram.com/oskerwyld", icon = "instagram" },
+    #{ name = "youtube", url = "https://youtube.com/@oskerwyld", icon = "youtube" },
+    #{ name = "spotify", url = "https://open.spotify.com/artist/5Hv2bYBhMp1lUHFri06xkE", icon = "spotify" },
+]
 
+# Fediverse profile.
+# Adds metadata to feature the author's profile in Mastodon link previews.
+# Example: for @username@example.com, use:
+fediverse_creator = { handle = "pvillega", domain = "mastodon.social" }
 
-# To add google analytics
-# [extra.analytics]
-# enabled = false
-# google = "<your_gtag>"
+# Extra menu to show on the footer, below socials section.
+footer_menu = [
+    #{url = "about", name = "about", trailing_slash = true},
+    #{url = "privacy", name = "privacy", trailing_slash = true},
+    #{url = "https://tabi-stats.osc.garden", name = "site_statistics", trailing_slash = true},
+    {url = "sitemap.xml", name = "sitemap", trailing_slash = false},
+]
 
-# To add disqus comments
-# [extra.commenting]
-# enabled = false
-# disqus = "<your_disqus_shortname>"
+# Custom security headers. What urls should your website be able to connect to?
+# You need to specify the CSP and the URLs associated with the directive.
+# Useful if you want to load remote content safely (embed YouTube videos, which needs frame-src, for example).
+# Default directive is self.
+# Default config, allows for https remote images and embedding YouTube and Vimeo content.
+# This configuration (along with the right webserver settings) gets an A+ in Mozilla's Observatory: https://observatory.mozilla.org
+# Note: to use a Zola built-in syntax highlighting theme, allow unsafe-inline for style-src.
+allowed_domains = [
+    { directive = "font-src", domains = ["'self'", "data:"] },
+    { directive = "img-src", domains = ["'self'", "https://*", "data:"] },
+    { directive = "media-src", domains = ["'self'", "https://cdn.jsdelivr.net/"] },
+    { directive = "script-src", domains = ["'self'"] },
+    { directive = "style-src", domains = ["'self'"] },
+    { directive = "frame-src", domains = ["player.vimeo.com", "https://www.youtube-nocookie.com"] },
+]
 
-# To enable mapbox maps
-# [extra.mapbox]
-# enabled = false
-# access_token = "<your_access_token>"
+# Enable the CSP directives configured (or default).
+# Can be set at page or section levels, following the hierarchy: page > section > config. See: https://welpo.github.io/tabi/blog/mastering-tabi-settings/#settings-hierarchy
+enable_csp = true
 
+[extra.analytics]
+# Specify which analytics service you want to use.
+# Supported options: ["goatcounter", "umami", "plausible"]
+service = "goatcounter"
+
+# Unique identifier for tracking.
+# For GoatCounter, this is the code you choose during signup.
+# For Umami, this is the website ID.
+# For Plausible, this is the domain name (e.g. "example.com").
+# Note: Leave this field empty if you're self-hosting GoatCounter.
+id = "pvillega"
+
+# Optional: Specify the URL for self-hosted analytics instances.
+# For GoatCounter: Base URL like "https://stats.example.com"
+# For Umami: Base URL like "https://umami.example.com"
+# For Plausible: Base URL like "https://plausible.example.com"
+# Leave this field empty if you're using the service's default hosting.
+self_hosted_url = ""

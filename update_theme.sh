@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "Updating all git submodules (usually zola themes)"
-git submodule foreach git pull --rebase
+echo "Updating theme"
+git submodule update --remote themes/tabi

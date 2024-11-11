@@ -1,6 +1,10 @@
 +++
-#title = "Posts"
-#description = "A collection of posts and ideas"
+paginate_by = 5
+title = "Blog"
 sort_by = "date"
-paginate_by = 10
+template = "section.html"
+insert_anchor_links = "left"
+
+[extra]
+show_previous_next_article_links = true
 +++
