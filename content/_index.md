@@ -4,7 +4,7 @@ sort_by = "date"
 template = "section.html"
 
 [extra]
-header = {title = "Hi! I'm Pere Villega~", img = "images/avatar.png", img_alt = "Pere Villega" }
+header = {title = "Hi! I'm Pere Villega~", img = "images/avatar.webp", img_alt = "Pere Villega" }
 section_path = "posts/_index.md"  # Where to find your posts.
 max_posts = 5  
 # projects_path = "projects/_index.md"
