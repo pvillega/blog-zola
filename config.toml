@@ -317,7 +317,7 @@ enable_csp = true
 [extra.analytics]
 # Specify which analytics service you want to use.
 # Supported options: ["goatcounter", "umami", "plausible"]
-service = "goatcounter"
+service = "cloudflare" # Use Cloudflare Analytics - we override the theme to use this.
 
 # Unique identifier for tracking.
 # For GoatCounter, this is the code you choose during signup.
