@@ -1,19 +1,9 @@
-FROM alpine:3.18 as builder
+FROM ghcr.io/getzola/zola:v0.19.2 AS zola
 
-# Install git and zola
-RUN apk add --no-cache git zola
-
+COPY . /project
 WORKDIR /project
-
-# Copy repository files and update submodules
-COPY . .
-RUN git init && \
-    git submodule init && \
-    git submodule update
-
-# Build the site
 RUN ["zola", "build"]
 
 FROM ghcr.io/static-web-server/static-web-server:2
 WORKDIR /
-COPY --from=builder /project/public /public
+COPY --from=zola /project/public /public
