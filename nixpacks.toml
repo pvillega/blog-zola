@@ -1,0 +1,17 @@
+# Nixpacks configuration file
+# This tells Nixpacks to use the Dockerfile for building and deployment
+
+[phases.setup]
+nixPkgs = ["..."]
+
+[phases.build]
+cmds = ["echo 'Using Dockerfile for build'"]
+
+[phases.install]
+cmds = ["echo 'Using Dockerfile for install'"]
+
+[start]
+cmd = "echo 'Using Dockerfile for start'"
+
+[providers]
+dockerfile = true
