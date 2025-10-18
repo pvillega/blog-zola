@@ -1,0 +1,13 @@
+/* Custom styles to hide empty metadata column in post listings */
+#posts-list .bloglist-meta ul:empty {
+    display: none;
+}
+
+#posts-list .bloglist-meta:has(ul:empty) {
+    display: none;
+}
+
+/* Adjust grid to single column when metadata is hidden */
+#posts-list .bloglist-container:has(.bloglist-meta ul:empty) {
+    grid-template-columns: 1fr;
+}
