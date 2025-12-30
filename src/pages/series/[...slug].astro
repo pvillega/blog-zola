@@ -1,0 +1,115 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import Layout from '~/layouts/PageLayout.astro';
+import Headline from '~/components/blog/Headline.astro';
+import { Icon } from 'astro-icon/components';
+import { cleanSlug, getPermalink } from '~/utils/permalinks';
+import { getFormattedDate } from '~/utils/utils';
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  const allSeries = await getCollection('series');
+  const allPosts = await getCollection('post');
+
+  return allSeries.map((series) => {
+    const seriesSlug = cleanSlug(series.id);
+    const postsInSeries = allPosts
+      .filter((post) => post.data.series === seriesSlug && !post.data.draft)
+      .sort((a, b) => {
+        const orderA = a.data.seriesOrder ?? 999;
+        const orderB = b.data.seriesOrder ?? 999;
+        return orderA - orderB;
+      });
+
+    return {
+      params: { slug: seriesSlug },
+      props: {
+        series: series.data,
+        seriesSlug,
+        posts: postsInSeries,
+      },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+const { series, posts } = Astro.props;
+
+const metadata = {
+  title: series.title,
+  description: series.description || `All posts in the ${series.title} series`,
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <Headline subtitle={series.description}>
+      {series.title}
+    </Headline>
+
+    <div class="mb-8 flex items-center text-sm text-muted dark:text-slate-400">
+      <Icon name="tabler:stack" class="w-4 h-4 inline-block mr-1" />
+      <span>{posts.length} {posts.length === 1 ? 'post' : 'posts'} in this series</span>
+    </div>
+
+    {posts.length > 0 ? (
+      <div class="space-y-4">
+        {posts.map((post, index) => {
+          const postSlug = cleanSlug(post.id);
+          const postUrl = getPermalink(postSlug, 'post');
+
+          return (
+            <article class="border border-gray-200 dark:border-slate-700 rounded-lg p-6 hover:shadow-lg transition-shadow">
+              <a href={postUrl} class="block">
+                <div class="flex items-start gap-4">
+                  <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">
+                    {index + 1}
+                  </div>
+                  <div class="flex-grow">
+                    <h2 class="text-xl font-bold leading-tight mb-2 font-heading dark:text-slate-300 hover:text-primary dark:hover:text-blue-700 transition ease-in duration-200">
+                      {post.data.title}
+                    </h2>
+
+                    {post.data.publishDate && (
+                      <div class="mb-2 text-sm text-muted dark:text-slate-400">
+                        <Icon name="tabler:clock" class="w-3.5 h-3.5 inline-block -mt-0.5" />
+                        <time datetime={String(post.data.publishDate)} class="inline-block ml-1">
+                          {getFormattedDate(post.data.publishDate)}
+                        </time>
+                      </div>
+                    )}
+
+                    {post.data.excerpt && (
+                      <p class="text-muted dark:text-slate-400">
+                        {post.data.excerpt}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    ) : (
+      <div class="text-center text-muted dark:text-slate-400 py-8">
+        <p>No posts in this series yet.</p>
+      </div>
+    )}
+
+    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-slate-700">
+      <a
+        href="/series"
+        class="inline-flex items-center text-primary hover:underline dark:text-blue-400"
+      >
+        <Icon name="tabler:arrow-left" class="w-4 h-4 mr-1" />
+        Back to all series
+      </a>
+    </div>
+  </section>
+</Layout>

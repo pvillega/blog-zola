@@ -1,0 +1,117 @@
+---
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'About',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget -->
+  <Hero tagline="About Me">
+    <Fragment slot="title">
+      Pere Villega<br />
+      <span class="text-accent dark:text-white">Principal Engineer</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      I'm a software engineer with over 15 years of experience building scalable systems.
+      Currently focused on helping companies make sound architectural decisions and build
+      robust, maintainable software. Based in Europe, working globally.
+    </Fragment>
+  </Hero>
+
+  <!-- Stats Widget -->
+  <Stats
+    title="Experience at a glance"
+    stats={[
+      { title: 'Years Experience', amount: '15+' },
+      { title: 'Projects Delivered', amount: '50+' },
+      { title: 'Blog Posts', amount: '70+' },
+      { title: 'Technologies', amount: '20+' },
+    ]}
+  />
+
+  <!-- Steps2 Widget - Background -->
+  <Steps2
+    title="Background"
+    subtitle="My journey through software engineering has taken me from startups to established tech companies."
+    items={[
+      {
+        title: 'Principal Engineer',
+        description:
+          'Leading technical strategy and architecture decisions. Mentoring teams and establishing engineering best practices.',
+      },
+      {
+        title: 'Tech Lead & Architect',
+        description:
+          'Designed and built distributed systems, event-driven architectures, and microservices at scale.',
+      },
+      {
+        title: 'Senior Software Engineer',
+        description:
+          'Hands-on development in Scala, Java, Rust, and TypeScript. Focus on functional programming and type safety.',
+      },
+    ]}
+  />
+
+  <!-- Steps2 Widget - Expertise -->
+  <Steps2
+    title="Expertise"
+    subtitle="Deep experience across the software development lifecycle."
+    isReversed={true}
+    items={[
+      {
+        title: 'Distributed Systems',
+        description: 'Event sourcing, CQRS, message queues, and resilient architectures.',
+        icon: 'tabler:network',
+      },
+      {
+        title: 'Functional Programming',
+        description: 'Scala, Cats Effect, FS2, and type-safe programming patterns.',
+        icon: 'tabler:lambda',
+      },
+      {
+        title: 'Cloud & Infrastructure',
+        description: 'AWS, Kubernetes, Docker, and infrastructure as code.',
+        icon: 'tabler:cloud',
+      },
+    ]}
+  />
+
+  <!-- Features2 Widget - Tech Stack -->
+  <Features2
+    title="Tech Stack"
+    tagline="Tools I work with"
+    columns={4}
+    items={[
+      { title: 'Scala', description: 'Primary language' },
+      { title: 'Rust', description: 'Systems programming' },
+      { title: 'TypeScript', description: 'Frontend & Node.js' },
+      { title: 'AWS', description: 'Cloud infrastructure' },
+    ]}
+  />
+
+  <!-- Features2 Widget - Contact -->
+  <Features2
+    title="Get in Touch"
+    tagline="Contact"
+    columns={2}
+    items={[
+      {
+        title: 'Book a Call',
+        description: 'Schedule a discovery call to discuss your project needs.',
+        icon: 'tabler:calendar',
+      },
+      {
+        title: 'Email',
+        description: 'Reach out directly for inquiries and collaborations.',
+        icon: 'tabler:mail',
+      },
+    ]}
+  />
+</Layout>

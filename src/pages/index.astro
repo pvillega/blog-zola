@@ -1,0 +1,140 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import Hero from '~/components/widgets/Hero.astro';
+import Features from '~/components/widgets/Features.astro';
+import Testimonials from '~/components/widgets/Testimonials.astro';
+import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Pere Villega — Principal Engineer & Technical Consultant',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget -->
+  <Hero
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book a Call',
+        href: '/book',
+        icon: 'tabler:calendar',
+      },
+      { text: 'View Services', href: '/services' },
+    ]}
+    image={{ src: '~/assets/images/hero-image.png', alt: 'Pere Villega' }}
+  >
+    <Fragment slot="title">
+      Principal Engineer &<br />
+      <span class="text-accent dark:text-white">Technical Consultant</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      <span class="font-semibold">Software serves the Business.</span> I help companies build robust,
+      scalable systems and make sound architectural decisions. With 15+ years of experience in
+      software engineering, I bring clarity to complex technical challenges.
+    </Fragment>
+  </Hero>
+
+  <!-- Features Widget -->
+  <Features
+    id="services"
+    tagline="Services"
+    title="How I Can Help"
+    subtitle="From architecture reviews to hands-on development, I offer flexible engagement models tailored to your needs."
+    items={[
+      {
+        title: 'Architecture Review',
+        description:
+          'Deep-dive analysis of your system architecture with actionable recommendations for scalability and maintainability.',
+        icon: 'tabler:building-arch',
+      },
+      {
+        title: 'Technical Consulting',
+        description:
+          'Strategic guidance on technology choices, team practices, and engineering processes.',
+        icon: 'tabler:messages',
+      },
+      {
+        title: 'Hands-on Development',
+        description:
+          'Direct contribution to your codebase. Scala, Rust, TypeScript, and distributed systems expertise.',
+        icon: 'tabler:code',
+      },
+      {
+        title: 'Team Mentoring',
+        description:
+          'Level up your engineering team with workshops, code reviews, and best practices guidance.',
+        icon: 'tabler:users',
+      },
+      {
+        title: 'System Design',
+        description:
+          'Design scalable, resilient systems from scratch. Event-driven architectures, microservices, and more.',
+        icon: 'tabler:sitemap',
+      },
+      {
+        title: 'Technical Due Diligence',
+        description:
+          'Assessment of technical assets and team capabilities for investors and acquirers.',
+        icon: 'tabler:checklist',
+      },
+    ]}
+  />
+
+  <!-- Testimonials Widget -->
+  <!-- NOTE: Placeholder testimonials - replace with real client testimonials -->
+  <Testimonials
+    title="What Clients Say"
+    subtitle="Don't just take my word for it - hear from companies I've worked with."
+    testimonials={[
+      {
+        testimonial:
+          'Pere helped us navigate a critical architectural decision during our Series A scaling phase. His deep understanding of distributed systems and practical approach saved us months of potential technical debt.',
+        name: 'Sarah M.',
+        job: 'CTO at TechStartup',
+      },
+      {
+        testimonial:
+          'Working with Pere was transformative for our team. He not only solved our immediate performance issues but also mentored our engineers on best practices. His expertise in Scala and functional programming is outstanding.',
+        name: 'John D.',
+        job: 'Engineering Manager at FinTech Corp',
+      },
+      {
+        testimonial:
+          'Pere conducted a thorough technical due diligence for our acquisition. His detailed analysis and clear communication gave us confidence in our investment decision. Highly recommend his consulting services.',
+        name: 'Michael R.',
+        job: 'Partner at Venture Capital Fund',
+      },
+    ]}
+  />
+
+  <!-- Latest Blog Posts -->
+  <BlogLatestPosts
+    title="Latest from the Blog"
+    information="Thoughts on software engineering, architecture, and the tech industry."
+  />
+
+  <!-- CallToAction Widget -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book a Discovery Call',
+        href: '/book',
+        icon: 'tabler:calendar',
+      },
+    ]}
+  >
+    <Fragment slot="title">
+      Ready to solve your<br class="block sm:hidden" /> technical challenges?
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      Let's discuss how I can help your team build better software.
+    </Fragment>
+  </CallToAction>
+</Layout>

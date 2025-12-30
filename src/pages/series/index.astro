@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '~/layouts/PageLayout.astro';
+import Headline from '~/components/blog/Headline.astro';
+import { Icon } from 'astro-icon/components';
+import { cleanSlug } from '~/utils/permalinks';
+
+export const prerender = true;
+
+const allSeries = await getCollection('series');
+const allPosts = await getCollection('post');
+
+// Count posts per series
+const seriesWithCounts = allSeries.map((series) => {
+  const seriesSlug = cleanSlug(series.id);
+  const postsInSeries = allPosts.filter((post) => post.data.series === seriesSlug);
+
+  return {
+    id: series.id,
+    slug: seriesSlug,
+    title: series.data.title,
+    description: series.data.description,
+    image: series.data.image,
+    postCount: postsInSeries.length,
+  };
+});
+
+const metadata = {
+  title: 'Series',
+  description: 'Browse all post series',
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-6 sm:px-6 py-12 sm:py-16 lg:py-20 mx-auto max-w-4xl">
+    <Headline subtitle="Explore curated series of related posts covering specific topics in depth">
+      Post Series
+    </Headline>
+
+    <div class="grid gap-6 md:gap-8">
+      {
+        seriesWithCounts.map((series) => (
+          <article class="border border-gray-200 dark:border-slate-700 rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <a href={`/series/${series.slug}`} class="block">
+              <header class="mb-4">
+                <h2 class="text-2xl font-bold leading-tight mb-2 font-heading dark:text-slate-300 hover:text-primary dark:hover:text-blue-700 transition ease-in duration-200">
+                  {series.title}
+                </h2>
+                <div class="flex items-center text-sm text-muted dark:text-slate-400">
+                  <Icon name="tabler:stack" class="w-4 h-4 inline-block mr-1" />
+                  <span>{series.postCount} {series.postCount === 1 ? 'post' : 'posts'}</span>
+                </div>
+              </header>
+
+              {series.description && (
+                <p class="text-muted dark:text-slate-400 text-lg">
+                  {series.description}
+                </p>
+              )}
+            </a>
+          </article>
+        ))
+      }
+    </div>
+
+    {seriesWithCounts.length === 0 && (
+      <div class="text-center text-muted dark:text-slate-400 py-8">
+        <p>No series available yet.</p>
+      </div>
+    )}
+  </section>
+</Layout>

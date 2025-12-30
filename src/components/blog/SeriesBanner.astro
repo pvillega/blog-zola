@@ -1,0 +1,50 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+
+export interface Props {
+  seriesSlug: string;
+  currentPostOrder?: number;
+}
+
+const { seriesSlug, currentPostOrder } = Astro.props;
+
+// Get series info
+const allSeries = await getCollection('series');
+const series = allSeries.find((s) => s.id === seriesSlug || s.id === `${seriesSlug}.yaml` || s.id === `${seriesSlug}.md`);
+
+if (!series) {
+  console.warn(`Series not found: ${seriesSlug}`);
+  return null;
+}
+
+// Count total posts in series
+const allPosts = await getCollection('post');
+const postsInSeries = allPosts.filter((post) => post.data.series === seriesSlug && !post.data.draft);
+const totalPosts = postsInSeries.length;
+
+const seriesTitle = series.data.title;
+const seriesUrl = `/series/${seriesSlug}`;
+---
+
+<div class="mb-8 p-4 md:p-6 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+  <div class="flex items-start gap-3">
+    <Icon name="tabler:stack" class="w-5 h-5 mt-1 text-blue-600 dark:text-blue-400 flex-shrink-0" />
+    <div class="flex-grow">
+      <div class="text-sm font-semibold text-blue-900 dark:text-blue-300 mb-1">
+        Part of Series
+      </div>
+      <a
+        href={seriesUrl}
+        class="text-lg font-bold text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 transition-colors"
+      >
+        {seriesTitle}
+      </a>
+      {currentPostOrder && totalPosts > 0 && (
+        <div class="text-sm text-blue-600 dark:text-blue-400 mt-1">
+          Part {currentPostOrder} of {totalPosts}
+        </div>
+      )}
+    </div>
+  </div>
+</div>

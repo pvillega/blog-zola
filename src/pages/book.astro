@@ -1,0 +1,152 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Content from '~/components/widgets/Content.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CalEmbed from '~/components/common/CalEmbed.astro';
+
+const metadata = {
+  title: 'Book a Call',
+  description: 'Schedule a discovery call to discuss your technical challenges and explore how we can work together.',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget -->
+  <Hero
+    tagline="Let's Talk"
+    title="Book a Discovery Call"
+    subtitle="Schedule a free 30-minute discovery call to discuss your technical challenges, project needs, and explore how we can work together."
+  />
+
+  <!-- Content Widget - What to Expect -->
+  <Content
+    title="What to Expect"
+    subtitle="How the discovery call works and what we'll cover."
+    items={[
+      {
+        title: 'Understanding Your Needs',
+        description:
+          'We\'ll start by discussing your current technical challenges, goals, and what you\'re looking to achieve.',
+        icon: 'tabler:target',
+      },
+      {
+        title: 'Exploring Solutions',
+        description:
+          'I\'ll share initial thoughts on potential approaches and whether my expertise aligns with your needs.',
+        icon: 'tabler:bulb',
+      },
+      {
+        title: 'Next Steps',
+        description:
+          'If there\'s a good fit, we\'ll discuss engagement options, timelines, and next steps to get started.',
+        icon: 'tabler:calendar-check',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Professional meeting discussion',
+    }}
+  />
+
+  <!-- Features2 Widget - Preparation Tips -->
+  <Features2
+    title="How to Prepare"
+    subtitle="Make the most of our time together with these tips."
+    columns={2}
+    items={[
+      {
+        title: 'Brief Overview',
+        description:
+          'Have a short description of your project, technical stack, and team ready to share.',
+        icon: 'tabler:file-description',
+      },
+      {
+        title: 'Key Questions',
+        description:
+          'Note down 2-3 specific questions or challenges you\'d like to discuss during our call.',
+        icon: 'tabler:help',
+      },
+      {
+        title: 'Timeline & Budget',
+        description:
+          'If possible, have a rough idea of your timeline and budget expectations for the engagement.',
+        icon: 'tabler:timeline',
+      },
+      {
+        title: 'Stakeholders',
+        description:
+          'Consider including key technical stakeholders who will be involved in decision-making.',
+        icon: 'tabler:users',
+      },
+    ]}
+  />
+
+  <!-- Cal.com Booking Widget -->
+  <section class="py-16 md:py-20 bg-gray-50 dark:bg-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter mb-4 font-heading dark:text-gray-200">
+          Schedule Your Call
+        </h2>
+        <p class="text-xl text-muted dark:text-slate-300 max-w-3xl mx-auto">
+          Choose a time that works best for you. All times are shown in your local timezone.
+        </p>
+      </div>
+      <CalEmbed calLink="your-username/discovery-call" eventType="discovery-call" />
+    </div>
+  </section>
+
+  <!-- Content Widget - After Booking -->
+  <Content
+    isReversed
+    isAfterContent
+    title="After You Book"
+    content="Once you schedule a call, you'll receive a calendar invitation with all the details. I'll also send a brief questionnaire to help me understand your needs better before our conversation."
+    items={[
+      {
+        title: 'Calendar Invitation',
+        description: 'Meeting details sent to your email with video call link.',
+        icon: 'tabler:calendar',
+      },
+      {
+        title: 'Pre-Call Questionnaire',
+        description: 'Optional form to share more context about your project.',
+        icon: 'tabler:clipboard-list',
+      },
+      {
+        title: 'Confirmation Email',
+        description: 'Reminder 24 hours before the scheduled call.',
+        icon: 'tabler:mail',
+      },
+    ]}
+    image={{
+      src: 'https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Calendar and scheduling',
+    }}
+  />
+
+  <!-- Features2 Widget - Available Services -->
+  <Features2
+    title="Service Options"
+    subtitle="After our discovery call, we can explore these engagement models."
+    columns={3}
+    items={[
+      {
+        title: 'One-Time Consultation',
+        description: 'Focused 1-2 hour session on a specific technical challenge with actionable recommendations.',
+        icon: 'tabler:message-circle',
+      },
+      {
+        title: 'Project Engagement',
+        description: 'Defined scope and timeline for architecture review, code review, or implementation work.',
+        icon: 'tabler:briefcase',
+      },
+      {
+        title: 'Ongoing Retainer',
+        description: 'Monthly partnership for strategic guidance, team mentoring, and priority access.',
+        icon: 'tabler:refresh',
+      },
+    ]}
+  />
+</Layout>

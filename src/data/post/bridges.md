@@ -1,0 +1,19 @@
+---
+title: "Bridging Scala and the Front-End at Underscore blog"
+publishDate: 2018-12-28
+draft: false
+categories:
+  - "scala"
+tags:
+  - "scala"
+  - "bridges"
+  - "elm"
+  - "fp"
+  - "underscore"
+---
+
+This is just a short entry to make you aware of a new post at [Underscore's](https://underscore.io/blog/posts/2018/12/12/bridges.html) blog.
+
+As usual, many thanks to Underscore for all the suggestions and reviews, and for publishing it. Contributions were crucial!
+
+Now please go to [Underscore's blog](https://underscore.io/blog/posts/2018/12/12/bridges.html) and enjoy the post. Cheers!

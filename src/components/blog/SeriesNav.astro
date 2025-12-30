@@ -1,0 +1,86 @@
+---
+import { Icon } from 'astro-icon/components';
+import { getCollection } from 'astro:content';
+import { cleanSlug, getPermalink } from '~/utils/permalinks';
+
+export interface Props {
+  seriesSlug: string;
+  currentPostSlug: string;
+}
+
+const { seriesSlug, currentPostSlug } = Astro.props;
+
+// Get all posts in the series, sorted by order
+const allPosts = await getCollection('post');
+const postsInSeries = allPosts
+  .filter((post) => post.data.series === seriesSlug && !post.data.draft)
+  .sort((a, b) => {
+    const orderA = a.data.seriesOrder ?? 999;
+    const orderB = b.data.seriesOrder ?? 999;
+    return orderA - orderB;
+  });
+
+// Find current post index
+const currentIndex = postsInSeries.findIndex((post) => cleanSlug(post.id) === currentPostSlug);
+
+if (currentIndex === -1) {
+  console.warn(`Current post not found in series: ${currentPostSlug}`);
+  return null;
+}
+
+const prevPost = currentIndex > 0 ? postsInSeries[currentIndex - 1] : null;
+const nextPost = currentIndex < postsInSeries.length - 1 ? postsInSeries[currentIndex + 1] : null;
+
+const prevUrl = prevPost ? getPermalink(cleanSlug(prevPost.id), 'post') : null;
+const nextUrl = nextPost ? getPermalink(cleanSlug(nextPost.id), 'post') : null;
+---
+
+{(prevPost || nextPost) && (
+  <nav class="mt-8 pt-8 border-t border-gray-200 dark:border-slate-700">
+    <div class="flex items-center justify-between gap-4">
+      {prevPost ? (
+        <a
+          href={prevUrl}
+          class="flex-1 group p-4 border border-gray-200 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow"
+        >
+          <div class="flex items-center gap-2 text-sm text-muted dark:text-slate-400 mb-1">
+            <Icon name="tabler:arrow-left" class="w-4 h-4" />
+            <span>Previous in series</span>
+          </div>
+          <div class="text-base font-semibold text-gray-900 dark:text-slate-300 group-hover:text-primary dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+            {prevPost.data.title}
+          </div>
+        </a>
+      ) : (
+        <div class="flex-1"></div>
+      )}
+
+      {nextPost ? (
+        <a
+          href={nextUrl}
+          class="flex-1 group p-4 border border-gray-200 dark:border-slate-700 rounded-lg hover:shadow-md transition-shadow text-right"
+        >
+          <div class="flex items-center justify-end gap-2 text-sm text-muted dark:text-slate-400 mb-1">
+            <span>Next in series</span>
+            <Icon name="tabler:arrow-right" class="w-4 h-4" />
+          </div>
+          <div class="text-base font-semibold text-gray-900 dark:text-slate-300 group-hover:text-primary dark:group-hover:text-blue-400 transition-colors line-clamp-2">
+            {nextPost.data.title}
+          </div>
+        </a>
+      ) : (
+        <div class="flex-1"></div>
+      )}
+    </div>
+
+    <div class="mt-4 text-center">
+      <a
+        href={`/series/${seriesSlug}`}
+        class="inline-flex items-center text-sm text-primary hover:underline dark:text-blue-400"
+      >
+        <Icon name="tabler:list" class="w-4 h-4 mr-1" />
+        View all posts in this series
+      </a>
+    </div>
+  </nav>
+)}

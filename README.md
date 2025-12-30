@@ -4,22 +4,37 @@
 
 Built using:
 
-- Zola: https://www.getzola.org
-- Theme: https://www.getzola.org/themes/tabi/
-- Uses shortcodes for diagrams, see <https://deepthought-theme.netlify.app/docs/extended-shortcodes/> 
+- [Astro](https://astro.build/) 5.x
+- [AstroWind](https://github.com/onwidget/astrowind) template
+- [Tailwind CSS](https://tailwindcss.com/) for styling
+- [MDX](https://mdxjs.com/) for content
+- [Pagefind](https://pagefind.app/) for search
 - Favicon generator: https://www.favicon-generator.org
 
-On first clone, remember to run `init_submodules.sh` to initialise the submodules added for the themes
+## Getting Started
 
-See https://welpo.github.io/tabi/blog/ for instructions on how to use the theme.
-See https://welpo.github.io/tabi/blog/shortcodes/#mermaid-diagrams for Mermaid diagrams and other markdown tricks
+```bash
+# Install dependencies
+npm install
 
+# Start development server (http://localhost:4321)
+npm run dev
 
-## Important files:
+# Build for production
+npm run build
 
-- `run.sh`: starts the blog in http://localhost:1111
-- `update_theme.sh`: updates the theme submodule
+# Preview production build
+npm run preview
+```
 
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run test` - Run tests
+- `npm run check` - Run all checks (astro, eslint, prettier)
+- `npm run fix` - Fix eslint and prettier issues
 
 ## License
 

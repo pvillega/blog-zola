@@ -1,0 +1,82 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+const metadata = {
+  title: 'Contact',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText tagline="Contact" title="Let's Connect!" />
+
+  <!-- CallToAction Widget - Book a Call CTA -->
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Book a Discovery Call',
+        href: '/book',
+        icon: 'tabler:calendar',
+      },
+    ]}
+    title="Prefer to talk in real-time?"
+    subtitle="Schedule a free 30-minute discovery call to discuss your technical challenges and explore how we can work together."
+  />
+
+  <ContactUs
+    id="form"
+    title="Send us a message"
+    subtitle="For general inquiries, project discussions, or any questions, feel free to reach out using the form below."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Name',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'Email',
+      },
+    ]}
+    textarea={{
+      label: 'Message',
+    }}
+    disclaimer={{
+      label:
+        'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
+    }}
+    description="Our support team typically responds within 24 business hours."
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="How I Can Help"
+    subtitle="Different ways to connect based on your needs."
+    columns={3}
+    items={[
+      {
+        title: 'Book a Call',
+        description: 'Schedule a free discovery call to discuss your project in real-time and explore collaboration opportunities.',
+        icon: 'tabler:calendar',
+      },
+      {
+        title: 'Project Inquiry',
+        description: 'Use the contact form above to share details about your project, technical challenges, or engagement needs.',
+        icon: 'tabler:message-circle',
+      },
+      {
+        title: 'Quick Question',
+        description: 'Have a specific question? Send a brief message and I\'ll get back to you within 24-48 hours.',
+        icon: 'tabler:help',
+      },
+    ]}
+  />
+</Layout>

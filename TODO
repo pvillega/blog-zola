@@ -1,0 +1,25 @@
+/superpowers:brainstorm "ultrathink, I want to modify this app. This project is currently
+a personal blog using Zola, published to github pages under the perevillega.com
+domain. I want to modernise it, as I want to add new sections related to services I offer
+as a freelancer and to allow people to contact me directly.
+You can see some layouts I like in pages like:
+- https://agynamix.de/
+- https://academy.alignthority.com
+- https://www.designjoy.co/?via=landing
+- https://saasrock.com/mvp-as-a-service
+The links above are examples of professional designs that I like, it doesn;t mean we have to copy every functionality, adjust to the aims of the website we are building.
+Some thoughts or requirements I have for the page are:
+ - individual blog posts and also series (blog posts that are part of a single series and I want them shown as both single blogposts and compiled somewhere as the series with table of content, etc)
+ - Pages showcasing projects (past and current)
+ - calendly or equivalent to book meetings (I use macOS calendar, is there an easy or free way to do this?)
+ - custom offering packs for productised services I offer as a freelancer
+ - stripe integration or some integration for paid consultations
+ - zoom integration
+Ask questions on this and let's work together to modernise the site.
+I want to technology stack to be moved to Astro + TailwindCSS + github deployment.
+Use themes, try to find out good free themes or suggets preimium themes that would be suitable for this.
+Use subagents when possible, particularly when doing research. Use mcp for web search
+"
+
+/superpowers:execute-plan "use parallel agents to implement @docs/plans/2024-12-22-astro-migration-design.md, use context 7, use tdd.
+Some bits may be already implemented, verify using subagents before you start. You can read file @docs/plans/2024-12-30-implementation-progress.md for more context"

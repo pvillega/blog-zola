@@ -1,0 +1,136 @@
+---
+import { Icon } from 'astro-icon/components';
+import Button from '~/components/ui/Button.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  type?: 'time-based' | 'deliverable' | 'custom';
+  price?: {
+    amount: number;
+    currency: string;
+  };
+  duration?: string;
+  includes?: string[];
+  featured?: boolean;
+  learnMoreHref: string;
+  bookNowHref?: string;
+}
+
+const {
+  title,
+  description,
+  type,
+  price,
+  duration,
+  includes = [],
+  featured = false,
+  learnMoreHref,
+  bookNowHref,
+} = Astro.props;
+
+const formatPrice = (amount: number, currency: string) => {
+  if (currency === 'EUR') return `€${amount}`;
+  if (currency === 'USD') return `$${amount}`;
+  return `${amount} ${currency}`;
+};
+
+const getBadgeColor = (serviceType?: string) => {
+  switch (serviceType) {
+    case 'time-based':
+      return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200';
+    case 'deliverable':
+      return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200';
+    case 'custom':
+      return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200';
+    default:
+      return 'bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200';
+  }
+};
+
+const getBadgeLabel = (serviceType?: string) => {
+  switch (serviceType) {
+    case 'time-based':
+      return 'Hourly';
+    case 'deliverable':
+      return 'Fixed Price';
+    case 'custom':
+      return 'Custom';
+    default:
+      return '';
+  }
+};
+---
+
+<div
+  class:list={[
+    'rounded-lg backdrop-blur border shadow px-6 py-8 flex flex-col h-full',
+    featured
+      ? 'border-primary dark:border-primary bg-white dark:bg-slate-900 ring-2 ring-primary'
+      : 'border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-900',
+  ]}
+>
+  {
+    featured && (
+      <div class="absolute right-[-5px] top-[-5px] z-[1] h-[100px] w-[100px] overflow-hidden text-right">
+        <span class="absolute top-[19px] right-[-21px] block w-full rotate-45 bg-primary text-center text-[10px] font-bold uppercase leading-5 text-white shadow-[0_3px_10px_-5px_rgba(0,0,0,0.3)]">
+          Featured
+        </span>
+      </div>
+    )
+  }
+
+  <div class="flex-grow">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-xl font-semibold dark:text-white">{title}</h3>
+      {
+        type && (
+          <span class:list={['px-2 py-1 rounded text-xs font-medium', getBadgeColor(type)]}>{getBadgeLabel(type)}</span>
+        )
+      }
+    </div>
+
+    {description && <p class="text-gray-600 dark:text-slate-400 mb-4">{description}</p>}
+
+    {
+      price && (
+        <div class="mb-6">
+          <div class="flex items-baseline">
+            <span class="text-4xl font-extrabold dark:text-white">{formatPrice(price.amount, price.currency)}</span>
+            {duration && <span class="ml-2 text-gray-600 dark:text-slate-400">/ {duration}</span>}
+          </div>
+        </div>
+      )
+    }
+
+    {
+      includes && includes.length > 0 && (
+        <div class="mb-6">
+          <p class="text-sm font-semibold text-gray-900 dark:text-white mb-3">What's Included:</p>
+          <ul class="space-y-2">
+            {includes.slice(0, 4).map((item) => (
+              <li class="flex items-start">
+                <Icon name="tabler:check" class="w-5 h-5 text-primary mt-0.5 mr-2 flex-shrink-0" />
+                <span class="text-sm text-gray-600 dark:text-slate-400">{item}</span>
+              </li>
+            ))}
+          </ul>
+          {includes.length > 4 && (
+            <p class="text-sm text-gray-500 dark:text-slate-500 mt-2">+ {includes.length - 4} more...</p>
+          )}
+        </div>
+      )
+    }
+  </div>
+
+  <div class="flex flex-col gap-2 mt-4">
+    <Button variant="secondary" href={learnMoreHref} class="w-full justify-center"> Learn More </Button>
+    {
+      bookNowHref && (
+        <Button variant="primary" href={bookNowHref} class="w-full justify-center">
+          Book Now
+        </Button>
+      )
+    }
+  </div>
+</div>

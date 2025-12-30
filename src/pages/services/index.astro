@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '~/layouts/PageLayout.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import PricingCard from '~/components/services/PricingCard.astro';
+import CallToAction from '~/components/widgets/CallToAction.astro';
+
+export const prerender = true;
+
+const services = await getCollection('services');
+
+// Sort by order field (if present) or featured status
+const sortedServices = services.sort((a, b) => {
+  if (a.data.order && b.data.order) {
+    return a.data.order - b.data.order;
+  }
+  if (a.data.featured && !b.data.featured) return -1;
+  if (!a.data.featured && b.data.featured) return 1;
+  return 0;
+});
+
+const metadata = {
+  title: 'Services & Pricing',
+  description: 'Professional technical consulting, architecture reviews, team mentoring, and more. Flexible engagement models to suit your needs.',
+};
+---
+
+<Layout metadata={metadata}>
+  <Hero
+    tagline="Services & Pricing"
+    title="Technical Consulting & Engineering Services"
+    subtitle="From one-hour consultations to long-term engagements, I offer flexible options to help you solve technical challenges and build better software."
+    actions={[
+      { variant: 'primary', text: 'Book a Discovery Call', href: '/book' },
+      { variant: 'secondary', text: 'Contact Me', href: '/contact' },
+    ]}
+  />
+
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-7xl">
+    <div class="mb-10 md:mx-auto text-center md:mb-12 max-w-3xl">
+      <h2 class="text-3xl font-bold tracking-tight dark:text-white sm:text-4xl">Available Services</h2>
+      <p class="mt-4 text-lg text-gray-600 dark:text-slate-400">
+        Choose the service that best fits your needs. All services include follow-up support.
+      </p>
+    </div>
+
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        sortedServices.map((service) => (
+          <PricingCard
+            title={service.data.title}
+            description={service.data.description}
+            type={service.data.type}
+            price={service.data.price}
+            duration={service.data.duration}
+            includes={service.data.includes}
+            featured={service.data.featured}
+            learnMoreHref={`/services/${service.id}`}
+            bookNowHref={service.data.stripeLink || '/book'}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Schedule a Free Consultation',
+        href: '/book',
+        icon: 'tabler:calendar',
+      },
+      {
+        variant: 'secondary',
+        text: 'View My Work',
+        href: '/projects',
+      },
+    ]}
+    title="Not sure which service is right for you?"
+    subtitle="Let's have a quick call to discuss your needs and find the best approach."
+  />
+</Layout>
