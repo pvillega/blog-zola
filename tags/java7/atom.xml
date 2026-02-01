@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>java7</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - java7</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/java7/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/java7/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2011-07-14T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/java7/atom.xml</id><entry xml:lang="en">
+        <title>Java 7: What&#x27;s New</title>
+        <published>2011-07-14T00:00:00+00:00</published>
+        <updated>2011-07-14T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/java-7-whats-new/" type="text/html"/>
+        <id>https://perevillega.com/posts/java-7-whats-new/</id>
+        
+            <content type="html">&lt;p&gt;Java 7 will be released &lt;a href=&quot;http:&#x2F;&#x2F;www.datamation.com&#x2F;applications&#x2F;java-7-release-nears.html&quot;&gt;soon&lt;&#x2F;a&gt;, so it&#x27;s time to check what&#x27;s new. The official announcement is &lt;a href=&quot;http:&#x2F;&#x2F;docs.oracle.com&#x2F;javase&#x2F;7&#x2F;docs&#x2F;technotes&#x2F;guides&#x2F;language&#x2F;enhancements.html&quot;&gt;here&lt;&#x2F;a&gt;. A list of the new additions to our beloved JVM follows:&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Binary literals&lt;&#x2F;strong&gt;: from now on basic numeric types (byte, short, int, long) can be specified as binary numbers using the prefix 0b or 0B&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Underscores in literals&lt;&#x2F;strong&gt;: for readability purposes now we can use underscores to mark numbers. You can put them in any place that helps you to read the number better.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Try with resource&lt;&#x2F;strong&gt;: Previously when using some resources like Streams you had to add a finally block just to close it. Now with this new construct Java will close the resource once the try-catch block finishes, either normally or via an exception.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Multiple Exception Caching&lt;&#x2F;strong&gt;: a code saver, from now on the catch clauses accept several exceptions in one clause, avoiding code duplication when several exceptions should be treated the same way. The operator &lt;code&gt;|&lt;&#x2F;code&gt; is used for this.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Better exception analysis on declaration&lt;&#x2F;strong&gt;: this seems a bit confusing but it&#x27;s simple. If you do a catch Exception, your throws clause in the declaration can still declare very specific exceptions (like IllegalArgumentException). Java will verify that all non-runtime exceptions you generate can only be of the types declared in throws. This allows you to declare better interfaces for error management.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Strings in Switch&lt;&#x2F;strong&gt;: something that was really needed, now you can use Strings as a parameter in the switch statement. Probably is still safer to use enumerations for this, but there are scenarios in which a String-switch is handy.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Type inference&lt;&#x2F;strong&gt;: albeit limited when you compare to Scala&#x27;s inference, now we have type inference for Generics. This means less typing as you only need to declare the Generic in the left side of the expression.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;New compiler warnings on varargs&lt;&#x2F;strong&gt;: when using Generics in varargs parameters the compiler will raise new warnings to notify about the possible issues this may cause.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;InvokeDynamic for non-Java languages&lt;&#x2F;strong&gt;: this goes directly into the JVM ecosystem, and it should be a big improvement for languages like Scala. Not something the average Joe programmer will use, but we will feel it on our daily work.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Improvements on NIO library&lt;&#x2F;strong&gt;: never used it too much, but I guess they will be exciting for some people :)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;New UI components&lt;&#x2F;strong&gt;: a new component, JLayerPanel, has been added. Not much of a Swing guy here, so not much to say.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I may be missing something, but these are the more relevant ones. Many new things to test this August :) Enjoy the new toys!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Java 7 will be released soon, so it's time to check what's new. The official announcement is here. A list of the new additions to our beloved JVM follows:
+…</summary>
+        </entry>
+</feed>

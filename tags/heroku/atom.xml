@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>heroku</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - heroku</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/heroku/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/heroku/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2015-05-11T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/heroku/atom.xml</id><entry xml:lang="en">
+        <title>Using Docker in Heroku</title>
+        <published>2015-05-11T00:00:00+00:00</published>
+        <updated>2015-05-11T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/using-docker-in-heroku/" type="text/html"/>
+        <id>https://perevillega.com/posts/using-docker-in-heroku/</id>
+        
+            <content type="html">&lt;p&gt;Heroku has announced &lt;a href=&quot;https:&#x2F;&#x2F;devcenter.heroku.com&#x2F;articles&#x2F;getting-started-with-scala-and-heroku-local-docker-development&quot;&gt;beta support&lt;&#x2F;a&gt; for Docker containers running in its platform. As I have some time in my hands, I&#x27;ve tried how well it integrates.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;&lt;strong&gt;Updated 15&#x2F;5&#x2F;2015:&lt;&#x2F;strong&gt; Michael Friss from Heroku sent me an email regarding the concerns I raised, update at the end with his comments.&lt;&#x2F;p&gt;
+&lt;p&gt;I have a confession to make before I start: I was a Heroku convert that left the flock but is heading back to it. Years ago, when Heroku added support for Play apps, I made the same mistake as many developers before: I built my own (crappy) blog engine. I don&#x27;t know if the code is still around but for the sake of my employability I won&#x27;t surface any link to it ;)&lt;&#x2F;p&gt;
+&lt;p&gt;At that time Heroku was very convenient, albeit expensive: $37&#x2F;month for a personal blog with dozens of visits per month... not a sound idea. I ended up looking for alternatives and realised the obvious: AWS, Linode and others were way cheaper and provided much more power. So I moved away.&lt;&#x2F;p&gt;
+&lt;p&gt;Recently I&#x27;ve come full cycle. A couple of weeks ago, at a HackTheTower event organised by &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;jr0cket&quot;&gt;John Stevenson&lt;&#x2F;a&gt;, who&#x27;s a Heroku evangelist, I asked him why should I use Heroku as it is quite pricey. His answer: you pay for a 3rd party DevOps team. Obvious an answer as it is, the experience acquired between the time I used Heroku and now made me realise how valuable that is if you are building a serious app.&lt;&#x2F;p&gt;
+&lt;p&gt;With the advent of Docker I went ballistic trying to run things in my computer, even trying to migrate some components at Gumtree. Shiny new thing and all that. The outcome wasn&#x27;t one I enjoyed: lots of issues and nothing fully working, plus the realisation that I&#x27;m a horrible sysadmin and, although I enjoy the theory of putting servers together, I&#x27;d rather focus on developing the app and let someone else manage all the other stuff.&lt;&#x2F;p&gt;
+&lt;p&gt;So if I ever build a sizeable app I&#x27;d go back to Heroku . With that in my mind the announcement of Docker for Heroku really picked my interest. Thus, this post.&lt;&#x2F;p&gt;
+&lt;p&gt;Ok, boring interlude is over, let&#x27;s hack!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;set-up&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#set-up&quot; aria-label=&quot;Anchor link for: set-up&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Set up&lt;&#x2F;h2&gt;
+&lt;p&gt;The instructions to use &lt;a href=&quot;https:&#x2F;&#x2F;devcenter.heroku.com&#x2F;articles&#x2F;getting-started-with-scala-and-heroku-local-docker-development&quot;&gt;docker in Heroku&lt;&#x2F;a&gt; are missing some crucial info: you need to install both Docker and a specific plugin in your machine.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m using Linux Mint, based on Ubuntu. Installing Docker &lt;a href=&quot;https:&#x2F;&#x2F;docs.docker.com&#x2F;installation&#x2F;ubuntulinux&#x2F;&quot;&gt;seems easy&lt;&#x2F;a&gt; until you hit this error when trying to run it:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;FATA[0000] Get http:&amp;#x2F;&amp;#x2F;&amp;#x2F;var&amp;#x2F;run&amp;#x2F;docker.sock&amp;#x2F;v1.17&amp;#x2F;version: dial unix &amp;#x2F;var&amp;#x2F;run&amp;#x2F;docker.sock:
+no such file or directory.
+Are you trying to connect to a TLS-enabled daemon without TLS?
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As always, StackOverflow to the rescue. The &lt;a href=&quot;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;29294286&#x2F;fata0000-get-http-var-run-docker-sock-v1-17-version-dial-unix-var-run-doc&quot;&gt;first answer&lt;&#x2F;a&gt; fixed the issue for me. If you see the same error and you are not using Ubuntu or a derivative Google the error, there&#x27;s a lot of information about it. Such a common error and no steps to avoid it in the installation document... &lt;em&gt;ouch&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;You can find how to install the plugin for Heroku &lt;a href=&quot;https:&#x2F;&#x2F;devcenter.heroku.com&#x2F;articles&#x2F;introduction-local-development-with-docker?preview=1&quot;&gt;here&lt;&#x2F;a&gt;. Run the following to ensure all is working as expected:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ heroku help docker
+Usage: heroku docker
+  Use Docker to build and deploy Heroku apps
+[...]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;running-the-app&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#running-the-app&quot; aria-label=&quot;Anchor link for: running-the-app&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Running the app&lt;&#x2F;h2&gt;
+&lt;p&gt;With Docker and the plugin working, just follow &lt;a href=&quot;https:&#x2F;&#x2F;devcenter.heroku.com&#x2F;articles&#x2F;getting-started-with-scala-and-heroku-local-docker-development&quot;&gt;the steps&lt;&#x2F;a&gt;. A quick summary of the relevant commands follows:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ git clone https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;heroku&amp;#x2F;scala-getting-started.git
+$ cd scala-getting-started
+$ sbt stage                 # let&amp;#x27;s build the code
+$ heroku docker:init        # create dockerfile
+$ heroku docker:start       # run the app. You may or may not need sudo for this
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will generate a local &lt;a href=&quot;http:&#x2F;&#x2F;docs.docker.com&#x2F;reference&#x2F;builder&#x2F;&quot;&gt;Dockerfile&lt;&#x2F;a&gt; and run the app. The Dockerfile generated is:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;FROM heroku&amp;#x2F;cedar:14
+
+RUN useradd -d &amp;#x2F;app -m app
+USER app
+WORKDIR &amp;#x2F;app
+
+ENV HOME &amp;#x2F;app
+ENV PATH &amp;#x2F;app&amp;#x2F;heroku&amp;#x2F;jdk&amp;#x2F;bin:$PATH
+ENV PORT 3000
+
+RUN mkdir -p &amp;#x2F;app&amp;#x2F;heroku&amp;#x2F;jdk
+RUN mkdir -p &amp;#x2F;app&amp;#x2F;.profile.d
+RUN curl -s http:&amp;#x2F;&amp;#x2F;lang-jvm.s3.amazonaws.com&amp;#x2F;jdk&amp;#x2F;openjdk1.8.0_40-cedar14.tar.gz | tar xz -C &amp;#x2F;app&amp;#x2F;heroku&amp;#x2F;jdk
+RUN echo &amp;quot;export JAVA_HOME=\&amp;quot;&amp;#x2F;app&amp;#x2F;heroku&amp;#x2F;jdk&amp;quot; &amp;gt; &amp;#x2F;app&amp;#x2F;.profile.d&amp;#x2F;jdk.sh
+RUN echo &amp;quot;export PATH=\&amp;quot;&amp;#x2F;app&amp;#x2F;heroku&amp;#x2F;jdk&amp;#x2F;bin:\$PATH&amp;quot; &amp;gt;&amp;gt; &amp;#x2F;app&amp;#x2F;.profile.d&amp;#x2F;jdk.sh
+
+ONBUILD COPY target &amp;#x2F;app&amp;#x2F;target
+
+ONBUILD USER root
+ONBUILD RUN chown -R app &amp;#x2F;app&amp;#x2F;target
+ONBUILD USER app
+
+ONBUILD EXPOSE 3000
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Most of the file is just setting the environment: open ports, install JDK, etc. The relevant part is the series of &lt;em&gt;ONBUILD&lt;&#x2F;em&gt; actions at the end. They are the ones copying the contents of our &lt;em&gt;target&lt;&#x2F;em&gt; folder as the app to run and exposing the port used to connect to it. But the fact they are &lt;em&gt;ONBUILD&lt;&#x2F;em&gt; means this image will be extended by another Dockerfile, as otherwise they would not be executed.&lt;&#x2F;p&gt;
+&lt;p&gt;And, indeed, if you look at the output of &lt;em&gt;docker:start&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;Step 16 : ONBUILD expose 3000
+ ---&amp;gt; Running in b6ff244c054f
+ ---&amp;gt; 81c9310081ff
+Removing intermediate container b6ff244c054f
+Successfully built 81c9310081ff
+building image...
+Sending build context to Docker daemon 21.44 MB
+Sending build context to Docker daemon
+Step 0 : FROM heroku-docker-ef389ffce157641fd8a8a903641ab592
+# Executing 5 build triggers
+Trigger 0, COPY target &amp;#x2F;app&amp;#x2F;target
+Step 0 : COPY target &amp;#x2F;app&amp;#x2F;target
+Trigger 1, USER root
+Step 0 : USER root
+ ---&amp;gt; Running in 783a26569081
+Trigger 2, RUN chown -R app &amp;#x2F;app&amp;#x2F;target
+Step 0 : RUN chown -R app &amp;#x2F;app&amp;#x2F;target
+ ---&amp;gt; Running in 0cc41d250626
+Trigger 3, USER app
+Step 0 : USER app
+ ---&amp;gt; Running in cad1a44eaeac
+Trigger 4, EXPOSE 3000
+Step 0 : EXPOSE 3000
+ ---&amp;gt; Running in c816b4ac395a
+ ---&amp;gt; ca0051ac830e
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Did you notice that &lt;code&gt;FROM heroku-docker-ef389ffce157641fd8a8a903641ab592&lt;&#x2F;code&gt;? A bit of magic in here, but we will allow it as it is the point of Heroku: devops as a  black box. In any case, time to go to production:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ heroku create
+$ heroku docker:release
+$ heroku open
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;A new image is built (you can see the triggers being actioned again) and the locally generated slug is uploaded to Heroku, a total of 63MB of a maximum allowed of 300Mb. The app works as expected, all good. A very similar experience to what you expect with the standard Heroku process.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;concerns&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#concerns&quot; aria-label=&quot;Anchor link for: concerns&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Concerns&lt;&#x2F;h2&gt;
+&lt;p&gt;Using Docker within Heroku makes me uneasy. I like Docker, but I see this integration as trying to marry two contradicting approaches. Docker requires you to know what are you doing, you can hack it blissfully ignorant but then it hits back with a dose of reality and a pile of errors. Heroku, on the other hand, is a fire-and-forget heaven for developers: care about the services, not about how are they being run.&lt;&#x2F;p&gt;
+&lt;p&gt;Arguably the tools Heroku provides hide this pain as the Dockerfile is built for you and it is a very basic Dockerfile. But then, is it necessary? And is it a complete abstraction?&lt;&#x2F;p&gt;
+&lt;p&gt;Every time I built my app for either local or remote deployment, the build process happened locally in my machine. The issue here is that the base image (the Dockerfile generated) is not rebuild, there is no need as the key steps are triggers (ONBUILD) that will be run later.&lt;&#x2F;p&gt;
+&lt;p&gt;Now, I may be missing something obvious as I&#x27;m not an expert, but as far as I understand this means that if the &lt;em&gt;cedar-14&lt;&#x2F;em&gt; base image contains a component with a serious vulnerability, unless I wipe all the local caches from my system (for both &lt;em&gt;cedar-14&lt;&#x2F;em&gt; and my app) my built slug will contain that vulnerability. Obviously I don&#x27;t know which magic happens inside the Dockerfile used by Heroku that extends mine, but that doesn&#x27;t ease my concerns at all.&lt;&#x2F;p&gt;
+&lt;p&gt;It seems by trying to adopt a new technology now the developer needs to worry a bit more about sysadmin things. And also, not critical but still relevant, we need to upload the locally-built slug to the system. This can be up to 300Mb, which kind of defeats the speed increase of doing the build process in your beefy machine. Asymmetric connections are still the norm, unfortunately.&lt;&#x2F;p&gt;
+&lt;p&gt;So, I get why is Heroku trying to do this, but I&#x27;m not sure it has any real benefit as unfortunately not all developers may realise some implications. Or maybe that&#x27;s the point: get people on-board via Docker and then show them a simpler and maybe safer way, the old and tested one.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;UPDATE:&lt;&#x2F;strong&gt; As I mentioned above, I received an email from Michael Friss (from Heroku) about the concerns I had. I feel they address the issues and it is fair to mention it:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You stack concerns are valid and interesting, so I want to address them in detail.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;heroku docker:release&lt;&#x2F;code&gt; does not (currently) release the entire heroku&#x2F;cedar:14 that you created locally. It only extracts the &lt;code&gt;&#x2F;app&lt;&#x2F;code&gt; contents and packages that into a slug (containing a JVM, your packages and your app) that&#x27;s released to Heroku. That&#x27;s deployed to the same Heroku runtime stack as slugs from normal buildpacks, and we keep that patched and updated. We also keep the &lt;code&gt;heroku&#x2F;cedar:14&lt;&#x2F;code&gt; image updated on Docker-hub for you to pull.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;As we make progress on the Docker-stuff, and if it graduates out of beta, we&#x27;ll build supported and hands-off flows similar to how the Heroku-supported buildpacks work. (We&#x27;ll probably also rely more on Buildpacks to make the Docker-flow work. Check out how Python works right now: https:&#x2F;&#x2F;github.com&#x2F;heroku&#x2F;heroku-docker&#x2F;blob&#x2F;master&#x2F;platforms&#x2F;python&#x2F;Dockerfile.t#L31&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;You&#x27;re correct that there&#x27;s ALSO an option to break out of the supported flow and tweak the Dockerfile. This has roughly the same semantics as forking a Heroku buildpack or creating a buildpack from scratch. Something that 1000s of Heroku users do.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;That&#x27;s all. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Heroku has announced beta support for Docker containers running in its platform. As I have some time in my hands, I've tried how well it integrates.
+…</summary>
+        </entry>
+</feed>

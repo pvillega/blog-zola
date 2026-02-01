@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>microservices</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - microservices</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/microservices/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/microservices/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2015-03-07T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/microservices/atom.xml</id><entry xml:lang="en">
+        <title>QCon London - Microservices</title>
+        <published>2015-03-07T00:00:00+00:00</published>
+        <updated>2015-03-07T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/qcon-london-microservices/" type="text/html"/>
+        <id>https://perevillega.com/posts/qcon-london-microservices/</id>
+        
+            <content type="html">&lt;p&gt;Yesterday I was at &lt;a href=&quot;http:&#x2F;&#x2F;qconlondon.com&#x2F;schedule#day-5&quot;&gt;QCon London&lt;&#x2F;a&gt; thanks to &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I&#x27;ve posted a summary of the talks I attended in &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;devteam&#x2F;2015-03-07-qcon-london-day-3.html&quot;&gt;Gumtree developer&#x27;s blog&lt;&#x2F;a&gt;. Any feedback is appreciated :)&lt;&#x2F;p&gt;
+&lt;p&gt;Update: the post was lost when Gumtree moved blog :(&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Yesterday I was at QCon London thanks to Gumtree.
+…</summary>
+        </entry>
+</feed>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>jasmine</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - jasmine</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/jasmine/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/jasmine/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2013-01-26T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/jasmine/atom.xml</id><entry xml:lang="en">
+        <title>Executing Jasmine Tests in Play 2.0.4</title>
+        <published>2013-01-26T00:00:00+00:00</published>
+        <updated>2013-01-26T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/executing-jasmine-tests-in-play-2-dot-0-4/" type="text/html"/>
+        <id>https://perevillega.com/posts/executing-jasmine-tests-in-play-2-dot-0-4/</id>
+        
+            <content type="html">&lt;p&gt;&lt;em&gt;Christmas&lt;&#x2F;em&gt; break is over, and on a whim I started to check &lt;a href=&quot;http:&#x2F;&#x2F;angularjs.org&#x2F;&quot;&gt;AngularJs&lt;&#x2F;a&gt;. If you haven&#x27;t tested it yet, do it. I&#x27;ve toyed around  with Backbone and some other Javascript &lt;em&gt;single page app&lt;&#x2F;em&gt; frameworks, and Angular is by far the one that I liked the most. It has simplicity embedded in its core, and turning tedious tasks (as setting controllers) into something trivial makes it a pleasure to use. Simplicity. Such an important concept, and one which is seldom present in frameworks.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;But I digress. Back to the post. Adding Angular to a Play app is as simple as you can imagine, as in the end it&#x27;s a Javascript library. Add the Angular files, code controllers and services, put Angular templates under &lt;code&gt;public&lt;&#x2F;code&gt; so Angular can get them, and you are done.  You can see a project sample &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;play2demo-jasmine&quot;&gt;in my Github account&lt;&#x2F;a&gt;. Be aware the sample is very rough and has minimal functionality, the aim was to see how can they be linked, not to push Angular boundaries.&lt;&#x2F;p&gt;
+&lt;p&gt;So we have a Javascript framework, and obviously we want to test it. Unfortunately the recommended way to test Angular is via &lt;a href=&quot;http:&#x2F;&#x2F;pivotal.github.com&#x2F;jasmine&#x2F;&quot;&gt;Jasmine&lt;&#x2F;a&gt;, a Javascript BDD framework. I say unfortunately because that would mean running 2 commands for testing: one for Play tests and another for Angular tests. Or does it?&lt;&#x2F;p&gt;
+&lt;p&gt;It is on moments like this when Open Source shows its worthiness. Enter &lt;a href=&quot;http:&#x2F;&#x2F;www.guardian.co.uk&#x2F;&quot;&gt;The Guardian&lt;&#x2F;a&gt; and its Software development department, which open sources a lot of the code they create to run their online platform. A wise company, they use Scala and Play and they created &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;guardian&#x2F;sbt-jasmine-plugin&quot;&gt;Sbt-Jasmine&lt;&#x2F;a&gt;, a plugin to run Jasmine inside Sbt projects. Given that Play 2 uses Sbt, this should prove simple.&lt;&#x2F;p&gt;
+&lt;p&gt;Well, to be honest it wasn&#x27;t &lt;em&gt;so&lt;&#x2F;em&gt; simple, that&#x27;s why I decided to document it here to save time to other interested people. This assumes a working Play 2.0.4 project, should work with any 2.0.x project but can&#x27;t promise anything about 2.1 (have to test it yet)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;integrating-sbt-jasmine&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#integrating-sbt-jasmine&quot; aria-label=&quot;Anchor link for: integrating-sbt-jasmine&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Integrating Sbt-Jasmine&lt;&#x2F;h2&gt;
+&lt;p&gt;This is quite straightforward, you just need to follow the instructions from the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;guardian&#x2F;sbt-jasmine-plugin&quot;&gt;Sbt-Jasmine&lt;&#x2F;a&gt; page. On your project, under the &lt;code&gt;project&lt;&#x2F;code&gt; folder, create another folder named &lt;code&gt;project&lt;&#x2F;code&gt; (that is, you will have &lt;code&gt;&#x2F;project&#x2F;project&#x2F;&lt;&#x2F;code&gt; path). Inside that new folder create a file &lt;code&gt;Plugins.scala&lt;&#x2F;code&gt; and add this code to it:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;
+import sbt._
+
+
+&amp;#x2F;&amp;#x2F; This plugin is used to load the sbt-jasmine plugin into our project.
+&amp;#x2F;&amp;#x2F; This allows us to import the SbtJasminePlugin file
+&amp;#x2F;&amp;#x2F; in Build.scala, and then set the settings and configuration for Sbt-Jasmine
+object Plugins extends Build {
+  lazy val plugins = Project(&amp;quot;plugins&amp;quot;, file(&amp;quot;.&amp;quot;))
+    .dependsOn(uri(&amp;quot;git:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;guardian&amp;#x2F;sbt-jasmine-plugin.git#0.7&amp;quot;))
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will load the plugin directly from Github into your project.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;adding-jasmine-as-part-of-your-test-cycle&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#adding-jasmine-as-part-of-your-test-cycle&quot; aria-label=&quot;Anchor link for: adding-jasmine-as-part-of-your-test-cycle&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Adding Jasmine  as part of your test cycle&lt;&#x2F;h2&gt;
+&lt;p&gt;Now that we have the plugin in, we want to be able to run both test types (Play and Jasmine) when executing &lt;code&gt;play test&lt;&#x2F;code&gt;. To that aim we have to edit our &lt;code&gt;Build.scala&lt;&#x2F;code&gt; project file to let Play know about Jasmine.&lt;&#x2F;p&gt;
+&lt;p&gt;The first step will be importing the existing Jasmine settings the sbt plugin added into the project. We can do that via the &lt;code&gt;PlayProject&lt;&#x2F;code&gt; method &lt;code&gt;settings&lt;&#x2F;code&gt;, as in &lt;code&gt;.settings(jasmineSettings : _*)&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The second step is to override the default Jasmine configuration, specifically the paths that point to the test assets and source files. Sbt-Jasmine expects a set of default paths that don&#x27;t map to the ones existing in a Play project, so we change them as follows:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;
+
+&amp;#x2F;&amp;#x2F; jasmine configuration, overridden as we don&amp;#x27;t follow the default
+&amp;#x2F;&amp;#x2F; project structure sbt-jasmine expects
+
+appJsDir &amp;lt;+= baseDirectory &amp;#x2F; &amp;quot;app&amp;#x2F;assets&amp;#x2F;javascripts&amp;quot;,
+appJsLibDir &amp;lt;+= baseDirectory &amp;#x2F; &amp;quot;public&amp;#x2F;javascripts&amp;#x2F;lib&amp;quot;,
+jasmineTestDir &amp;lt;+= baseDirectory &amp;#x2F; &amp;quot;test&amp;#x2F;assets&amp;#x2F;&amp;quot;,
+jasmineConfFile &amp;lt;+= baseDirectory &amp;#x2F; &amp;quot;test&amp;#x2F;assets&amp;#x2F;test.dependencies.js&amp;quot;,
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Note that &lt;code&gt;appJsDir&lt;&#x2F;code&gt; is pointing to the folder for minimized assets, we could change that to point to &lt;code&gt;&quot;public&#x2F;Javascripts&quot;&lt;&#x2F;code&gt;. The paths for &lt;code&gt;appJsLibDir&lt;&#x2F;code&gt;, &lt;code&gt;jasmineTestDir&lt;&#x2F;code&gt; and &lt;code&gt;jasmineConfFile&lt;&#x2F;code&gt; can be modified as it suits you.&lt;&#x2F;p&gt;
+&lt;p&gt;The Jasmine configuration file follows standard Jasmine notation, which I won&#x27;t discuss in this post. The configuration for this sample project is:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;
+&amp;#x2F;&amp;#x2F; Dependencies for the unit test via Jasmine
+EnvJasmine.loadGlobal(EnvJasmine.libDir + &amp;quot;jquery-1.8.3.min.js&amp;quot;);
+EnvJasmine.loadGlobal(EnvJasmine.libDir + &amp;quot;angular.min.js&amp;quot;);
+EnvJasmine.loadGlobal(EnvJasmine.libDir + &amp;quot;angular-resource.min.js&amp;quot;);
+EnvJasmine.loadGlobal(EnvJasmine.testDir + &amp;quot;config&amp;#x2F;angular-mocks.js&amp;quot;);
+
+&amp;#x2F;&amp;#x2F; Import all modules (RequireJs fails for some reason)
+&amp;#x2F;&amp;#x2F; FIXME: check why we can&amp;#x27;t use RequireJs
+EnvJasmine.loadGlobal(EnvJasmine.rootDir + &amp;quot;todo.js&amp;quot;);
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Finally we need to tell Play to run Jasmine tests when executing the &lt;code&gt;test&lt;&#x2F;code&gt; command. We do this by adding a dependency on &lt;code&gt;test&lt;&#x2F;code&gt; with  &lt;code&gt;(test in Test) &amp;lt;&amp;lt;= (test in Test) dependsOn (jasmine)&lt;&#x2F;code&gt;. This will cause Play to run first the Jasmine tests and, if they succeed, Play own tests will be executed.&lt;&#x2F;p&gt;
+&lt;p&gt;The final code looks like:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;
+val main = PlayProject(appName, appVersion,
+ appDependencies, mainLang = SCALA)
+&amp;#x2F;&amp;#x2F;this adds jasmine settings from the sbt-jasmine plugin into the project
+.settings(jasmineSettings : _*)
+.settings(
+
+  &amp;#x2F;&amp;#x2F; Add your own project settings here
+
+  &amp;#x2F;&amp;#x2F; jasmine configuration overridden
+  appJsDir &amp;lt;+= baseDirectory &amp;#x2F; &amp;quot;app&amp;#x2F;assets&amp;#x2F;javascripts&amp;quot;,
+  appJsLibDir &amp;lt;+= baseDirectory &amp;#x2F; &amp;quot;public&amp;#x2F;javascripts&amp;#x2F;lib&amp;quot;,
+  jasmineTestDir &amp;lt;+= baseDirectory &amp;#x2F; &amp;quot;test&amp;#x2F;assets&amp;#x2F;&amp;quot;,
+  jasmineConfFile &amp;lt;+= baseDirectory &amp;#x2F; &amp;quot;test&amp;#x2F;assets&amp;#x2F;test.dependencies.js&amp;quot;,
+
+  &amp;#x2F;&amp;#x2F; link jasmine to the standard &amp;#x27;sbt test&amp;#x27; action.
+  &amp;#x2F;&amp;#x2F; Now when running &amp;#x27;test&amp;#x27; jasmine tests will be run
+  &amp;#x2F;&amp;#x2F; and after that other Play tests will be executed.
+  (test in Test) &amp;lt;&amp;lt;= (test in Test) dependsOn (jasmine)
+)
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And that&#x27;s all. If you add some Jasmine tests under &lt;code&gt;test&#x2F;assets&lt;&#x2F;code&gt; and then execute &lt;code&gt;play test&lt;&#x2F;code&gt; you will see them being run. Remember what I said about simplicity? Why should you remember to run 2 suits independently when 1 command can do that for you?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;to-be-improved&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#to-be-improved&quot; aria-label=&quot;Anchor link for: to-be-improved&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+To be improved&lt;&#x2F;h2&gt;
+&lt;p&gt;As much as I would like, this is not perfect. I found a couple of issues when integrating Jasmine and Play. Given I&#x27;m not an expert on neither, any help will be appreciated:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;In theory you could use &lt;a href=&quot;http:&#x2F;&#x2F;requirejs.org&#x2F;&quot;&gt;RequireJS&lt;&#x2F;a&gt; to import the Javascript sources to test, but it didn&#x27;t work when I tried. Not sure why and for a standard AngularJs distribution we are talking about 5 Javascript files (it could grow if you break them into components), so it doesn&#x27;t seem such a big deal. But it&#x27;s not perfect.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;AngularJs allows you to declare End to End test scenarios, similar to Selenium but inside AngularJs itself. Unfortunately I couldn&#x27;t make them work, as they require a server running. Given the enhanced Selenium support in newer AngularJS versions I expect one could use Play end to end scenarios to test this part, but I need to put more work on it to ensure it is true.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;If anyone knows how to fix this, please let me know!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Christmas break is over, and on a whim I started to check AngularJs. If you haven't tested it yet, do it. I've toyed around  with Backbone and some other Javascript single page app frameworks, and Angular is by far the one that I liked the most. It has simplicity embedded in its core, and turning tedious tasks (as setting controllers) into something trivial makes it a pleasure to use. Simplicity. Such an important concept, and one which is seldom present in frameworks.
+…</summary>
+        </entry>
+</feed>

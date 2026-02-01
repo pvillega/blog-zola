@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>builder</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - builder</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/builder/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/builder/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2014-02-23T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/builder/atom.xml</id><entry xml:lang="en">
+        <title>Builder Pattern and Inheritance in Java</title>
+        <published>2014-02-23T00:00:00+00:00</published>
+        <updated>2014-02-23T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/builder-pattern-and-inheritance-in-java/" type="text/html"/>
+        <id>https://perevillega.com/posts/builder-pattern-and-inheritance-in-java/</id>
+        
+            <content type="html">&lt;p&gt;At &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt; we are currently doing some changes to the back-end of the site. To that aim we have spent some weeks building tools and scaffolding that will facilitate our next tasks. Planning is important if you want quality.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Given that for this particular project we are using &lt;a href=&quot;http:&#x2F;&#x2F;docs.spring.io&#x2F;spring&#x2F;docs&#x2F;current&#x2F;spring-framework-reference&#x2F;html&#x2F;mvc.html&quot;&gt;Spring MVC&lt;&#x2F;a&gt;, we wanted a way to build our model objects without duplication and to keep things in sync with minimal effort. The builder pattern is a fit, but adding inheritance makes things much more complex than they seem at first glance.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve written about it in a post in our &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;builder-pattern-and-inheritance-in-java-25ccd2d70c9d&quot;&gt;Gumtree dev blog&lt;&#x2F;a&gt;, where you can find some code samples along the explanation of the issue.&lt;&#x2F;p&gt;
+&lt;p&gt;As always, feedback via Twitter&#x2F;Email is more than welcome.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">At Gumtree we are currently doing some changes to the back-end of the site. To that aim we have spent some weeks building tools and scaffolding that will facilitate our next tasks. Planning is important if you want quality.
+…</summary>
+        </entry>
+</feed>

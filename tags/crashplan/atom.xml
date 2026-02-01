@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>crashplan</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - crashplan</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/crashplan/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/crashplan/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2014-01-12T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/crashplan/atom.xml</id><entry xml:lang="en">
+        <title>Raspberry Pi as NAS with Samba</title>
+        <published>2014-01-12T00:00:00+00:00</published>
+        <updated>2014-01-12T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/raspberry-pi-as-nas-with-samba/" type="text/html"/>
+        <id>https://perevillega.com/posts/raspberry-pi-as-nas-with-samba/</id>
+        
+            <content type="html">&lt;p&gt;This year I&#x27;ve bought a &lt;a href=&quot;http:&#x2F;&#x2F;www.raspberrypi.org&#x2F;&quot;&gt;Raspberry Pi&lt;&#x2F;a&gt;. I&#x27;ve wanted to play with it for a long time, but it was one of these things you keep delaying as I wasn&#x27;t sure what to use it for. After moving to London, and given that my NAS died, I found myself in need of a replacement, one that allowed me to install &lt;a href=&quot;http:&#x2F;&#x2F;www.code42.com&#x2F;crashplan&#x2F;&quot;&gt;Crashplan&lt;&#x2F;a&gt; on it if possible (for cloud backup).&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;A commercial NAS unit was a no go even if they had support for Crashplan: they are quite expensive and my experience with Lacie units has not been the best. Having a desktop on 24&#x2F;7 to manage backups would allow me to install Crashplan on it, but it seemed a waste of cpu and electricity. And here is when Raspberry Pi came to save the day: it can be used as a low power PC, but it has enough RAM and CPU to work as NAS and provide some other services. Low power consumption (some estimates are £5-10 per year) and my files are safe. Success!&lt;&#x2F;p&gt;
+&lt;p&gt;As I write this I have my Raspberry Pi connected to 1 Tb storage, using &lt;a href=&quot;http:&#x2F;&#x2F;www.samba.org&#x2F;&quot;&gt;Samba&lt;&#x2F;a&gt; to allow access to the files across the network and backing up all my data via Crashplan. It can even serve videos to my TV via &lt;a href=&quot;http:&#x2F;&#x2F;www.dlna.org&#x2F;&quot;&gt;DLNA&lt;&#x2F;a&gt;. It is not complex to do, but it required browsing a few articles online and putting together some information. In this post I summarise the steps on how to achieve this. I apologise in advance as the post has no images, which makes it a bit dry, but hopefully it is easy to follow.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;requirements&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#requirements&quot; aria-label=&quot;Anchor link for: requirements&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Requirements&lt;&#x2F;h1&gt;
+&lt;p&gt;To follow these steps you need:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Raspberry Pi B with 8 Gb SD card. Take the B model as it has 512Mb of RAM (and you WILL need them). Also buy the SD card they sell, as it has the default operating system (Raspbian) preloaded. It saves time and problems.&lt;&#x2F;li&gt;
+&lt;li&gt;Seagate Backup Plus (1 Tb). This hard drive doesn&#x27;t require an external power cable, it only uses 1 USB cable to connect it to the Raspberry unit, which makes it convenient.&lt;&#x2F;li&gt;
+&lt;li&gt;Power supply for Raspberry Pi. They sell one in their shop, but you can also use any mini USB power supply you have that follows their specifications.&lt;&#x2F;li&gt;
+&lt;li&gt;HDMI cable. To connect Raspberry Pi to a monitor during the initial setup.&lt;&#x2F;li&gt;
+&lt;li&gt;USB keyboard. For the first configuration steps.&lt;&#x2F;li&gt;
+&lt;li&gt;Network cable. You will have one USB port taken by the HD, so it&#x27;s better to keep the other free for a keyboard and connect the Raspberry to the network by cable.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Once you have all the pieces, you can start. I have added references to the sources where I found how to set up the Raspberry in each section, but if you get stuck check &lt;a href=&quot;http:&#x2F;&#x2F;raspberrypi.stackexchange.com&#x2F;&quot;&gt;Stack Exchange&lt;&#x2F;a&gt; as they have a forum dedicated to Raspberry with a lot of useful information.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;setup-of-raspberry-pi&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#setup-of-raspberry-pi&quot; aria-label=&quot;Anchor link for: setup-of-raspberry-pi&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Setup of Raspberry Pi&lt;&#x2F;h1&gt;
+&lt;p&gt;Raspberry has a helpful &lt;a href=&quot;http:&#x2F;&#x2F;www.raspberrypi.org&#x2F;wp-content&#x2F;uploads&#x2F;2012&#x2F;04&#x2F;quick-start-guide-v2_1.pdf&quot;&gt;guide to set up&lt;&#x2F;a&gt; the unit. If you bought the SD card with NOOBS preinstalled then you can skip the few first steps and go straight to the part talking about the first boot.&lt;&#x2F;p&gt;
+&lt;p&gt;Basically, select Raspbian (the recommended OS for Raspberry, &lt;a href=&quot;http:&#x2F;&#x2F;www.debian.org&#x2F;&quot;&gt;Debian&lt;&#x2F;a&gt; based) and wait for it to be installed. It will take a while. Then you will be prompted to restart the unit. After rebooting Raspbian will automatically load a configuration menu, in which we will tweak some options:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Option 1, expand filesystem. It is not needed in NOOBS but run it just in case&lt;&#x2F;li&gt;
+&lt;li&gt;Option 2, set a new password for the user pi. Given that we will log via ssh, you need this&lt;&#x2F;li&gt;
+&lt;li&gt;Option 8, in advanced options make sure that ssh is enabled. I also overclocked the unit (middle option) as it will be running quite a few services.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Once you are done, exit and reboot the unit. Then log into it and install &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Avahi_(software)&quot;&gt;avahi&lt;&#x2F;a&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install avahi-daemon
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will allow us to ssh to the Raspberry via the hostname &lt;em&gt;raspberrypi.local&lt;&#x2F;em&gt;, removing the need to keep track of its ip. Once installed, reboot again the unit and try to log into it via ssh:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;ssh pi@raspberrypi.local
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is the recommended way to connect to the Raspberry Pi. You can remove the HDMI cable and the keyboard from the unit and use ssh from now on to operate on it.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is &lt;a href=&quot;http:&#x2F;&#x2F;www.howtogeek.com&#x2F;138281&#x2F;the-htg-guide-to-getting-started-with-raspberry-pi&#x2F;&quot;&gt;another guide&lt;&#x2F;a&gt; that can help you by covering areas that may not be clear.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;raspberry-as-nas&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#raspberry-as-nas&quot; aria-label=&quot;Anchor link for: raspberry-as-nas&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Raspberry as NAS&lt;&#x2F;h1&gt;
+&lt;p&gt;After setting our Raspberry Pi, we will turn it into a NAS system using Samba, so we can copy files across the network. This requires the external HD to be connected to the unit. There are a couple of step by step &lt;a href=&quot;http:&#x2F;&#x2F;www.howtogeek.com&#x2F;139433&#x2F;how-to-turn-a-raspberry-pi-into-a-low-power-network-storage-device&#x2F;&quot;&gt;guides&lt;&#x2F;a&gt; &lt;a href=&quot;http:&#x2F;&#x2F;www.makeuseof.com&#x2F;tag&#x2F;turn-your-raspberry-pi-into-a-nas-box&#x2F;&quot;&gt;available&lt;&#x2F;a&gt; which can help you through the process. The guides also mention how to use a second hard drive for local data redundancy. I only use one HD by now, but it can be a recommended step to ensure you don&#x27;t lose data.&lt;&#x2F;p&gt;
+&lt;p&gt;As per the guides, the HD is left in NTFS. It is slower than EXT4, but allows us to connect it to a Windows machine directly in case of need. To be able to use that filesystem we need some extra packages, installed via:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install ntfs-3g
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;mounting-the-hd&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#mounting-the-hd&quot; aria-label=&quot;Anchor link for: mounting-the-hd&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Mounting the HD&lt;&#x2F;h2&gt;
+&lt;p&gt;The external hard drive (if you only use one) will be recognised as &lt;strong&gt;&#x2F;dev&#x2F;sda1&lt;&#x2F;strong&gt; by Raspbian. We need to mount it permanently in our filesystem. I chose to mount it in the folder &lt;em&gt;&#x2F;media&#x2F;hd1&lt;&#x2F;em&gt;, by doing the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo mkdir &amp;#x2F;media&amp;#x2F;hd1
+sudo mount -t auto &amp;#x2F;dev&amp;#x2F;sda1 &amp;#x2F;media&amp;#x2F;hd1
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This creates the folder, and mounts the external HD into it. We now need to tell the system to mount the unit every time it boots. Edit &lt;em&gt;fstab&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo nano &amp;#x2F;etc&amp;#x2F;fstab
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and add the following line at the bottom:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;dev&amp;#x2F;sda1 &amp;#x2F;media&amp;#x2F;hd1 auto noatime 0 0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Save and you can restart the Raspberry Pi to check that the disk is mounted at &lt;em&gt;&#x2F;media&#x2F;hd1&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;samba&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#samba&quot; aria-label=&quot;Anchor link for: samba&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Samba&lt;&#x2F;h2&gt;
+&lt;p&gt;We use a specific folder in the HD for our Samba share, so we can isolate the shared folder from other files we may want to store in the disk.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo mkdir &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;share
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Install Samba, do a backup of the default configuration and edit it by running:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install samba samba-common-bin
+sudo cp &amp;#x2F;etc&amp;#x2F;samba&amp;#x2F;smb.conf &amp;#x2F;etc&amp;#x2F;samba&amp;#x2F;smb.conf.old
+sudo nano &amp;#x2F;etc&amp;#x2F;samba&amp;#x2F;smb.conf
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the config file, uncomment the line:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;security = user
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and add at the bottom of the file:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;[Share]
+comment = My share
+path = &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;share
+valid users = @users
+force group = users
+create mask = 0660
+directory mask = 0771
+read only = no
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I also took a page of this &lt;a href=&quot;https:&#x2F;&#x2F;calomel.org&#x2F;samba_optimize.html&quot;&gt;guide&lt;&#x2F;a&gt; on optimising Samba and replaced the &lt;em&gt;socket options&lt;&#x2F;em&gt; in the file by:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;socket options = TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=65536 SO_SNDBUF=65536
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;with the aim of improving performance.&lt;&#x2F;p&gt;
+&lt;p&gt;The next step is creating a user that can access the share when connecting via the network. I created a user called &lt;em&gt;nas&lt;&#x2F;em&gt;, typing the password I chose when prompted:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;useradd nas -m -G users
+passwd nas
+smbpasswd -a nas
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Restart Samba:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;service samba restart
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and you should be able to access the share in your network by using the user &lt;em&gt;nas&lt;&#x2F;em&gt; and its credentials.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;crashplan&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#crashplan&quot; aria-label=&quot;Anchor link for: crashplan&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Crashplan&lt;&#x2F;h1&gt;
+&lt;p&gt;Crashplan is my tool of choice for remote backups, sending the data in our NAS to the cloud. We will run it as a headless client, which means that we run the service in Raspberry but the client, which we use to configure the backup options, runs in another computer and connects via the network.&lt;&#x2F;p&gt;
+&lt;p&gt;The service is a Java application, which means that we have to install the &lt;em&gt;jvm&lt;&#x2F;em&gt; into Raspberry Pi. Given that the Oracle implementation is much better than the OpenJDK one, the first step is to purge OpenJDK and install Oracle&#x27;s Java, ensuring it is the default choice in the system:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get purge openjdk-\* icedtea-\* icedtea6-\*
+sudo apt-get install oracle-java7-jdk
+sudo update-alternatives --list java
+sudo update-alternatives —config java
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;At this point, we can follow the steps in &lt;a href=&quot;http:&#x2F;&#x2F;www.bionoren.com&#x2F;blog&#x2F;2013&#x2F;02&#x2F;raspberry-pi-crashplan&#x2F;&quot;&gt;this guide&lt;&#x2F;a&gt; to install Crashplan in our Raspberry.  The guide also install Java 8, we skip that and go straight to point 8. I summarise the steps in here as a quick reference.&lt;&#x2F;p&gt;
+&lt;p&gt;First &lt;a href=&quot;http:&#x2F;&#x2F;www.crashplan.com&#x2F;consumer&#x2F;download.html?os=Linux&quot;&gt;Download&lt;&#x2F;a&gt; Crashplan for Linux, copy it to the Raspberry (via scp) and extract it there. Then run the installer:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;sudo Crashplan-install&amp;#x2F;install.sh
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Accept the license and select the default locations for the installation. Then you need to patch &lt;a href=&quot;http:&#x2F;&#x2F;www.jonrogers.co.uk&#x2F;wp-content&#x2F;uploads&#x2F;2012&#x2F;05&#x2F;libjtux.so&quot;&gt;libjtux&lt;&#x2F;a&gt; and &lt;a href=&quot;http:&#x2F;&#x2F;www.jonrogers.co.uk&#x2F;wp-content&#x2F;uploads&#x2F;2012&#x2F;05&#x2F;libmd5.so&quot;&gt;md5 library&lt;&#x2F;a&gt; by downloading the linked files and copying them to &lt;em&gt;&#x2F;usr&#x2F;local&#x2F;crashplan&#x2F;&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;You also need to install &lt;em&gt;libjna&lt;&#x2F;em&gt; for Java:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install libjna-java
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once done, edit &lt;em&gt;&#x2F;usr&#x2F;local&#x2F;crashplan&#x2F;bin&#x2F;CrashPlanEngine&lt;&#x2F;em&gt; and find the line that begins with &lt;em&gt;FULL_CP=&lt;&#x2F;em&gt;, around the start case, and edit it so it looks like:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;FULL_CP=&amp;quot;&amp;#x2F;usr&amp;#x2F;share&amp;#x2F;java&amp;#x2F;jna.jar:$TARGETDIR&amp;#x2F;lib&amp;#x2F;com.backup42.desktop.jar:$TARGETDIR&amp;#x2F;lang&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The last step is to run the Crashplan engine at boot time by editing &lt;em&gt;&#x2F;etc&#x2F;rc.local&lt;&#x2F;em&gt; and adding on the line above &lt;em&gt;exit 0&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;usr&amp;#x2F;local&amp;#x2F;crashplan&amp;#x2F;bin&amp;#x2F;CrashPlanEngine start
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Restart the unit and if everything worked when you run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;usr&amp;#x2F;local&amp;#x2F;crashplan&amp;#x2F;bin&amp;#x2F;CrashPlanEngine status
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;you should see the service is running.&lt;&#x2F;p&gt;
+&lt;p&gt;There is &lt;a href=&quot;http:&#x2F;&#x2F;www.bionoren.com&#x2F;blog&#x2F;2013&#x2F;02&#x2F;raspberry-pi-crashplan&#x2F;#comment-97&quot;&gt;a comment&lt;&#x2F;a&gt; in the above guide that shows how to modify the swap to point to another file. There are two good reasons for this. First of all, the default swap in Raspberry is not much, and Raspbian may kill processes heavy in RAM when running low on memory, increasing the swap will avoid it killing Crashplan on a whim. Secondly, Java may do heavy use of the swap and thus shorten the life of the SD card by doing many writes to it, which we can fix by moving the swap to our external disk. I created a swap file in the external hd by following the instructions:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;dd if=&amp;#x2F;dev&amp;#x2F;zero of=&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile bs=1M count=1024
+mkswap &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile
+chown root:root &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile
+chmod 0600 &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile
+swapon &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile
+sudo apt-get purge dphys-swapfile
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then we apply this change on each boot by editing &lt;em&gt;&#x2F;etc&#x2F;fstab&lt;&#x2F;em&gt; and adding to the bottom (to ensure the disk that contains the swap is mounted first):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile swap swap defaults 0 0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Restart the Raspberry and execute &lt;em&gt;free&lt;&#x2F;em&gt;. You should see a swap of 1Gb.&lt;&#x2F;p&gt;
+&lt;p&gt;I won&#x27;t enter into detail on how to connect a headless client as the &lt;a href=&quot;http:&#x2F;&#x2F;support.code42.com&#x2F;CrashPlan&#x2F;Latest&#x2F;Configuring&#x2F;Configuring_A_Headless_Client&quot;&gt;official guide&lt;&#x2F;a&gt; explains it perfectly. Just remember that you will need to run the tunnel every time you connect via the client, and the tunnels timeout from time to time.&lt;&#x2F;p&gt;
+&lt;p&gt;Now configure Crashplan to backup the files in &lt;em&gt;&#x2F;media&#x2F;hd1&#x2F;share&lt;&#x2F;em&gt; to their cloud and you are done.&lt;&#x2F;p&gt;
+&lt;p&gt;There is an optional last step you can follow. The settings above should ensure that Crashplan is not killed by Raspbian, but this may happen. To fix this without us having to ssh into the box every day, I&#x27;ve added a &lt;em&gt;cronjob&lt;&#x2F;em&gt; that restarts the Raspberry every day at 2 am. If you are not a &lt;em&gt;crontab&lt;&#x2F;em&gt; expert you can see how to do this &lt;a href=&quot;http:&#x2F;&#x2F;raspberrypi.stackexchange.com&#x2F;questions&#x2F;2150&#x2F;how-do-i-reboot-at-a-specific-time&quot;&gt;in this stack exchange&lt;&#x2F;a&gt; question, just replace the &lt;em&gt;0,8&lt;&#x2F;em&gt; by a &lt;em&gt;2&lt;&#x2F;em&gt;. In my case 2am is not a time when I will be using the NAS, so a restart should not be an issue and it will ensure that any services that were killed are restarted accordingly.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;torrents&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#torrents&quot; aria-label=&quot;Anchor link for: torrents&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Torrents&lt;&#x2F;h1&gt;
+&lt;p&gt;We have a NAS backed up in the cloud. Given that it will be running 24&#x2F;7, we can try to squeeze it a bit more by adding a torrent client to the box. That way you can download you latest Linux distro without having to keep your desktop on all night, Raspberry rakes care about it. There is a guide on how to &lt;a href=&quot;http:&#x2F;&#x2F;www.howtogeek.com&#x2F;142044&#x2F;how-to-turn-a-raspberry-pi-into-an-always-on-bittorrent-box&#x2F;&quot;&gt;install deluge&lt;&#x2F;a&gt; as a headless server, which we can then access via a remote client or a web interface.&lt;&#x2F;p&gt;
+&lt;p&gt;To start, we install &lt;em&gt;deluged&lt;&#x2F;em&gt; and we run it so it creates the default config files:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install deluged
+sudo apt-get install deluge-console
+deluged
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Wait for a couple of minutes so all the files are created, and then kill the process:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo pkill deluged
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now we backup the authentication file and edit it to add a new user:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cp ~&amp;#x2F;.config&amp;#x2F;deluge&amp;#x2F;auth ~&amp;#x2F;.config&amp;#x2F;deluge&amp;#x2F;auth.old
+nano ~&amp;#x2F;.config&amp;#x2F;deluge&amp;#x2F;auth
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;There you can add a user in the format &lt;em&gt;user:password:10&lt;&#x2F;em&gt;. The user and password don&#x27;t need to match any existing user, they are the credentials you will use to remotely connect to the server via the client. Now we start the service again and we enter into the console:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;deluged
+deluge-console
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the console we run the following commands to allow for remote connections to the service:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;config -s allow_remote True
+config allow_remote
+exit
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And to apply the new configuration we restart the service:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo pkill deluged
+deluged
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The last step is to run &lt;em&gt;deluged&lt;&#x2F;em&gt; at boot time by editing &lt;em&gt;&#x2F;etc&#x2F;rc.local&lt;&#x2F;em&gt; and adding on the line above &lt;em&gt;exit 0&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;deluged
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I won&#x27;t explain how to connect via the client as the guide linked above has a complete explanation, with images, and it is quite straightforward. I just recommend you to only download 1 torrent at once and to set the destination folder for all the torrents to a path inside the &lt;em&gt;samba share&lt;&#x2F;em&gt;, so you can access it from the network. Just make sure Crashplan doesn&#x27;t backup that folder. As we have plenty of memory in use in this Raspberry I&#x27;ve not installed the web interface as I thought it was of little benefit and we can use that RAM for other things.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;dlna&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#dlna&quot; aria-label=&quot;Anchor link for: dlna&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+DLNA&lt;&#x2F;h1&gt;
+&lt;p&gt;Given the amount of storage in the NAS, we will probably keep plenty of photos and videos in it. We can install a &lt;a href=&quot;http:&#x2F;&#x2F;www.dlna.org&#x2F;&quot;&gt;DLNA&lt;&#x2F;a&gt; compliant server in our Raspberry that will index all the media files in our share and make them available to any DLNA compatible device: smartphones, laptops or TVs. We do this by installing &lt;em&gt;minidlna&lt;&#x2F;em&gt;, an open source implementation of the protocol.&lt;&#x2F;p&gt;
+&lt;p&gt;The process, taken from &lt;a href=&quot;http:&#x2F;&#x2F;www.raspberrypi.org&#x2F;phpBB3&#x2F;viewtopic.php?t=16352&quot;&gt;this guide&lt;&#x2F;a&gt;, is extremely simple. Be aware that the guide does many other things we already took care of, just skip them and scroll down to the part that says &lt;em&gt;install minidlna&lt;&#x2F;em&gt;. In your Raspberry run:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install minidlna
+sudo update-rc.d minidlna defaults
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With this minidlna is installed and ready to run when rebooting the unit. Modify the configuration by editing &lt;em&gt;&#x2F;etc&#x2F;minidlna.conf&lt;&#x2F;em&gt; (as root). In the config, look for the following sections and update accordingly:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;media_dir=A,&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;share&amp;#x2F;Music
+media_dir=V,&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;share&amp;#x2F;Video
+media_dir=P,&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;share&amp;#x2F;Photos
+
+db_dir=&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;dlna
+
+log_dir=&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;dlna
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The media folders are an example, set them accordingly as per your &lt;em&gt;share&lt;&#x2F;em&gt; folder structure. The other two entries store minidlna metadata and logs in the external hd so we have enough room for them.&lt;&#x2F;p&gt;
+&lt;p&gt;Restart the service via:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;sudo service minidlna force-reload
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And wait for the service to index all the files. It is quite fast, depending on how many media files you own, but until a file is indexed you won&#x27;t be able to access it.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Conclusion&lt;&#x2F;h1&gt;
+&lt;p&gt;You are done, you have a NAS with full cloud backup, torrenting capabilities and that can act as a media centre and show videos or photos in your TV. Congratulations! Enjoy it as much as I do enjoy mine :)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">This year I've bought a Raspberry Pi. I've wanted to play with it for a long time, but it was one of these things you keep delaying as I wasn't sure what to use it for. After moving to London, and given that my NAS died, I found myself in need of a replacement, one that allowed me to install Crashplan on it if possible (for cloud backup).
+…</summary>
+        </entry>
+</feed>

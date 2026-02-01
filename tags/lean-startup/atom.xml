@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>lean startup</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - lean startup</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/lean-startup/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/lean-startup/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2013-10-20T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/lean-startup/atom.xml</id><entry xml:lang="en">
+        <title>On Learn Startup and Personal Waste</title>
+        <published>2013-10-20T00:00:00+00:00</published>
+        <updated>2013-10-20T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/on-learn-startup-and-personal-waste/" type="text/html"/>
+        <id>https://perevillega.com/posts/on-learn-startup-and-personal-waste/</id>
+        
+            <content type="html">&lt;p&gt;I recently finished reading &lt;a href=&quot;http:&#x2F;&#x2F;theleanstartup.com&#x2F;&quot;&gt;The Lean Startup&lt;&#x2F;a&gt;, a (relatively) new approach on development and innovation on software companies. An interesting and recommended reading for anyone involved in software development.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;The book is not new, the &lt;em&gt;Lean Startup&lt;&#x2F;em&gt; idea was &#x27;released&#x27; on 2011, and I had become familiar with several of the concepts explained through posts on Hacker News or other sources. Unfortunately, the summaries and excerpts that you can get online are not the same as reading the book: it contains examples and necessary context that make it much more enlightening. Given that I love to read, not purchasing the book earlier was a big mistake (lazy me!). If you are in the same situation, vague knowledge on the subject but didn&#x27;t read the book, please do yourself a favour and read it. It&#x27;s around 300 pages, it won&#x27;t take you long.&lt;&#x2F;p&gt;
+&lt;p&gt;No, I won&#x27;t make any summary on the main ideas or the content. As I said, there are plenty of summaries out there and I think by not reading the book but the excerpts, you will be missing a lot. So, why this post then? Well, the book contains many relevant ideas that &lt;em&gt;just fit&lt;&#x2F;em&gt;, they seem completely obvious and you wonder why you didn&#x27;t think about them before. It explains a way of working quite different from the one I&#x27;m used to, and given that my &lt;a href=&quot;https:&#x2F;&#x2F;perevillega.com&#x2F;posts&#x2F;on-learn-startup-and-personal-waste&#x2F;www.gumtree.com&quot;&gt;new company&lt;&#x2F;a&gt; uses this process I have plenty of work ahead of me to adapt. But, mostly, because one concept in the book made me think about my personal workflow.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s talk about that concept: &lt;strong&gt;waste&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The book spends a decent amount of time talking about waste in a company, but what about waste in our personal life? This is not a brilliant personal breakthrough, even the opposite: it is an obvious thought. It&#x27;s a popular subject online, plenty of places talk about it and there are plenty of applications out there to try to help you managing your time.&lt;&#x2F;p&gt;
+&lt;p&gt;But even when you know about it and expect it, waste has a tendency to creep into your life and become a bad habit without you noticing it. And the problem is not the waste that we can expect and, somehow, limit: hours lost to Twitter, Youtube, Games or similar. No. As an example, the book mentions how a company can stop a production lane because it is more beneficial to solve an issue then than to keep working with it going on. Not a direct translation to personal habits, but what about &lt;a href=&quot;http:&#x2F;&#x2F;www.lifestyleupdated.com&#x2F;2013&#x2F;08&#x2F;05&#x2F;eliminating-w4w-work-for-works-sake-and-an-announcement&#x2F;&quot;&gt;work for work&#x27;s sake&lt;&#x2F;a&gt;? Or about bad habits that may look useful but, if you look at them in detail, they are not?&lt;&#x2F;p&gt;
+&lt;p&gt;Try a simple exercise: take an excel spreadsheet and draw a table of 7 x 24 cells. Label the 7 rows as the days of the week and number the columns to map the hours in a day. Now, write in each cell  what you did during that hour the last week. Once you are done, count how many blank cells you have. That&#x27;s your free time. Colour it, if you want, to make it more visible. Not so much, isn&#x27;t it? Scared? Where did your time go?&lt;&#x2F;p&gt;
+&lt;p&gt;Recently &lt;a href=&quot;http:&#x2F;&#x2F;unicornfree.com&#x2F;&quot;&gt;Amy Hoy&lt;&#x2F;a&gt; has sent to their email subscribers some content on this subject. A collection of ideas to reduce waste on your personal life and free some time for your personal objectives. You will need to join her mailing list to see the content as I can&#x27;t link it here. And she is not the only one: methodologies like GTD exist to streamline your tasks, to optimize your &lt;em&gt;output&lt;&#x2F;em&gt; and be more &lt;em&gt;efficient&lt;&#x2F;em&gt;. As if.&lt;&#x2F;p&gt;
+&lt;p&gt;Personally, I&#x27;ve noticed a repeating pattern in my tasks: I build waste periodically, and I end up doing massive clean ups from time to time in which I go through my TO-DO list and start removing things. The worst part is the way the list grows. A piece of news that I can&#x27;t check at work, stored for later. A long technical talk that I intend to watch that evening but, for some reason, I end up not watching that day. Some relevant module or technology that may require a couple of hours of my time to test it. Slowly, things add up. And one day you have plenty of important tasks and many small ones that you couldn&#x27;t tackle in the past. And, after the clean up, the cycle starts again.&lt;&#x2F;p&gt;
+&lt;p&gt;Because, how easy is to identify waste before it becomes so? You have personal projects, career aspirations, a social life, a wife... It may seem obvious to keep a link to a video to check it later. Of course I should do &lt;em&gt;activity x&lt;&#x2F;em&gt;, is good for this &lt;em&gt;part&lt;&#x2F;em&gt; of my life. And so on. We have many facets (or we should if we want to fully enjoy life) and what is relevant to one facet may be waste to another. Prioritizing is not easy (besides the obvious ones), the hours are limited and things pile up. You don&#x27;t want to miss things. But it&#x27;s unavoidable, you&#x27;ll miss things and your acceptance of this fact is key. But it&#x27;s not easy, nor convenient.&lt;&#x2F;p&gt;
+&lt;p&gt;How to solve this? Processes can be cumbersome and produce more waste than they save. I personally use Trello and Remember The Milk to manage my time, and they kind of work, but they are not perfect. Is this a business opportunity? Maybe. There are simple ways to do this? Maybe. But it is not simple, for sure.&lt;&#x2F;p&gt;
+&lt;p&gt;So, yes, interesting book and it helped me to pay more attention to my personal organization. Hopefully I&#x27;ll improve in this area, I&#x27;ll keep you posted.&lt;&#x2F;p&gt;
+&lt;p&gt;Obviously, feel free to send me your ideas on this issue. I&#x27;ll be glad to chat :)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">I recently finished reading The Lean Startup, a (relatively) new approach on development and innovation on software companies. An interesting and recommended reading for anyone involved in software development.
+…</summary>
+        </entry>
+</feed>

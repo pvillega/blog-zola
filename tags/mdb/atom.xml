@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>mdb</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - mdb</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/mdb/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/mdb/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2010-02-05T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/mdb/atom.xml</id><entry xml:lang="en">
+        <title>Message-Driven Beans</title>
+        <published>2010-02-05T00:00:00+00:00</published>
+        <updated>2010-02-05T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/message-driven-beans/" type="text/html"/>
+        <id>https://perevillega.com/posts/message-driven-beans/</id>
+        
+            <content type="html">&lt;p&gt;This page contains a brief summary of &lt;strong&gt;EJB 3.0 Message-Driven Beans (MDB)&lt;&#x2F;strong&gt;. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like &lt;strong&gt;EJB3 in Action&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Message-Driven Beans are an abstraction over Java Messaging Service (JMS). They are used to send and receive messages in your application without having to know all the details about JMS. That said a good understanding of JMS is important for the correct use of MDB. The advantages of MDB over standard JMS coding are the services provided by the container (like pooling) and the reduction on code size due to automation of tasks.&lt;&#x2F;p&gt;
+&lt;p&gt;By message (in the context of a JEE application) we mean an asynchronous and loosely coupled communication between system components. Using Message-Oriented Middleware (MOM) messages sent are stored until a consumer is available to read them. We consider two types of communication:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Point-to-point&lt;&#x2F;strong&gt;: the message is stored in a queue and received by one of the N possible consumers of the message&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Publish-Subscribe&lt;&#x2F;strong&gt;: message is received by N subscribers that belong to a specific group of receivers&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;MDB are POJOs like other EJB and require a public constructor without arguments. You can&#x27;t throw any RuntimeException or RemoteException as that would cause the MDB to be terminated. They also have the following requirements:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Implement MessageListener interface&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;use @MessageDriven annotation to configure the queue they are listening and some JMS properties (using @ActivationConfigProperty). Values include:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;acknowledgeMode: (on Queues) to notify the consumption of the message&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;subscriptionDurability: (on Topics) guaranties delivery of message to offline subscribers&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;messageSelector: filters messages consumed using a property of the message included in the message header&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;it has two lifecycle callbacks (@PreDestroy and @PostConstruct) equivalent to the Session Bean ones.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;can send messages but you need to follow the JMS API for that, using a Connection Factory, etc.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;by default the &quot;onMessage&quot; method creates a transaction that rolls-back if there&#x27;s any error while processing the message, leaving the message in the queue for another consumer.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Example of MDB listening to a Queue (point-to-point communication) named SampleServerQueue:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@MessageDriven(mappedName = &amp;quot;SampleServerQueue&amp;quot;, activationConfig = {
+  @ActivationConfigProperty(propertyName = &amp;quot;acknowledgeMode&amp;quot;,
+     propertyValue = &amp;quot;Auto-acknowledge&amp;quot;),
+  @ActivationConfigProperty(propertyName = &amp;quot;destinationType&amp;quot;,
+     propertyValue = &amp;quot;javax.jms.Queue&amp;quot;)
+})
+public class MDBTestBean implements MessageListener {
+
+  &amp;#x2F;&amp;#x2F;create the references to a destination Queue
+  &amp;#x2F;&amp;#x2F;where we will send messages using DI
+  @Resource(name = &amp;quot;jms&amp;#x2F;ShippingErrorQueue&amp;quot;)
+  private Destination errorQueue;
+
+  @Resource(name = &amp;quot;jms&amp;#x2F;QueueConnectionFactory&amp;quot;)
+  private ConnectionFactory connectionFactory;
+
+  private Connection jmsConnection;
+
+  public MDBTestBean() { }
+
+  &amp;#x2F;&amp;#x2F;message consumer, reads a message from the queue
+  public void onMessage(Message message) {
+    &amp;#x2F;&amp;#x2F; code
+  }
+
+  &amp;#x2F;&amp;#x2F;send a message
+  public void sendMessage() {
+
+    try {
+      Session session = jmsConnection.
+        createSession(true, Session.AUTO_ACKNOWLEDGE);
+      MessageProducer producer = session.createProducer(errorQueue);
+      ObjectMessage message = session.createObjectMessage();
+
+      &amp;#x2F;&amp;#x2F;add info to message
+      message.setObject(&amp;quot;Message&amp;quot;);
+
+      producer.send(message);
+      session.close();
+
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+
+  @PostConstruct
+  private void onConstruct() {
+
+    try {
+      jmsConnection = connectionFactory.createConnection();
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+
+  @PreDestroy
+  private void onDestroy() {
+
+    try {
+      jmsConnection.close();
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        <summary type="html">This page contains a brief summary of EJB 3.0 Message-Driven Beans (MDB). It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+…</summary>
+        </entry>
+</feed>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>scala steward</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - scala steward</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/scala-steward/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/scala-steward/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-01-28T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/scala-steward/atom.xml</id><entry xml:lang="en">
+        <title>Automerge your Scala Steward pull-requests</title>
+        <published>2023-01-28T00:00:00+00:00</published>
+        <updated>2023-01-28T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/scala-steward-automerge/" type="text/html"/>
+        <id>https://perevillega.com/posts/scala-steward-automerge/</id>
+        
+            <content type="html">&lt;p&gt;If you code in Scala, it is likely that you use &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;scala-steward-org&#x2F;scala-steward&quot;&gt;Scala Steward&lt;&#x2F;a&gt; to keep your dependencies up-to-date. But merging all the pull-requests it generates is tiring. This blog post tries to solve that.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;As a note, the following instructions only work if you store your codebase in Github. Which is a safe bet, nowadays. If you use Gitlab or another system, you need to adapt the instructions to your platform.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;prerequisites&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#prerequisites&quot; aria-label=&quot;Anchor link for: prerequisites&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Prerequisites&lt;&#x2F;h2&gt;
+&lt;p&gt;You need Administrator access to the repository. You need to tweak some settings in Github to allow for the automation,&lt;&#x2F;p&gt;
+&lt;p&gt;An associated Github App, for your repository or organisation, must exist. To create one, follow steps 1 to 4 from &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;marketplace&#x2F;actions&#x2F;scala-steward-github-action&quot;&gt;these instructions&lt;&#x2F;a&gt;. You don&#x27;t need to configure Scala Steward at this point. We provide the configuration required later on. But the secrets must exist in the repository.&lt;&#x2F;p&gt;
+&lt;p&gt;Finally, you need an existing Github action that builds your project. This must be set up to build any pull-request created in the project. Without it, we can&#x27;t know if a library upgrade breaks the codebase and if we can merge it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;repository-settings&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#repository-settings&quot; aria-label=&quot;Anchor link for: repository-settings&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Repository Settings&lt;&#x2F;h2&gt;
+&lt;p&gt;To start with, we need to change some settings in the repository.&lt;&#x2F;p&gt;
+&lt;p&gt;Go to &lt;code&gt;Settings&lt;&#x2F;code&gt; and, in the &lt;code&gt;General&lt;&#x2F;code&gt; tab, scroll down to he &lt;code&gt;Pull Request&lt;&#x2F;code&gt; section. Make sure to select both &lt;code&gt;Allow Auto-merge&lt;&#x2F;code&gt;, and &lt;code&gt;Automatically delete head branches&lt;&#x2F;code&gt;. If you see some options greyed out, that may be because you have an organisation that is using the free plan. In this case, you can&#x27;t enable auto-merge until you upgrade to a paid plan, sorry.&lt;&#x2F;p&gt;
+&lt;p&gt;In &lt;code&gt;Settings&lt;&#x2F;code&gt;, go to the &lt;code&gt;Branches&lt;&#x2F;code&gt; section and create a new &lt;code&gt;Branch protection rule&lt;&#x2F;code&gt;. Select your &lt;code&gt;main&lt;&#x2F;code&gt; branch as the target, or a branch where you usually merge your pull-requests. Then, select the following options:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Require a pull request before merging&lt;&#x2F;code&gt; and &lt;code&gt;Require approvals&lt;&#x2F;code&gt; (set to 1) . Also  &lt;code&gt;Dismiss stale pull requests approvals&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;Require status checks to pass before merging&lt;&#x2F;code&gt;. In the search box, find the Github action that builds your project. Keep &lt;code&gt;Require branches to be up to date&lt;&#x2F;code&gt; disabled.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;workflows&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#workflows&quot; aria-label=&quot;Anchor link for: workflows&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Workflows&lt;&#x2F;h2&gt;
+&lt;p&gt;Save the changes to your repository settings. Now you need to add the following three workflows to your repository. You can copy the contents into the indicated files.&lt;&#x2F;p&gt;
+&lt;p&gt;File: &lt;code&gt;autoapprove.yaml&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;name: Auto approve
+
+on: pull_request
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    if: startsWith(github.head_ref, &amp;#x27;update&amp;#x2F;&amp;#x27;)
+    steps:
+      - uses: hmarr&amp;#x2F;auto-approve-action@v3
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;File: &lt;code&gt;automerge.yml&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;name: Auto-merge
+on: pull_request
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    if: startsWith(github.head_ref, &amp;#x27;update&amp;#x2F;&amp;#x27;)
+    steps:
+      - name: Generate token
+        id: generate-token
+        uses: tibdex&amp;#x2F;github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+      - uses: peter-evans&amp;#x2F;enable-pull-request-automerge@v2
+        with:
+          pull-request-number: ${{ github.event.pull_request.number }}
+          merge-method: rebase
+          token: ${{ steps.generate-token.outputs.token }}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;File: &lt;code&gt;scala-steward.yml&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;# This workflow will launch at 7:00 am (UTC) each night
+on:
+  schedule:
+    - cron: &amp;#x27;0 7 * * *&amp;#x27;
+  workflow_dispatch:
+
+name: Scala Steward
+
+jobs:
+  scala-steward:
+    runs-on: ubuntu-latest
+    name: Launch Scala Steward
+    steps:
+      - name: Generate token
+        id: generate-token
+        uses: tibdex&amp;#x2F;github-app-token@v1
+        with:
+          app_id: ${{ secrets.APP_ID }}
+          private_key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: Launch Scala Steward
+        uses: scala-steward-org&amp;#x2F;scala-steward-action@v2.28.0
+        with:
+          github-token: ${{ steps.generate-token.outputs.token }}
+          author-name: scala-steward
+          author-email: scala-steward@example.com
+          other-args: &amp;#x27;--add-labels&amp;#x27;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Commit and push the files, and you are ready to test this.&lt;&#x2F;p&gt;
+&lt;p&gt;Go to &lt;code&gt;Actions&lt;&#x2F;code&gt; in your repository, select &lt;code&gt;Scala Steward&lt;&#x2F;code&gt;, and click on &lt;code&gt;run workflow&lt;&#x2F;code&gt;. Run it against the &lt;code&gt;main&lt;&#x2F;code&gt; branch (or your corresponding branch). Once Scala Steward finishes, check your current pull-requests. You can open any new pull-request created, and see the build process and approvals. Once the build step finishes successfully, it will be merged. If a build fails, it will not be merged.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all for now, I hope this was informative and useful. As always, feedback via Mastodon&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">If you code in Scala, it is likely that you use Scala Steward to keep your dependencies up-to-date. But merging all the pull-requests it generates is tiring. This blog post tries to solve that.
+…</summary>
+        </entry>
+</feed>

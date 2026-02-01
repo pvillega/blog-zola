@@ -1,0 +1,1 @@
+#posts-list .bloglist-meta ul:empty{display:none}#posts-list .bloglist-meta:has(ul:empty){display:none}#posts-list .bloglist-container:has(.bloglist-meta ul:empty){grid-template-columns:1fr}

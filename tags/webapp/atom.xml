@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>webapp</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - webapp</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/webapp/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/webapp/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2013-08-26T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/webapp/atom.xml</id><entry xml:lang="en">
+        <title>Breaking the 1000ms Time to Glass Mobile Barrier</title>
+        <published>2013-08-26T00:00:00+00:00</published>
+        <updated>2013-08-26T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/breaking-the-1000ms-time-to-glass-mobile-barrier/" type="text/html"/>
+        <id>https://perevillega.com/posts/breaking-the-1000ms-time-to-glass-mobile-barrier/</id>
+        
+            <content type="html">&lt;p&gt;Mobile is the new king and HTML 5 allows developers to, at last, build once and run everywhere: tablets, phones, desktops...&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Nothing controversial in that sentence, but unfortunately Mobile is still &lt;em&gt;slow&lt;&#x2F;em&gt;. And even if we see again and again that we should do &lt;em&gt;mobile first&lt;&#x2F;em&gt; when building a web site, that doesn&#x27;t seem to work. At east judging by the rendering time of a normal page in my smartphone. And &lt;a href=&quot;http:&#x2F;&#x2F;www.fastcompany.com&#x2F;1825005&#x2F;how-one-second-could-cost-amazon-16-billion-sales&quot;&gt;page load time is money&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;youtu.be&#x2F;Il4swGfTOSM&quot;&gt;Breaking the 1000ms Time to Glass Mobile Barrier&lt;&#x2F;a&gt; is an amazing video from Ilya Grigorik in which he explains how to prepare your website to it renders fast in mobile. Fast as in under 1s.&lt;&#x2F;p&gt;
+&lt;p&gt;The video is completely worth your time, but as a kind of &lt;em&gt;TL;DR&lt;&#x2F;em&gt; some of the most relevant hints in it:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Render in &lt;em&gt;100ms&lt;&#x2F;em&gt; feels instant, &lt;em&gt;250ms&lt;&#x2F;em&gt; is the maximum for a good usability experience&lt;&#x2F;li&gt;
+&lt;li&gt;Mobile leaves you &lt;em&gt;400-500ms&lt;&#x2F;em&gt; for server and client processing due to network innate slowness&lt;&#x2F;li&gt;
+&lt;li&gt;This means we have &lt;em&gt;100ms&lt;&#x2F;em&gt; for server processing, &lt;em&gt;100ms&lt;&#x2F;em&gt; for client processing and &lt;em&gt;200ms&lt;&#x2F;em&gt; to download external resources and run javascript. Tight!&lt;&#x2F;li&gt;
+&lt;li&gt;Reuse connections, do bulk transfers and compress data to fight the mobile network latency&lt;&#x2F;li&gt;
+&lt;li&gt;Do progressive enhancement&lt;&#x2F;li&gt;
+&lt;li&gt;Optimizing images for size is a must&lt;&#x2F;li&gt;
+&lt;li&gt;Turn javascript &lt;em&gt;async&lt;&#x2F;em&gt; whenever possible&lt;&#x2F;li&gt;
+&lt;li&gt;Inline the critical CSS (the one to render things above the fold) and load the rest asynchronously via javascript&lt;&#x2F;li&gt;
+&lt;li&gt;Minimize the use of javascript, don&#x27;t use any in the critical rendering path, only after loading the page&lt;&#x2F;li&gt;
+&lt;li&gt;Chrome has a critical path explorer to highlight the fragments that block rendering&lt;&#x2F;li&gt;
+&lt;li&gt;Chrome can also &lt;em&gt;audit&lt;&#x2F;em&gt; the page for unused CSS styles&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And with this, you can render your app &lt;em&gt;fast&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Mobile is the new king and HTML 5 allows developers to, at last, build once and run everywhere: tablets, phones, desktops...
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Responsive Design and Mobile First</title>
+        <published>2012-07-22T00:00:00+00:00</published>
+        <updated>2012-07-22T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/responsive-design-and-mobile-first/" type="text/html"/>
+        <id>https://perevillega.com/posts/responsive-design-and-mobile-first/</id>
+        
+            <content type="html">&lt;p&gt;Mobile browsing is becoming the norm. With the advent of devices like the new iPad or the Nexus 7, predictions that &lt;a href=&quot;http:&#x2F;&#x2F;blog.aids.gov&#x2F;2011&#x2F;10&#x2F;mobile-internet-use-surpassing-desktop-internet-use-by-2014.html&quot;&gt;mobile will surpass desktop in 2014&lt;&#x2F;a&gt; seem wrong: it may happen &lt;a href=&quot;http:&#x2F;&#x2F;www.mobify.com&#x2F;blog&#x2F;mobile-web-growing-8-times-faster-than-web&#x2F;&quot;&gt;even earlier&lt;&#x2F;a&gt;. I find myself, loving desktops as I do, using Internet on my mobile more and more often. That constant access to the net is so handy...&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;But as a web developer this provides a new challenge: your site needs to work properly both in Mobile and Desktop browsers (and in all the flavours of each: Chrome, Safari, Firefox, IE, etc.). Not so long ago this was solved by having two versions of your site, a mobile one and the classic one, where you redirected the user to the correct one as per their browser (and the mobile site was usually a poorer experience).&lt;&#x2F;p&gt;
+&lt;p&gt;Given the new relevance of the mobile versions of the site for the companies, that approach wasn&#x27;t sustainable. The model has evolved and currently there is a lot of buzz around two concepts that replace it: &lt;strong&gt;Mobile first&lt;&#x2F;strong&gt; and &lt;strong&gt;Responsive Layouts&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Responsive Layout&lt;&#x2F;strong&gt; defines a site whose interface adapts to the size of the view-port of the client. That is, instead of redirecting the user to a version or another according to the browser used, we use CSS media queries to hide or show elements of the page according to the size of the browsing window.&lt;&#x2F;p&gt;
+&lt;p&gt;This means that we can have only one version of our web application, providing the minimal information necessary to a browser with a tiny view-port (usually mobile, but it could be a resized desktop browser) while adding more details for bigger browsers. You can see the concept in action &lt;a href=&quot;http:&#x2F;&#x2F;mattkersley.com&#x2F;responsive&#x2F;&quot;&gt;in this site&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;But Responsive Layout doesn&#x27;t come without its own &lt;a href=&quot;http:&#x2F;&#x2F;www.netmagazine.com&#x2F;features&#x2F;five-responsive-web-design-pitfalls-avoid&quot;&gt;set of problems&lt;&#x2F;a&gt;. The most common one is that small browser windows usually correspond to devices with a poorer network connection when compared to desktops. While hiding elements via CSS simplifies the UX of the site, the elements are still being sent to the device which translates, in many cases, into a very slow experience.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Mobile First&lt;&#x2F;strong&gt; is a concept that tries to reduce the impact of this issue. Instead of designing a desktop site that hides elements when the browser window is smaller, we design the site for the tiniest device (mobile) and we display more elements if the view-port is bigger. &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Progressive_enhancement&quot;&gt;Progressive enhancement&lt;&#x2F;a&gt; applied.&lt;&#x2F;p&gt;
+&lt;p&gt;The combination of both concepts, Responsive Layout and Mobile First, allows us to create our web application once and, with a minimal extra effort, we will be able to provide a better experience to both Mobile and Desktop users. It has the additional benefit of focussing on the minimal functionality required (Mobile First) which may help to reduce clutter on some sites.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;example&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#example&quot; aria-label=&quot;Anchor link for: example&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Example&lt;&#x2F;h2&gt;
+&lt;p&gt;So, how about an example? I&#x27;ve created a very simple web application (in &lt;a href=&quot;http:&#x2F;&#x2F;www.playframework.org&#x2F;&quot;&gt;Play 2.0&lt;&#x2F;a&gt;, obviously!) that may help to better understand the concepts behind these two trends. The source code can be found in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;play2-responsive-sample&quot;&gt;Github&lt;&#x2F;a&gt;. Download it and I&#x27;ll be explaining the code next.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgposts&#x2F;responsive-desktop.png&quot; alt=&quot;Desktop view of the example&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The application has two content areas. A sidebar in the left that is only visible on a desktop environment and which loads a set of results from Google News, and a main area that contains a bit of text explaining the application plus a set of images obtained from &lt;a href=&quot;https:&#x2F;&#x2F;en.gravatar.com&#x2F;&quot;&gt;Gravatar&lt;&#x2F;a&gt;. There is also a colour border around the body, coloured red for a browser with a “desktop” size. Simple, but it should be enough to showcase the ideas behind the concepts discussed above.&lt;&#x2F;p&gt;
+&lt;p&gt;The application uses 3 different techniques to manage 3 elements of the application:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;CSS Media Queries&lt;&#x2F;strong&gt; are used to select the colour of the border around the body of the page. As you resize the browser horizontally the colour should change when you cross one of the thresholds set. These thresholds are also used to show or hide the sidebar. These changes are dynamically applied when you resize the browser, but on the other hand they don&#x27;t reduce the amount of content downloaded on page request.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Conditional load&lt;&#x2F;strong&gt; for the contents of the sidebar. The list of news items in the sidebar are loaded via a query to Google News. As the sidebar may not be displayed in some browsers, we only execute the query when the viewport is bigger than a given value. This check only happens when we load the page, so if the content wasn&#x27;t loaded and the browser is then resized so the sidebar becomes visible, the user won&#x27;t see the news items but some default text that allows the user to access the same content by launching a Google query, so we don&#x27;t “punish” the user for resizing the browser by removing access to content.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Delayed load&lt;&#x2F;strong&gt; for the images in the main area. We could use &lt;em&gt;img&lt;&#x2F;em&gt; tags in the page when rendering it but that would mean that the browser will have to launch multiple requests (one per image) while loading the page. With this technique we mark some anchor tags with metadata and, once the page has been loaded, we inject the img tags into the page. The images will be loaded at that point, but the site itself will be already working and the user can interact with it even in slower connections. We can also modify the size of the image we display according to the viewport so the user downloads a smaller version in devices with potentially worse connections. As with conditional load, this only works on the request, resizing the browser won&#x27;t launch the script again.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Now that we know what is being done, let&#x27;s go into the relevant parts of the code.
+The application uses 2 templates: main.scala.html provides some common behaviour (like css and javascript files) while index.scala.html contains the relevant code of the demo. The application is using &lt;a href=&quot;http:&#x2F;&#x2F;twitter.github.com&#x2F;bootstrap&#x2F;&quot;&gt;Twitter Bootstrap&lt;&#x2F;a&gt; for the base layout. Some code (like &lt;a href=&quot;http:&#x2F;&#x2F;modernizr.com&#x2F;&quot;&gt;Modernizr&lt;&#x2F;a&gt; usage) is not explained in this post but the demo contains some comments about it.&lt;&#x2F;p&gt;
+&lt;p&gt;To enable the responsive layout from Bootstrap I add in &lt;strong&gt;main.html&lt;&#x2F;strong&gt; the following:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, initial-scale=1.0&amp;quot;&amp;gt;
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will ensure that the browser doesn&#x27;t try to fake the viewport size on the request, while still allowing for zooming in mobile devices.&lt;&#x2F;p&gt;
+&lt;p&gt;In &lt;strong&gt;index.scala.html&lt;&#x2F;strong&gt; I declare the basic layout with the two areas of the page. I use a fluid layout from Bootstrap plus one of the responsive styles (visible-desktop) which will hide the sidebar if the browser is less than &lt;em&gt;968px&lt;&#x2F;em&gt; wide.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;div class=&amp;quot;container-fluid&amp;quot;&amp;gt;
+ &amp;lt;div class=&amp;quot;row-fluid&amp;quot;&amp;gt;
+   &amp;lt;div class=&amp;quot;span2 visible-desktop&amp;quot;&amp;gt;
+   &amp;lt;!-- Sidebar content --&amp;gt;
+   &amp;lt;&amp;#x2F;div&amp;gt;
+
+   &amp;lt;div class=”span10”&amp;gt;
+   &amp;lt;!-- Main content --&amp;gt;
+   &amp;lt;&amp;#x2F;div&amp;gt;
+ &amp;lt;&amp;#x2F;div&amp;gt;
+&amp;lt;&amp;#x2F;div&amp;gt;
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The styles file, &lt;strong&gt;main.css&lt;&#x2F;strong&gt;, contains a set of media queries that will change the border around the body of the page according to the size of the browser:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;
+&amp;#x2F;* Landscape phones and down *&amp;#x2F;
+@media (max-width: 480px) {
+  body {
+    border: 2px magenta solid;
+  }
+}
+
+
+&amp;#x2F;* Landscape phone to portrait tablet *&amp;#x2F;
+@media (min-width: 480px) and (max-width: 768px) {
+  body {
+    border: 2px grey solid;
+  }
+}
+
+
+&amp;#x2F;* Portrait tablet to landscape and desktop *&amp;#x2F;
+@media (min-width: 768px) and (max-width: 979px) {
+  body {
+    border: 2px blue solid;
+  }
+}
+
+
+&amp;#x2F;* Desktop *&amp;#x2F;
+@media (min-width: 979px) and (max-width: 1200px) {
+  body {
+    border: 2px orange solid;
+  }
+}
+
+&amp;#x2F;* Large desktop *&amp;#x2F;
+@media (min-width: 1200px) {
+  body {
+    border: 2px red solid;
+  }
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Up to here  there are elements that will be downloaded always, whatever the viewport size, and may change behaviour dynamically as you resize your browser. Many responsive layouts stop here, but if the sidebar contained a lot of data and images, that would penalize mobile users by forcing them to download extra content they&#x27;ll never see.&lt;&#x2F;p&gt;
+&lt;p&gt;To solve this we add a minimal amount of content to the sidebar, so if a user resizes the browser and sees it doesn&#x27;t get a white gap with no content (progressive enhancement):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;
+&amp;lt;!--Sidebar content --&amp;gt;
+&amp;lt;h2&amp;gt;Dynamic Sidebar&amp;lt;&amp;#x2F;h2&amp;gt;
+&amp;lt;p&amp;gt;
+  This sidebar loads a minimal amount of content by default.
+  If we will display it, some ajax requests will populate it
+  with extra content.
+&amp;lt;&amp;#x2F;p&amp;gt;
+
+&amp;lt;hr&amp;#x2F;&amp;gt;
+
+&amp;lt;div id=&amp;quot;sidebar&amp;quot;&amp;gt;
+
+&amp;lt;!-- We provide a link to access the data we are not loading in case
+     the user resizes the screen and sees this bar --&amp;gt;
+&amp;lt;a href=&amp;quot;http:&amp;#x2F;&amp;#x2F;www.google.com&amp;#x2F;search?q=responsive+design&amp;amp;amp;amp;tbm=nws&amp;quot;&amp;gt;
+Search Google on Responsive Design
+&amp;lt;&amp;#x2F;a&amp;gt;
+
+&amp;lt;&amp;#x2F;div&amp;gt;
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and then we add some javascript magic to load the real content dynamically via Conditional Loading. In this example the content loaded is the result of a query to Google News. The details on the retrieval of the data are not relevant to this post. What&#x27;s relevant is this part of the code (excerpt):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;
+
+&amp;#x2F;* This loads the content of the side bar asynchronously,
+   so we won&amp;#x27;t do that request if the sidebar won&amp;#x27;t be shown *&amp;#x2F;
+$(function() {
+  if ($(window).width() &amp;gt;= 979) {
+    searchGoogle(&amp;#x27;responsive+design&amp;#x27;);
+  }
+});
+
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This fragment will wait until the page has been loaded (equivalent to jquery&#x27;s &lt;code&gt;$(document).ready&lt;&#x2F;code&gt; ) and then check the window size. If the size corresponds to a desktop browser (in which the Bootstrap style visible-desktop will stop hiding the sidebar) then the search is triggered and the content added to the sidebar. Otherwise nothing happens.&lt;&#x2F;p&gt;
+&lt;p&gt;This means that for a mobile user there will be no extra work done (besides a simple javascript check) as the information would not be shown, improving the loading time of the page. The fact that the check is done after the main content is ready is also relevant, as the user can start interacting with the main page immediately when in a desktop, and the additional data (which is less relevant to the user) will be loaded in the meantime.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s talk now about the images displayed in the main area and Delayed Loading. In this sample  around &lt;em&gt;500 images&lt;&#x2F;em&gt; are loaded at once in that section. This could be, in reality, the comments area of a popular blog with lots of comments (and their corresponding images).&lt;&#x2F;p&gt;
+&lt;p&gt;Following the naïve approach the html would be rendered with 500 &lt;em&gt;img&lt;&#x2F;em&gt; tags, which would cause the browser to load these images in parallel to the rest of the page, delaying the “ready” status of the page. In Delayed Loading javascript, triggered once the document has loaded, is used to modify the Html DOM. This way the images are loaded later, once the page is ready and functional for the user. This approach also gives extra control on the size of the images loaded.&lt;&#x2F;p&gt;
+&lt;p&gt;The relevant code follows:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;
+
+&amp;#x2F;* This loads the avatars asynchronously, so the response time of the page
+ improves as images are loaded by the browser after all content is ready *&amp;#x2F;
+$(function() {
+
+  &amp;#x2F;* Dynamically select an image size as per viewport size *&amp;#x2F;
+  function getAvatarSize() {
+    var size = 100;
+
+    &amp;#x2F;&amp;#x2F; we check the viewport width against the sizes in css media queries
+    var viewport = $(window).width();
+    if(viewport &amp;lt;=  480) {
+        size = 25;
+    } else if(viewport &amp;lt;= 768) {
+        size = 75;
+    } else if(viewport &amp;lt;= 979) {
+        size = 125;
+    } else {
+        size = 175;
+    }
+    return size;
+  }
+
+  var avatarSize = getAvatarSize();
+
+  &amp;#x2F;* Load all avatars now *&amp;#x2F;
+  $(&amp;#x27;a[data-gravatar-hash]&amp;#x27;).prepend(function(index){
+    var hash = $(this).attr(&amp;#x27;data-gravatar-hash&amp;#x27;)
+    return &amp;#x27;&amp;lt;img alt=&amp;quot;Avatar Image&amp;quot;&amp;#x27;
+      + src=&amp;quot;http:&amp;#x2F;&amp;#x2F;www.gravatar.com&amp;#x2F;avatar.php?size=&amp;#x27;
+      + avatarSize + &amp;#x27;&amp;amp;amp;gravatar_id=&amp;#x27; + hash + &amp;#x27;&amp;quot;&amp;gt;&amp;lt;br&amp;#x2F;&amp;gt;&amp;#x27;;
+  });
+});
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With this code a proper image size (as per the browser size) is selected when the page is ready, and then the img tags are injected into the corresponding placeholders. The result is a delayed loading of secondary content that speeds up the page for the user, providing a better experience specially in slow networks.&lt;&#x2F;p&gt;
+&lt;p&gt;To see the impact of these modifications on the page load, see the following network analysis done by Chrome:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;imgposts&#x2F;responsive-network.png&quot; alt=&quot;Network analysis by Chrome&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;As you can see, the page has 2 main blocks of request. The first one corresponds to the basic content of the page (html, css, javascript) and takes &lt;em&gt;less than 300ms&lt;&#x2F;em&gt;. At this point the page is ready and the user can interact with it. The second block starts then and corresponds to the delayed requests, taking &lt;em&gt;additional 315ms&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In this simple example we get to the “ready” status &lt;strong&gt;50% faster&lt;&#x2F;strong&gt;. As you can see, this can be a huge benefit for more complex pages, providing the best UX possible to their customers. Worth the extra effort :)&lt;&#x2F;p&gt;
+&lt;p&gt;Feel free to add any comments on the subject below!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Mobile browsing is becoming the norm. With the advent of devices like the new iPad or the Nexus 7, predictions that mobile will surpass desktop in 2014 seem wrong: it may happen even earlier. I find myself, loving desktops as I do, using Internet on my mobile more and more often. That constant access to the net is so handy...
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Web Application Tools</title>
+        <published>2009-08-03T00:00:00+00:00</published>
+        <updated>2009-08-03T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/web-application-tools/" type="text/html"/>
+        <id>https://perevillega.com/posts/web-application-tools/</id>
+        
+            <content type="html">&lt;p&gt;When developing your own web application, specially if you want to earn
+money with it, some information is priceless.  In this page I will list
+some tools and tips I’ve found around the net that can help you to
+improve your product. They are generic tips, not linked to any language
+nor platform, just ways to enhance your product.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;creating-your-site&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#creating-your-site&quot; aria-label=&quot;Anchor link for: creating-your-site&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Creating your site&lt;&#x2F;h2&gt;
+&lt;p&gt;While planning your web application some factors make the difference.
+[The Number’s Game][] is a slide show that point 10 important
+characteristics that, by changing a bit how you approach your
+application, may improve its usability and interest to users. These 10
+points are:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Know your users&lt;&#x2F;li&gt;
+&lt;li&gt;Use multiple platforms&lt;&#x2F;li&gt;
+&lt;li&gt;Connect users&lt;&#x2F;li&gt;
+&lt;li&gt;Aggregate user’s content&lt;&#x2F;li&gt;
+&lt;li&gt;Embrace multiple formats&lt;&#x2F;li&gt;
+&lt;li&gt;Embrace The Community&lt;&#x2F;li&gt;
+&lt;li&gt;Build several brands&lt;&#x2F;li&gt;
+&lt;li&gt;Create niche content&lt;&#x2F;li&gt;
+&lt;li&gt;Tag&lt;&#x2F;li&gt;
+&lt;li&gt;Be open source&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The slide provides more detail about each point. As you can see,t he
+main focus is interaction and community, keys of the so called Web 2.0.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;analyzing-your-site&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#analyzing-your-site&quot; aria-label=&quot;Anchor link for: analyzing-your-site&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Analyzing your site&lt;&#x2F;h2&gt;
+&lt;p&gt;Once your application is running, you may want to know why users are
+leaving. True, there are mechanisms to communicate with them and receive
+feedback, but not all users will do that. And there are some reasons
+they will never tell you or are hard to describe, because it’s just a
+“Feeling” for them. To help you there are some tools that can give you
+more information on their real reasons:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.google.com&#x2F;analytics&#x2F;&quot;&gt;Google Analytics:&lt;&#x2F;a&gt; basic for any web application, it will show
+you the traffic trends of your site and the relevant pages&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;crazyegg.com&#x2F;&quot;&gt;CrazyEgg:&lt;&#x2F;a&gt;this is a heat map of your application that will show
+you where users clicks. It will even show you parts that have been
+clicked but have no links, giving some hints for improvements.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.clicktale.com&#x2F;&quot;&gt;ClickTale:&lt;&#x2F;a&gt; it shows you how the users browses your page,
+including scrolling and keys pressed, so you can learn how they use
+it&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;googletalk.blogspot.com&#x2F;2008&#x2F;02&#x2F;google-talk-chatback.html&quot;&gt;Google Talk Chatback:&lt;&#x2F;a&gt; allows you to receive more feedback and
+even interact with your customers solving their issues and maybe
+increasing your user base due to personalized support&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.surveymonkey.com&#x2F;&quot;&gt;Survey Monkey:&lt;&#x2F;a&gt; another way to obtain useful feedback, using a
+survey&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;4q.iperceptions.com&#x2F;&quot;&gt;4Q:&lt;&#x2F;a&gt; similar to the one above, a questionnaire to show when users
+leave your site&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.kampyle.com&#x2F;&quot;&gt;Kampyle:&lt;&#x2F;a&gt; a tool to make easier for your users to provide
+feedback about the application&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.google.com&#x2F;sitesearch&#x2F;&quot;&gt;Google Search:&lt;&#x2F;a&gt; adding this to your web application will allow
+you to know what are your users looking for&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.serph.com&#x2F;&quot;&gt;Serph:&lt;&#x2F;a&gt; tracks what are people telling about you in the net,
+extracting information from blogs, news…&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;developer.yahoo.com&#x2F;yslow&#x2F;&quot;&gt;YSlow:&lt;&#x2F;a&gt; shows you why your site is slow, or how could be faster.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;users.skynet.be&#x2F;mgueury&#x2F;mozilla&#x2F;&quot;&gt;HTML Validator:&lt;&#x2F;a&gt; a Firefox plugin that validates your generated
+HTML code for W3C compatibility&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;more-help&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#more-help&quot; aria-label=&quot;Anchor link for: more-help&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+More help&lt;&#x2F;h2&gt;
+&lt;p&gt;There’s a book called &lt;a href=&quot;http:&#x2F;&#x2F;www.websiteoptimization.com&#x2F;secrets&#x2F;&quot;&gt;Website Optimization&lt;&#x2F;a&gt; that has received quite a
+lot of praise. It has useful hints about SEO, performance optimization
+and conversion rate. Reading it will probably help you to improve your
+site in a couple of areas.&lt;&#x2F;p&gt;
+&lt;p&gt;Try to externalize your images, will save you bandwidth and your server
+will see a reduced load. Also, try to find tools that compress your
+Javascript and CSS files so their transfer time is smaller.&lt;&#x2F;p&gt;
+&lt;p&gt;You may think that performance is not so important once your pages load
+fast enough. Well, &lt;a href=&quot;http:&#x2F;&#x2F;glinden.blogspot.com&#x2F;2006&#x2F;11&#x2F;marissa-mayer-at-web-20.html&quot;&gt;think again&lt;&#x2F;a&gt;. According to this, your pages should
+load as fast as possible, 500ms better than 600ms, or your revenue might
+suffer. To help you IBM gives &lt;a href=&quot;http:&#x2F;&#x2F;www.ibm.com&#x2F;developerworks&#x2F;web&#x2F;library&#x2F;wa-speedweb&#x2F;&quot;&gt;20 more tips&lt;&#x2F;a&gt; to improve the speed of
+your site.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;links&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#links&quot; aria-label=&quot;Anchor link for: links&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Links&lt;&#x2F;h2&gt;
+&lt;p&gt;As said before, this article is based on existing information. Give
+credit where credit is due, some of the information here has been
+extracted from:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.conversion-rate-experts.com&#x2F;articles&#x2F;understanding-your-visitors&#x2F;&quot;&gt;14 free tools that reveal why people abandon your site&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;lolacomomola.blogspot.com&#x2F;2008&#x2F;10&#x2F;10-elementos-para-el-xito-de-tu-pgina.html&quot;&gt;10 elements for your website’s success&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The links contain additional information I’ve not copied over, so please
+check them, it will be useful and you will receive more and better tips.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">When developing your own web application, specially if you want to earn
+money with it, some information is priceless.  In this page I will list
+some tools and tips I’ve found around the net that can help you to
+improve your product. They are generic tips, not linked to any language
+nor platform, just ways to enhance your product.
+…</summary>
+        </entry>
+</feed>

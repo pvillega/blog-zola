@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>development</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - development</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/development/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/development/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2016-03-25T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/development/atom.xml</id><entry xml:lang="en">
+        <title>Monkey Island Battles and WebKit</title>
+        <published>2016-03-25T00:00:00+00:00</published>
+        <updated>2016-03-25T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/monkey-island-battles-and-webkit/" type="text/html"/>
+        <id>https://perevillega.com/posts/monkey-island-battles-and-webkit/</id>
+        
+            <content type="html">&lt;p&gt;Have you heard about &lt;a href=&quot;http:&#x2F;&#x2F;docs.aws.amazon.com&#x2F;lambda&#x2F;latest&#x2F;dg&#x2F;welcome.html&quot;&gt;AWS Lambda&lt;&#x2F;a&gt;? Do you like &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Monkey_Island_(series)&quot;&gt;Monkey Island&lt;&#x2F;a&gt;? Are you into &lt;a href=&quot;http:&#x2F;&#x2F;monkeyisland.wikia.com&#x2F;wiki&#x2F;Insult_Sword_Fighting&quot;&gt;Insult Sword Fighting&lt;&#x2F;a&gt;? Then, come along, this may interest you ;)&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;backstory&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#backstory&quot; aria-label=&quot;Anchor link for: backstory&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Backstory&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;ve been wanting to try &lt;a href=&quot;http:&#x2F;&#x2F;docs.aws.amazon.com&#x2F;lambda&#x2F;latest&#x2F;dg&#x2F;welcome.html&quot;&gt;AWS Lambda&lt;&#x2F;a&gt; for a while. To be honest I&#x27;ve not yet done so due to laziness: my experience with AWS is that it needs more configuration and tweaking than I care for. Give me a &lt;a href=&quot;https:&#x2F;&#x2F;www.heroku.com&#x2F;&quot;&gt;Heroku&lt;&#x2F;a&gt; any day (pros and cons, lengthy discussion for another day).&lt;&#x2F;p&gt;
+&lt;p&gt;But going through my &#x27;list of stuff you should read&#x27; I recently saw an &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2016&#x2F;02&#x2F;01&#x2F;aws-lambda.html&quot;&gt;Underscore blog-post&lt;&#x2F;a&gt; by &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;d6y&quot;&gt;Richard Dallaway&lt;&#x2F;a&gt;. AWS again, maybe it&#x27;s time to do something that uses it!&lt;&#x2F;p&gt;
+&lt;p&gt;That got me started: sure there must be alternatives, something akin to &quot;Heroku for Lambdas&quot;? Yes, I&#x27;m aware AWS Lambdas are simple to use, but well, procrastination... So I started looking for options and I landed on a &lt;a href=&quot;https:&#x2F;&#x2F;www.quora.com&#x2F;Are-there-any-alternatives-to-Amazon-Lambda&quot;&gt;Quora question&lt;&#x2F;a&gt; which pointed me to &lt;a href=&quot;https:&#x2F;&#x2F;webtask.io&#x2F;&quot;&gt;WebTask.io&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;using-webtask&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#using-webtask&quot; aria-label=&quot;Anchor link for: using-webtask&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Using WebTask&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;webtask.io&#x2F;&quot;&gt;WebTask.io&lt;&#x2F;a&gt; sounds exactly like what I was looking for. And, oh boy, it is simple to use!&lt;&#x2F;p&gt;
+&lt;p&gt;I followed their instructions to install their &lt;a href=&quot;https:&#x2F;&#x2F;webtask.io&#x2F;cli&quot;&gt;cli&lt;&#x2F;a&gt;, which gives you a very intuitive command &lt;code&gt;wt&lt;&#x2F;code&gt; with options you&#x27;d expect (create, rm, ls). In just a few minutes I had my own endpoint running. Neat.&lt;&#x2F;p&gt;
+&lt;p&gt;Now I needed something to test this a bit more. Enter &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Monkey_Island_(series)&quot;&gt;Monkey Island&lt;&#x2F;a&gt;. If you have played those games you most likely remember their &lt;a href=&quot;http:&#x2F;&#x2F;monkeyisland.wikia.com&#x2F;wiki&#x2F;Insult_Sword_Fighting&quot;&gt;Insult Sword Fighting&lt;&#x2F;a&gt; scenes. Even if you didn&#x27;t play it you may know what they are, due to popularity in certain circles.&lt;&#x2F;p&gt;
+&lt;p&gt;Implementing a service that given a specific insult returns the correct answer seemed like a very straightforward task that would let me test the service and find any obvious hurdles. So that&#x27;s what I built; you can get the code in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;webtask-monkey-island&quot;&gt;my github repo&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The service has a very basic behaviour:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you just call the endpoint (GET request), returns a random pair of insult-answer (in Json)&lt;&#x2F;li&gt;
+&lt;li&gt;If you call the endpoint with an &lt;code&gt;insult&lt;&#x2F;code&gt; parameter it will return the correct response for that insult&lt;&#x2F;li&gt;
+&lt;li&gt;If you call the endpoint with an invalid&#x2F;unknown &lt;code&gt;insult&lt;&#x2F;code&gt; the response will notify you so&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The interaction is all via &lt;code&gt;GET&lt;&#x2F;code&gt; requests, and it returns &lt;code&gt;Json&lt;&#x2F;code&gt; (no &lt;code&gt;404&lt;&#x2F;code&gt; codes for invalid insults). As I said, a very basic implementation to test how hard is to use that service (note: not hard at all). Webkit  provides the tools to implement all this properly, it&#x27;s just I didn&#x27;t use them ;)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;testing-the-service&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#testing-the-service&quot; aria-label=&quot;Anchor link for: testing-the-service&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Testing the service&lt;&#x2F;h2&gt;
+&lt;p&gt;I published a Webtask endpoint at:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;https:&amp;#x2F;&amp;#x2F;webtask.it.auth0.com&amp;#x2F;api&amp;#x2F;run&amp;#x2F;wt-pere_villega-gmail_com-0&amp;#x2F;sword-fight?webtask_no_cache=1 .
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Be aware it is under a free plan, so it may be rate limited and disappear in 30 days. If you want to try it yourself, remember the sample code is available in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;webtask-monkey-island&quot;&gt;my github repo&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s see how it works. If we run the request without any additional parameter, we should obtain a random pair of insult-response.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ curl https:&amp;#x2F;&amp;#x2F;webtask.it.auth0.com&amp;#x2F;api&amp;#x2F;run&amp;#x2F;wt-pere_villega-gmail_com-0&amp;#x2F;sword-fight\?webtask_no_cache\=1
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;returns:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;json&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;{
+	&amp;quot;received&amp;quot;:&amp;quot;Nobody&amp;#x27;s ever drawn blood from me and nobody ever will.&amp;quot;,
+	&amp;quot;answer&amp;quot;:&amp;quot;You run THAT fast?&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We can provide a parameter with our &lt;em&gt;insult&lt;&#x2F;em&gt; to receive the right response:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ curl  https:&amp;#x2F;&amp;#x2F;webtask.it.auth0.com&amp;#x2F;api&amp;#x2F;run&amp;#x2F;wt-pere_villega-gmail_com-0&amp;#x2F;sword-fight?webtask_no_cache=1&amp;amp;insult=You%27re%20the%20ugliest%20monster%20ever%20created!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;which, as expected, returns:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;json&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;{
+	&amp;quot;received&amp;quot;:&amp;quot;You&amp;#x27;re the ugliest monster ever created!&amp;quot;,
+	&amp;quot;answer&amp;quot;:&amp;quot;If you don&amp;#x27;t count all the ones you&amp;#x27;ve dated.&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If we provide an insult that is not recognised, like:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ curl  https:&amp;#x2F;&amp;#x2F;webtask.it.auth0.com&amp;#x2F;api&amp;#x2F;run&amp;#x2F;wt-pere_villega-gmail_com-0&amp;#x2F;sword-fight?webtask_no_cache=1&amp;amp;insult=baka!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;the lambda complains:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;json&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;{
+	&amp;quot;received&amp;quot;:&amp;quot;baka!&amp;quot;,
+	&amp;quot;answer&amp;quot;:&amp;quot;Incorrect insult!&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Working as expected!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;future-work&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#future-work&quot; aria-label=&quot;Anchor link for: future-work&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Future Work&lt;&#x2F;h1&gt;
+&lt;p&gt;To be honest, I just wanted to dabble with this so I didn&#x27;t put much more effort into it. An obvious improvement is to allow the user to &lt;em&gt;fight&lt;&#x2F;em&gt; against the machine, although this would require preserving some state in the server-side.&lt;&#x2F;p&gt;
+&lt;p&gt;Fortunately WebTask provides limited support for &lt;a href=&quot;https:&#x2F;&#x2F;webtask.io&#x2F;docs&#x2F;storage&quot;&gt;storage&lt;&#x2F;a&gt;, which could be used to manage score for a given user, storing all the information in a map. But there&#x27;ll be concurrency issues with very low loads, so it may not be such a good idea after all. Something stateless like &lt;a href=&quot;http:&#x2F;&#x2F;left-pad.io&#x2F;&quot;&gt;left-pad.io&lt;&#x2F;a&gt; fits the lambda model better ;)&lt;&#x2F;p&gt;
+&lt;p&gt;As an aside, WebTask mentions in their documentation how their service can be used to enhance the security of your application by hiding api keys and other sensitive resources inside lambdas. It&#x27;s an interesting concept worth a bit of research, as it may be a good pattern to adapt in your standard deployment.&lt;&#x2F;p&gt;
+&lt;p&gt;In any case, that&#x27;s all for now. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Have you heard about AWS Lambda? Do you like Monkey Island? Are you into Insult Sword Fighting? Then, come along, this may interest you ;)
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>QCon London - Microservices</title>
+        <published>2015-03-07T00:00:00+00:00</published>
+        <updated>2015-03-07T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/qcon-london-microservices/" type="text/html"/>
+        <id>https://perevillega.com/posts/qcon-london-microservices/</id>
+        
+            <content type="html">&lt;p&gt;Yesterday I was at &lt;a href=&quot;http:&#x2F;&#x2F;qconlondon.com&#x2F;schedule#day-5&quot;&gt;QCon London&lt;&#x2F;a&gt; thanks to &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I&#x27;ve posted a summary of the talks I attended in &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;devteam&#x2F;2015-03-07-qcon-london-day-3.html&quot;&gt;Gumtree developer&#x27;s blog&lt;&#x2F;a&gt;. Any feedback is appreciated :)&lt;&#x2F;p&gt;
+&lt;p&gt;Update: the post was lost when Gumtree moved blog :(&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Yesterday I was at QCon London thanks to Gumtree.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Game Development Using Unity3D</title>
+        <published>2015-02-15T00:00:00+00:00</published>
+        <updated>2015-02-15T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/game-development-using-unity3d/" type="text/html"/>
+        <id>https://perevillega.com/posts/game-development-using-unity3d/</id>
+        
+            <content type="html">&lt;p&gt;I think that most software developers have a secret desire: to build their own game. Unfortunately the golden times of the 80&#x27;s where simplistic games with almost no graphics succeeded are gone. Music, graphics, story... nowadays a decent game requires lots of manpower. But is that dream over?&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Fortunately technology advances fast. Very fast. If the complexity of games has increased, so has the capabilities of game development tools. For example, &lt;a href=&quot;http:&#x2F;&#x2F;unity3d.com&#x2F;&quot;&gt;Unity3D&lt;&#x2F;a&gt;, a game engine used by &lt;a href=&quot;http:&#x2F;&#x2F;unity3d.com&#x2F;showcase&#x2F;gallery&quot;&gt;plenty&lt;&#x2F;a&gt; of successful games that streamlines the process to a huge degree. No, a single developer won&#x27;t build the next &lt;a href=&quot;http:&#x2F;&#x2F;clashofclans.com&#x2F;&quot;&gt;Clash of Clans&lt;&#x2F;a&gt; but it&#x27;s much easier for a small team to do so.&lt;&#x2F;p&gt;
+&lt;p&gt;I tried Unity a few years ago (when Unity 3.x was offered for free) but, somehow, I never spent much time to it. I forgot about it until recently, when I ended up with a link to a &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;playlist?list=PLREdURb87ks2qkD9svvlIwYwN35FZ3Afv&amp;amp;app=desktop&quot;&gt;very good tutorial&lt;&#x2F;a&gt; (warning: it&#x27;s in Spanish) and I decided I&#x27;d implement something by following it.&lt;&#x2F;p&gt;
+&lt;p&gt;And, indeed, I did. I started yesterday morning and in less than 48 hours my game is &lt;a href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.araconsoftware.rundemo&quot;&gt;available&lt;&#x2F;a&gt; in the Google Play store. Granted: it&#x27;s buggy, not original and very silly. But I built it, so I&#x27;ll overlook all those truths for a while if you don&#x27;t mind me doing so. It&#x27;s my baby-game ;)&lt;&#x2F;p&gt;
+&lt;p&gt;I also uploaded the source to &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;run-unity3d-game-sample&quot;&gt;Github&lt;&#x2F;a&gt;. I deviated a bit from the tutorial (nothing major), so feel free to use it as a template to experiment with.&lt;&#x2F;p&gt;
+&lt;p&gt;Does this mean I&#x27;ll drop everything and become a game developer? Not really. But I may start devoting more time doing things like this, as it was extremely fun. Maybe after I finish with the Machine Learning courses, and testing Akka Http, and Akka Streams, and... well, you get the idea ;)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">I think that most software developers have a secret desire: to build their own game. Unfortunately the golden times of the 80's where simplistic games with almost no graphics succeeded are gone. Music, graphics, story... nowadays a decent game requires lots of manpower. But is that dream over?
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Web Application Tools</title>
+        <published>2009-08-03T00:00:00+00:00</published>
+        <updated>2009-08-03T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/web-application-tools/" type="text/html"/>
+        <id>https://perevillega.com/posts/web-application-tools/</id>
+        
+            <content type="html">&lt;p&gt;When developing your own web application, specially if you want to earn
+money with it, some information is priceless.  In this page I will list
+some tools and tips I’ve found around the net that can help you to
+improve your product. They are generic tips, not linked to any language
+nor platform, just ways to enhance your product.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;creating-your-site&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#creating-your-site&quot; aria-label=&quot;Anchor link for: creating-your-site&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Creating your site&lt;&#x2F;h2&gt;
+&lt;p&gt;While planning your web application some factors make the difference.
+[The Number’s Game][] is a slide show that point 10 important
+characteristics that, by changing a bit how you approach your
+application, may improve its usability and interest to users. These 10
+points are:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;Know your users&lt;&#x2F;li&gt;
+&lt;li&gt;Use multiple platforms&lt;&#x2F;li&gt;
+&lt;li&gt;Connect users&lt;&#x2F;li&gt;
+&lt;li&gt;Aggregate user’s content&lt;&#x2F;li&gt;
+&lt;li&gt;Embrace multiple formats&lt;&#x2F;li&gt;
+&lt;li&gt;Embrace The Community&lt;&#x2F;li&gt;
+&lt;li&gt;Build several brands&lt;&#x2F;li&gt;
+&lt;li&gt;Create niche content&lt;&#x2F;li&gt;
+&lt;li&gt;Tag&lt;&#x2F;li&gt;
+&lt;li&gt;Be open source&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The slide provides more detail about each point. As you can see,t he
+main focus is interaction and community, keys of the so called Web 2.0.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;analyzing-your-site&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#analyzing-your-site&quot; aria-label=&quot;Anchor link for: analyzing-your-site&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Analyzing your site&lt;&#x2F;h2&gt;
+&lt;p&gt;Once your application is running, you may want to know why users are
+leaving. True, there are mechanisms to communicate with them and receive
+feedback, but not all users will do that. And there are some reasons
+they will never tell you or are hard to describe, because it’s just a
+“Feeling” for them. To help you there are some tools that can give you
+more information on their real reasons:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.google.com&#x2F;analytics&#x2F;&quot;&gt;Google Analytics:&lt;&#x2F;a&gt; basic for any web application, it will show
+you the traffic trends of your site and the relevant pages&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;crazyegg.com&#x2F;&quot;&gt;CrazyEgg:&lt;&#x2F;a&gt;this is a heat map of your application that will show
+you where users clicks. It will even show you parts that have been
+clicked but have no links, giving some hints for improvements.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.clicktale.com&#x2F;&quot;&gt;ClickTale:&lt;&#x2F;a&gt; it shows you how the users browses your page,
+including scrolling and keys pressed, so you can learn how they use
+it&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;googletalk.blogspot.com&#x2F;2008&#x2F;02&#x2F;google-talk-chatback.html&quot;&gt;Google Talk Chatback:&lt;&#x2F;a&gt; allows you to receive more feedback and
+even interact with your customers solving their issues and maybe
+increasing your user base due to personalized support&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.surveymonkey.com&#x2F;&quot;&gt;Survey Monkey:&lt;&#x2F;a&gt; another way to obtain useful feedback, using a
+survey&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;4q.iperceptions.com&#x2F;&quot;&gt;4Q:&lt;&#x2F;a&gt; similar to the one above, a questionnaire to show when users
+leave your site&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.kampyle.com&#x2F;&quot;&gt;Kampyle:&lt;&#x2F;a&gt; a tool to make easier for your users to provide
+feedback about the application&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.google.com&#x2F;sitesearch&#x2F;&quot;&gt;Google Search:&lt;&#x2F;a&gt; adding this to your web application will allow
+you to know what are your users looking for&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.serph.com&#x2F;&quot;&gt;Serph:&lt;&#x2F;a&gt; tracks what are people telling about you in the net,
+extracting information from blogs, news…&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;developer.yahoo.com&#x2F;yslow&#x2F;&quot;&gt;YSlow:&lt;&#x2F;a&gt; shows you why your site is slow, or how could be faster.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;users.skynet.be&#x2F;mgueury&#x2F;mozilla&#x2F;&quot;&gt;HTML Validator:&lt;&#x2F;a&gt; a Firefox plugin that validates your generated
+HTML code for W3C compatibility&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;more-help&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#more-help&quot; aria-label=&quot;Anchor link for: more-help&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+More help&lt;&#x2F;h2&gt;
+&lt;p&gt;There’s a book called &lt;a href=&quot;http:&#x2F;&#x2F;www.websiteoptimization.com&#x2F;secrets&#x2F;&quot;&gt;Website Optimization&lt;&#x2F;a&gt; that has received quite a
+lot of praise. It has useful hints about SEO, performance optimization
+and conversion rate. Reading it will probably help you to improve your
+site in a couple of areas.&lt;&#x2F;p&gt;
+&lt;p&gt;Try to externalize your images, will save you bandwidth and your server
+will see a reduced load. Also, try to find tools that compress your
+Javascript and CSS files so their transfer time is smaller.&lt;&#x2F;p&gt;
+&lt;p&gt;You may think that performance is not so important once your pages load
+fast enough. Well, &lt;a href=&quot;http:&#x2F;&#x2F;glinden.blogspot.com&#x2F;2006&#x2F;11&#x2F;marissa-mayer-at-web-20.html&quot;&gt;think again&lt;&#x2F;a&gt;. According to this, your pages should
+load as fast as possible, 500ms better than 600ms, or your revenue might
+suffer. To help you IBM gives &lt;a href=&quot;http:&#x2F;&#x2F;www.ibm.com&#x2F;developerworks&#x2F;web&#x2F;library&#x2F;wa-speedweb&#x2F;&quot;&gt;20 more tips&lt;&#x2F;a&gt; to improve the speed of
+your site.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;links&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#links&quot; aria-label=&quot;Anchor link for: links&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Links&lt;&#x2F;h2&gt;
+&lt;p&gt;As said before, this article is based on existing information. Give
+credit where credit is due, some of the information here has been
+extracted from:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.conversion-rate-experts.com&#x2F;articles&#x2F;understanding-your-visitors&#x2F;&quot;&gt;14 free tools that reveal why people abandon your site&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;lolacomomola.blogspot.com&#x2F;2008&#x2F;10&#x2F;10-elementos-para-el-xito-de-tu-pgina.html&quot;&gt;10 elements for your website’s success&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The links contain additional information I’ve not copied over, so please
+check them, it will be useful and you will receive more and better tips.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">When developing your own web application, specially if you want to earn
+money with it, some information is priceless.  In this page I will list
+some tools and tips I’ve found around the net that can help you to
+improve your product. They are generic tips, not linked to any language
+nor platform, just ways to enhance your product.
+…</summary>
+        </entry>
+</feed>

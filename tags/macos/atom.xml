@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>macos</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - macos</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/macos/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/macos/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2015-09-20T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/macos/atom.xml</id><entry xml:lang="en">
+        <title>Emacs and Scala in Mac OS X Yosemite</title>
+        <published>2015-09-20T00:00:00+00:00</published>
+        <updated>2015-09-20T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/emacs-and-scala-in-mac-os-x-yosemite/" type="text/html"/>
+        <id>https://perevillega.com/posts/emacs-and-scala-in-mac-os-x-yosemite/</id>
+        
+            <content type="html">&lt;p&gt;After hearing a lot about the benefits of using Emacs to code in Scala, I&#x27;ve decided to give it a go and also to document the steps to work with it, in case anyone else feels crazy enough to try this.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;why&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#why&quot; aria-label=&quot;Anchor link for: why&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Why?&lt;&#x2F;h2&gt;
+&lt;p&gt;I guess first I should explain why would I use Emacs when there are products like &lt;a href=&quot;https:&#x2F;&#x2F;www.jetbrains.com&#x2F;idea&#x2F;?fromMenu&quot;&gt;IntelliJ IDEA&lt;&#x2F;a&gt; which provide a lot of functionality and are easy (easier?) to use. This is a personal decision, but some reasons I&#x27;ve found to try Emacs are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;IDEA sometimes shows misleading errors with Scalaz. Add some EitherT or similar to your code and suddenly correct code that is built by Sbt with no complains is flagged red by IDEA. This is because they use their own compiler, and although it seems a minor issue it can become annoying (is this IDEA acting or did I break it?) and fixing it requires adding explicit type annotations to your code, which means more verbosity and less readable code.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Resource efficiency. This last summer, due to me changing jobs, I had to bring back to life my 7 year old desktop with its non-ssd hard drive and only 4 Gb of ram. Trying to code in it was extremely annoying. I had only IDEA, a browser and a terminal open, but it felt clunky and focussing was hard due to constant system slowdowns. Replacing IDEA by a simple text editor helped a lot, but there was a lack of syntax highlighting and other tooling I was used to. I don&#x27;t know if&#x2F;when I may find myself in a similar situation again, so being comfortable with a leaner IDE has become relevant.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.nhs.uk&#x2F;conditions&#x2F;Repetitive-strain-injury&#x2F;Pages&#x2F;Introduction.aspx&quot;&gt;RSI&lt;&#x2F;a&gt;. Luckily I&#x27;m not suffering from it but I&#x27;m a frequent customer of physiotherapy due to heavy mouse use harming my shoulders. I&#x27;ve been told repeatedly that Emacs is a great environment to reduce these muscular issues, better than IDEA, so it&#x27;s worth the effort.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;I don&#x27;t mind the new &lt;a href=&quot;https:&#x2F;&#x2F;www.jetbrains.com&#x2F;company&#x2F;press&#x2F;pr_030915.html&quot;&gt;payment policy&lt;&#x2F;a&gt; of Jetbrains; I&#x27;ve been paying for my license for years and renewing for each new version, so it would make no difference to me. But the change highlights the dangers of being tied to a proprietary tool and unexpected changes to them. If we believe in the software craftsmanship movement and we care about our tools, we need full control on them.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Let&#x27;s be honest, knowing Emacs sounds cool. I may fail on the task and realise I&#x27;m not the nerd I expected to be, but it&#x27;s worth the test ;)&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;environment&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#environment&quot; aria-label=&quot;Anchor link for: environment&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Environment&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;m going to install Emacs in a MacBook Pro with Yosemite.&lt;&#x2F;p&gt;
+&lt;p&gt;There are several Emacs packages you can choose from, the one I&#x27;ve been recommended is &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;syl20bnr&#x2F;spacemacs&quot;&gt;Scapemacs&lt;&#x2F;a&gt; so I&#x27;ll be trying this one.&lt;&#x2F;p&gt;
+&lt;p&gt;For Scala goodness I&#x27;ll use &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ensime&quot;&gt;Ensime&lt;&#x2F;a&gt; and its Emacs plugin.&lt;&#x2F;p&gt;
+&lt;p&gt;I won&#x27;t research any other plugins by now, geting used to Emacs is enough.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;installing-spacemacs&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#installing-spacemacs&quot; aria-label=&quot;Anchor link for: installing-spacemacs&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Installing Spacemacs&lt;&#x2F;h2&gt;
+&lt;p&gt;Spacemacs is a bundle of configuration and plugins for Emacs, as a consequence before starting you will need Emacs installed. As of today Spacemacs recommends to use the &lt;code&gt;emacs-mac-port&lt;&#x2F;code&gt; package, available in Homebrew:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;	$ brew tap railwaycat&amp;#x2F;emacsmacport
+	$ brew install emacs-mac --with-spacemacs-icon
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;After that, it is recommended to backup your current Emacs config:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;	cd ~
+	mv .emacs.d .emacs.bak
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To install Spacemacs, just clone the repo along its submodules to &lt;code&gt;~&#x2F;.emacs.d&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;	git clone --recursive https:&amp;#x2F;&amp;#x2F;github.com&amp;#x2F;syl20bnr&amp;#x2F;spacemacs ~&amp;#x2F;.emacs.d
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once done, launch Emacs and wait for the set up to be done:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;	$ emacs
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;scala-and-emacs&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#scala-and-emacs&quot; aria-label=&quot;Anchor link for: scala-and-emacs&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Scala and Emacs&lt;&#x2F;h2&gt;
+&lt;p&gt;Spacemacs provides integration with &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ensime&quot;&gt;Ensime&lt;&#x2F;a&gt; via &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;syl20bnr&#x2F;spacemacs&#x2F;tree&#x2F;master&#x2F;contrib&#x2F;!lang&#x2F;scala&quot;&gt;this package&lt;&#x2F;a&gt;. It works as a layer, to install it just edit your &lt;code&gt;~&#x2F;.spacemacs&lt;&#x2F;code&gt; file and find &lt;code&gt;dotspacemacs-configuration-layers&lt;&#x2F;code&gt; near the top of the file. Add &lt;code&gt;scala&lt;&#x2F;code&gt; as a new layer:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;	dotspacemacs-configuration-layers
+	   &amp;#x27;(
+	     ;; ----------------------------------------------------------------
+	     ;; Example of useful layers you may want to use right away.
+	     ;; Uncomment some layer names and press &amp;lt;SPC f e R&amp;gt; (Vim style) or
+	     ;; &amp;lt;M-m f e R&amp;gt; (Emacs style) to install them.
+	     ;; ----------------------------------------------------------------
+	     ;; auto-completion
+	     ;; better-defaults
+	     emacs-lisp
+	     ;; git
+	     ;; markdown
+	     ;; org
+	     ;; (shell :variables
+	     ;;        shell-default-height 30
+	     ;;        shell-default-position &amp;#x27;bottom)
+	     ;; syntax-checking
+	     version-control
+	     scala
+	     )
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then restart Emacs. Next create a global &lt;code&gt;plugins.sbt&lt;&#x2F;code&gt; at &lt;code&gt;~&#x2F;.sbt&#x2F;0.13&#x2F;plugins&#x2F;plugin.sbt&lt;&#x2F;code&gt; and add to it:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;	resolvers += Resolver.sonatypeRepo(&amp;quot;snapshots&amp;quot;)
+
+	addSbtPlugin(&amp;quot;org.ensime&amp;quot; % &amp;quot;ensime-sbt&amp;quot; % &amp;quot;0.1.5-SNAPSHOT&amp;quot;)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Run sbt once in some of your projects to download the dependency.&lt;&#x2F;p&gt;
+&lt;p&gt;To work with a Scala project you will need to create a &lt;code&gt;.ensime&lt;&#x2F;code&gt; file by running&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;	sbt gen-ensime
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;At the root.  To load Ensime, type &lt;code&gt;SPC : ensime&lt;&#x2F;code&gt; and wait until the environment is configured, which may take a while the first time.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;learning-spacemacs&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#learning-spacemacs&quot; aria-label=&quot;Anchor link for: learning-spacemacs&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Learning Spacemacs&lt;&#x2F;h2&gt;
+&lt;p&gt;After Emacs loads all the configuration you are welcomed by... an ugly yellow screen. Ugh. Yes, it will take a while to get used to this, no one said it would be easy ;) There are two resources I&#x27;m using to get started:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;sachachua.com&#x2F;blog&#x2F;wp-content&#x2F;uploads&#x2F;2013&#x2F;05&#x2F;How-to-Learn-Emacs-v2-Large.png&quot;&gt;How to Learn Emacs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;syl20bnr&#x2F;spacemacs#learning-spacemacs&quot;&gt;Learning Spacemacs&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;I started with the Evil-adapted Vimtutor to get familiar with the key bindings. Press &lt;code&gt;SPC h T&lt;&#x2F;code&gt; to launch it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;first-day-feelings&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#first-day-feelings&quot; aria-label=&quot;Anchor link for: first-day-feelings&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+First day feelings&lt;&#x2F;h2&gt;
+&lt;p&gt;This is hard. I&#x27;m ashamed to acknowledge how long did it take me to open a file in Emacs, much less to compile it via Sbt.&lt;&#x2F;p&gt;
+&lt;p&gt;I can see the benefits of learning Emacs and not having to use the mouse much, but it will take effort to get used to this and to get the &#x27;right&#x27; environment setup working.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">After hearing a lot about the benefits of using Emacs to code in Scala, I've decided to give it a go and also to document the steps to work with it, in case anyone else feels crazy enough to try this.
+…</summary>
+        </entry>
+</feed>

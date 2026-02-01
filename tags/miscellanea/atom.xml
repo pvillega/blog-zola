@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>miscellanea</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - miscellanea</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/miscellanea/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/miscellanea/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2015-05-04T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/miscellanea/atom.xml</id><entry xml:lang="en">
+        <title>Wearables: Google vs Apple</title>
+        <published>2015-05-04T00:00:00+00:00</published>
+        <updated>2015-05-04T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/wearables-google-vs-apple/" type="text/html"/>
+        <id>https://perevillega.com/posts/wearables-google-vs-apple/</id>
+        
+            <content type="html">&lt;p&gt;After a weekend wasted in bed (food poisoning sucks) I&#x27;ve spent some hours catching up with tech news. And I&#x27;ve found a very interesting, if brief, comment about a new war between Apple and Google that may impact their success in wearables.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;If you read &lt;a href=&quot;http:&#x2F;&#x2F;highscalability.com&#x2F;blog&#x2F;2015&#x2F;5&#x2F;1&#x2F;stuff-the-internet-says-on-scalability-for-may-1st-2015.html&quot;&gt;this post&lt;&#x2F;a&gt; you may notice something very relevant in the way Apple and Google are managing their ecosystem. I am talking about this fragment:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A telling difference between Google and Apple: Google Now becomes a more robust platform with 70 new partner apps. Apple takes an app-centric view of the world and Google not  surprisingly takes a data centric view. With Google developers feed Google data for Google to display. With Apple developers feed Apple apps for users to consume. On Apple developers push their own brand and control functionality through bundled extensions, but Google will have the perspective to really let their deep learning prowess sing. So there&#x27;s a real choice.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I&#x27;m aware that at first glance this seems a minor difference, just the standard approach both companies have when treating their apps and their ecosystem. But this week brings some additional context: you may have noticed Twitter swamped by images of people showing off their Apple watches. And, in that context, this difference in approach becomes much more relevant.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s assume that wearables are here to stay. One of their selling points is to streamline your access to app notifications, making it easier to act on them. On the other hand, you don&#x27;t want to get swamped by alerts as they become distracting and may drain the battery too fast. Thus, you expect only relevant alerts to appear in your fancy watch.&lt;&#x2F;p&gt;
+&lt;p&gt;And here comes the big difference in approach: with Apple you relay on developers behaving nicely and not swamping the user with notifications. You expect them apps to be smart and show only what&#x27;s relevant. This may require each app to learn about each user&#x27;s preferences, which in the current era of machine learning is not hard, but it means each app needs to do this. And I won&#x27;t comment on expecting apps not to spam you, we all have our experiences on that.&lt;&#x2F;p&gt;
+&lt;p&gt;Google&#x27;s approach (unless misunderstood) seems to be radically different: let&#x27;s remove the burden of learning about user preferences from the app, we will take care of that via Google Now. You just send us the data and we will send the relevant alerts. The impact for developers is massive: you don&#x27;t need to develop your own machine learning process, you can rely on Google&#x27;s far superior pool of data and expertise. And you don&#x27;t have to be worried about how many notifications are too many, Google will adjust that by tailoring notifications, taking decisions based on data that is not available to you but to which they have access, due to aggregation.&lt;&#x2F;p&gt;
+&lt;p&gt;They say we are in the deep learning era, where personalisation is the key for success, and this includes not only your experience with an individual app but also your experience with a device in itself. I feel Google&#x27;s approach is a winner. It allows developers to stop worrying about notifications and how relevant are they, and focus on the app itself. At the same time the user will get a very streamlined experience, with relevant notifications at relevant times. I wonder if Apple needs to revisit their philosophy in this area.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">After a weekend wasted in bed (food poisoning sucks) I've spent some hours catching up with tech news. And I've found a very interesting, if brief, comment about a new war between Apple and Google that may impact their success in wearables.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Meetup: Building a Developer Centred Company Culture</title>
+        <published>2014-06-21T00:00:00+00:00</published>
+        <updated>2014-06-21T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/meetup-building-a-developer-centred-company-culture/" type="text/html"/>
+        <id>https://perevillega.com/posts/meetup-building-a-developer-centred-company-culture/</id>
+        
+            <content type="html">&lt;p&gt;I wrote another post for &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt; developer blog. I attended a meetup in StackCareers office in London. I&#x27;ve attended a few meetups (less than I&#x27;d like!) since I came to the City and joined Gumtree, but I consider this one to be one of the best.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;The subject was Building a Developer Centred Company Culture, which is of particular interest to me, but the speakers did good presentations and the ideas they shared captured my attention more than other events I&#x27;ve attended.&lt;&#x2F;p&gt;
+&lt;p&gt;I took notes during the talks and I&#x27;d like to share a summary of the main points, as it is a relevant subject for many developers.
+First of all a disclaimer: the text below tries to be a raw summary of what I understood. Any errors are mine and of my transcription. That said, I hope I could capture the more relevant parts.&lt;&#x2F;p&gt;
+&lt;p&gt;You can read it  &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;meetup-building-a-developer-centred-company-culture-2c9fac60ba9b&quot;&gt;here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;As always, feedback via Twitter&#x2F;Email is more than welcome.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">I wrote another post for Gumtree developer blog. I attended a meetup in StackCareers office in London. I've attended a few meetups (less than I'd like!) since I came to the City and joined Gumtree, but I consider this one to be one of the best.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>ReactConf and ORM future</title>
+        <published>2014-04-13T00:00:00+00:00</published>
+        <updated>2014-04-13T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/reactconf-and-orm-future/" type="text/html"/>
+        <id>https://perevillega.com/posts/reactconf-and-orm-future/</id>
+        
+            <content type="html">&lt;p&gt;I&#x27;ve been pretty busy lately at &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt;, but I still got time to publish some posts in our &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;&quot;&gt;Dev Team blog&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;The first one, which has got quite a lot of traction, is &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;the-end-of-orm-dc0540008b23&quot;&gt;The end of ORM&lt;&#x2F;a&gt; where I talk about how Akka persistence may be the solution for the headaches ORM cause.&lt;&#x2F;p&gt;
+&lt;p&gt;The second, split in two parts, is a summary of the talks in &lt;a href=&quot;http:&#x2F;&#x2F;reactconf.com&#x2F;&quot;&gt;React.conf 2014&lt;&#x2F;a&gt;. I was very lucky to attend that event, and I posted the notes I took on &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;react-conf-day-1-a929d3b6e9b0&quot;&gt;day 1&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;react-conf-day-2-fcbe386ea776&quot;&gt;day 2&lt;&#x2F;a&gt;. Be warned that the notes are not curated, just details on the talks for those who couldn&#x27;t attend and wanted to get some more details before the videos are released.&lt;&#x2F;p&gt;
+&lt;p&gt;As always, feedback via Twitter&#x2F;Email is more than welcome.&lt;&#x2F;p&gt;
+&lt;p&gt;UPDATE: I added a review &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;react-conf-review-5eec60082282&quot;&gt;on React.Conf&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">I've been pretty busy lately at Gumtree, but I still got time to publish some posts in our Dev Team blog.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Gumtree blog is live</title>
+        <published>2013-12-15T00:00:00+00:00</published>
+        <updated>2013-12-15T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/gumtree-blog-is-live/" type="text/html"/>
+        <id>https://perevillega.com/posts/gumtree-blog-is-live/</id>
+        
+            <content type="html">&lt;p&gt;It&#x27;s been a busy couple of months. I recently moved from Dublin to London to start working at &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt; (and loving it so far!). If moving is always a hassle, moving across countries is that hassle tenfold. Fingers crossed everything will be done by Christmas...&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I&#x27;ve been lucky enough to join the company at the time the team were preparing the launch of the &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;devteam&#x2F;&quot;&gt;Dev Team blog&lt;&#x2F;a&gt; - Note: since then moved to &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&quot;&gt;Medium&lt;&#x2F;a&gt;. I have contributed one article to it talking about the tech subject of the month, more so due to the &lt;a href=&quot;https:&#x2F;&#x2F;www.coursera.org&#x2F;course&#x2F;reactive&quot;&gt;coursera class&lt;&#x2F;a&gt;: &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;reactive-programming-hype-or-truth-e6fba44ace76&quot;&gt;Reactive Programming: Hype or Truth?&lt;&#x2F;a&gt;. Please read it and any feedback is very much appreciated :)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">It's been a busy couple of months. I recently moved from Dublin to London to start working at Gumtree (and loving it so far!). If moving is always a hassle, moving across countries is that hassle tenfold. Fingers crossed everything will be done by Christmas...
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>On Learn Startup and Personal Waste</title>
+        <published>2013-10-20T00:00:00+00:00</published>
+        <updated>2013-10-20T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/on-learn-startup-and-personal-waste/" type="text/html"/>
+        <id>https://perevillega.com/posts/on-learn-startup-and-personal-waste/</id>
+        
+            <content type="html">&lt;p&gt;I recently finished reading &lt;a href=&quot;http:&#x2F;&#x2F;theleanstartup.com&#x2F;&quot;&gt;The Lean Startup&lt;&#x2F;a&gt;, a (relatively) new approach on development and innovation on software companies. An interesting and recommended reading for anyone involved in software development.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;The book is not new, the &lt;em&gt;Lean Startup&lt;&#x2F;em&gt; idea was &#x27;released&#x27; on 2011, and I had become familiar with several of the concepts explained through posts on Hacker News or other sources. Unfortunately, the summaries and excerpts that you can get online are not the same as reading the book: it contains examples and necessary context that make it much more enlightening. Given that I love to read, not purchasing the book earlier was a big mistake (lazy me!). If you are in the same situation, vague knowledge on the subject but didn&#x27;t read the book, please do yourself a favour and read it. It&#x27;s around 300 pages, it won&#x27;t take you long.&lt;&#x2F;p&gt;
+&lt;p&gt;No, I won&#x27;t make any summary on the main ideas or the content. As I said, there are plenty of summaries out there and I think by not reading the book but the excerpts, you will be missing a lot. So, why this post then? Well, the book contains many relevant ideas that &lt;em&gt;just fit&lt;&#x2F;em&gt;, they seem completely obvious and you wonder why you didn&#x27;t think about them before. It explains a way of working quite different from the one I&#x27;m used to, and given that my &lt;a href=&quot;https:&#x2F;&#x2F;perevillega.com&#x2F;posts&#x2F;on-learn-startup-and-personal-waste&#x2F;www.gumtree.com&quot;&gt;new company&lt;&#x2F;a&gt; uses this process I have plenty of work ahead of me to adapt. But, mostly, because one concept in the book made me think about my personal workflow.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s talk about that concept: &lt;strong&gt;waste&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The book spends a decent amount of time talking about waste in a company, but what about waste in our personal life? This is not a brilliant personal breakthrough, even the opposite: it is an obvious thought. It&#x27;s a popular subject online, plenty of places talk about it and there are plenty of applications out there to try to help you managing your time.&lt;&#x2F;p&gt;
+&lt;p&gt;But even when you know about it and expect it, waste has a tendency to creep into your life and become a bad habit without you noticing it. And the problem is not the waste that we can expect and, somehow, limit: hours lost to Twitter, Youtube, Games or similar. No. As an example, the book mentions how a company can stop a production lane because it is more beneficial to solve an issue then than to keep working with it going on. Not a direct translation to personal habits, but what about &lt;a href=&quot;http:&#x2F;&#x2F;www.lifestyleupdated.com&#x2F;2013&#x2F;08&#x2F;05&#x2F;eliminating-w4w-work-for-works-sake-and-an-announcement&#x2F;&quot;&gt;work for work&#x27;s sake&lt;&#x2F;a&gt;? Or about bad habits that may look useful but, if you look at them in detail, they are not?&lt;&#x2F;p&gt;
+&lt;p&gt;Try a simple exercise: take an excel spreadsheet and draw a table of 7 x 24 cells. Label the 7 rows as the days of the week and number the columns to map the hours in a day. Now, write in each cell  what you did during that hour the last week. Once you are done, count how many blank cells you have. That&#x27;s your free time. Colour it, if you want, to make it more visible. Not so much, isn&#x27;t it? Scared? Where did your time go?&lt;&#x2F;p&gt;
+&lt;p&gt;Recently &lt;a href=&quot;http:&#x2F;&#x2F;unicornfree.com&#x2F;&quot;&gt;Amy Hoy&lt;&#x2F;a&gt; has sent to their email subscribers some content on this subject. A collection of ideas to reduce waste on your personal life and free some time for your personal objectives. You will need to join her mailing list to see the content as I can&#x27;t link it here. And she is not the only one: methodologies like GTD exist to streamline your tasks, to optimize your &lt;em&gt;output&lt;&#x2F;em&gt; and be more &lt;em&gt;efficient&lt;&#x2F;em&gt;. As if.&lt;&#x2F;p&gt;
+&lt;p&gt;Personally, I&#x27;ve noticed a repeating pattern in my tasks: I build waste periodically, and I end up doing massive clean ups from time to time in which I go through my TO-DO list and start removing things. The worst part is the way the list grows. A piece of news that I can&#x27;t check at work, stored for later. A long technical talk that I intend to watch that evening but, for some reason, I end up not watching that day. Some relevant module or technology that may require a couple of hours of my time to test it. Slowly, things add up. And one day you have plenty of important tasks and many small ones that you couldn&#x27;t tackle in the past. And, after the clean up, the cycle starts again.&lt;&#x2F;p&gt;
+&lt;p&gt;Because, how easy is to identify waste before it becomes so? You have personal projects, career aspirations, a social life, a wife... It may seem obvious to keep a link to a video to check it later. Of course I should do &lt;em&gt;activity x&lt;&#x2F;em&gt;, is good for this &lt;em&gt;part&lt;&#x2F;em&gt; of my life. And so on. We have many facets (or we should if we want to fully enjoy life) and what is relevant to one facet may be waste to another. Prioritizing is not easy (besides the obvious ones), the hours are limited and things pile up. You don&#x27;t want to miss things. But it&#x27;s unavoidable, you&#x27;ll miss things and your acceptance of this fact is key. But it&#x27;s not easy, nor convenient.&lt;&#x2F;p&gt;
+&lt;p&gt;How to solve this? Processes can be cumbersome and produce more waste than they save. I personally use Trello and Remember The Milk to manage my time, and they kind of work, but they are not perfect. Is this a business opportunity? Maybe. There are simple ways to do this? Maybe. But it is not simple, for sure.&lt;&#x2F;p&gt;
+&lt;p&gt;So, yes, interesting book and it helped me to pay more attention to my personal organization. Hopefully I&#x27;ll improve in this area, I&#x27;ll keep you posted.&lt;&#x2F;p&gt;
+&lt;p&gt;Obviously, feel free to send me your ideas on this issue. I&#x27;ll be glad to chat :)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">I recently finished reading The Lean Startup, a (relatively) new approach on development and innovation on software companies. An interesting and recommended reading for anyone involved in software development.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>It&#x27;s Back</title>
+        <published>2012-06-17T00:00:00+00:00</published>
+        <updated>2012-06-17T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/its-back/" type="text/html"/>
+        <id>https://perevillega.com/posts/its-back/</id>
+        
+            <content type="html">&lt;p&gt;It&#x27;s been a while, but the domain is live again! There was some unfortunate incident which wrecked the domain and left my previous blog unusable. After many months of procrastination, I&#x27;ve restored it back to a working state.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;One of the reasons of the delay is the way the site runs now. For a while I wanted to do something more personal than a simple &quot;out-of-the-shelf&quot; blog. I don&#x27;t post regularly enough as to have a blog. I post by whim, when I see something interesting or when I feel I should share something. I was using the &quot;blog&quot; mostly as a storage place for links and documentation. And it was handy.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s also a fact that nowadays you need an online presence. As a developer being on LinkedIn or Twitter doesn&#x27;t cut it. It&#x27;s nice, but it&#x27;s not enough. You have to show what you do. As an old teacher of mine said: &quot;you may be God, but if you don&#x27;t let people know, no one will care&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;So, I needed something akin of a personal page. A place to show what I do, to store links, to share my thoughts and to allow people to contact me. I&#x27;m sure there are many SaaS out there that I could have used as one. But, hey, I&#x27;m a software developer! And I need to build things using Play Framework (yes, it&#x27;s an addiction). So I &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;personal-page&quot;&gt;created my own&lt;&#x2F;a&gt;, the one you are seeing now.&lt;&#x2F;p&gt;
+&lt;p&gt;I have to thank several inspiration sources of this site:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Brian Nesbitt for his &lt;a href=&quot;http:&#x2F;&#x2F;nesbot.com&#x2F;2011&#x2F;11&#x2F;22&#x2F;now-running-on-play-2-beta&quot;&gt;Play 2.0 Beta blog system&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Eric Jones for his post on &lt;a href=&quot;http:&#x2F;&#x2F;erjjones.github.com&#x2F;blog&#x2F;How-I-built-my-blog-in-one-day&#x2F;&quot;&gt;building your own blog&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Kevin Burke for his &lt;a href=&quot;http:&#x2F;&#x2F;kev.inburke.com&#x2F;&quot;&gt;awesome layout&lt;&#x2F;a&gt; which he let me copy and tweak shamelessly&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;theoatmeal.com&#x2F;&quot;&gt;The Oatmeal&lt;&#x2F;a&gt; for his impressive tumbeasts (which I hope you won&#x27;t see often in action!)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;After reading those pages it&#x27;s hard not to start your own version of your personal page without using a database. I hope it works as expected.&lt;&#x2F;p&gt;
+&lt;p&gt;Enjoy, give feedback, and see you in the next update!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">It's been a while, but the domain is live again! There was some unfortunate incident which wrecked the domain and left my previous blog unusable. After many months of procrastination, I've restored it back to a working state.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Estatut de Catalunya: a Review</title>
+        <published>2010-07-12T00:00:00+00:00</published>
+        <updated>2010-07-12T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/estatut-de-catalunya-a-review/" type="text/html"/>
+        <id>https://perevillega.com/posts/estatut-de-catalunya-a-review/</id>
+        
+            <content type="html">&lt;p&gt;Let&#x27;s spur some controversy! Outside Spain very few know about the reality of &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Catalonia&quot;&gt;Catalonia&lt;&#x2F;a&gt;. For those of you who don&#x27;t know about it, a brief summary of its &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;History_of_Catalonia&quot;&gt;history&lt;&#x2F;a&gt;:&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;ul&gt;
+&lt;li&gt;Created in the medieval age, like most kingdoms of Europe, as part of the &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Crown_of_Aragon&quot;&gt;Crown of Aragon&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;li&gt;Developed as a maritime power, expanding in the Mediterranean and owning islands like Sicily. Its army, the &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Almogavars&quot;&gt;Almogavars&lt;&#x2F;a&gt;, have an interesting story.&lt;&#x2F;li&gt;
+&lt;li&gt;Unified into Spain in 1469 due to marriage between the Queen of Castilla and the King of Aragon, but keeping its own institutions and laws&lt;&#x2F;li&gt;
+&lt;li&gt;September 11th, 1714 (&lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;National_Day_of_Catalonia&quot;&gt;La Diada&lt;&#x2F;a&gt;): defeat of Catalonia in the succession war. Felipe V creates the &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Nueva_Planta_decrees&quot;&gt;Nueva Planta&lt;&#x2F;a&gt; decrees, removing the Catalan institutions and starting a period of suppression of all that is Catalan&lt;&#x2F;li&gt;
+&lt;li&gt;In the later half of 19th century, Catalonia becomes the center of industrialization of Spain&lt;&#x2F;li&gt;
+&lt;li&gt;April 14th, 1931: Spain proclaims the &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Second_Spanish_Republic&quot;&gt;Second Republic&lt;&#x2F;a&gt;. One year later Catalonia recovers most of its institutions and gets a certain degree of autonomy&lt;&#x2F;li&gt;
+&lt;li&gt;1936-1939: &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Spanish_Civil_War&quot;&gt;Spanish Civil War&lt;&#x2F;a&gt;. &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Francisco_Franco&quot;&gt;Franco&lt;&#x2F;a&gt; wins and Catalonia loses all its institutions and rights again, and it&#x27;s subject of a strong (and violent) suppression. &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Homage_to_Catalonia&quot;&gt;Homage to Catalonia&lt;&#x2F;a&gt; is published by George Orwell.&lt;&#x2F;li&gt;
+&lt;li&gt;November 20th, 1975: Franco dies&lt;&#x2F;li&gt;
+&lt;li&gt;1978: The &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Spanish_Constitution_of_1978&quot;&gt;Spanish Constitution&lt;&#x2F;a&gt; is approved by referendum&lt;&#x2F;li&gt;
+&lt;li&gt;1979: the &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Statute_of_Autonomy_of_Catalonia&quot;&gt;Second Statute of Autonomy of Catalonia&lt;&#x2F;a&gt; is approved&lt;&#x2F;li&gt;
+&lt;li&gt;September 16th, 2005: domain &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;.cat&quot;&gt;.cat&lt;&#x2F;a&gt; is approved by ICANN (unrelated but hey, I&#x27;m a geek!)&lt;&#x2F;li&gt;
+&lt;li&gt;September 30th, 2005: the Third version of the Statute is approved by the &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Catalan_Parliament&quot;&gt;Catalan Parliament&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;March 30th, 2006: Spanish &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Congreso_de_los_Diputados&quot;&gt;Congress of Deputies&lt;&#x2F;a&gt; approves the text after removing many parts of the text and changing many more. It is almost a new text.&lt;&#x2F;li&gt;
+&lt;li&gt;2006: the Third version of the Statute is approved by referendum (with low turnout, truth be told, due to fragmentation and low reputation of the local government at that time, with some parties rallying people against the text due to the changes made by the central government)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Now, before continuing, I have to do a disclaimer. I&#x27;m Catalan, I feel Catalan and Catalan is my mother tongue, but I&#x27;m not a supporter of independence. I truly believe other formulas, like a &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Federation&quot;&gt;Federation&lt;&#x2F;a&gt;, make more sense in the current socio-economic environment and inside Europe. Well, a &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Magocracy&quot;&gt;Magocracy&lt;&#x2F;a&gt; would be much cooler but the fear to a new Voldemort forbids it, and I&#x27;m not ready (yet!) to be the president of a &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Technocracy&quot;&gt;Technocracy&lt;&#x2F;a&gt;  ;)&lt;&#x2F;p&gt;
+&lt;p&gt;That said, back on track, now seriously. 2006. 3rd version of the Statute is approved in Catalonia and sent to Spanish Congress of Deputies, where it is approved. It wasn&#x27;t easy, too many politics involved, too much conflict and discrepancies, unwanted changes in the text and many more obstacles but it&#x27;s been done. Everything seems fine, but as you can imagine something went wrong or I would not be writing this. What went wrong is this:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;November 2nd, 2005: &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;People%27s_Party_%28Spain%29&quot;&gt;People&#x27;s Party&lt;&#x2F;a&gt; does a recourse on the text of the Third Statue to the &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Judiciary_of_Spain#The_Constitutional_Court&quot;&gt;Constitutional Court&lt;&#x2F;a&gt; of Spain. The party also does a recusatio of one member of the Tribunal, accusing him of being partial due to a study he did 8 years ago on the Catalan institutions. It&#x27;s the first time in history a recusatio in this court is accepted and applied, which means that the recused member won&#x27;t be able to decide in this subject.&lt;&#x2F;li&gt;
+&lt;li&gt;January 26th, 2006: the recourse is accepted&lt;&#x2F;li&gt;
+&lt;li&gt;July 20th, 2006: the text, approved by Catalan Parliament, Spanish Congress and popular referendum, is published at &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Bolet%C3%ADn_Oficial_del_Estado&quot;&gt;BOE&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;July 30th, 2006: People&#x27;s Party presents a recourse on more than half the text of the Statue to the Constitutional Court. And a second recusatio against the same judge against who they already had presented the previous one. It&#x27;s better to be on the safe side, you know?&lt;&#x2F;li&gt;
+&lt;li&gt;2006: many Spanish regions, most of them (but not all) governed by People&#x27;s Party, present a recourse to the text. The fact that some regions unrelated to People&#x27;s Party do that shows how much Spaniards care about us ;)&lt;&#x2F;li&gt;
+&lt;li&gt;2006-2007: many recusatio are done by the People&#x27;s Party and Catalan government against members of the Constitutional Court with opposite ideology. A purely political move to ensure the &quot;proper&quot; decision on the text. Only the recusatio done by People&#x27;s Party are accepted.&lt;&#x2F;li&gt;
+&lt;li&gt;May 17th, 2008: one of the members of the Constitutional Court dies. The members which can decide are now 5 right wing members, 5 left wing members and the president, whose vote can decide only in case of a draw. At this time, many of the members of the court should have been replaced (according to the law) as their terms had expired time ago. The death should be covered by a new member.&lt;&#x2F;li&gt;
+&lt;li&gt;November 26th, 2009: still no decision by the court. Catalan press published a common &lt;a href=&quot;http:&#x2F;&#x2F;www.324.cat&#x2F;noticia&#x2F;422426&#x2F;altres&#x2F;La-premsa-catalana-publica-un-editorial-conjunt-a-favor-de-lEstatut&quot;&gt;editorial&lt;&#x2F;a&gt; (the same in all media) rallying in favour of the text and its approval&lt;&#x2F;li&gt;
+&lt;li&gt;July 9th, 2010: 5 years after the text was created, 4 years after it was approved, the final version of the court&#x27;s decision is released. It requests many changes to the text, with the argumentation that they are against the Spanish Constitution. The tribunal is conformed by the same members it was in 2008. No replacement has come for the dead member, and no member has been replaced even when their terms expired long time ago according to legislation.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;There are many details lost in here, that you could only understand if you lived in Spain. People&#x27;s Party is a right wing political party, which has made of its hate and attacks versus autonomous regions like Catalonia and Basque Country its flag. They didn&#x27;t complain at all against the Statute of Andalusia, another region of Spain governed by the other big party of Spain, &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;PSOE&quot;&gt;PSOE&lt;&#x2F;a&gt;. That text has similar wording (identical in some cases) to the Catalan one. In fact, People&#x27;s Party voted for it, approving it in the Congress.This and the already mentioned &quot;legal issues&quot; with the composition of the Constitutional Court are just some of many pieces that complete the jigsaw.&lt;&#x2F;p&gt;
+&lt;p&gt;The relevant piece here is that the original text, created in 2005, was already modified (a lot) in 2006 by the Spanish Congress. And now they request even more changes. Thanks to political interests, the text is barely an improvement over the previous one. And they took 5 years to do all this. I wonder in which other developed country this would be accepted. 5 years to decide over the text, playing politics and breaking the national law about the composition of the Constitutional Court.&lt;&#x2F;p&gt;
+&lt;p&gt;Isn&#x27;t it nice?&lt;&#x2F;p&gt;
+&lt;p&gt;Past July 10th there was a &lt;a href=&quot;http:&#x2F;&#x2F;www.flickr.com&#x2F;photos&#x2F;beceene&#x2F;sets&#x2F;72157624344519977&#x2F;&quot;&gt;demonstration&lt;&#x2F;a&gt; in Barcelona to protest against he verdict of the court. According to the police 1,100,000 people gathered together in Barcelona to show their opposition to the decision of the court. Not bad at all. The biggest since 1978, and that one was for claiming the Second Statute after many years of dictatorship under Franco&#x27;s regime.&lt;&#x2F;p&gt;
+&lt;p&gt;Of course, some &lt;a href=&quot;http:&#x2F;&#x2F;elpais.com&#x2F;elpais&#x2F;2010&#x2F;07&#x2F;12&#x2F;actualidad&#x2F;1278922619_850215.html&quot;&gt;media&lt;&#x2F;a&gt; and &lt;a href=&quot;http:&#x2F;&#x2F;www.lynce.es&#x2F;es&#x2F;manifadetalle.php?cod=44&quot;&gt;companies&lt;&#x2F;a&gt; said quite a different number (56.000). Funny, as the next day (July 11th) Spain won the world cup, and the same company said 75.000 people had celebrated the achievement in Barcelona. Why it is funny? In this &lt;a href=&quot;http:&#x2F;&#x2F;twitpic.com&#x2F;24oj7b&quot;&gt;image&lt;&#x2F;a&gt; you can see the areas covered by people each of the days (10th and 11th). Do your math. Oh, they justify themselves saying they measured at 20:30 (1 hour after the concentration had ended, perfect time!). It gives you an idea of the love of the media for Catalonia.&lt;&#x2F;p&gt;
+&lt;p&gt;Up to here, the facts. Yes, I&#x27;ve not been completely partial in the opinions, but the facts are real. You can check via the links provided or using Google and its translator if required. Go ahead and read about it, I&#x27;m waiting.&lt;&#x2F;p&gt;
+&lt;p&gt;What does it mean? What will happen?&lt;&#x2F;p&gt;
+&lt;p&gt;Honestly, I don&#x27;t believe a big change will happen. It&#x27;s been nice to see the people of Catalonia are still proud of their identity. Sadly we can&#x27;t trust our politicians, as they themselves started eroding the text by doing many changes to it in its trip to the Congress and back. Politics (both Catalan and Spanish) have played a big role against its success and the demonstration of last Saturday showed that. People complained against the politicians that were trying to reap some benefit from the event. It was nice to see :) Besides that, a pacific demonstration, no incidents involved.&lt;&#x2F;p&gt;
+&lt;p&gt;So, no, I can&#x27;t say what will happen next. What I can say is that all these events are increasing unrest in Catalonia. The media broadcasted recently in TV a documentary named &quot;&lt;a href=&quot;http:&#x2F;&#x2F;www.tv3.cat&#x2F;adeuespanya&quot;&gt;Adeu Espanya&lt;&#x2F;a&gt;&quot; (Bye, Spain) where it showed how Catalonia could be if it was independent. The nationalist feelings, which were always there, are growing stronger by the day. Heck, even I, that usually ignored such stuff, I&#x27;m getting a feeling: &quot;screw Madrid and Spain. No more federalism, let&#x27;s just break with them&quot;. That should mean something to observers.&lt;&#x2F;p&gt;
+&lt;p&gt;I can&#x27;t argue if this is right or wrong, if the events are as they should be or not. I don&#x27;t even care who is right here. The only thing I know is that the way the text (and in extension, Catalan people) have been mistreated, it could not happen in any other country. Not in a country that calls itself &quot;civilized&quot;. Politic games are usually nasty. In this case, they have shown their darkest moves. They have left a sensation of failure in the people that elected them. If they don&#x27;t care about its people, why should the people care about them?&lt;&#x2F;p&gt;
+&lt;p&gt;What will happen now? Many people would say &lt;a href=&quot;http:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=enbcjB3aHkE&quot;&gt;this&lt;&#x2F;a&gt;. I&#x27;m not sure I want it. But, what other alternatives do we have?&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Let's spur some controversy! Outside Spain very few know about the reality of Catalonia. For those of you who don't know about it, a brief summary of its history:
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>How to Heal and Prevent Computer Injury (RSI)</title>
+        <published>2010-07-10T00:00:00+00:00</published>
+        <updated>2010-07-10T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/how-to-heal-and-prevent-computer-injury-rsi/" type="text/html"/>
+        <id>https://perevillega.com/posts/how-to-heal-and-prevent-computer-injury-rsi/</id>
+        
+            <content type="html">&lt;p&gt;As somebody who spends too many hours in front of a computer I&#x27;ve developed some injuries in my tendons, specially in the right arm. It&#x27;s not nice to work with pain (and I blame my low APM to it!). Although I go to physio and I&#x27;m recovering well, it would be good to avoid this happening again in the future.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Luckily, the other day I found &lt;a href=&quot;http:&#x2F;&#x2F;www.teamliquid.net&#x2F;forum&#x2F;viewmessage.php?topic_id=134466&quot;&gt;this post&lt;&#x2F;a&gt; about treating and preventing your RSI, created by a suffering gamer. Gamers do cry. I think it&#x27;s important to spread this information. Nowadays all of us spend too much time in front of electronic devices (computers, tablets and more) and this can mess our bodies quite badly. So, read it and hopefully avoid RSI!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">As somebody who spends too many hours in front of a computer I've developed some injuries in my tendons, specially in the right arm. It's not nice to work with pain (and I blame my low APM to it!). Although I go to physio and I'm recovering well, it would be good to avoid this happening again in the future.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>I&#x27;m from Barcelona</title>
+        <published>2010-07-02T00:00:00+00:00</published>
+        <updated>2010-07-02T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/im-from-barcelona/" type="text/html"/>
+        <id>https://perevillega.com/posts/im-from-barcelona/</id>
+        
+            <content type="html">&lt;p&gt;I&#x27;m from &lt;a href=&quot;http:&#x2F;&#x2F;www.flickr.com&#x2F;groups&#x2F;barcelona&#x2F;pool&#x2F;&quot;&gt;Barcelona&lt;&#x2F;a&gt;. This simple and straightforward fact always raises expressions of incredulity amongst the people I meet here in Dublin when I tell them I live here:&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;...&quot;What are you doing here?&quot;&lt;&#x2F;p&gt;
+&lt;p&gt;...&quot;Don&#x27;t you miss the sun?&quot;&lt;&#x2F;p&gt;
+&lt;p&gt;...&quot;How could you leave?&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;Things become more complicated when they start speaking about football and I have to confess I&#x27;m a follower of Manchester United and I don&#x27;t like FC Barcelona... Yes, it is complicated...&lt;&#x2F;p&gt;
+&lt;p&gt;Truth be told, when I left Barcelona almost 3 years ago now (time flies!) I really disliked the city. I found myself in a country (Spain) where the moral is too ... let&#x27;s call it grey-ish, with a career (IT) underpaid and undervalued, in a region (Catalonia) hated by the other regions of the country. I truly believed the environment was unbearable. I despised it, reason why I chose United as my club, I read only in English, and so on. I just wanted to see Europe, the golden land beyond the northern hills of the country. I wanted to leave.&lt;&#x2F;p&gt;
+&lt;p&gt;It wasn&#x27;t until I landed in Dublin that I started to become aware of the fact that my city, Barcelona, is great. It all started with the people here. If I had to say which nation loves Barcelona the most it wouldn&#x27;t be Catalonia, but Ireland. I can&#x27;t say how many people have explained to me how much did they enjoy their trips there, and their future plans to go back. It seems like the whole island has visited it at one time or another!&lt;&#x2F;p&gt;
+&lt;p&gt;Honestly, this came as a surprise. Hearing so many good things about your city makes you wonder: maybe I was mistaken. And time always enforces the good memories, so as months went on in Dublin, the memories of Barcelona became more partial, leaning towards the good ones, smoothing the bad ones. From time to time I did the mistake of reading a Spanish newspaper and then the old thoughts (fuck off Spain!) came back, at least for a while.&lt;&#x2F;p&gt;
+&lt;p&gt;Then I met Ewa, that polish girl that would become my fiancee, and I still remember her face when I answered to her standard &quot;Where are you from?&quot; with &quot;Barcelona, and you?&quot;. I remember when I brought her to Barcelona for the first time, it was like giving the best present in the world to a child. And in that visit I was in places I had never been, and I saw a city I had never seen. A refreshing view of a place I had ignored for so long while living in it.&lt;&#x2F;p&gt;
+&lt;p&gt;I don&#x27;t lie to myself. Barcelona is far from perfect, specially when you compare it with cities like Munich or New York. But I can agree that it is good enough, and that it has its charm. That it may lack some things, important ones, but it has others to compensate. That I&#x27;ve learned to understand it and appreciate it. And that, probably, if I had never left it I would still not see her cuteness. The one it has, even knowing the ugly that comes with it.&lt;&#x2F;p&gt;
+&lt;p&gt;So I can only say: &lt;a href=&quot;http:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=4U6x3yNfeIM&quot;&gt;I&#x27;m from Barcelona. And I&#x27;m proud of it!&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">I'm from Barcelona. This simple and straightforward fact always raises expressions of incredulity amongst the people I meet here in Dublin when I tell them I live here:
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Renaming Files</title>
+        <published>2010-05-09T00:00:00+00:00</published>
+        <updated>2010-05-09T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/renaming-files/" type="text/html"/>
+        <id>https://perevillega.com/posts/renaming-files/</id>
+        
+            <content type="html">&lt;p&gt;I own a Lacie Big5 to backup my files, which amount to almost 2 Tb right now. Lately I&#x27;ve had some compatibility issues as some files I copied from my Windows Vista machine were not readable from my Kubuntu 9.10.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;After checking I&#x27;ve seen the issue arose from Spanish characters like &#x27;á&#x27;. Surprising, as Linux should support them, but oh well. A bit of Googling and the solution was found: &lt;a href=&quot;http:&#x2F;&#x2F;file-folder-ren.sourceforge.net&#x2F;&quot;&gt;Métamorphose&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Run it with the following reg exp:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;[ñÑáéíóúÁÉÍÓÚüÜ@¡¿—àèìòùÀÈÌÒÙ$£¥€¢ƒäÄïÏöÖçÇãêß]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and issue solved! You may need to tweak the reg exp according to your language if you use some extra &quot;non-ASCII&quot; characters, but it&#x27;s easy to do.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">I own a Lacie Big5 to backup my files, which amount to almost 2 Tb right now. Lately I've had some compatibility issues as some files I copied from my Windows Vista machine were not readable from my Kubuntu 9.10.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Moved and Lost</title>
+        <published>2009-08-01T00:00:00+00:00</published>
+        <updated>2009-08-01T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/moved-and-lost/" type="text/html"/>
+        <id>https://perevillega.com/posts/moved-and-lost/</id>
+        
+            <content type="html">&lt;p&gt;So, the blog has been migrated. Sadly, due to format issues and my sloppiness, several posts have been lost. Like in gone. Forever. Nothing too relevant that can&#x27;t be found in other places, but over 2 years of posts are gone.&lt;&#x2F;p&gt;
+&lt;p&gt;Yeah, it sucks. And stings a bit. It&#x27;s time spent and gone for nothing.  Oh, well, let&#x27;s try to keep the bright side. Let&#x27;s take the chance to start from scratch and improve the content :)&lt;&#x2F;p&gt;
+&lt;p&gt;See you soon!&lt;&#x2F;p&gt;
+</content>
+        </entry>
+</feed>

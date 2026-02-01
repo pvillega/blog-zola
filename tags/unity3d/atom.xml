@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>unity3d</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - unity3d</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/unity3d/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/unity3d/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2015-02-15T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/unity3d/atom.xml</id><entry xml:lang="en">
+        <title>Game Development Using Unity3D</title>
+        <published>2015-02-15T00:00:00+00:00</published>
+        <updated>2015-02-15T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/game-development-using-unity3d/" type="text/html"/>
+        <id>https://perevillega.com/posts/game-development-using-unity3d/</id>
+        
+            <content type="html">&lt;p&gt;I think that most software developers have a secret desire: to build their own game. Unfortunately the golden times of the 80&#x27;s where simplistic games with almost no graphics succeeded are gone. Music, graphics, story... nowadays a decent game requires lots of manpower. But is that dream over?&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Fortunately technology advances fast. Very fast. If the complexity of games has increased, so has the capabilities of game development tools. For example, &lt;a href=&quot;http:&#x2F;&#x2F;unity3d.com&#x2F;&quot;&gt;Unity3D&lt;&#x2F;a&gt;, a game engine used by &lt;a href=&quot;http:&#x2F;&#x2F;unity3d.com&#x2F;showcase&#x2F;gallery&quot;&gt;plenty&lt;&#x2F;a&gt; of successful games that streamlines the process to a huge degree. No, a single developer won&#x27;t build the next &lt;a href=&quot;http:&#x2F;&#x2F;clashofclans.com&#x2F;&quot;&gt;Clash of Clans&lt;&#x2F;a&gt; but it&#x27;s much easier for a small team to do so.&lt;&#x2F;p&gt;
+&lt;p&gt;I tried Unity a few years ago (when Unity 3.x was offered for free) but, somehow, I never spent much time to it. I forgot about it until recently, when I ended up with a link to a &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;playlist?list=PLREdURb87ks2qkD9svvlIwYwN35FZ3Afv&amp;amp;app=desktop&quot;&gt;very good tutorial&lt;&#x2F;a&gt; (warning: it&#x27;s in Spanish) and I decided I&#x27;d implement something by following it.&lt;&#x2F;p&gt;
+&lt;p&gt;And, indeed, I did. I started yesterday morning and in less than 48 hours my game is &lt;a href=&quot;https:&#x2F;&#x2F;play.google.com&#x2F;store&#x2F;apps&#x2F;details?id=com.araconsoftware.rundemo&quot;&gt;available&lt;&#x2F;a&gt; in the Google Play store. Granted: it&#x27;s buggy, not original and very silly. But I built it, so I&#x27;ll overlook all those truths for a while if you don&#x27;t mind me doing so. It&#x27;s my baby-game ;)&lt;&#x2F;p&gt;
+&lt;p&gt;I also uploaded the source to &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;run-unity3d-game-sample&quot;&gt;Github&lt;&#x2F;a&gt;. I deviated a bit from the tutorial (nothing major), so feel free to use it as a template to experiment with.&lt;&#x2F;p&gt;
+&lt;p&gt;Does this mean I&#x27;ll drop everything and become a game developer? Not really. But I may start devoting more time doing things like this, as it was extremely fun. Maybe after I finish with the Machine Learning courses, and testing Akka Http, and Akka Streams, and... well, you get the idea ;)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">I think that most software developers have a secret desire: to build their own game. Unfortunately the golden times of the 80's where simplistic games with almost no graphics succeeded are gone. Music, graphics, story... nowadays a decent game requires lots of manpower. But is that dream over?
+…</summary>
+        </entry>
+</feed>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>iteratee</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - iteratee</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/iteratee/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/iteratee/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2012-11-18T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/iteratee/atom.xml</id><entry xml:lang="en">
+        <title>Iteratees and Play 2</title>
+        <published>2012-11-18T00:00:00+00:00</published>
+        <updated>2012-11-18T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/iteratees-and-play-2/" type="text/html"/>
+        <id>https://perevillega.com/posts/iteratees-and-play-2/</id>
+        
+            <content type="html">&lt;p&gt;From time to time I like to test some new functionality of &lt;a href=&quot;http:&#x2F;&#x2F;www.playframework.org&#x2F;&quot;&gt;Play 2.0&lt;&#x2F;a&gt;. Creating a tiny for-fun project allows me to see that functionality in action, to solve the initial pitfalls related to it and to have a basic sample for later on.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;With Play 2.1 coming closer, and seeing all the new stuff in it (Slick, Scala 2.10, etc) I wanted to test some of the features that I&#x27;ve not been able to use in a &quot;real project&quot;, especially the ones related to Real Time web. When thinking about what to implement I remembered an issue a friend had in his company, an ETL-like process that had to receive data (massive amounts) on one end and store it in several location after processing the data. While not in the mood to create a real system which would be quite complex, having to manage queues and ensuring messages were delivered, that inspired me to plan a minor project in which I could use several interesting technologies: Iteratee, MongoDB, Redis and Akka actors. I&#x27;ve not used any of them very often, so I was sold to the idea :)&lt;&#x2F;p&gt;
+&lt;p&gt;You can find the code resulting from this experiment in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;iteratees-test&quot;&gt;my Github repository&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I won&#x27;t start a line-by-line description of the project, the source is there and I believe it&#x27;s quite self-explanatory. But there are some things that are worth mentioning, even if it is just for future reference:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Enumerator.imperative&lt;&#x2F;strong&gt; allows you to push data into the Enumerator manually &lt;strong&gt;and won&#x27;t close the stream&lt;&#x2F;strong&gt; until you say so. I had problems when trying to implement a Html view on the stream, as a non-imperative stream was closing automatically once the data was consumed, not waiting for the next input which was slower than the rate at which the app consumed the Enumerator.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;dev.w3.org&#x2F;html5&#x2F;eventsource&#x2F;&quot;&gt;SSE&lt;&#x2F;a&gt; is great, very performing and with better support than WebSockets. Also, the fact that the browser automatically restores the connection if the link is dropped simplifies the code a lot. But (always a but!) it has a bug in its implementation in Play 2.0.4 where the events won&#x27;t have an Id associated even if you provide the corresponding extractor. Hopefully that will be solved in 2.1. The event name part works, though!&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Concurrent.hub&lt;&#x2F;strong&gt; has a nice trick with the &lt;code&gt;getPatchCord&lt;&#x2F;code&gt; method where you multiplex the stream to several clients at the same time. Saves a lot of memory and CPU.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Akka&lt;&#x2F;strong&gt; actors are as simple, fast and reliable as always. As a &lt;em&gt;veteran&lt;&#x2F;em&gt; Java developer, seeing Actors makes it very very hard to go back to &lt;em&gt;synchronized&lt;&#x2F;em&gt; and all that clutter&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;The combination Iteratee + Actor + MongoDB is &lt;strong&gt;FAST&lt;&#x2F;strong&gt;. When running a test with simulated request every 10ms my computer (a bit old by nowadays standards) didn&#x27;t notice it at all. Low resource consumption and high speed? Go Play!&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Talking about &lt;strong&gt;MongoDB&lt;&#x2F;strong&gt;, I&#x27;ve never been a huge fan of NoSQL and in the past I read many articles which made me doubt about Mongo. Obviously, this is not a real-life system where I can&#x27;t afford to lose data, but it was refreshing to see the simplicity of the approach Mongo takes to storing and retrieving data. With &lt;a href=&quot;http:&#x2F;&#x2F;reactivemongo.org&#x2F;&quot;&gt;ReactiveMongo&lt;&#x2F;a&gt; and Play 2.1 it may be a wonderful support system for non-critical real-time data.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Redis&lt;&#x2F;strong&gt; as a Memcached replacement is good, very good, but the additional methods provided by the API so you can use it as a &lt;em&gt;key store&lt;&#x2F;em&gt; can be a bit confusing. I can&#x27;t say which one is better (Redis or Memcached) but I&#x27;m quite impressed with Redis.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Not much more to add. Feel free to clone the code and play with it. It&#x27;s nothing amazing as code goes, but it shows what you can achieve with just a few lines of Scala and Play :)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">From time to time I like to test some new functionality of Play 2.0. Creating a tiny for-fun project allows me to see that functionality in action, to solve the initial pitfalls related to it and to have a basic sample for later on.
+…</summary>
+        </entry>
+</feed>

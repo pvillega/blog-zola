@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>enumerations</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - enumerations</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/enumerations/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/enumerations/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2013-09-21T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/enumerations/atom.xml</id><entry xml:lang="en">
+        <title>Enums to JSON in Scala</title>
+        <published>2013-09-21T00:00:00+00:00</published>
+        <updated>2013-09-21T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/enums-to-json-in-scala/" type="text/html"/>
+        <id>https://perevillega.com/posts/enums-to-json-in-scala/</id>
+        
+            <content type="html">&lt;p&gt;Scala gives the developer the possibility of using &lt;a href=&quot;http:&#x2F;&#x2F;www.scala-lang.org&#x2F;api&#x2F;current&#x2F;index.html#scala.Enumeration&quot;&gt;Enumerations&lt;&#x2F;a&gt;. If they should be used or if &lt;a href=&quot;http:&#x2F;&#x2F;docs.scala-lang.org&#x2F;tutorials&#x2F;tour&#x2F;case-classes.html&quot;&gt;Case Classes&lt;&#x2F;a&gt; are better is a debate I&#x27;m not going to start here. They exist and they can be used.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;The reason I mention enumerations is that in a personal project (which I hope to publish soon, but I digress) I&#x27;ve been using them inside some &lt;em&gt;case classes&lt;&#x2F;em&gt;. In the same project I&#x27;m using &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mandubian&#x2F;play-json-alone&quot;&gt;Play-JSON&lt;&#x2F;a&gt;, a standalone version of the &lt;a href=&quot;http:&#x2F;&#x2F;www.playframework.com&#x2F;documentation&#x2F;2.2.x&#x2F;ScalaJson&quot;&gt;Play Framework JSON libraries&lt;&#x2F;a&gt;, which turn working with JSON into a boilerplate-free pleasure. All was grand until I added my first enumeration as a parameter in a case class. The compiler started to complain and it took me a while to find how to fix it.&lt;&#x2F;p&gt;
+&lt;p&gt;The solution was provided by, who else, &lt;a href=&quot;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;15488639&#x2F;how-to-write-readst-and-writest-in-scala-enumeration-play-framework-2-1&#x2F;15489179#15489179&quot;&gt;StackOverflow&lt;&#x2F;a&gt; which &lt;a href=&quot;http:&#x2F;&#x2F;blog.stackoverflow.com&#x2F;2013&#x2F;09&#x2F;five-years-ago-stack-overflow-launched-then-a-miracle-occurred&#x2F;&quot;&gt;in just 5 years&lt;&#x2F;a&gt; has become an invaluable resource. I thought this may be useful to other people, so I created some basic sample code showing the solution to the issue and pushed it to a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;scala_enum_json&quot;&gt;Github repository&lt;&#x2F;a&gt;. As always, feel free to clone and comment.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;the-issue&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-issue&quot; aria-label=&quot;Anchor link for: the-issue&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The issue&lt;&#x2F;h1&gt;
+&lt;p&gt;Let&#x27;s assume we have the following code structure:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;&amp;#x2F; Enum sample #1
+object EnumType1 extends Enumeration {
+  type EnumType1 = Value
+
+  val N = Value(&amp;quot;N&amp;quot;)
+  val D = Value(&amp;quot;D&amp;quot;)
+  val A = Value(&amp;quot;A&amp;quot;)
+  val C = Value(&amp;quot;C&amp;quot;)
+  val L = Value(&amp;quot;L&amp;quot;)
+  val P = Value(&amp;quot;P&amp;quot;)
+}
+
+&amp;#x2F;&amp;#x2F; Enum sample #2
+object EnumType2 extends Enumeration {
+  type EnumType2 = Value
+
+  val OPTION_A = Value(&amp;quot;OPTION_A&amp;quot;)
+  val OPTION_B = Value(&amp;quot;OPTION_B&amp;quot;)
+  val OPTION_C = Value(&amp;quot;OPTION_C&amp;quot;)
+  val OPTION_D = Value(&amp;quot;OPTION_D&amp;quot;)
+  val OPTION_E = Value(&amp;quot;OPTION_E&amp;quot;)
+  val OPTION_F = Value(&amp;quot;OPTION_F&amp;quot;)
+}
+
+&amp;#x2F;&amp;#x2F; Case class that uses enums
+case class EnumCaseClass(name: String, enum1: EnumType1, enum2: EnumType2)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We can take advantage of &lt;em&gt;Play-JSON&lt;&#x2F;em&gt; and create a companion object for our case class that will helps us serializing instances of this class from or into JSON.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;object EnumCaseClass {
+  &amp;#x2F;&amp;#x2F; Support object to convert EnumCaseClass to Json using Play-JSON
+  implicit val fmt = Json.format[EnumCaseClass]
+
+  def fromJson(json: JsValue) = Json.fromJson[EnumCaseClass](json).get
+
+  def toJson(enumCaseClass: EnumCaseClass) = Json.toJson(enumCaseClass)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Unfortunately, when compiling we will get errors due to the enumerations missing valid &lt;em&gt;Reads&lt;&#x2F;em&gt; and &lt;em&gt;Writes&lt;&#x2F;em&gt;. We can test this by removing the enum parameters from the case class and replacing them by simple types as shown below. The code works and converts the case class into JSON, which proves that the issue is the enumeration type that can&#x27;t be managed by &lt;em&gt;Play-JSON&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;case class EnumCaseClass(name: String, enum1: Int, enum2: Int)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;solution&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#solution&quot; aria-label=&quot;Anchor link for: solution&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Solution&lt;&#x2F;h1&gt;
+&lt;p&gt;The solution is, obviously, to provide &lt;em&gt;Reads&lt;&#x2F;em&gt; and &lt;em&gt;Writes&lt;&#x2F;em&gt; for the enumerations. But we would like to do it in a generic way, to avoid duplication of very similar code. &lt;a href=&quot;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;15488639&#x2F;how-to-write-readst-and-writest-in-scala-enumeration-play-framework-2-1&#x2F;15489179#15489179&quot;&gt;StackOverflow&lt;&#x2F;a&gt; provides an example of a support class that can accomplish this:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;object EnumUtils {
+  def enumReads[E &amp;lt;: Enumeration](enum: E): Reads[E#Value] =
+    new Reads[E#Value] {
+      def reads(json: JsValue): JsResult[E#Value] = json match {
+        case JsString(s) =&amp;gt; {
+          try {
+            JsSuccess(enum.withName(s))
+          } catch {
+            case _: NoSuchElementException =&amp;gt;
+               JsError(s&amp;quot;Enumeration expected of type: &amp;#x27;${enum.getClass}&amp;#x27;,
+                      but it does not appear to contain the value: &amp;#x27;$s&amp;#x27;&amp;quot;)
+          }
+        }
+        case _ =&amp;gt; JsError(&amp;quot;String value expected&amp;quot;)
+      }
+  }
+
+  implicit def enumWrites[E &amp;lt;: Enumeration]: Writes[E#Value] =
+    new Writes[E#Value] {
+      def writes(v: E#Value): JsValue = JsString(v.toString)
+    }
+
+  implicit def enumFormat[E &amp;lt;: Enumeration](enum: E): Format[E#Value] = {
+    Format(enumReads(enum), enumWrites)
+  }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This creates an object that provides generic &lt;em&gt;Reads&lt;&#x2F;em&gt;, &lt;em&gt;Writes&lt;&#x2F;em&gt; and &lt;em&gt;Format&lt;&#x2F;em&gt; methods that can be used with any enumeration. We can use the methods in our enumerations, adding some implicit vals of type &lt;em&gt;Reads&lt;&#x2F;em&gt; and &lt;em&gt;Writes&lt;&#x2F;em&gt; that will redirect the execution flow to the support object, as follows:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;object EnumType1 extends Enumeration {
+  type EnumType1 = Value
+
+  val N = Value(&amp;quot;N&amp;quot;)
+  val D = Value(&amp;quot;D&amp;quot;)
+  val A = Value(&amp;quot;A&amp;quot;)
+  val C = Value(&amp;quot;C&amp;quot;)
+  val L = Value(&amp;quot;L&amp;quot;)
+  val P = Value(&amp;quot;P&amp;quot;)
+
+  implicit val enumReads: Reads[EnumType1] = EnumUtils.enumReads(EnumType1)
+
+  implicit def enumWrites: Writes[EnumType1] = EnumUtils.enumWrites
+
+}
+
+object EnumType2 extends Enumeration {
+  type EnumType2 = Value
+
+  val OPTION_A = Value(&amp;quot;OPTION_A&amp;quot;)
+  val OPTION_B = Value(&amp;quot;OPTION_B&amp;quot;)
+  val OPTION_C = Value(&amp;quot;OPTION_C&amp;quot;)
+  val OPTION_D = Value(&amp;quot;OPTION_D&amp;quot;)
+  val OPTION_E = Value(&amp;quot;OPTION_E&amp;quot;)
+  val OPTION_F = Value(&amp;quot;OPTION_F&amp;quot;)
+
+  implicit val enumReads: Reads[EnumType2] = EnumUtils.enumReads(EnumType2)
+
+  implicit def enumWrites: Writes[EnumType2] = EnumUtils.enumWrites
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;By adding this support object and the enumeration-specific &lt;em&gt;vals&lt;&#x2F;em&gt;, we can now compile the project and serialize our &lt;em&gt;case class&lt;&#x2F;em&gt; into JSON.&lt;&#x2F;p&gt;
+&lt;p&gt;Go to the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;scala_enum_json&quot;&gt;Github repository&lt;&#x2F;a&gt; and experiment with the code.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Scala gives the developer the possibility of using Enumerations. If they should be used or if Case Classes are better is a debate I'm not going to start here. They exist and they can be used.
+…</summary>
+        </entry>
+</feed>

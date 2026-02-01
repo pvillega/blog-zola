@@ -1,0 +1,122 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://perevillega.com name=base><title>Software serves the Business • Free Monads using FreeK</title><link href=https://perevillega.com/icons/favicon.ico rel=icon type=image/png><link title="Software serves the Business - Atom Feed" href=https://perevillega.com/atom.xml rel=alternate type=application/atom+xml><link href="https://perevillega.com/inter_subset_en.css?h=d8cf4ad058d6c3a4015b" rel=stylesheet><link href="https://perevillega.com/main.css?h=149ff9e737409b86f9c3" rel=stylesheet><link href="https://perevillega.com/custom.css?h=ff5a5712d2f0bc9d9ac2" rel=stylesheet><meta content="light dark" name=color-scheme><meta content=#087e96 name=theme-color><meta content="My previous post on Free Monad implemented a few DSL using Free Monads. The same day I published it I discovered FreeK by Pascal Voitot. How does FreeK help you when building a Free Monad?
+…" name=description><meta content="My previous post on Free Monad implemented a few DSL using Free Monads. The same day I published it I discovered FreeK by Pascal Voitot. How does FreeK help you when building a Free Monad?
+…" property=og:description><meta content="index, nofollow" name=robots><meta content="Free Monads using FreeK" property=og:title><meta content=article property=og:type><meta content="https://perevillega.com/social_cards/index.png?h=125d02cc3c86eaf88fa6" property=og:image><meta content=2088 property=og:image:width><meta content=1000 property=og:image:height><meta content="https://perevillega.com/social_cards/index.png?h=125d02cc3c86eaf88fa6" name=twitter:image><meta content=summary_large_image name=twitter:card><meta content=en_GB property=og:locale><meta content=https://perevillega.com/posts/freek-and-free-monads/ property=og:url><meta content="Software serves the Business" property=og:site_name><meta content="default-src 'self';font-src 'self' data: 'self';img-src 'self' https://* data:;media-src 'self' https://cdn.jsdelivr.net/;style-src 'self' 'unsafe-inline';frame-src 'self' player.vimeo.com https://www.youtube-nocookie.com https://view.officeapps.live.com;connect-src 'self' https://umami.villegawilcz.com;script-src 'self' https://umami.villegawilcz.com 'self'" http-equiv=Content-Security-Policy><noscript><link href=https://perevillega.com/no_js.css rel=stylesheet></noscript><script src=https://perevillega.com/js/initializeTheme.min.js></script><script defer src=https://perevillega.com/js/themeSwitcher.min.js></script><script async data-do-not-track=true data-website-id=7bdfa858-bebc-479d-9a1f-bea833a709a8 defer src=https://umami.villegawilcz.com/script.js></script><meta content=@pvillega@mastodon.social name=fediverse:creator><script src="https://perevillega.com/search_index.en.js?h=5e3427c9b8d057d8989e" defer></script><script src="https://perevillega.com/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e" defer></script><body><header><nav class=navbar><div class=nav-title><a class=home-title href=https://perevillega.com>Software serves the Business</a></div><div class=nav-navs><ul><li><a class="nav-links no-hover-padding" href=https://perevillega.com/posts/> blog </a><li><a class="nav-links no-hover-padding" href=https://perevillega.com/tags/> tags </a></li><div class=nav-navs id=menu-icons-group><li class=js><div aria-label="Click or press $SHORTCUT to open search" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" id=search-button role=button tabindex=0><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div><li class="theme-switcher-wrapper js"><div aria-label="Toggle dark mode" title="Toggle dark/light mode" aria-pressed=false class=theme-switcher role=button tabindex=0></div><div aria-label="Reset mode to default" class="theme-resetter arrow" title="Reset mode to default" aria-hidden=true role=button tabindex=0></div></div></ul></div></nav></header><div class=content><main><article><h1 class=article-title>Free Monads using FreeK</h1><ul class=meta><li>30th May 2016<li title="1026 words"><span aria-hidden=true class=separator>•</span>6 min read<li class=tag><span aria-hidden=true class=separator>•</span>Tags: <li class=tag><a href=https://perevillega.com/tags/scala/>scala</a>, <li class=tag><a href=https://perevillega.com/tags/monad/>monad</a>, <li class=tag><a href=https://perevillega.com/tags/fp/>fp</a>, <li class=tag><a href=https://perevillega.com/tags/free-monad/>free monad</a>, <li class=tag><a href=https://perevillega.com/tags/freek/>freek</a></ul><section class=body><p>My previous post on <a href=/understanding-free-monads>Free Monad</a> implemented a few DSL using Free Monads. The same day I published it I discovered <a href=https://github.com/ProjectSeptemberInc/freek>FreeK</a> by <a href=https://twitter.com/mandubian>Pascal Voitot</a>. How does FreeK help you when building a Free Monad?</p><span id=continue-reading></span><p>I've updated my <a href=https://github.com/pvillega/free-monad-sample>code</a> on Free Monad with a sample using FreeK. The sample contains my previous implementation which only used <a href=http://typelevel.org/cats/tut/freemonad.html>Cats</a> Free implementation, so you can compare both side by side.<p>I can say upfront that FreeK removed a bit of <em>boilerplate</em> and made the implementation slightly cleaner. I feel the main benefit of FreeK is not so much the Free Monad tooling (which, don't misunderstand me, is good!) but it's integration with monad transformers, as well as the way it manages what Pascal calls <em>monadic onions of result types</em>.<h2 id=implementing-free-with-freek><a aria-label="Anchor link for: implementing-free-with-freek" class="header-anchor no-hover-padding" href=#implementing-free-with-freek><span aria-hidden=true class=link-icon></span></a> Implementing Free with FreeK</h2><p>The first step is, as expected, to define our languages. I assume (from now onwards) that you have read <a href=/understanding-free-monads>my previous post</a> so I won't discuss details already tackled in there.<p>With FreeK we define our language like this:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>object Orders {
+  sealed trait DSL[A]
+  final case class ListStocks() extends DSL[List[Symbol]]
+  final case class Buy(stock: Symbol, amount: Int) extends DSL[Response]
+  final case class Sell(stock: Symbol, amount: Int) extends DSL[Response]
+}
+</code></pre><p>which is no different as how we were doing it before; a trait with case classes. The convention of calling the trait <code>DSL</code> and embedding it in the object is one I'll use from now on, but it's not exclusive of <em>FreeK</em>, can be used without it.<p>An interpreter is defined as:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>object OrderInterpreter extends (Orders.DSL ~> Id) {
+  import Orders._
+
+  def apply[A](a: Orders.DSL[A]) = a match {
+    case ListStocks() =>
+      println(s"Getting list of stocks: FB, TWTR")
+      List("FB", "TWTR")
+    case Buy(stock, amount) =>
+      println(s"Buying $amount of $stock")
+      "ok"
+    case Sell(stock, amount) =>
+      println(s"Selling $amount of $stock")
+      "ok"
+  }
+}
+</code></pre><p>which, again, is an alternative to the way we were defining interpreters before. Not <em>FreeK</em> exclusive, but nicer :)<p>So let's define the rest of our languages:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>// Log dsl
+object Log {
+  sealed trait DSL[A]
+  final case class Info(msg: String) extends DSL[Unit]
+  final case class Error(msg: String) extends DSL[Unit]
+}
+
+// Defining the interpreter for Log
+object LogInterpreter extends (Log.DSL ~> Id) {
+  import Log._
+
+  def apply[A](a: Log.DSL[A]) = a match {
+    case Info(msg) =>
+      println(s"[Info] - $msg")
+    case Error(msg) =>
+      println(s"[Error] - $msg")
+  }
+}
+
+// Audit dsl
+object Audit {
+  sealed trait DSL[A]
+  final case class UserAction(user: UserId, action: String, values: List[Values]) extends DSL[Unit]
+  final case class SystemAction(job: JobId, action: String, values: List[Values]) extends DSL[Unit]
+}
+
+// Audit interpreter
+object AuditInterpreter extends (Audit.DSL ~> Id) {
+  import Audit._
+
+  def apply[A](a: Audit.DSL[A]) = a match {
+    case UserAction(user, action, values) =>
+      println(s"[USER Action] - user $user called $action with values $values")
+    case SystemAction(job, action, values) =>
+      println(s"[SYSTEM Action] - $job called $action with values $values")
+  }
+}
+
+// Messaging dsl
+object Messaging {
+  sealed trait DSL[A]
+  final case class Publish(channelId: ChannelId, source: SourceId, messageId: MessageId, message: String) extends DSL[Response]
+  final case class Subscribe(channelId: ChannelId, filterBy: Condition) extends DSL[Payload]
+}
+
+// Messaging interpreter
+object MessagingInterpreter extends (Messaging.DSL ~> Id) {
+  import Messaging._
+
+  def apply[A](a: Messaging.DSL[A]) = a match {
+    case Publish(channelId, source, messageId, message) =>
+      println(s"Publish [$channelId] From: [$source] Id: [$messageId] Payload: [$message]")
+      "ok"
+    case Subscribe(channelId, filterBy) =>
+      val payload = "Event fired"
+      println(s"Received message from [$channelId] (filter: [$filterBy]): [$payload]")
+      List(payload)
+  }
+}
+</code></pre><p>Ok, languages defined. Next, let's define our <em>Free</em> type (or <em>Coproduct</em> for multiple types)<h2 id=the-free-coproduct-type><a aria-label="Anchor link for: the-free-coproduct-type" class="header-anchor no-hover-padding" href=#the-free-coproduct-type><span aria-hidden=true class=link-icon></span></a> The Free/Coproduct type</h2><p>In here is where <em>FreeK</em> provides the first big improvement. <em>FreeK</em> contains a specialised implementation of Shapeless <code>Coproduct</code> for higher-kinded structures. The result is that we can define a type that includes several languages in one go, instead of having to create the chain of <code>Coproduct</code> we built in the previous post.<p>With <em>FreeK</em> you use the same syntax for a Free that includes one or several languages:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>type PRGOne[A] = (Log.DSL :|: FXNil)#Cop[A]
+// PRG is the one we will use in our code
+type PRG[A] = (Log.DSL :|: Audit.DSL :|: Orders.DSL :|: FXNil)#Cop[A]
+</code></pre><p>Interpreters get a similar benefit. You can leverage <em>FreeK</em> specific syntax to easily compose interpreters from multiple languages. The only restrictions are:<ul><li>the interpreters must all be transformations to the same Monad (as with any composition of Natural Transformations, nothing new here)<li>they must be declared in the same order the types are defined in our <code>PRG</code> declaration.</ul><pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>val interpreter: Interpreter[PRG, Id] = LogInterpreter :|: AuditInterpreter :|: OrderInterpreter
+</code></pre><p>With this we have our <em>free type</em> and the <em>interpreter</em>. That was easy! We just need the program to execute, and we are done.<h2 id=the-program><a aria-label="Anchor link for: the-program" class="header-anchor no-hover-padding" href=#the-program><span aria-hidden=true class=link-icon></span></a> The program</h2><p>If you have noticed, in the previous post we created some kind of support methods that lifted our case classes to a Free Monad. But this time we have not built anything similar. So, how are we going to use our case classes in a for-comprehension?<p>The answer is given by *FreeK and a support method appropriately called <code>freek[A]</code>. Let's see an example of its usage by replicating the logic in our original program:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>val program: Free[PRG, Response] = for {
+      _ &LT- Info("I'm going to trade smartly").freek[PRG]
+      _ &LT- UserAction("ID102", "buy", List("APPL", "100")).freek[PRG]
+      _ &LT- Buy("APPL", 200).freek[PRG]
+      _ &LT- Info("I'm going to trade even more smartly").freek[PRG]
+      _ &LT- UserAction("ID102", "buy", List("MSFT", "100")).freek[PRG]
+      _ &LT- Buy("MSFT", 100).freek[PRG]
+      _ &LT- UserAction("ID102", "sell", List("GOOG", "100")).freek[PRG]
+      rsp &LT- Sell("GOOG", 300).freek[PRG]
+      _ &LT- SystemAction("BACKOFFICE", "tradesCheck", List("ID102", "lastTrades")).freek[PRG]
+      _ &LT- Error("Wait, what?!").freek[PRG]
+    } yield rsp
+</code></pre><p>As you can see we are using the case classes we defined with our languages, directly. The magic happens within the <code>freek[PRG]</code> call, which lifts our case class to a Free Monad of the <code>Coproduct</code> defined by <code>PRG</code>.<p>We have replaced support methods using <code>Free.liftF</code> or <code>Inject</code> with this call, which some people may argue is not a huge benefit, code wise. Personally, I believe it's a big win as we have less clutter around our languages, where now we just see case classes and interpreters, and all the extra syntax is located within the program itself. Also, adding new languages is much simpler. What's not to like?<p>We can execute this program to verify it works:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>println(s"Use interpreter on `program`: ${program.foldMap(interpreter.nat)}")
+</code></pre><p>Oh, by the way, remember that program that was returning a <code>List</code> inside the monad, and thus required the use of traverse? Yes, we can also implement it using <em>FreeK</em>:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>val programWithList: Free[PRG, Response] = for {
+  st &LT- ListStocks().freek[PRG]
+  _ &LT- st.traverseU(Buy(_, 100).freek[PRG])
+  rsp &LT- Sell("GOOG", 100).freek[PRG]
+} yield rsp
+</code></pre><p>We still need the <code>traverseU</code> trick, but it works the same, as <code>freek[PRG]</code> returns a monad an that fits the signature of <code>traverseU</code>. So we can port our programs, we are not losing any core functionality by using <em>FreeK</em>.<h2 id=orders-via-messages><a aria-label="Anchor link for: orders-via-messages" class="header-anchor no-hover-padding" href=#orders-via-messages><span aria-hidden=true class=link-icon></span></a> Orders via Messages</h2><p>The last use case explored in the previous post was to define <code>Orders</code> as a set of <code>Messaging</code> operations, by chaining natural transformations from <code>Orders</code>, to <code>Messaging</code>, and to <code>Id</code>. Can we do this with <em>FreeK</em>? Let's start by defining a new interpreter from <code>Orders</code> to <code>Messaging</code>:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>object OrdersToMessagesInterpreter extends (Orders.DSL ~> Messaging.DSL) {
+  import Orders._
+  import Messaging._
+
+  def apply[A](a: Orders.DSL[A]) = a match {
+    case ListStocks() =>
+      Publish("001", "Orders", UUID.randomUUID().toString, "Get Stocks List")
+      Subscribe("001", "*")
+    case Buy(stock, amount) =>
+      Publish("001", "Orders", UUID.randomUUID().toString, s"Buy $stock $amount")
+    case Sell(stock, amount) =>
+      Publish("001", "Orders", UUID.randomUUID().toString, s"Sell $stock $amount")
+  }
+}
+</code></pre><p>Next step, let's integrate this interpreter into the interpreter chain we defined before. To do this, we need to replace <code>OrderInterpreter</code> by a composition of the new interpreter (from <code>Orders</code> to <code>Messaging</code>) and the existing interpreter from <code>Messaging</code> to <code>Id</code>:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>val interpreterWithMessaging: Interpreter[PRG, Id] =
+  LogInterpreter :|: AuditInterpreter :|: (MessagingInterpreter compose OrdersToMessagesInterpreter)
+</code></pre><p>and then we run our program:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>println(s"Use interpreter with Messaging on `program`: ${program.foldMap(interpreterWithMessaging.nat)}")
+</code></pre><p>It works, so it seems we can do what we expected! Can't we?<p>Well, the astute reader (i.e.: one that has read up to this point... congratulations!) will notice that in our previous implementation we were using a for-comprehension in <code>OrdersToMessagesInterpreter</code> for the case of <code>ListStocks</code>. As we are working with case classes directly, not with monads, we can't build the for-comprehension.<p>I've tried to work around it by creating some additional types to lift the classes via <code>freek[A]</code>, so we can have the same code as before, but it's become a bit verbose which means that, most likely, I'm doing something wrong :) Just be aware this use case may require a bit more effort than the others.<h2 id=in-summary><a aria-label="Anchor link for: in-summary" class="header-anchor no-hover-padding" href=#in-summary><span aria-hidden=true class=link-icon></span></a> In summary</h2><p>I like <em>FreeK</em>, as it simplifies working with Free Monads. There may be a couple of scenarios which need either more work or a better understanding of the library, but in general it seems like a robust solutions. Let's not forget it also provides utilities to mix monad transformers with our Free monads, which will solve several pains related to monad stacks.<p>So if you want to use Free monads in our code, please give <em>Freek</em> a go :)<p>That's all for now, I hope this was informative and useful. As always, feedback via Twitter/Email is more than welcome. Cheers!</section><nav class="full-width article-navigation"><div><a aria-describedby=left_title aria-label=Next href=https://perevillega.com/posts/free-monads-and-stockfighter/><span class=arrow>←</span> Next</a><p aria-hidden=true id=left_title>Free Monads and Stockfighter</div><div><a aria-describedby=right_title aria-label=Prev href=https://perevillega.com/posts/understanding-free-monads/>Prev <span class=arrow>→</span></a><p aria-hidden=true id=right_title>On Free Monads</div></nav></article></main><script defer src=https://perevillega.com/js/mermaid.min.js></script><span class=hidden id=copy-success> Copied! </span><span class=hidden id=copy-init> Copy code to clipboard </span><script defer src=https://perevillega.com/js/copyCodeToClipboard.min.js></script></div><footer><section><nav class="socials nav-navs"><ul><li><a class="nav-links no-hover-padding social" href=https://perevillega.com/atom.xml> <img alt=feed loading=lazy src=https://perevillega.com/social_icons/rss.svg title=feed> </a><li class=js><a class="nav-links no-hover-padding social" data-encoded-email=cHZpbGxlZ2ErYmxvZ0BhcmFjb24uY29t href=#><img alt=email loading=lazy src=https://perevillega.com/social_icons/email.svg title=email> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://github.com/pvillega> <img alt=github loading=lazy src=https://perevillega.com/social_icons/github.svg title=github> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://gitlab.com/pvillega> <img alt=gitlab loading=lazy src=https://perevillega.com/social_icons/gitlab.svg title=gitlab> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://bsky.app/profile/perevillega.com> <img alt=bluesky loading=lazy src=https://perevillega.com/social_icons/bluesky.svg title=bluesky> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://www.linkedin.com/in/perevillega/> <img alt=linkedin loading=lazy src=https://perevillega.com/social_icons/linkedin.svg title=linkedin> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://stackoverflow.com/users/116791/pere-villega> <img alt="stack overflow" title="stack overflow" loading=lazy src=https://perevillega.com/social_icons/stack-overflow.svg> </a></ul></nav><nav class=nav-navs><small> <ul><li><a class="nav-links no-hover-padding" href=https://perevillega.com/sitemap.xml> sitemap </a></ul> </small></nav><div class=credits><small> Powered by <a href=https://www.getzola.org>Zola</a> & <a href=https://github.com/welpo/tabi>tabi</a> </small></div></section><script async src=https://perevillega.com/js/decodeMail.min.js></script><div class="search-modal js" aria-labelledby=modalTitle id=searchModal role=dialog><h1 class=visually-hidden id=modalTitle>Search</h1><div id=modal-content><div id=searchBar><div aria-hidden=true class=search-icon><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div><input aria-controls=results-container aria-expanded=false autocomplete=off id=searchInput placeholder=Search… role=combobox spellcheck=false><div class="close-icon interactive-icon" title="Clear search" id=clear-search role=button tabindex=0><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div></div><div id=results-container><div id=results-info><span id=zero_results> No results</span><span id=one_results> $NUMBER result</span><span id=many_results> $NUMBER results</span><span id=two_results> $NUMBER results</span><span id=few_results> $NUMBER results</span></div><div id=results role=listbox></div></div></div></div></footer>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>repl</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - repl</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/repl/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/repl/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2015-07-03T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/repl/atom.xml</id><entry xml:lang="en">
+        <title>Scala REPL</title>
+        <published>2015-07-03T00:00:00+00:00</published>
+        <updated>2015-07-03T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/scala-repl/" type="text/html"/>
+        <id>https://perevillega.com/posts/scala-repl/</id>
+        
+            <content type="html">&lt;p&gt;One of the things people love about Scala is the &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Read%E2%80%93eval%E2%80%93print_loop&quot;&gt;REPL&lt;&#x2F;a&gt;. I have to be honest;
+I never paid too much attention to it as IntelliJ provides a handy &lt;a href=&quot;http:&#x2F;&#x2F;blog.jetbrains.com&#x2F;scala&#x2F;2014&#x2F;05&#x2F;23&#x2F;meet-the-new-scala-worksheets-in-intellij-idea&#x2F;&quot;&gt;Scala Worksheet&lt;&#x2F;a&gt;. But it is time to fix this..&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;The main reason is that my old desktop started misbehaving and running IntelliJ slows it down to a crawl. While I find a suitable replacement, I had to settle with using Sublime Text 2 to toy around with some Scala code. Is at this point that my lack of knowledge of the REPL became obvious, and a hindrance. And what better way to help fix that issue than to document the relevant parts :)&lt;&#x2F;p&gt;
+&lt;p&gt;Most likely you are using the new &lt;a href=&quot;http:&#x2F;&#x2F;www.typesafe.com&#x2F;community&#x2F;core-tools&#x2F;activator-and-sbt&quot;&gt;Activator&lt;&#x2F;a&gt; to generate your projects. Activator has a lot of commands:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;$ .&amp;#x2F;activator
+[info] Loading project definition from &amp;#x2F;home&amp;#x2F;pvillega&amp;#x2F;Dropbox&amp;#x2F;Projectes&amp;#x2F;scala-fp-exercises&amp;#x2F;project
+[info] Set current project to scala-fp-exercises (in build file:&amp;#x2F;home&amp;#x2F;pvillega&amp;#x2F;Dropbox&amp;#x2F;Projectes&amp;#x2F;scala-fp-exercises&amp;#x2F;)
+&amp;gt; help
+
+  help                                    Displays this help message or prints detailed help on requested commands (run &amp;#x27;help &amp;lt;command&amp;gt;&amp;#x27;).
+  completions                             Displays a list of completions for the given argument string (run &amp;#x27;completions &amp;lt;string&amp;gt;&amp;#x27;).
+  about                                   Displays basic information about sbt and the build.
+  tasks                                   Lists the tasks defined for the current project.
+  settings                                Lists the settings defined for the current project.
+  reload                                  (Re)loads the current project or changes to plugins project or returns from it.
+  projects                                Lists the names of available projects or temporarily adds&amp;#x2F;removes extra builds to the session.
+  project                                 Displays the current project or changes to the provided `project`.
+  set [every] &amp;lt;setting&amp;gt;                   Evaluates a Setting and applies it to the current project.
+  session                                 Manipulates session settings.  For details, run &amp;#x27;help session&amp;#x27;.
+  inspect [uses|tree|definitions] &amp;lt;key&amp;gt;   Prints the value for &amp;#x27;key&amp;#x27;, the defining scope, delegates, related definitions, and dependencies.
+  &amp;lt;log-level&amp;gt;                             Sets the logging level to &amp;#x27;log-level&amp;#x27;.  Valid levels: debug, info, warn, error
+  plugins                                 Lists currently available plugins.
+  ; &amp;lt;command&amp;gt; (; &amp;lt;command&amp;gt;)*              Runs the provided semicolon-separated commands.
+  ~ &amp;lt;command&amp;gt;                             Executes the specified command whenever source files change.
+  last                                    Displays output from a previous command or the output from a specific task.
+  last-grep                               Shows lines from the last output for &amp;#x27;key&amp;#x27; that match &amp;#x27;pattern&amp;#x27;.
+  export &amp;lt;tasks&amp;gt;+                         Executes tasks and displays the equivalent command lines.
+  exit                                    Terminates the build.
+  --&amp;lt;command&amp;gt;                             Schedules a command to run before other commands on startup.
+  show &amp;lt;key&amp;gt;                              Displays the result of evaluating the setting or task associated with &amp;#x27;key&amp;#x27;.
+  all &amp;lt;task&amp;gt;+                             Executes all of the specified tasks concurrently.
+
+More command help available using &amp;#x27;help &amp;lt;command&amp;gt;&amp;#x27; for:
+  !, +, ++, &amp;lt;, alias, append, apply, eval, iflast, onFailure, reboot, shell
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The snippet above only shows the most relevant ones, but there are plenty more (278 as I write this) although just a few are used very often:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; projects        # lists the projects available
+&amp;gt; project &amp;lt;name&amp;gt;  # changes to the given project (run will execute the selected project now)
+&amp;gt; plugins         # lists all plugins
+&amp;gt; reload          # reloads all the config and plugins without leaving the session
+&amp;gt; run             # runs the current project
+&amp;gt; ~test           # runs the tests. The initial ~ means it will run them all every time a source file changes, handy for TDD
+&amp;gt; exit            # leaves activator
+&amp;gt; console         # launches Scala REPL
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see with a few commands you cover most of your development needs. But as we were talking about REPL the command I want to focus on is &lt;code&gt;console&lt;&#x2F;code&gt;, which starts a REPL in the currently selected project:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;gt; console
+[info] Starting scala interpreter...
+[info]
+Welcome to Scala version 2.11.6 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_45).
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala&amp;gt; :help
+All commands can be abbreviated, e.g., :he instead of :help.
+:edit &amp;lt;id&amp;gt;|&amp;lt;line&amp;gt;        edit history
+:help [command]          print this summary or command-specific help
+:history [num]           show the history (optional num is commands to show)
+:h? &amp;lt;string&amp;gt;             search the history
+:imports [name name ...] show import history, identifying sources of names
+:implicits [-v]          show the implicits in scope
+:javap &amp;lt;path|class&amp;gt;      disassemble a file or class name
+:line &amp;lt;id&amp;gt;|&amp;lt;line&amp;gt;        place line(s) at the end of history
+:load &amp;lt;path&amp;gt;             interpret lines in a file
+:paste [-raw] [path]     enter paste mode or paste a file
+:power                   enable power user mode
+:quit                    exit the interpreter
+:replay [options]        reset the repl and replay all previous commands
+:require &amp;lt;path&amp;gt;          add a jar to the classpath
+:reset [options]         reset the repl to its initial state, forgetting all session entries
+:save &amp;lt;path&amp;gt;             save replayable session to a file
+:sh &amp;lt;command line&amp;gt;       run a shell command (result is implicitly =&amp;gt; List[String])
+:settings &amp;lt;options&amp;gt;      update compiler options, if possible; see reset
+:silent                  disable&amp;#x2F;enable automatic printing of results
+:type [-v] &amp;lt;expr&amp;gt;        display the type of an expression without evaluating it
+:kind [-v] &amp;lt;expr&amp;gt;        display the kind of expression&amp;#x27;s type
+:warnings                show the suppressed warnings from the most recent line which had any
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see there aren&#x27;t many commands in the REPL, which makes it very easy to use even for the uninitiated. Some of them deserve additional attention as you will run them often.&lt;&#x2F;p&gt;
+&lt;p&gt;For example &lt;code&gt;:implicits&lt;&#x2F;code&gt; will show a list of all implicits in scope. Given implicits are problematic (judging by &lt;a href=&quot;http:&#x2F;&#x2F;stackoverflow.com&#x2F;search?q=%5Bscala%5D+implicit&quot;&gt;Stack Overflow&lt;&#x2F;a&gt; questions), this may help when debugging your app.&lt;&#x2F;p&gt;
+&lt;p&gt;One of the main drawbacks of a REPL is to type all the context (imports, type definitions, etc) you need before you can test stuff. Two commands remove this pain: &lt;code&gt;:load &amp;lt;path&amp;gt;&lt;&#x2F;code&gt; will read and interpret a file as if you had typed it into the terminal; the command &lt;code&gt;:paste&lt;&#x2F;code&gt; works similarly by starting a &lt;em&gt;paste mode&lt;&#x2F;em&gt; that allows you to copy-paste relevant code into the REPL.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;scala&amp;gt; :paste
+&amp;#x2F;&amp;#x2F; Entering paste mode (ctrl-D to finish)
+
+val s = 3
+def g = (x: Int) =&amp;gt; x*x
+
+&amp;#x2F;&amp;#x2F; Exiting paste mode, now interpreting.
+
+s: Int = 3
+g: Int =&amp;gt; Int
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Alongside &lt;code&gt;:load&lt;&#x2F;code&gt; there is a corresponding &lt;code&gt;:save &amp;lt;path&amp;gt;&lt;&#x2F;code&gt; command which saves the current status of the REPL into a file that can be loaded later on to continue your work at that point.&lt;&#x2F;p&gt;
+&lt;p&gt;There are other commands you may want to check, like &lt;code&gt;:require&lt;&#x2F;code&gt; or &lt;code&gt;:history&lt;&#x2F;code&gt;, but with just the ones above working inside the REPL becomes a much more pleasant experience and not having a full fledge IDE is less of an issue.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">One of the things people love about Scala is the REPL. I have to be honest;
+I never paid too much attention to it as IntelliJ provides a handy Scala Worksheet. But it is time to fix this..
+…</summary>
+        </entry>
+</feed>

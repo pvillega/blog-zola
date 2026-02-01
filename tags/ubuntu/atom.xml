@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>ubuntu</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - ubuntu</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/ubuntu/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/ubuntu/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2009-08-18T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/ubuntu/atom.xml</id><entry xml:lang="en">
+        <title>Ubuntu Server Maintenance</title>
+        <published>2009-08-18T00:00:00+00:00</published>
+        <updated>2009-08-18T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/ubuntu-server-maintenance/" type="text/html"/>
+        <id>https://perevillega.com/posts/ubuntu-server-maintenance/</id>
+        
+            <content type="html">&lt;p&gt;This guide will show some basic stuff you might need to maintain an Ubuntu server. You might not need all of them, but thy are handy enough and I&#x27;ve had to use them at least once.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;secure-a-fresh-ubuntu-installation&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#secure-a-fresh-ubuntu-installation&quot; aria-label=&quot;Anchor link for: secure-a-fresh-ubuntu-installation&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Secure a fresh Ubuntu installation&lt;&#x2F;h2&gt;
+&lt;p&gt;Original source: &lt;a href=&quot;http:&#x2F;&#x2F;www.mensk.com&#x2F;webmaster-toolbox&#x2F;perfect-ubuntu-hardy-nginx-mysql5-php5-wordpress&#x2F;&quot;&gt;Mensk&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;When you install your fresh server, you have a completely unsafe Ubuntu installation. To make it a bit safer, follow these steps (change names and ports accordingly): Login as root (via ssh or using the console, it depends on your physical access to the machine) and change root password:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;passwd
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Add new username - yourself:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    adduser jsmith
+    visudo
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Append this line to end of file (to navigate within &#x27;vi&#x27; editor to create next line - use these: L, $, a, &lt;ENTER&gt;):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    jsmith ALL=(ALL) ALL
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To save and exit do: &lt;ESC&gt;, :wq, &lt;ENTER&gt;. Now let&#x27;s set up SSH configuration:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    nano &amp;#x2F;etc&amp;#x2F;ssh&amp;#x2F;sshd_config
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Find Port 22 and change number to something different (12345) to make hacking more difficult.Then change the following settings:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    PermitRootLogin no
+    X11Forwarding no
+    UsePAM no
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Append these lines to the very end:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    UseDNS no
+    AllowUsers jsmith
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;After this, we must secure the server with iptables&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    iptables-save &amp;gt; &amp;#x2F;etc&amp;#x2F;iptables.up.rules
+    nano &amp;#x2F;etc&amp;#x2F;iptables.test.rules
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Copy contents of &lt;a href=&quot;http:&#x2F;&#x2F;articles.slicehost.com&#x2F;assets&#x2F;2007&#x2F;9&#x2F;4&#x2F;iptables.txt&quot;&gt;this file&lt;&#x2F;a&gt; (content below) and paste it into &#x27;iptables.test.rules&#x27;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    *filter
+
+
+    #  Allows all loopback (lo0) traffic and drop all traffic to 127&amp;#x2F;8 that doesn&amp;#x27;t use lo0
+    -A INPUT -i lo -j ACCEPT
+    -A INPUT -i ! lo -d 127.0.0.0&amp;#x2F;8 -j REJECT
+
+
+    #  Accepts all established inbound connections
+    -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+
+    #  Allows all outbound traffic
+    #  You can modify this to only allow certain traffic
+    -A OUTPUT -j ACCEPT
+
+
+    # Allows HTTP and HTTPS connections from anywhere (the normal ports for websites)
+    -A INPUT -p tcp --dport 80 -j ACCEPT
+    -A INPUT -p tcp --dport 443 -j ACCEPT
+
+    #  Allows SSH connections
+    #
+    # THE -dport NUMBER IS THE SAME ONE YOU SET UP IN THE SSHD_CONFIG FILE
+    #
+    -A INPUT -p tcp -m state --state NEW --dport 30000 -j ACCEPT
+
+    # Allow ping
+    -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+
+
+    # log iptables denied calls
+    -A INPUT -m limit --limit 5&amp;#x2F;min -j LOG --log-prefix &amp;quot;iptables denied: &amp;quot; --log-level 7
+
+    # Reject all other inbound - default deny unless explicitly allowed policy
+    -A INPUT -j REJECT
+    -A FORWARD -j REJECT
+
+    COMMIT
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Change port number to your SSH port number on this line:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    -A INPUT -p tcp -m state --state NEW --dport 30000 -j ACCEPT
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Save and exit (Ctrl+O, Ctrl+X). To apply new iptables rules:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    iptables-restore &amp;lt; &amp;#x2F;etc&amp;#x2F;iptables.test.rules
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then save iptables rules permanently:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    iptables-save &amp;gt; &amp;#x2F;etc&amp;#x2F;iptables.up.rules
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Make sure iptables rules will apply when server is rebooted as well:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    nano &amp;#x2F;etc&amp;#x2F;network&amp;#x2F;interfaces
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Add new line after these 2:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    auto lo
+
+    iface lo inet loopbackpre-up iptables-restore &amp;lt; &amp;#x2F;etc&amp;#x2F;iptables.up.rules
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Save and exit. Reload SSH to use new ports and configurations:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;     &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;ssh reload
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Keep &#x27;root&#x27; session running and open second session. SSH login to your slice to new port, with your new username and password:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    ssh -p 12345 jsmith@123.45.6.78
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you logged on successfully via your new username: &#x27;jsmith&#x27; - you may close &#x27;root&#x27; session now. If not - you still have &#x27;root&#x27; session opened to fix problems. As your user, edit .bashrc file to make terminal window a bit more helpful:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    nano ~&amp;#x2F;.bashrc
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Append these lines to the end of it:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    export PS1=&amp;quot;\[\e[32;1m\]\u\[\e[0m\]\[\e[32m\]@\h\[\e[36m\]\w \[\e[33m\]\$ \[\e[0m\]&amp;quot;
+    alias ll=&amp;quot;ls -la&amp;quot;
+    alias a2r=&amp;quot;sudo &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;apache2 stop &amp;amp;&amp;amp; sleep 2 &amp;amp;&amp;amp; sudo &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;apache2 start&amp;quot;
+    alias n2r=&amp;quot;sudo &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;nginx stop &amp;amp;&amp;amp; sleep 2 &amp;amp;&amp;amp; sudo &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;nginx start&amp;quot;
+    alias ver=&amp;quot;cat &amp;#x2F;etc&amp;#x2F;lsb-release&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Save and exit. Reload .bashrc to make changes active:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    source ~&amp;#x2F;.bashrc
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Update sources:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo aptitude update
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set system locale:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo locale-gen en_US.UTF-8
+    sudo &amp;#x2F;usr&amp;#x2F;sbin&amp;#x2F;update-locale LANG=en_US.UTF-8
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Upgrade system now:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo aptitude -y safe-upgrade
+    sudo aptitude -y full-upgrade
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;clean-the-server-via-ubuntugeek&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#clean-the-server-via-ubuntugeek&quot; aria-label=&quot;Anchor link for: clean-the-server-via-ubuntugeek&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Clean the server (via &lt;a href=&quot;http:&#x2F;&#x2F;www.ubuntugeek.com&#x2F;ubucleaner-simple-bash-script-to-keep-your-ubuntu-system-clean.html&quot;&gt;UbuntuGeek&lt;&#x2F;a&gt;)&lt;&#x2F;h2&gt;
+&lt;p&gt;I have a special fixation on cleaning my servers. I don&#x27;t want any extra file (package, log, whatever) to be there if it is not needed. That&#x27;s why when I discovered UbuntuCleaner I got quite happy. This tools does this for you:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cleans apt cache&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Removes config files left from uninstalled .deb packages(it happens if you don’t use the --purge switch with apt-get)&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Removes every kernel except the one you are using&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Empties the trashes of every user(including root)&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;It uses apt and the kernel removing thing searches for ubuntu-only packages, so it can’t work on non-debian system and the result is undetermined for other debian-based system, but you can still use the other features of the script(you’ll just have to comment the parts you don’t want).&lt;&#x2F;p&gt;
+&lt;p&gt;The script assumes that you are using the text-based Aptitude application, rather than apt-get and dpkg. If you are not using Aptitude, you should also replace the reference to aptitude clean with apt-get clean and the reference to aptitude purge to dpkg –purge.This can be done done by editing the following script. First you need to download the script from &lt;a href=&quot;http:&#x2F;&#x2F;opendesktop.org&#x2F;content&#x2F;show.php&#x2F;Ubucleaner?content=71529&quot;&gt;here&lt;&#x2F;a&gt; or using the following command&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    wget http:&amp;#x2F;&amp;#x2F;www.opendesktop.org&amp;#x2F;CONTENT&amp;#x2F;content-files&amp;#x2F;71529-ubucleaner.sh
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now you should have 71529-ubucleaner.sh file you need to give execute permissions using the following command&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo chmod +x 71529-ubucleaner.sh
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Run the script using the following command&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    .&amp;#x2F;71529-ubucleaner.sh
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;upgrading-to-a-new-release-via-howtoforge&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#upgrading-to-a-new-release-via-howtoforge&quot; aria-label=&quot;Anchor link for: upgrading-to-a-new-release-via-howtoforge&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Upgrading to a new release (via &lt;a href=&quot;http:&#x2F;&#x2F;www.howtoforge.com&#x2F;how-to-upgrade-ubuntu-8.04-to-ubuntu-8.10-desktop-and-server&quot;&gt;HowToForge&lt;&#x2F;a&gt;)&lt;&#x2F;h2&gt;
+&lt;p&gt;For an Ubuntu server, the main advice is to stick to LTS releases, due to their stability. That said, sometimes you might need to upgrade to a non-LTS release, as it happened to me when Launchpad was released and I wanted to install it (it required 9.04). So here I will describe the steps needed to update your distribution. It assumes you are running a server (no X11 installed) and this is your first upgrade:&lt;&#x2F;p&gt;
+&lt;p&gt;First become root:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo su
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then run&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    apt-get update
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and install the package update-manager-core:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    apt-get install update-manager-core
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you are running a LTS release, open the file &#x2F;etc&#x2F;update-manager&#x2F;release-upgrades&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    vi &amp;#x2F;etc&amp;#x2F;update-manager&amp;#x2F;release-upgrades
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and change Prompt=lts to Prompt=normal. Then run&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    do-release-upgrade
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;to start the distribution upgrade.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enabling-php-fastcgi-via-howtoforge&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#enabling-php-fastcgi-via-howtoforge&quot; aria-label=&quot;Anchor link for: enabling-php-fastcgi-via-howtoforge&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Enabling PHP-FastCGI (via &lt;a href=&quot;http:&#x2F;&#x2F;www.howtoforge.com&#x2F;installing-nginx-with-php5-and-mysql-support-on-ubuntu-9.04&quot;&gt;HowToForge&lt;&#x2F;a&gt;)&lt;&#x2F;h2&gt;
+&lt;p&gt;If you need to run fastcgi scripts on your Ubuntu 9.04 machine, you are lucky as this version provides a FastCGI-enabled PHP5 package. To activate it: Install PHP5 on Ubuntu:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    aptitude install php5-cgi php5-mysql php5-curl
+    php5-gd php5-idn php-pear php5-imagick php5-imap php5-mcrypt
+    php5-memcache php5-mhash php5-ming php5-pspell php5-recode php5-snmp
+    php5-sqlite php5-tidy php5-xmlrpc php5-xsl
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then open &#x2F;etc&#x2F;php5&#x2F;cgi&#x2F;php.ini and add the line&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;     cgi.fix_pathinfo = 1
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;right at the end of the file. This enables the FastCGI package. But there&#x27;s no standalone FastCGI daemon package for Ubuntu 9.04, therefore we use the spawn-fcgi program from lighttpd. We install lighttpd as follows:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    aptitude install lighttpd
+    update-rc.d -f lighttpd remove
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;so that lighttpd will not start at boot time, as we&#x27;ve installed lighttpd because we need just one program that comes with the package, &#x2F;usr&#x2F;bin&#x2F;spawn-fcgi, which we can use to start FastCGI processes. Of course, you don&#x27;t want to type in that command manually whenever you boot the system, so to have the system execute the command automatically at boot time, open &#x2F;etc&#x2F;rc.local&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    vi &amp;#x2F;etc&amp;#x2F;rc.local
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and add the command at the end of the file (before the exit line):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    &amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;spawn-fcgi -a 127.0.0.1 -p 9000 -u www-data -g www-data -f &amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;php5-cgi -P &amp;#x2F;var&amp;#x2F;run&amp;#x2F;fastcgi-php.pid
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        <summary type="html">This guide will show some basic stuff you might need to maintain an Ubuntu server. You might not need all of them, but thy are handy enough and I've had to use them at least once.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Redmine on Ubuntu 9.04 with NGinx</title>
+        <published>2009-08-17T00:00:00+00:00</published>
+        <updated>2009-08-17T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/redmine-on-ubuntu-9-dot-04-with-nginx/" type="text/html"/>
+        <id>https://perevillega.com/posts/redmine-on-ubuntu-9-dot-04-with-nginx/</id>
+        
+            <content type="html">&lt;p&gt;Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, only available for Ubuntu 9.04, which doesn&#x27;t work too well on a server. I&#x27;ll keep an eye on it as I like the way Canonical does things (and applications), but in the meantime I decided to use &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;&quot;&gt;Redmine&lt;&#x2F;a&gt; as I found Trac lacking on some areas.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;redmine&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#redmine&quot; aria-label=&quot;Anchor link for: redmine&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Redmine&lt;&#x2F;h2&gt;
+&lt;p&gt;Redmine is an open source, web-based project management and bug-tracking tool, written in Ruby on Rails and heavily influenced by Trac. It improves on several areas, like providing multiple project support, integrating with several source control systems (from popular SVN to less popular Bazaar or Darcs) and allowing extension of its functionalities through plugins. This guide describes how to install Redmine in an Ubuntu 9.04 server using Mongrel as web server, Nginx as proxy and MySQL as database. To achieve this we have to follow 3 steps:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;install ruby and rails and MySQL&lt;&#x2F;li&gt;
+&lt;li&gt;install Redmine&lt;&#x2F;li&gt;
+&lt;li&gt;install Mongrel and Nginx&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This guide can be adapted to older versions of Ubuntu and most Linux distributions, just replacing the tools&#x2F;packages by the specific ones available in that distribution. The guide is a quick overview of the main steps, for  more information on configuration options check the documentation of the corresponding tool.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;install-ruby-and-rails-and-mysql&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-ruby-and-rails-and-mysql&quot; aria-label=&quot;Anchor link for: install-ruby-and-rails-and-mysql&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Ruby and Rails and MySQL&lt;&#x2F;h2&gt;
+&lt;p&gt;To install the components first ensure the system is up to date:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get update
+    sudo apt-get dist-upgrade
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then run the following command:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get install build-essential ruby ri rdoc mysql-server libmysql-ruby ruby1.8-dev irb1.8 libdbd-mysql-perl libdbi-perl
+          libmysql-ruby1.8 libmysqlclient15off libnet-daemon-perl libplrpc-perl libreadline-ruby1.8 libruby1.8 rdoc1.8 ri1.8 ruby1.8
+          irb libopenssl-ruby libopenssl-ruby1.8 libhtml-template-perl mysql-client-5.0 mysql-common mysql-server-5.0 mysql-server-core-5.0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now that we have Ruby installed, we use Gems to install Rails:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo gem update
+    sudo gem install rails --no-rdoc –no-ri
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The flags –no-rdoc and –no-ri are included to reduce the RAM footprint of the component, feel free to remove them if your machine has more than enough RAM. To finish this part, open the MySQL client and create the Redmine database:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    create database redmine character set utf8;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-redmine&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-redmine&quot; aria-label=&quot;Anchor link for: install-redmine&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Redmine&lt;&#x2F;h2&gt;
+&lt;p&gt;Get the code from the &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;Download&quot;&gt;download&lt;&#x2F;a&gt; page. Although the stable release is recommended, if you are going to use Bazaar the svn contains some fixes you want to use, so do an export from the trunk and use that. (Note: if you use the trunk, you&#x27;ll have to install a newer Rails using Gems due to version requirements). Select a folder in your server (from now on, APP) and copy the downloaded code there. Move to the APP folder and run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo cp config&amp;#x2F;database.yml.example config&amp;#x2F;database.yml
+    sudo cp config&amp;#x2F;email.yml.example config&amp;#x2F;email.yml
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Edit the new yml files and change the configuration as required (MySQL details, mail server, etc).  Now run these commands to create the database and populate it:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    rake db:migrate RAILS_ENV=&amp;quot;production&amp;quot;
+    rake redmine:load_default_data RAILS_ENV=&amp;quot;production&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We also need ImageMagick  (although is optional):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get install imagemagick libmagickwand-dev
+    sudo gem install rmagick
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-mongrel-and-nginx&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-mongrel-and-nginx&quot; aria-label=&quot;Anchor link for: install-mongrel-and-nginx&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Mongrel and Nginx&lt;&#x2F;h2&gt;
+&lt;p&gt;To run Redmine we will use a standard setup for Rails applications, consistent on Mongrel as web server and Nginx as proxy that interacts with the network. We will run Mongrel as Mongrel Cluster, to improve the performance as Mongrel is single threaded and we will need multiple instances to server multiple clients. First we need to install Mongrel and Mongrel Cluster:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo gem install mongrel
+    sudo gem install mongrel_cluster
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now move to APP folder and run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    mongrel_rails cluster::configure -e production -p 8000 -N 2 -c APP -a 127.0.0.1
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The flag -p indicates the initial port to use by Mongrel. Flag -N tells how many instances you want running in the cluster. Flag -a shows the bind address of the cluster. Once created, we need to set it up so it starts automatically with the server:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo mkdir &amp;#x2F;etc&amp;#x2F;mongrel_cluster
+    sudo ln -s APP&amp;#x2F;config&amp;#x2F;mongrel_cluster.yml &amp;#x2F;etc&amp;#x2F;mongrel_cluster&amp;#x2F;your-app-name.yml
+    sudo cp &amp;#x2F;var&amp;#x2F;lib&amp;#x2F;gems&amp;#x2F;1.8&amp;#x2F;gems&amp;#x2F;mongrel_cluster-1.0.5&amp;#x2F;resources&amp;#x2F;mongrel_cluster &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;
+    sudo chmod +x &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;mongrel_cluster
+    sudo &amp;#x2F;usr&amp;#x2F;sbin&amp;#x2F;update-rc.d mongrel_cluster defaults
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now you can control the cluster with the commands:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    mongrel_cluster_ctl start
+    mongrel_cluster_ctl stop
+    mongrel_cluster_ctl restart
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now install nginx (if you don&#x27;t have it):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get install nginx
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We need to create a virtual host for Nginx, that will receive the requests and forward them to Redmine. Assuming your public domain will be “domain.com”:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo nano &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;nginx&amp;#x2F;sites-available&amp;#x2F;domain.com
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And copy inside:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    upstream domain1 {
+
+     server 127.0.0.1:5000;
+     server 127.0.0.1:5001;
+     server 127.0.0.1:5002;
+
+    }
+
+    server {
+
+     listen   80;
+     server_name  www.domain.com;
+     rewrite ^&amp;#x2F;(.*) http:&amp;#x2F;&amp;#x2F;domain.com&amp;#x2F;$1 permanent;
+
+    }
+
+    server {
+
+     listen   80;
+     server_name domain.com;
+
+     access_log &amp;#x2F;home&amp;#x2F;demo&amp;#x2F;public_html&amp;#x2F;railsapp&amp;#x2F;log&amp;#x2F;access.log;
+     error_log &amp;#x2F;home&amp;#x2F;demo&amp;#x2F;public_html&amp;#x2F;railsapp&amp;#x2F;log&amp;#x2F;error.log;
+
+     root   &amp;#x2F;home&amp;#x2F;demo&amp;#x2F;public_html&amp;#x2F;railsapp&amp;#x2F;public&amp;#x2F;;
+
+     index  index.html;
+
+     location &amp;#x2F; {
+
+          proxy_set_header  X-Real-IP  $remote_addr;
+          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $http_host;
+          proxy_redirect false;
+
+          if (-f $request_filename&amp;#x2F;index.html) {
+            rewrite (.*) $1&amp;#x2F;index.html break;
+          }
+
+          if (-f $request_filename.html) {
+            rewrite (.*) $1.html break;
+          }
+
+          if (!-f $request_filename) {
+            proxy_pass http:&amp;#x2F;&amp;#x2F;domain1;
+            break;
+          }
+
+     }
+
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Be careful to change the port numbers and domain name to the ones you&#x27;ll use on your server. Now enable the site:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ln -s &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;nginx&amp;#x2F;sites-available&amp;#x2F;domain.com &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;nginx&amp;#x2F;sites-enabled&amp;#x2F;domain.com
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and once you restart Nginx your Redmine installation is ready to go. Configure Bazaar First we need to edit the file config&#x2F;environment.rb to add new environment variables related to Python, to avoid problems while accessing Bazaar:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    ENV[&amp;#x27;PYTHONPATH&amp;#x27;] = &amp;#x27;&amp;#x2F;usr&amp;#x2F;lib&amp;#x2F;python2.6&amp;#x27;
+    ENV[&amp;#x27;PATH&amp;#x27;] = &amp;quot;#{ENV[&amp;#x27;PATH&amp;#x27;]}:&amp;#x2F;usr&amp;#x2F;bin&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;When you create a project you just need to point Redmine to your Bazaar main folder, this will allow you to browse the repository. Be aware it still has some limitations when displaying contents, but it works quite well. To work with Bazaar, let&#x27;s set up a repository on  our server. This will be a dumb repository, it means is nothing more than a  folder that can be accessed via sftp that stores the data of the repository. First of all, in Ubuntu 9.04 (our server) let&#x27;s install the needed tools (sftp) and enable them as accepted shell:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $apt-get install ssh openssh-server
+    $echo &amp;#x27;&amp;#x2F;usr&amp;#x2F;lib&amp;#x2F;sftp-server&amp;#x27; &amp;gt;&amp;gt; &amp;#x2F;etc&amp;#x2F;shells
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then create a user to connect via sftp to the server:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $sudo useradd --create-home --home-dir &amp;#x2F;home&amp;#x2F;bzr --shell &amp;#x2F;usr&amp;#x2F;lib&amp;#x2F;sftp-server bzr
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And that&#x27;s it, we have a folder (&#x2F;home&#x2F;bzr&#x2F;) ready to receive our Bazaar projects. Is a good practice to give write rights to that folder to members of group “bzr”, and to add a password to the &#x27;bzr&#x27; user. On your client machine, install Bazaar (using apt-get or similar). Then download the Uploader plugin which eases the task to commit changes to “dumb servers”:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $ mkdir &amp;#x2F;home&amp;#x2F;pvillega&amp;#x2F;.bazaar&amp;#x2F;plugins
+    $ bzr co lp:bzr-upload ~&amp;#x2F;.bazaar&amp;#x2F;plugins&amp;#x2F;upload
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;or if you use Ubuntu&#x2F;Debian with:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $sudo apt-get install bzr-upload
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then create the base repository. There are two ways of doing this, you can create a shared repository which stores every child branch revision, or you can create standalone repositories, which are good if you don’t want to share revision information with other branches. Here we create a shared repository:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    bzr init-repository some_directory
+    bzr init some_directory&amp;#x2F;trunk
+    bzr init some_directory&amp;#x2F;branches
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now, to interact with the server we created before, first run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    bzr push --create-prefix sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This pushes the project to the server and creates the folder &#x27;test&#x27; if needed. After that, all the interaction with the server can be (usually) reduced to:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;     bzr pull sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test   #update changes from the server to our client
+     bzr co sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test      #checkout the project
+     bzr push sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test  #push changes to the server
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Ok, is not the nicest way to do that, but remember this is a distributed repository, you won&#x27;t update or push changes too often, usually only when you are done with a piece of work.  There&#x27;s an alternative method, using what is called a “smart server”, which is faster than the previous way (but not always possible to use for several reasons). In this case we will use an ssh connection to communicate with the repository, but this requires that our user belongs to the group “bzr” to be able to write in that folder. The command for the first commit is:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    bzr push --create-prefix bzr+ssh:&amp;#x2F;&amp;#x2F;server:port&amp;#x2F;home&amp;#x2F;bzr&amp;#x2F;test #requires full path, from root
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In a similar way we interact with the server using:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;     bzr pull bzr+ssh:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test   #update changes from the server to our client
+     bzr co bzr+ssh:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test      #checkout the project
+     bzr push bzr+ssh:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test  #push changes to the server
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-redmine-themes&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-redmine-themes&quot; aria-label=&quot;Anchor link for: install-redmine-themes&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Redmine Themes&lt;&#x2F;h2&gt;
+&lt;p&gt;You can install some new themes for Redmine, available &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;Theme_List&quot;&gt;here&lt;&#x2F;a&gt;. Although is mainly a cosmetic change, some themes provide enhancements like colouring tickets according to priority and they are really easy to manage. For example, to install the &lt;a href=&quot;http:&#x2F;&#x2F;theill.com&#x2F;stuff&#x2F;redmine&#x2F;&quot;&gt;Basecamp&lt;&#x2F;a&gt; theme:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Download application.css&lt;&#x2F;li&gt;
+&lt;li&gt;Create required directories: mkdir -p redmine&#x2F;public&#x2F;themes&#x2F;basecamp&#x2F;stylesheets&lt;&#x2F;li&gt;
+&lt;li&gt;Copy downloaded file:  cp application.css redmine&#x2F;public&#x2F;themes&#x2F;basecamp&#x2F;stylesheets&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;That&#x27;s it .. now restart your instance running Redmine and select the new basecamp theme from &#x2F;settings&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;install-redmine-plugins&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-redmine-plugins&quot; aria-label=&quot;Anchor link for: install-redmine-plugins&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Redmine Plugins&lt;&#x2F;h2&gt;
+&lt;p&gt;Redmine provides several plugins that enhance the capabilities of the tool. Amongst them you can find some nice ones like:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bots Filter: avoids bots from accessing certain areas of the application&lt;&#x2F;li&gt;
+&lt;li&gt;Charts: adds some project based charts&lt;&#x2F;li&gt;
+&lt;li&gt;Exception Handler: notifies admins when an exception occurs&lt;&#x2F;li&gt;
+&lt;li&gt;Hudson: integrates Redmine and Hudson, allowing you to see Hudson reports&lt;&#x2F;li&gt;
+&lt;li&gt;Status updates: allows users to say what are they doing, kind of Twitter per project.&lt;&#x2F;li&gt;
+&lt;li&gt;Vote: allows users to vote on issues so you see which ones are important to them&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;You can find these and many more in this &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;Plugin_List&quot;&gt;page&lt;&#x2F;a&gt; . To install a plugin, follow the instructions on the “Installation” section of its page. Then restart Redmine and you are good to go.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;connect-mylyn-to-redmine&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#connect-mylyn-to-redmine&quot; aria-label=&quot;Anchor link for: connect-mylyn-to-redmine&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Connect Mylyn to Redmine&lt;&#x2F;h2&gt;
+&lt;p&gt;If you use Mylyn (and you should!) use these &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;HowTo_Mylyn&quot;&gt;instructions&lt;&#x2F;a&gt; to connect it to your Redmine repository.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, only available for Ubuntu 9.04, which doesn't work too well on a server. I'll keep an eye on it as I like the way Canonical does things (and applications), but in the meantime I decided to use Redmine as I found Trac lacking on some areas.
+…</summary>
+        </entry>
+</feed>

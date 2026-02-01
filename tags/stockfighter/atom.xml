@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>stockfighter</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - stockfighter</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/stockfighter/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/stockfighter/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2016-08-22T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/stockfighter/atom.xml</id><entry xml:lang="en">
+        <title>Free Monads and Stockfighter</title>
+        <published>2016-08-22T00:00:00+00:00</published>
+        <updated>2016-08-22T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/free-monads-and-stockfighter/" type="text/html"/>
+        <id>https://perevillega.com/posts/free-monads-and-stockfighter/</id>
+        
+            <content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.stockfighter.io&#x2F;&quot;&gt;StockFighter&lt;&#x2F;a&gt; is a game by &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;patio11&#x2F;&quot;&gt;Patrick McKenzie&lt;&#x2F;a&gt; (Hi Patrick!) and &lt;a href=&quot;https:&#x2F;&#x2F;www.starfighters.io&#x2F;about&quot;&gt;others&lt;&#x2F;a&gt; that makes you compete in a virtual Stock Exchange to accomplish certain objectives. They use it as a recruitment tool (kind of, read their website) but it&#x27;s a very entertaining game, even if you are not looking for a new job.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Why am I talking about &lt;a href=&quot;https:&#x2F;&#x2F;www.stockfighter.io&#x2F;&quot;&gt;StockFighter&lt;&#x2F;a&gt;? Well, as you can guess from the title, because &lt;a href=&quot;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;tut&#x2F;freemonad.html&quot;&gt;Free Monads&lt;&#x2F;a&gt;! Care to join?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-mission&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-mission&quot; aria-label=&quot;Anchor link for: the-mission&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Mission&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.stockfighter.io&#x2F;&quot;&gt;StockFighter&lt;&#x2F;a&gt; provides an environment which is limited in scope, but still complex enough that showcases limitations&#x2F;strengths for a given tool. I&#x27;ve had in my backlog, for a looong while, the &lt;em&gt;mission&lt;&#x2F;em&gt; of completing the game. Building an API to do so using Free seemed like the perfect match.&lt;&#x2F;p&gt;
+&lt;p&gt;The aim was to build a Free Monad wrapper on top of the &lt;a href=&quot;https:&#x2F;&#x2F;starfighter.readme.io&#x2F;docs&#x2F;&quot;&gt;Stockfighter API&lt;&#x2F;a&gt;, using &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ProjectSeptemberInc&#x2F;freek&quot;&gt;Freek&lt;&#x2F;a&gt;, which allows us to solve the levels of the game. The API would only focus on the &lt;em&gt;Trading&lt;&#x2F;em&gt; part of the game as the other component, &lt;em&gt;Jailbreak&lt;&#x2F;em&gt;, is not fully ready to be used.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;caveats&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#caveats&quot; aria-label=&quot;Anchor link for: caveats&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Caveats&lt;&#x2F;h2&gt;
+&lt;p&gt;Before we start, I want to make you aware that I am a beginner regarding Free. I&#x27;ve heard a lot about the subject, and I previously wrote two posts about them: &lt;a href=&quot;&#x2F;understanding-free-monads&quot;&gt;Free Monad&lt;&#x2F;a&gt; and &lt;a href=&quot;&#x2F;freek-and-free-monads&quot;&gt;Freek and Free Monads&lt;&#x2F;a&gt; as a result of my research around the concept.&lt;&#x2F;p&gt;
+&lt;p&gt;But these posts approached the subject in a very theoretical way; they described how to build a Free Monad and potential applications, but you don&#x27;t really understand something until you have used it in production or, at least, in a realistic environment.&lt;&#x2F;p&gt;
+&lt;p&gt;This is my first &lt;em&gt;real(ish)&lt;&#x2F;em&gt; experience using Free for something more than a proof of concept, and as such I may have missed something obvious. If you believe so, please contact me via twitter (&lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;pvillega&quot;&gt;@pvillega&lt;&#x2F;a&gt;) as I&#x27;m very keen on fixing gaps in my knowledge :)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-implementation&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-implementation&quot; aria-label=&quot;Anchor link for: the-implementation&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Implementation&lt;&#x2F;h2&gt;
+&lt;p&gt;Releasing your code to the public is scary, isn&#x27;t it? Oh, well, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;stockfighter&quot;&gt;here you have it&lt;&#x2F;a&gt;. The code took longer than I wanted, as during its conception I realised several misconceptions I had regarding Free Monads and their implementation. I also experimented a bit with unrelated stuff which delayed this post &lt;em&gt;slightly&lt;&#x2F;em&gt; more. Ah, shiny baubles...&lt;&#x2F;p&gt;
+&lt;p&gt;You may want to start by opening &lt;code&gt;Introduction.scala&lt;&#x2F;code&gt; and reading it top to bottom, as it exposes the API and usage cases.&lt;&#x2F;p&gt;
+&lt;p&gt;If we ignore all the stuff not purely related to Free Monads, there are three files to focus on: &lt;code&gt;LogApi.scala&lt;&#x2F;code&gt;, &lt;code&gt;TradeApi.scala&lt;&#x2F;code&gt;, and &lt;code&gt;TradingAppHelpers.scala&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-free-monads&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-free-monads&quot; aria-label=&quot;Anchor link for: the-free-monads&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Free Monads&lt;&#x2F;h3&gt;
+&lt;p&gt;Files &lt;code&gt;LogApi.scala&lt;&#x2F;code&gt; and &lt;code&gt;TradeApi.scala&lt;&#x2F;code&gt; implement the Free Monads for the library. I won&#x27;t enter into the implementation details as they should be straightforward, and you can refer to my previous post on &lt;a href=&quot;&#x2F;freek-and-free-monads&quot;&gt;Freek&lt;&#x2F;a&gt; for guidance.&lt;&#x2F;p&gt;
+&lt;p&gt;What I want to discuss is: why these two DSL and not more?&lt;&#x2F;p&gt;
+&lt;p&gt;We can argue about the abstraction levels, but I&#x27;ve come to these two as a natural evolution of the API. My initial idea was to build everything based on Free. When I say &lt;em&gt;everything&lt;&#x2F;em&gt; I mean it: my http calls would be a Free DSL (Get, Post, etc). Logs? Free. Free all the way down (and then turtles). It even sounded easy: Freek &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ProjectSeptemberInc&#x2F;freek&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;scala&#x2F;AppSpec.scala&quot;&gt;examples&lt;&#x2F;a&gt; showcase a Log and Http DSL, so why not?&lt;&#x2F;p&gt;
+&lt;p&gt;Well, it may be possible, in fact it&#x27;s my next aim (v 2.0?) to experiment more around this area. But it makes things more complex than needed.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s take an example: Http DSL. Given the way natural transformations work, and that you want a generic DSL, you&#x27;ll end up with two DSL for your Http calls: a &lt;em&gt;request&lt;&#x2F;em&gt; one and one to manage &lt;em&gt;responses&lt;&#x2F;em&gt;. This is ok, the problem comes when you want to start defining &lt;code&gt;TradeAPI&lt;&#x2F;code&gt; using these DSL.&lt;&#x2F;p&gt;
+&lt;p&gt;A natural transformation converts a monad into another. Although Free is a monad, I had lots of problems trying to compile a Natural transformation from &lt;code&gt;TradeApi.DSL&lt;&#x2F;code&gt; to &lt;code&gt;Task&lt;&#x2F;code&gt; that internally used &lt;code&gt;Http.DSL&lt;&#x2F;code&gt;, as it wasn&#x27;t a one-to-one transformation, but a one-to-for-comprehension transformation. It just didn&#x27;t work.&lt;&#x2F;p&gt;
+&lt;p&gt;The easy solution was to implement the calls in &lt;code&gt;TradeApi&lt;&#x2F;code&gt; as for-comprehensions that used &lt;code&gt;Http.DSL&lt;&#x2F;code&gt; to define the behaviour. So &lt;code&gt;buy&lt;&#x2F;code&gt; would call the corresponding &lt;code&gt;Http.DSL&lt;&#x2F;code&gt; helpers, and so on. Something like:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def buy(stock: String) = for {
+	body &amp;lt;- Post(buyUrl, toBody(stock))
+	rsp &amp;lt;- DecodeResponse[OrderStatus](body)
+} yield rsp
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;At this point, though, we won&#x27;t have an interpreter for &lt;code&gt;TradeAPI&lt;&#x2F;code&gt;, only for &lt;code&gt;Http.DSL&lt;&#x2F;code&gt;. And there may be scenarios where we want to go that path. But, in this one, we may as well use our own interpreter for &lt;code&gt;TradeAPI&lt;&#x2F;code&gt; that manages the http calls and decoding inside, like a black box. We end up using a single interpreter anyway, but a slightly saner one.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;LogApi&lt;&#x2F;code&gt; survived because, despite the option of doing the logging within the interpreter, it makes sense to allow the user to document the intention of programs built using &lt;code&gt;TradeAPI&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;So, in the end, we only need these two. Yes, we could go deeper and replace &lt;code&gt;TradeAPI&lt;&#x2F;code&gt; by several lower-level API, but the current form seemed simpler and more usable.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;helper-class&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#helper-class&quot; aria-label=&quot;Anchor link for: helper-class&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Helper class&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;code&gt;TradingAppHelpers.scala&lt;&#x2F;code&gt; is mostly support methods and declarations: it defines the Onion we will use in our program, as well as some common methods like &lt;code&gt;run&lt;&#x2F;code&gt; to abstract calling the interpreter for our program and managing the lifecycle of our http client (to avoid leaking connections). I believe the comments in the file suffice to explain the intentions.&lt;&#x2F;p&gt;
+&lt;p&gt;There are three parts of its code I want to elaborate a bit on.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;onion-type&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#onion-type&quot; aria-label=&quot;Anchor link for: onion-type&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Onion type&lt;&#x2F;h4&gt;
+&lt;p&gt;Below we have the declaration for API and Onion, as usual when using Freek to work with several DSL at once.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;type API = LogApi.PRG :||: TradeApi.PRG
+val API = Program[API]
+type O = Result[?] :&amp;amp;: List :&amp;amp;: Bulb
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Note that the Onion declaration, &lt;code&gt;O&lt;&#x2F;code&gt;, includes both &lt;code&gt;Result&lt;&#x2F;code&gt; (an alias to &lt;code&gt;Xor&lt;&#x2F;code&gt;) and &lt;code&gt;List&lt;&#x2F;code&gt;. Without adding &lt;code&gt;List&lt;&#x2F;code&gt; I could not make it compile with result types of the form &lt;code&gt;Result[List[A]]&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The side effect of this is that using the Onion causes all the programs to return &lt;code&gt;Result[List[A]]&lt;&#x2F;code&gt; results. We can avoid this if we know we won&#x27;t use a call that return &lt;code&gt;Result[List[A]]&lt;&#x2F;code&gt; inside a program. In that case we may avoid the Onion and obtain just &lt;code&gt;Result[A]&lt;&#x2F;code&gt; at the end (using &lt;code&gt;.freek&lt;&#x2F;code&gt; and not &lt;code&gt;.freeko&lt;&#x2F;code&gt;), but I&#x27;ve provided no helper methods similar to &lt;code&gt;run&lt;&#x2F;code&gt; for this use case. Feel free to send a pull-request with one ;)&lt;&#x2F;p&gt;
+&lt;p&gt;There&#x27;s a better discussion on the matter in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mandubian&#x2F;freek&#x2F;issues&#x2F;5&quot;&gt;this issue&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;task-interpreter&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#task-interpreter&quot; aria-label=&quot;Anchor link for: task-interpreter&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Task Interpreter&lt;&#x2F;h4&gt;
+&lt;p&gt;Our Task interpreter, the natural transformation from the DSL to &lt;code&gt;Task&lt;&#x2F;code&gt;, is declared as:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def taskInterpreter(httpClient: &amp;#x2F;*...*&amp;#x2F;) = LogApiTaskInterpreter :&amp;amp;: new TradeApiTaskInterpreter(&amp;#x2F;*...*&amp;#x2F;)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this implementation &lt;code&gt;TradeApiTaskInterpreter&lt;&#x2F;code&gt; depends on an &lt;code&gt;httpClient&lt;&#x2F;code&gt; to be able to contact Stockfighter. Encapsulating the &lt;code&gt;httpClient&lt;&#x2F;code&gt; inside the interpreter is problematic, as we can&#x27;t control the lifecycle of the client itself. At no point during the natural transformation are you aware that this is the last step (unless you add an explicit &lt;em&gt;last step&lt;&#x2F;em&gt; command, but kind of defeats the point). Which means that closing your http connections needs to be done outside the interpreter itself.&lt;&#x2F;p&gt;
+&lt;p&gt;I know it sounds obvious, and it is. But the examples I&#x27;ve seen regarding interpreters and natural transformations showcase them as static objects with no dependencies, although the interpreters are the areas where we will perform side effects, like an http request. This mislead me, initially, to try to encapsulate everything inside the interpreter itself. I&#x27;m open to suggestions on improving the code, if you believe there&#x27;s a better way to manage the client.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;run-the-onion&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#run-the-onion&quot; aria-label=&quot;Anchor link for: run-the-onion&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Run the Onion&lt;&#x2F;h4&gt;
+&lt;p&gt;The code to run an interpreter on a given Onion is always the same, which means we can abstract it:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def run[A](program: OnionT[Free, API.Cop, O, A], waitTime: Duration = 10 seconds) = {
+    val client = new GigahorseHttpClientManager()
+    try {
+      val interpreter = taskInterpreter(client)
+      val taskResult = program.value.interpret(interpreter)
+      Await.result(taskResult.runAsync, waitTime)
+    } finally {
+      client.close()
+    }
+  }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see the function &lt;code&gt;run&lt;&#x2F;code&gt; instantiates its own &lt;code&gt;TradeApiTaskInterpreter&lt;&#x2F;code&gt; to manage the &lt;code&gt;httpClient&lt;&#x2F;code&gt;, as discussed in the previous section.&lt;&#x2F;p&gt;
+&lt;p&gt;The relevant part of this code is the type of the parameter &lt;code&gt;program&lt;&#x2F;code&gt;: &lt;code&gt;OnionT[Free, API.Cop, O, A]&lt;&#x2F;code&gt;. It&#x27;s another obvious thing, but when I tried to generalise the signature from my existing programs the values &lt;code&gt;sbt&lt;&#x2F;code&gt; gave me didn&#x27;t compile properly due to several implicit-related errors. Freek uses quite a few of them implicits, and you can find yourself in a tangle trying to derive the implicit you need for your program. Next time, just copy this method&#x27;s signature.&lt;&#x2F;p&gt;
+&lt;p&gt;Or, as I discovered a bit too late (to my chagrin) pay more attention when reading the Freek instructions. That type is declared in the Readme file. D&#x27;oh!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-case-for-freek&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-case-for-freek&quot; aria-label=&quot;Anchor link for: the-case-for-freek&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The case for Freek&lt;&#x2F;h3&gt;
+&lt;p&gt;I want to explicitly comment on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ProjectSeptemberInc&#x2F;freek&quot;&gt;Freek&lt;&#x2F;a&gt;, as it deserves all praise I can give it.&lt;&#x2F;p&gt;
+&lt;p&gt;My experience building these monads is a vindication for the library. Honestly, if you are going to use Free Monads in your code, add it to your dependencies. Right now. I&#x27;ll wait. Done?&lt;&#x2F;p&gt;
+&lt;p&gt;I tried the Cats approach I described in my old post about &lt;a href=&quot;&#x2F;understanding-free-monads&quot;&gt;Free Monad&lt;&#x2F;a&gt; to implement the API, stubborn in &lt;em&gt;keeping it simple and using few dependencies&lt;&#x2F;em&gt;. The pain was real, oh so real, when trying to work with the different answer types the DSL provides.&lt;&#x2F;p&gt;
+&lt;p&gt;In fact, it didn&#x27;t work. Without Freek, the compiler was beating me. No chances, full surrender.&lt;&#x2F;p&gt;
+&lt;p&gt;Yes, it is not perfect. For example see &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mandubian&#x2F;freek&#x2F;issues&#x2F;5&quot;&gt;this issue&lt;&#x2F;a&gt; related to the return types of Onions. It&#x27;s slightly cumbersome to having to manually peel responses each time you use the Onion. But given the alternative, I found it perfectly acceptable. And, come on, it&#x27;s barely version 0.6.0 and improving fast!&lt;&#x2F;p&gt;
+&lt;p&gt;If you are a Scala magician at the level of Pascal, Travis, or Miles you may not need it. Otherwise, just use it and spend your valuable time in something else.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-are-free-monads-for&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#what-are-free-monads-for&quot; aria-label=&quot;Anchor link for: what-are-free-monads-for&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+What are Free Monads for&lt;&#x2F;h2&gt;
+&lt;p&gt;Based on the, arguably limited, experience I&#x27;ve had while building the API and running programs using it there are several things to consider when using Free.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;free-monads-are-for-api&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#free-monads-are-for-api&quot; aria-label=&quot;Anchor link for: free-monads-are-for-api&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Free Monads are for API&lt;&#x2F;h3&gt;
+&lt;p&gt;Free Monads are intended to abstract your API. You define your DSLs, you build a program that uses them, and your construct interpreters to match. They are not for doing business logic, though.&lt;&#x2F;p&gt;
+&lt;p&gt;What do I mean by that?&lt;&#x2F;p&gt;
+&lt;p&gt;When I read about them, my naive mind thought you could buy a stack of Free on top of Free and only at the end you&#x27;d use the interpreter, creating a kind of pure universe untouched by side effects. Crazy, maybe.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s start by the fact that Free doesn&#x27;t (can&#x27;t?) implement &lt;code&gt;filter&lt;&#x2F;code&gt;. This removes the capability of using &lt;code&gt;if&lt;&#x2F;code&gt; statements inside your for-comprehension. At some point in your application you&#x27;ll need to make decisions based on results, and avoiding &lt;code&gt;filter&lt;&#x2F;code&gt; gets complicated, fast.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, using the API provided try to create a program that buys a stock if the quote is lower than a value, and otherwise sells but only if you have enough shares and doing so would generate a benefit. Most likely you will end up with programs that mix Free statements with non-Free statements. You may argue the API is limited, so how complex do you want it to become to cover all particular once-off cases?&lt;&#x2F;p&gt;
+&lt;p&gt;So, Free is great when you define a contract to hide implementation details. Think interfaces that do IO behind the scenes, or other side-effects, or combine calls to several services in one go. But it&#x27;s doubtful you&#x27;ll build your application (unless trivial) with &lt;em&gt;only&lt;&#x2F;em&gt; Free.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;ddd-ready&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#ddd-ready&quot; aria-label=&quot;Anchor link for: ddd-ready&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+DDD ready&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Domain-driven_design&quot;&gt;DDD&lt;&#x2F;a&gt; is popular and you most likely use it. Bounded contexts and ubiquitous languages are a great fit for Free.&lt;&#x2F;p&gt;
+&lt;p&gt;Your context is defined by a contract, an API that other components will use. Your logic will often use more than one context to achieve something, for example communicating with Authentication, User data, and Image storage to get the information it needs. Free are perfectly suited for this task.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;interpreters-are-your-io-monad&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#interpreters-are-your-io-monad&quot; aria-label=&quot;Anchor link for: interpreters-are-your-io-monad&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Interpreters are your IO Monad&lt;&#x2F;h3&gt;
+&lt;p&gt;I hear somebody screaming due to this statement. Apologies! But, in a sense, your interpreters can be considered a black box that will have side effects inside, which you don&#x27;t care much about.&lt;&#x2F;p&gt;
+&lt;p&gt;Your Free programs define steps to be done against a certain API, but nothing else. They are pure, no side effects, nothing, just a list of steps. Only when interpreted is when they really do something useful.&lt;&#x2F;p&gt;
+&lt;p&gt;This means all the side effects happen in your interpreter. And that is good. We want to isolate side-effects in our codebases, but when trying to do so we may end up with some cumbersome stuff:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is your return type: Int.
+This is your return type on microservices: IO (Logger (Either HttpError Int))&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Credit to &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;krisajenkins&#x2F;status&#x2F;762901550696194048&quot;&gt;Kris Jenkins&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Jokes aside, we want to push side effects to the boundaries, which means we get horrible return types piling Task on top of Writer on top of Xor on top of any other monad we found. Within the interpreter we don&#x27;t need that. We know things will happen there, we can be ok with logging and running an IO fest within that black box. Because it&#x27;s isolated, and won&#x27;t leak, and we run it at the end, anyway.&lt;&#x2F;p&gt;
+&lt;p&gt;And we get a cleaner return type as a consequence.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;interpreters-should-be-your-test-target&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#interpreters-should-be-your-test-target&quot; aria-label=&quot;Anchor link for: interpreters-should-be-your-test-target&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Interpreters should be your test target&lt;&#x2F;h3&gt;
+&lt;p&gt;In the codebase you&#x27;ll see a blunder I realised too late. Initially I tried to test programs by using an accumulating interpreter that stored the calls to the api in a State monad, returning some default values. This allowed me to compare expected output of the program vs the real output.&lt;&#x2F;p&gt;
+&lt;p&gt;The accumulating interpreter can be good to see what happens with a program (print all the calls, to the bottom of the stack), but it&#x27;s not a great fit for testing due to hardcoded values. I experimented with another interpreter that allowed me to mock expected responses, so I could test most complex values, but this wasn&#x27;t ideal nor satisfactory.&lt;&#x2F;p&gt;
+&lt;p&gt;Then I realised I was approaching it wrong.&lt;&#x2F;p&gt;
+&lt;p&gt;Without Free, what I&#x27;d usually do is test a method for expected outputs given certain input. And that&#x27;s what I tried to do here. But with Free your method is nothing. I mean, it&#x27;s a description, so the test will be fully tangled with the program you defined.&lt;&#x2F;p&gt;
+&lt;p&gt;What you want to test is the interpreter, or its core. You want to make sure the output for a given DSL call is what you expect. In our scenario, &lt;code&gt;TradeApiTaskInterpreter&lt;&#x2F;code&gt; uses a client to to http calls. The return types are enforced during compilation of the DSL (we know a call to &lt;code&gt;buy&lt;&#x2F;code&gt; will return an object of a certain type), but we may want to guarantee we are passing values like &lt;code&gt;price&lt;&#x2F;code&gt; or &lt;code&gt;quantity&lt;&#x2F;code&gt; correctly, or that if the http client returns an error we are capturing it and returning the proper &lt;code&gt;Left&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This is where we want to focus our test efforts, which incidentally reduces the surface of code to be tested a lot, arguably giving us much robust code. Of course, there will be methods that mix Free monads with logical statements (if x call this monad, otherwise the other) which you will want to test as usual. But for methods that only use Free, focus on testing the interpreters.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;beware-the-layers&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#beware-the-layers&quot; aria-label=&quot;Anchor link for: beware-the-layers&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Beware the layers&lt;&#x2F;h3&gt;
+&lt;p&gt;I talked about it when discussing why I implemented the two DSL I chose, but it&#x27;s worth repeating.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember that your interpreter (as a natural transformation) has limitations. Start with the top level API and consider if you need a lower level DSL for your purposes. It may be, as in our case, that a single layer is good enough. It may as well be that you have a case that justifies building your Free on a lower layer.&lt;&#x2F;p&gt;
+&lt;p&gt;In any case, stacking Free is not trivial and may cause pain. Thread carefully.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;they-are-not-easy&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#they-are-not-easy&quot; aria-label=&quot;Anchor link for: they-are-not-easy&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+They are not easy&lt;&#x2F;h3&gt;
+&lt;p&gt;People talking about Free mention they are not easy and that new teams (or teams without much experience in functional programming) should not adopt them directly. I realised I didn&#x27;t fully understand the warning when I started using them for this library. They seem easy, they are misleadingly so. But you will find yourself scratching your head many, many times, due to subtleties that arise when using them.&lt;&#x2F;p&gt;
+&lt;p&gt;Don&#x27;t underestimate them.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;aims-achieved&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#aims-achieved&quot; aria-label=&quot;Anchor link for: aims-achieved&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Aims achieved?&lt;&#x2F;h2&gt;
+&lt;p&gt;I have to make a confession: I&#x27;ve not completed StockFighter. I got sidetracked while experimenting with the API  using their test server, so I&#x27;ve only solved the first (and trivial) level. Someday I&#x27;ll finish it :) I failed that aim.&lt;&#x2F;p&gt;
+&lt;p&gt;But it&#x27;s been an enlightening experiment, which made me realise the limitations and strengths of Free. That said, it&#x27;s a first step on the path and most likely in a few months I&#x27;ll revisit this and realise I was wrong. But, hey, learning. Or something ;)&lt;&#x2F;p&gt;
+&lt;p&gt;So, yes, Free Monad are useful, but they are no silver bullet. What a surprise, isn&#x27;t it? Like everything else in IT.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all for now, I hope this was informative and useful. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">StockFighter is a game by Patrick McKenzie (Hi Patrick!) and others that makes you compete in a virtual Stock Exchange to accomplish certain objectives. They use it as a recruitment tool (kind of, read their website) but it's a very entertaining game, even if you are not looking for a new job.
+…</summary>
+        </entry>
+</feed>

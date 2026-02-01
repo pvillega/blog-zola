@@ -1,0 +1,308 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://perevillega.com name=base><title>Software serves the Business • On Free Monads</title><link href=https://perevillega.com/icons/favicon.ico rel=icon type=image/png><link title="Software serves the Business - Atom Feed" href=https://perevillega.com/atom.xml rel=alternate type=application/atom+xml><link href="https://perevillega.com/inter_subset_en.css?h=d8cf4ad058d6c3a4015b" rel=stylesheet><link href="https://perevillega.com/main.css?h=149ff9e737409b86f9c3" rel=stylesheet><link href="https://perevillega.com/custom.css?h=ff5a5712d2f0bc9d9ac2" rel=stylesheet><meta content="light dark" name=color-scheme><meta content=#087e96 name=theme-color><meta content="The concept of Free Monad is becoming popular, or at least I've seen plenty of mentions about it in the Scala Functional Programming community as of late. Why is it relevant?
+…" name=description><meta content="The concept of Free Monad is becoming popular, or at least I've seen plenty of mentions about it in the Scala Functional Programming community as of late. Why is it relevant?
+…" property=og:description><meta content="index, nofollow" name=robots><meta content="On Free Monads" property=og:title><meta content=article property=og:type><meta content="https://perevillega.com/social_cards/index.png?h=125d02cc3c86eaf88fa6" property=og:image><meta content=2088 property=og:image:width><meta content=1000 property=og:image:height><meta content="https://perevillega.com/social_cards/index.png?h=125d02cc3c86eaf88fa6" name=twitter:image><meta content=summary_large_image name=twitter:card><meta content=en_GB property=og:locale><meta content=https://perevillega.com/posts/understanding-free-monads/ property=og:url><meta content="Software serves the Business" property=og:site_name><meta content="default-src 'self';font-src 'self' data: 'self';img-src 'self' https://* data:;media-src 'self' https://cdn.jsdelivr.net/;style-src 'self' 'unsafe-inline';frame-src 'self' player.vimeo.com https://www.youtube-nocookie.com https://view.officeapps.live.com;connect-src 'self' https://umami.villegawilcz.com;script-src 'self' https://umami.villegawilcz.com 'self'" http-equiv=Content-Security-Policy><noscript><link href=https://perevillega.com/no_js.css rel=stylesheet></noscript><script src=https://perevillega.com/js/initializeTheme.min.js></script><script defer src=https://perevillega.com/js/themeSwitcher.min.js></script><script async data-do-not-track=true data-website-id=7bdfa858-bebc-479d-9a1f-bea833a709a8 defer src=https://umami.villegawilcz.com/script.js></script><meta content=@pvillega@mastodon.social name=fediverse:creator><script src="https://perevillega.com/search_index.en.js?h=5e3427c9b8d057d8989e" defer></script><script src="https://perevillega.com/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e" defer></script><body><header><nav class=navbar><div class=nav-title><a class=home-title href=https://perevillega.com>Software serves the Business</a></div><div class=nav-navs><ul><li><a class="nav-links no-hover-padding" href=https://perevillega.com/posts/> blog </a><li><a class="nav-links no-hover-padding" href=https://perevillega.com/tags/> tags </a></li><div class=nav-navs id=menu-icons-group><li class=js><div aria-label="Click or press $SHORTCUT to open search" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" id=search-button role=button tabindex=0><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div><li class="theme-switcher-wrapper js"><div aria-label="Toggle dark mode" title="Toggle dark/light mode" aria-pressed=false class=theme-switcher role=button tabindex=0></div><div aria-label="Reset mode to default" class="theme-resetter arrow" title="Reset mode to default" aria-hidden=true role=button tabindex=0></div></div></ul></div></nav></header><div class=content><main><article><h1 class=article-title>On Free Monads</h1><ul class=meta><li>28th May 2016<li title="4407 words"><span aria-hidden=true class=separator>•</span>23 min read<li class=tag><span aria-hidden=true class=separator>•</span>Tags: <li class=tag><a href=https://perevillega.com/tags/scala/>scala</a>, <li class=tag><a href=https://perevillega.com/tags/monad/>monad</a>, <li class=tag><a href=https://perevillega.com/tags/fp/>fp</a>, <li class=tag><a href=https://perevillega.com/tags/free-monad/>free monad</a></ul><section class=body><p>The concept of <a href=http://typelevel.org/cats/datatypes/freemonad.html>Free Monad</a> is becoming popular, or at least I've seen plenty of mentions about it in the Scala Functional Programming community as of late. Why is it relevant?</p><span id=continue-reading></span><p>A couple of warnings before I start. Judging by the code I wrote, this will be a <em>very long</em> post. You can look at the <a href=https://github.com/pvillega/free-monad-sample>code</a> and come back to read this post later. Also, I'm going to take a <em>practical</em> approach to Free Monad. I'll provide a list of relevant links at the end you can use to learn more about Free Monad and its nuisances, including Cat's explanation on <a href=http://typelevel.org/cats/datatypes/freemonad.html#what-is-free-in-theory>the theory behind Free</a>. But no theory here, sorry :)<p>Let's do this.<h2 id=why-should-i-care-about-free-monad><a aria-label="Anchor link for: why-should-i-care-about-free-monad" class="header-anchor no-hover-padding" href=#why-should-i-care-about-free-monad><span aria-hidden=true class=link-icon></span></a> Why should I care about Free Monad?</h2><p>Anything related to <a href=http://typelevel.org/cats/typeclasses/monad.html>Monads</a> seems scary and complex for the uninitiated. Why should I spend time learning that? What's the benefit?<p>There are descriptions of <a href=http://typelevel.org/cats/datatypes/freemonad.html>Free Monad</a> that give a good overview on why to use it. In my humble opinion, the main benefit that Free provides is separation between the program definition and its execution.<p>You start by building an embedded DSL, which can be understood by the business. Using that language, you define a program as a series of actions that cover a business case, without any implementation details associated.<p>At this point you can test the business-defined logic in isolation (with fast unit tests, no need of mocks). You can <em>talk the same language</em> as the business. And only at the end, when needed, you provide a <em>real-world</em> implementation that interacts with 3rd party services and such.<p>This has the potential to provide more robust code, that can be tested easily, and which is a better fit to the business requirements. Also, replacing implementations (say, you change your sms provider) has minimal impact in the codebase as you only modify the interpreter, nothing else. Wether you do <a href=https://en.wikipedia.org/wiki/Domain-driven_design>DDD</a> or not, all this must sound <em>very appealing</em> ;)<p>In addition, implementations of Free Monad (both in Cats and Scalaz) provide other benefits, for example the use of Trampolining for stack-safe recursion.<p>A bit like with <a href=http://typelevel.org/cats/typeclasses/monad.html>Monad</a>, a <a href=http://typelevel.org/cats/datatypes/freemonad.html>Free Monad</a> is a relatively simple concept behind a scary name. Easier than it seems, and very useful. Either that, or I've understood nothing and need to go back to the study desk ;)<h2 id=a-business-case><a aria-label="Anchor link for: a-business-case" class="header-anchor no-hover-padding" href=#a-business-case><span aria-hidden=true class=link-icon></span></a> A business case</h2><p>I'll start with a very simplistic business case. We want to implement an application to buy and sell stocks. Our standard approach may generate code similar to:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>object Orders {
+	type Symbol = String
+	type Response = String
+	def buy(stock: Symbol, amount: Int): Response = ???
+	def sell(stock: Symbol, amount: Int): Response = ???
+}
+</code></pre><p>But we have heard about this new thing called <code>Free Monad</code> and we want to use it. We start by creating a DSL, a business language, that describes our actions. For example, we convert<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>  def buy(stock: Symbol, amount: Int): Response
+</code></pre><p>into<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>  case class Buy(stock: Symbol, amount: Int) extends Orders[Response]
+</code></pre><p>You can see there is an equivalence in meaning between the two forms: case class parameters and method parameters, return value and type parameter in our case class (specifically in <code>Orders[Response]</code>). We are converting our methods into a language, but one that has no implementation associated.<p>If we do this with both methods, we get:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>  sealed trait Orders[A]
+  case class Buy(stock: Symbol, amount: Int) extends Orders[Response]
+  case class Sell(stock: Symbol, amount: Int) extends Orders[Response]
+</code></pre><p>Please take a moment to see and understand the parallelisms between the above implementation, using case classes, and our original methods. Note that the parent trait <code>Orders</code> is similar to a <code>Functor</code> (a structure with a hole); this is a requirement of <code>Free</code>, all the languages you define <em>must</em> follow a similar structure.<p>So, what do we have at this point? We have a language that defines buying or selling a stock. But it has no logic associated, and creating an instance does nothing (besides instantiating the case class). Furthermore, we can't try to compile something like:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>  for {
+	r &LT- Buy("FB", 100)
+  } yield r
+</code></pre><p>as it won't work. We need to turn this into a Monad, somehow.<h2 id=lifting-to-free><a aria-label="Anchor link for: lifting-to-free" class="header-anchor no-hover-padding" href=#lifting-to-free><span aria-hidden=true class=link-icon></span></a> Lifting to Free</h2><p>To be able to use the language in our programs, we want to convert it into something we can run. For example, a Monad. That's the task of a Free Monad, and Cats provides a very easy way to do that:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>  import cats.free.Free
+
+  type OrdersF[A] = Free[Orders, A]
+</code></pre><p>We have defined a new type, a <code>Free</code> Monad on <code>Orders</code> and a parameter <code>A</code>. But that's not enough, we need to map our case classes to instances of <code>Free</code>. Thankfully <code>Free</code> itself makes this step easy:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>  import cats.free.Free._
+
+  def buy(stock: Symbol, amount: Int): OrdersF[Response] = liftF[Orders, Response](Buy(stock, amount))
+  def sell(stock: Symbol, amount: Int): OrdersF[Response] = liftF[Orders, Response](Sell(stock, amount))
+</code></pre><p>Notice that the return types of the methods, <code>OrdersF[Response]</code>, match the Free Monad (as defined above). Also, the type parameter returned, <code>Response</code>, matches the parameter in the <code>extends</code> portion of our case class definition, which we mapped to work akin to <em>return type</em> when converting from methods to case classes.<p>Now we can use these support methods, <code>buy</code> and <code>sell</code>, to obtain our monads. And it works:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>  val flatMapThat = buy("APPL", 100).flatMap(rsp => sell("GOOG", 100))
+</code></pre><p>The code above builds and returns a <code>Free</code> structure. This means that we can use the monads to define some business logic. For example, we can define a smart algorithm to buy and sell shares:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>val smartTrade: OrdersF[Response] = for {
+    _ &LT- buy("APPL", 50)
+    _ &LT- buy("MSFT", 10)
+    rsp &LT- sell("GOOG", 200)
+  } yield rsp
+</code></pre><p>We are using a for-comprehension to chain a series of actions. <code>buy</code> and <code>sell</code> are used to obtain the monads that define the steps of the algorithm. As you can see, the return type is <code>OrdersF[Response]</code> as expected by the logic, which yields the result of calling <code>sell</code>.<p>At this point we have built a language for our business case, along algorithms that use that language. But this code still does nothing else than defining the steps, we have no way to obtain a result from it. We need a way to execute, or interpret, our language.<h2 id=our-first-interpreter><a aria-label="Anchor link for: our-first-interpreter" class="header-anchor no-hover-padding" href=#our-first-interpreter><span aria-hidden=true class=link-icon></span></a> Our first interpreter</h2><p>An interpreter is something that will read our program and do something with it. Technically, an interpreter is a <code>natural transformation</code>, but as I said at the start I don't want to focus on the theory right now. The key thing to know is that an interpreter requires a monad as the end-part of the transformation. This means you can use an interpreter to obtain <code>Option</code>, <code>Xor</code>, or some other monad, but not to obtain anything that is not a monad.<p>As usual an example is better than a thousand words, so let's use the simplest monad, <code>Id</code>, to build an interpreter:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>import cats.{Id, ~>}
+
+def orderPrinter: Orders ~> Id =
+    new (Orders ~> Id) {
+      def apply[A](fa: Orders[A]): Id[A] = fa match {
+        case Buy(stock, amount) =>
+          println(s"Buying $amount of $stock")
+          "ok"
+        case Sell(stock, amount) =>
+          println(s"Selling $amount of $stock")
+          "ok"
+      }
+    }
+</code></pre><p>This squiggly sign <code>~></code> is the syntax sugar for <code>natural transformation</code>. Note that in the interpreter we do a pattern match over each member of our language. As <code>Buy</code> is of type <code>Order[Response]</code> (equivalent to <code>Order[String]</code> in this scenario), the method signature forces us to return a result of <code>Id[String]</code>. The same for <code>Sell</code>.<p>As you can see, we are also executing some <code>println</code> statements before returning the result. The only restriction given by the signature is the return type, we can have side effects in our code (as we do in this case). Obviously this is not advisable, but it can be useful when we create interpreters for testing purposes.<p>We have our interpreter, which means that we have all the pieces we need to execute the program. We can do this via the <code>foldMap</code> operation:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala> smartTrade.foldMap(orderPrinter)
+</code></pre><p>and we will see the result of the <code>println</code> operations in our terminal:<pre><code>Buying 50 of APPL
+Buying 10 of MSFT
+Selling 200 of GOOG
+</code></pre><p>It's working! We have built our first Free Monad, and it works. Take your time to understand what we have done, and remember the <a href=https://github.com/pvillega/free-monad-sample>code</a> is available to download.<h2 id=xor-interpreters><a aria-label="Anchor link for: xor-interpreters" class="header-anchor no-hover-padding" href=#xor-interpreters><span aria-hidden=true class=link-icon></span></a> Xor Interpreters</h2><p>We have built our first interpreter, but let's be honest: <code>Id</code> is not so useful, and we want to avoid side-effects in our code. If we aim to do something akin to <a href=http://fsharpforfunandprofit.com/posts/recipe-part2/>railway oriented programming</a> we may want to use <code>Xor</code> instead.<p>But this reveals a slight issue: the natural transformation expects a monad with shape <code>G[_]</code>, and <code>Xor</code> is <code>Xor[+A, +B]</code>. There is a mismatch in the number of <em>holes</em>. Thankfully we can fix that with a small trick, by fixing the type of the left side of <code>Xor</code>, like:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>type ErrorOr[A] = Xor[String, A]
+</code></pre><p>This creates a new monadic type with a single type parameter, which fits the requirements of natural transformation. You may want to use an ADT instead of <code>String</code> on the left side, to make it more flexible. In any case, we can now construct a new interpreter:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>import cats.syntax.xor._
+import cats.data.Xor
+
+def xorInterpreter: Orders ~> ErrorOr =
+ new (Orders ~> ErrorOr) {
+   def apply[A](fa: Orders[A]): ErrorOr[A] =
+     fa match {
+       case Buy(stock, amount) =>
+         s"$stock - $amount".right
+       case Sell(stock, amount) =>
+         "Why are you selling that?".left
+     }
+ }
+</code></pre><p>and if we execute it<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala> smartTrade.foldMap(xorInterpreter)
+</code></pre><p>we will see that the result is a left:<pre><code>Left(Why are you selling that?)
+</code></pre><p>Which brings us to a very important point: you are using your interpreter in a for-comprehension (usually). If you return a monadic value that would usually shortcut the process, like <code>Xor.Left</code> or <code>Nil</code> or <code>None</code>, the remainder of the program won't we executed. This may be what you want, but be aware of this behaviour. For a relevant example, if we had a case class extending <code>Orders[Unit]</code> and a natural transformation to <code>Option</code>, we may want to return <code>Some(())</code> instead of <code>None</code> to avoid this behaviour.<p>Ok, so we have built another interpreter, and it works. But our language is still very simple, let's make it a bit more useful.<h2 id=extending-the-language><a aria-label="Anchor link for: extending-the-language" class="header-anchor no-hover-padding" href=#extending-the-language><span aria-hidden=true class=link-icon></span></a> Extending the language</h2><p>We want smart algorithms, and hardcoding the stocks to buy won't help. We are aiming to build programs similar to:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala> val smartTradeWithList: Free[Orders, String] = for {
+    st &LT- listStocks()
+    _ &LT- buy(st, 100)
+    rsp &LT- sell("GOOG", 100)
+  } yield rsp
+</code></pre><p>So we can start by defining a new case class and lifting it to a Free Monad instance:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>case class ListStocks() extends Orders[List[Symbol]]
+
+def listStocks(): OrdersF[List[Symbol]] =
+  liftF[Orders, List[Symbol]](ListStocks())
+</code></pre><p>If you execute the program above (<code>smartTradeWithList</code>) you will see it doesn't compile. The reason is that <code>buy</code> expects a single <code>Symbol</code>, but <code>st</code> is <code>List[Symbol]</code>. Ah, but of course! We are flatmapping over <code>OrdersF[A]</code> and, as expected, the left side of the for-comprehension binds to the <code>A</code> value. In our case, as <code>listStocks</code> returns <code>OrdersF[List[Symbol]]</code> then <code>st</code> will be <code>List[Symbol]</code>.<p>So what now? If we couldn't work around this restriction, the utility of Free Monads would be very limited, as this is a common use case. Luckily, the <a href=http://eed3si9n.com/herding-cats/Traverse.html>Traverse</a> typeclass solves exactly this kind of issue. We can rewrite our program as:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>import cats.std.list._
+import cats.syntax.traverse._
+
+val smartTradeWithList: Free[Orders, String] = for {
+    st &LT- listStocks()
+    _ &LT- st.traverseU(buy(_, 100))
+    rsp &LT- sell("GOOG", 100)
+  } yield rsp
+</code></pre><p>and, with slightly more verbose code, it will compile. We could always hide the extra verbosity behind a helper method, if we want. We must also update our <code>orderPrinter</code> to tackle the new <code>ListStocks</code> case:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala> def orderPrinter: Orders ~> Id =
+    new (Orders ~> Id) {
+      def apply[A](fa: Orders[A]): Id[A] =
+	  fa match {
+        case ListStocks() =>
+          println(s"Getting list of stocks: FB, TWTR")
+          List("FB", "TWTR")
+        case Buy(stock, amount) =>
+          println(s"Buying $amount of $stock")
+          "ok"
+        case Sell(stock, amount) =>
+          println(s"Selling $amount of $stock")
+          "ok"
+      }
+    }
+</code></pre><p>And now we can execute the new program:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>smartTradeWithList.foldMap(orderPrinter)
+</code></pre><p>to see the expected output:<pre><code>Getting list of stocks: FB, TWTR
+Buying 100 of FB
+Buying 100 of TWTR
+Selling 100 of GOOG
+</code></pre><p>The language works. We can now build our smart programs and release into production to, hopefully, earn us a lot of money. Well, almost. The programs work, but if someone makes a mistake, how will we know? We might want to add some logging, but we don't want to use side effects. How to do it?<h2 id=adding-logs><a aria-label="Anchor link for: adding-logs" class="header-anchor no-hover-padding" href=#adding-logs><span aria-hidden=true class=link-icon></span></a> Adding Logs</h2><p>Logging is a language in itself. We want to embed log messages in the application, but how to manage them is another matter: we may want to ignore them on testing, to send them to a log file, or even to several destination. As such, using a Free Monad for logs makes sense. So let's define the language and create the associated Free Monad:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>sealed trait Log[A]
+
+case class Info(msg: String) extends Log[Unit]
+
+case class Error(msg: String) extends Log[Unit]
+
+type LogF[A] = Free[Log, A]
+
+def info(msg: String): LogF[Unit] =
+  liftF[Log, Unit](Info(msg))
+
+def error(msg: String): LogF[Unit] =
+  liftF[Log, Unit](Error(msg))
+
+def logPrinter: Log ~> Id =
+  new (Log ~> Id) {
+    def apply[A](fa: Log[A]): Id[A] =
+	  fa match {
+        case Info(msg) =>
+		  println(s"[Info] - $msg")
+        case Error(msg) =>
+		  println(s"[Error] - $msg")
+      }
+  }
+</code></pre><p>We have seen this before, nothing new here. We can now log <code>info</code> and <code>error</code> messages and we have an interpreter to <code>Id</code> that will send some output to the terminal. Let's add some logging to our program, then:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>val smartTradeWithLogs = for {
+    _ &LT- info("I'm going to trade smartly")
+    _ &LT- buy("APPL", 100)
+    _ &LT- info("I'm going to trade even more smartly")
+    _ &LT- buy("MSFT", 100)
+    rsp &LT- sell("GOOG", 100)
+    _ &LT- error("Wait, what?!")
+  } yield rsp
+</code></pre><p>and, no, this doesn't compile. The reason is clear once you look at the signature of <code>flatMap</code>, <code>flatMap[A,B](a: F[A])(f: A => F[B]): F[B]</code>. The initial and final monad must be the same when using <code>flatMap</code>, but in here we are mixing <code>OrdersF</code> and <code>LogF</code> monads in the same for-comprehension. So it won't compile.<p>The solution, in Cats, is to use an alternative way to lift our case classes to Monads. Instead of using the <code>liftF</code> method from <code>Free</code> we will use a slightly more complex structure that will help us later to mix both Monads. Let's start with an example:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>import cats.free.{Free, Inject}
+
+class OrderI[F[_]](implicit I: Inject[Orders, F]) {
+  def buyI(stock: Symbol, amount: Int): Free[F, Response] = Free.inject[Orders, F](Buy(stock, amount))
+
+  def sellI(stock: Symbol, amount: Int): Free[F, Response] = Free.inject[Orders, F](Sell(stock, amount))
+}
+
+// We need this implicit
+implicit def orderI[F[_]](implicit I: Inject[Orders, F]): OrderI[F] = new OrderI[F]
+</code></pre><p>As you can see we create a class <code>OrderI</code> that contains two methods which will lift our case classes into monads, by using <code>Free.inject</code>. The key part here is the implicit <code>Inject[Orders, F]</code> which, on compilation, will resolve to a type that binds everything together. The implicit method <code>orderI</code> is there to facilitate using this construct in our program, as we will see later on.<p>Take this as a template to follow, a bit of boilerplate to lift case classes into monads, no need to understand all the details right now. Note that we can use both <code>liftF</code> and this <em>new</em> way to lift our case classes into monads, they are not exclusive nor incompatible.<p>Let's do the same for our new language <code>Log</code>:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>import cats.free.{Free, Inject}
+
+class LogI[F[_]](implicit I: Inject[Log, F]) {
+  def infoI(msg: String): Free[F, Unit] =
+    Free.inject[Log, F](Info(msg))
+
+  def errorI(msg: String): Free[F, Unit] =
+    Free.inject[Log, F](Error(msg))
+}
+
+implicit def logI[F[_]](implicit I: Inject[Log, F]): LogI[F] = new LogI[F]
+</code></pre><p>Now that we have a way to lift both languages into monads, we need a way to use both in a for-comprehension. The solution here is given by <code>Coproduct</code> (explanation on this typeclass outside of the scope, sorry!) which will allow us to wire both types together.<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>import cats.data.Coproduct
+
+type TradeApp[A] = Coproduct[Orders, Log, A]
+</code></pre><p>With this we can now define our program, again:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>def smartTradeWithLogs(implicit O: OrderI[TradeApp],
+                                L: LogI[TradeApp]): Free[TradeApp, Response] = {
+  import L._
+  import O._
+
+  // Look, ma, both monads at once!
+  for {
+    _ &LT- infoI("I'm going to trade smartly")
+    _ &LT- buyI("APPL", 100)
+    _ &LT- infoI("I'm going to trade even more smartly")
+    _ &LT- buyI("MSFT", 100)
+    rsp &LT- sellI("GOOG", 100)
+    _ &LT- errorI("Wait, what?!")
+  } yield rsp
+}
+</code></pre><p>This compiles. We are using the implicit methods defined before to create instances of <code>OrderI</code> and <code>LogI</code>. By receiving our <code>Coproduct</code> as the type parameter, their implicit <code>Inject</code> will help us build a compatibility layer between both monads. You can check the source code of <code>Inject</code> to understand how this works.<p>We have our program, with both behaviour and logs in it. Now we want to execute it. Unfortunately, the interpreters we defined before can't be used as they are, we need an interpreter for the new <code>TradeApp</code> type. The good news are that this new interpreter can be built on top of the existing ones:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>def composedInterpreter: TradeApp ~> Id = orderPrinter or logPrinter
+</code></pre><p>This interpreter is defining a natural transformation from <code>TradeApp</code> (a monad) to <code>Id</code> (another monad). As <code>TradeApp</code> is a <code>Coproduct</code>, and we already have interpreters from each of its elements to <code>Id</code>, we can take advantage of the <code>or</code> method in a natural transformation and delegate the task to our existing interpreters. Reuse is always good :)<p>We can run this:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>smartTradeWithLogs.foldMap(composedInterpreter)
+</code></pre><p>and we will see the output in our terminal, including the logs:<pre><code>[Info] - I'm going to trade smartly
+Buying 100 of APPL
+[Info] - I'm going to trade even more smartly
+Buying 100 of MSFT
+Selling 100 of GOOG
+[Error] - Wait, what?!
+</code></pre><p>There you have it. Two full languages working together to define a program, that we can later on run with a specific interpreter. Isn't it neat? Although the code seems more verbose that with the original example, remember that we are defining all these elements (implicit classes and interpreters) just once, and they will work with all our programs using these languages. Not a bad trade-off.<h2 id=what-s-better-than-2-languages><a aria-label="Anchor link for: what-s-better-than-2-languages" class="header-anchor no-hover-padding" href=#what-s-better-than-2-languages><span aria-hidden=true class=link-icon></span></a> What's better than 2 languages?</h2><p>So we can build programs with two languages, but... what if we want three? We are managing money and shares, so besides logs we may be required to add auditing to the application. How easy is that? Let's start by defining a third language, <code>Audit</code>, as we just did with the other two:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>sealed trait Audit[A]
+
+case class UserActionAudit(user: UserId, action: String, values: List[Values]) extends Audit[Unit]
+
+case class SystemActionAudit(job: JobId, action: String, values: List[Values]) extends Audit[Unit]
+
+class AuditI[F[_]](implicit I: Inject[Audit, F]) {
+  def userAction(user: UserId, action: String, values: List[Values]): Free[F, Unit] =
+    Free.inject[Audit, F](UserActionAudit(user, action, values))
+
+  def systemAction(job: JobId, action: String, values: List[Values]): Free[F, Unit] =
+    Free.inject[Audit, F](SystemActionAudit(job, action, values))
+}
+
+implicit def auditI[F[_]](implicit I: Inject[Audit, F]): AuditI[F] = new AuditI[F]
+
+def auditPrinter: Audit ~> Id =
+  new (Audit ~> Id) {
+    def apply[A](fa: Audit[A]): Id[A] =
+	  fa match {
+        case UserActionAudit(user, action, values) =>
+		  println(s"[USER Action] - user $user called $action with values $values")
+        case SystemActionAudit(job, action, values) =>
+		  println(s"[SYSTEM Action] - $job called $action with values $values")
+      }
+}
+</code></pre><p>Again, you have seen all this before. We have a language, we lift the case classes to Free Monad and we create an interpreter to <code>Id</code>. Easy. The complex part comes when we want to define our <code>Coproduct</code> and the typeclass is declared as <code>Coproduct[F[_], G[_], A]</code>, which means we have room for only two monads, <code>F</code> and <code>G</code>. But we need 3. Ouch!<p>But, wait! In the previous section we defined the <code>TradeApp</code> coproduct. Which is a coproduct, yes, but also behaves like our Free Monads, so we can consider it a Monad (I'm not sure if it is technically correct to call it a Monad, but let's ignore that by now). This means, in fact, we have only two monads: <code>Audit</code> and <code>TradeApp</code>. So we can build the <code>Coproduct</code>:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>type AuditableTradeApp[A] = Coproduct[Audit, TradeApp, A]
+</code></pre><p>A note of interest: due to the way <code>Inject</code> is implemented, our <code>TradeApp</code> class needs to be on the right hand side, otherwise this code won't compile.<p>We have the type, what about the interpreter? Yes, we can reuse our existing ones, this has not changed:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>def auditableInterpreter: AuditableTradeApp ~> Id = auditPrinter or composedInterpreter
+</code></pre><p>Notice that in the interpreter the order also matters, due to the implementation details of <code>or</code>. But, at this point, we have all the pieces we need and we can build our program:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>def smartTradeWithAuditsAndLogs(implicit O: OrderI[AuditableTradeApp],
+                                         L: LogI[AuditableTradeApp],
+										 A: AuditI[AuditableTradeApp]
+							    ): Free[AuditableTradeApp, Response] = {
+  import A._
+  import L._
+  import O._
+
+  for {
+    _ &LT- infoI("I'm going to trade smartly")
+    _ &LT- userAction("ID102", "buy", List("APPL", "100"))
+    _ &LT- buyI("APPL", 200)
+    _ &LT- infoI("I'm going to trade even more smartly")
+    _ &LT- userAction("ID102", "buy", List("MSFT", "100"))
+    _ &LT- buyI("MSFT", 100)
+    _ &LT- userAction("ID102", "sell", List("GOOG", "100"))
+    rsp &LT- sellI("GOOG", 300)
+    _ &LT- systemAction("BACKOFFICE", "tradesCheck", List("ID102", "lastTrades"))
+    _ &LT- errorI("Wait, what?!")
+  } yield rsp
+}
+</code></pre><p>and on execution<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>smartTradeWithAuditsAndLogs.foldMap(auditableInterpreter)
+</code></pre><p>we see<pre><code>[Info] - I'm going to trade smartly
+[USER Action] - user ID102 called buy with values List(APPL, 100)
+Buying 200 of APPL
+[Info] - I'm going to trade even more smartly
+[USER Action] - user ID102 called buy with values List(MSFT, 100)
+Buying 100 of MSFT
+[USER Action] - user ID102 called sell with values List(GOOG, 100)
+Selling 300 of GOOG
+[SYSTEM Action] - BACKOFFICE called tradesCheck with values List(ID102, lastTrades)
+[Error] - Wait, what?!
+</code></pre><p>We did it. We have three languages working together in our program. And the only additional definitions are a couple of <code>Coproduct</code> types as well as interpreters, which are built reusing existing interpreters for our types. Not a lot of work for the benefits we get, if I can say so.<p>At this stage we could try to add more languages, but we see the pattern on how it would work. So let's try something different.<h2 id=free-monads-all-the-way-down><a aria-label="Anchor link for: free-monads-all-the-way-down" class="header-anchor no-hover-padding" href=#free-monads-all-the-way-down><span aria-hidden=true class=link-icon></span></a> Free Monads all the way down</h2><p>Our original <code>Orders</code> language didn't specify how would we send an order to someone. We could code that into an interpreter, true. But we can safely assume that Orders will be propagated via either HTTP requests or Messages to some system. Given the recent popularity of event-sourcing and Kafka, let's say some publish-subscribe system. It would be wasteful to redefine the details to interact with that system in each interpreter that needed so.<p>In fact, we can think that a language exists to interact with that system, so we should be able to define a Free Monad to work with that language. Let's do so:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>sealed trait Messaging[A]
+case class Publish(channelId: ChannelId, source: SourceId, messageId: MessageId, payload: Payload) extends Messaging[Response]
+case class Subscribe(channelId: ChannelId, filterBy: Condition) extends Messaging[Payload]
+
+type MessagingF[A] = Free[Messaging, A]
+
+def publish(channelId: ChannelId, source: SourceId, messageId: MessageId, payload: Payload): MessagingF[Response] =
+  liftF[Messaging, Response](Publish(channelId, source, messageId, payload))
+
+def subscribe(channelId: ChannelId, filterBy: Condition): MessagingF[Payload] =
+  liftF[Messaging, Payload](Subscribe(channelId, filterBy))
+
+def messagingPrinter: Messaging ~> Id =
+  new (Messaging ~> Id) {
+    def apply[A](fa: Messaging[A]): Id[A] =
+	  fa match {
+        case Publish(channelId, source, messageId, payload) =>
+          println(s"Publish [$channelId] From: [$source] Id: [$messageId] Payload: [$payload]")
+          "ok"
+        case Subscribe(channelId, filterBy) =>
+          val payload = "Event fired"
+          println(s"Received message from [$channelId](filter: [$filterBy]): [$payload]")
+          payload
+      }
+   }
+</code></pre><p>Nothing new here either, we defined another language, this time using <code>liftF</code>, along an interpreter to <code>Id</code> to print messages to the terminal. By now, you should be able to do this with your eyes closed ;)<p>We have the language. How to make <code>Orders</code> work with this language, such that we can define our orders in terms of operations against a publish-subscribe network? The answer is natural transformation. If you remember, a natural transformation allows us to convert our original language to a new monad. And <code>MessagingF</code> is a monad, a free one. Which means we can do the following:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>def orderToMessageInterpreter: Orders ~> MessagingF =
+  new (Orders ~> MessagingF) {
+    def apply[A](fa: Orders[A]): MessagingF[A] = {
+      fa match {
+        case ListStocks() =>
+          for {
+            _ &LT- publish("001", "Orders", UUID.randomUUID().toString, "Get Stocks List")
+            payload &LT- subscribe("001", "*")
+          } yield List(payload)
+        case Buy(stock, amount) =>
+          publish("001", "Orders", UUID.randomUUID().toString, s"Buy $stock $amount")
+        case Sell(stock, amount) =>
+          publish("001", "Orders", UUID.randomUUID().toString, s"Sell $stock $amount")
+      }
+    }
+  }
+</code></pre><p>This compiles (and works, as we will see later). And yes, you can use a for-comprehension inside the interpreter, as we do in our <code>ListStocks</code> case. This specific transformation is simpler due to the fact that <code>publish</code>, <code>buy</code> and <code>sell</code> have the same response type <code>Response</code>, but as you can see adapting the results wouldn't be a problem, if required.<p>That was easy, wasn't it? So what about our interpreter? How do we bridge from <code>Orders</code> to <code>Id</code> while using <code>MessagingF</code>? For this case we need to build a small bridge between interpreters. Let me show you what I mean:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>def messagingFreePrinter: MessagingF ~> Id =
+  new (MessagingF ~> Id) {
+    def apply[A](fa: MessagingF[A]): Id[A] =
+	  fa.foldMap(messagingPrinter)
+  }
+
+def ordersToTerminalViaMessage: Orders ~> Id =
+  orderToMessageInterpreter andThen messagingFreePrinter
+</code></pre><p>We can chain natural transformations via their <code>andThen</code> method. In this case, though, we have a small mismatch of parameters: <code>orderToMessageInterpreter</code> returns a <code>MessagingF</code> but <code>messagingPrinter</code> expects <code>Messaging</code>. The solution is to create a new interpreter from <code>MessagingF</code> to <code>Id</code>. The good news is that this interpreter can reuse our existing <code>messagingPrinter</code> via <code>foldMap</code>, which means this bridge is not adding risk (as in new logic) to our application.<p>If we use all this together to run our original program, without logging nor auditing:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>smartTrade.foldMap(ordersToTerminalViaMessage)
+</code></pre><p>we see<pre><code>Publish [001] From: [Orders] Id: [c7f22b1e-b688-4f61-82cb-39b421b8ab6c] Payload: [Buy APPL 50]
+Publish [001] From: [Orders] Id: [94bbf71d-1c95-4c26-97a3-ce0b970893aa] Payload: [Buy MSFT 10]
+Publish [001] From: [Orders] Id: [27311809-97f9-4e04-b813-7a2cf9743415] Payload: [Sell GOOG 200]
+</code></pre><p>So now we are running our orders via another Free Monad that represents a lower-level layer in the stack. This means we can compose this new monad with other languages, as needed. This has the benefit that improvements to the interpreters of this new <code>Messaging</code> language will be automatically propagated to any program indirectly using it, as well as reducing the amount of code that needs to be tested thanks to reuse.<p>We have one last task left: use this new <code>Messaging</code> language with our program that has logs and audit commands.<h2 id=all-together><a aria-label="Anchor link for: all-together" class="header-anchor no-hover-padding" href=#all-together><span aria-hidden=true class=link-icon></span></a> All together</h2><p>The last step is to put all this together. We have a program, <code>smartTradeWithAuditsAndLogs</code>, that has logging and auditing. We want to run it against an interpreter that also uses our <code>Orders</code> to <code>Messaging</code> to <code>Id</code> interpreter defined above, <code>ordersToTerminalViaMessage</code>.<p>To do this, we need to define two new interpreters. The reason is that our original <code>TradeApp ~> Id</code> interpreter wasn't running through our <code>Messaging</code> language, and by changing the interpreter for <code>TradeApp</code> we will also need to define a new one for <code>AuditableTradeApp</code>:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>def composedViaMessageInterpreter: TradeApp ~> Id =
+  ordersToTerminalViaMessage or logPrinter
+
+def auditableToTerminalViaMessage: AuditableTradeApp ~> Id =
+  auditPrinter or composedViaMessageInterpreter
+</code></pre><p>As before, the good news is that we are reusing our previous original interpreters, just modifying how we combine them. When you think about it, we have only 4 interpreters to <code>Id</code>, one per language. All the other interpreters are combinations of these. Which means that, although it seems we are reimplementing them often, in fact we are not.<p>With this last interpreter we can run our full program:<pre class=language-scala data-lang=scala><code class=language-scala data-lang=scala>smartTradeWithAuditsAndLogs.foldMap(auditableToTerminalViaMessage)
+</code></pre><p>and see in our terminal<pre><code>[Info] - I'm going to trade smartly
+[USER Action] - user ID102 called buy with values List(APPL, 100)
+Publish [001] From: [Orders] Id: [1198b3b5-c4bd-4f96-90e7-56553f0d2a54] Payload: [Buy APPL 200]
+[Info] - I'm going to trade even more smartly
+[USER Action] - user ID102 called buy with values List(MSFT, 100)
+Publish [001] From: [Orders] Id: [98b19c50-6b61-4f92-b28e-59395c103362] Payload: [Buy MSFT 100]
+[USER Action] - user ID102 called sell with values List(GOOG, 100)
+Publish [001] From: [Orders] Id: [8f95b6ae-47d4-4a70-aea3-feca73d63e7a] Payload: [Sell GOOG 300]
+[SYSTEM Action] - BACKOFFICE called tradesCheck with values List(ID102, lastTrades)
+[Error] - Wait, what?!
+</code></pre><p>And that's it. We have defined a program using 4 different languages, used at different levels of abstraction. Quite a comprehensive case, if the length of this post is any indication :) I hope this showcases the main uses of Free Monad and gives you a better understanding on the subject.<p>Remember that you can clone the <a href=https://github.com/pvillega/free-monad-sample>code</a> to play with all this yourself.<p>Now, let's talk about a couple of issues with Free Monads.<h2 id=performance-impact><a aria-label="Anchor link for: performance-impact" class="header-anchor no-hover-padding" href=#performance-impact><span aria-hidden=true class=link-icon></span></a> Performance impact</h2><p>Every time we add an abstraction, performance may diminish. I've not done any tests on performance using Free Monads as doing a proper benchmark is very hard, but I found a couple of references on the subject which may help understanding the impact.<p>This <a href=http://okmij.org/ftp/Computation/free-monad.html>Free Monad explanation</a> is quite comprehensive, and it says about performance:<blockquote><p>Do we have to pay for all the benefits of free and freer monads in performance? With the simplest free and freer monads described so far: yes, the performance suffers. One should keep in mind that performance does not always matter: a large portion of software we successfully interact with every day is written in Python, Perl or Ruby, and which are not exactly speed kings.</blockquote><p>I agree with the statement above in that most of our applications are not performance sensitive, within certain limits. For most operations the overhead introduced by Free Monad is not relevant, but don't use it if performance is critical to your business case.<p><a href=https://twitter.com/mandubian>Pascal Voitot</a> wrote last year a post on <a href=http://mandubian.com/2015/04/09/freer/>better implementations</a> of Free. As far as I understand, some of the concepts are already implemented in Cats and may reduce the impact of Free a bit.<p>As usual, each use case is different. You should test your implementation to ensure resulting performance is acceptable to you.<h2 id=the-criticisms><a aria-label="Anchor link for: the-criticisms" class="header-anchor no-hover-padding" href=#the-criticisms><span aria-hidden=true class=link-icon></span></a> The criticisms</h2><p>I've left this part to the last, at the point where saw a full implementation of Free and we can judge the criticisms from a more informed perspective. Shouldn't come as a surprise that not everybody likes Free Monad, and there are some justified criticisms to it.<p>As an example, recently <a href=https://twitter.com/alexelcu>Alexandru Nedelcu</a>, of <a href=https://monix.io/>Monix</a> fame, tweeted a series of <a href=https://twitter.com/alexelcu/status/736090380999888898>opinions</a> where he highlights some trade offs you make when you decide to use Free Monads.<p>This <a href=http://event.scaladays.org/scaladays-nyc-2016#!#schedulePopupExtras-7558>talk</a> by <a href=https://twitter.com/kelleyrobinson>Kelley Robinson</a> gave a bit more detail on situations in which Free Monad may not be a good fit. The video has not been published yet, but there are <a href=http://www.slideshare.net/KelleyRobinson1/why-the-free-monad-isnt-free-61836547>slides</a> available.<p>Unfortunately I've lost a couple of references I had with people raising concerns about Free Monad. But I hope these two give you an idea of the general issues people have with this pattern.<p>In the end, you have to remember the Free Monad is just a tool, and no tool is a silver bullet. It may be a perfect fit for your application and team, right now, but you should understand the trade offs you are accepting. Unfortunately you can only understand that through experience; my advice is to start using it in areas of the code where the impact will be small and spread it as you learn.<h2 id=thanks><a aria-label="Anchor link for: thanks" class="header-anchor no-hover-padding" href=#thanks><span aria-hidden=true class=link-icon></span></a> Thanks</h2><p>With concepts like Free Monad, existing literature and people's help are crucial to navigate the hard parts. It would be unfair to not mention all contributions that helped me to understand (or so I hope) Free Monad, and to write this post.<p>There's plenty of information online that has been extremely useful. The most relevant links are listed in the next section. A big thanks to all the authors, the time spent on that documentation has helped at least one person :)<p>I need to thank <a href=https://twitter.com/milessabin>Miles Sabin</a>, <a href=https://twitter.com/channingwalton>Channing Walton</a>, and <a href=https://twitter.com/lancewalton>Lance Walton</a>, as experimentation we did with Free Monad provided a foundation for this post.<p>Many thanks to <a href=https://twitter.com/julientruffaut>Julien Truffaut</a>. He pointed to <code>traversableU</code> as the solution to mixing <code>List</code> results in the program for <code>Orders</code>. I got stuck in that case and, without his contribution, I'd be giving a horribly wrong solution to you, my reader.<p>Last, but not least, I need to thank <a href=https://gitter.im/typelevel/cats>Cat's Gitter channel</a>, in particular <a href=https://twitter.com/adelbertchang>Adelbert Chang</a>, as he corrected a few misconceptions I had whilst porting a Free Monad built using Scalaz to a version using Cats.<h2 id=references><a aria-label="Anchor link for: references" class="header-anchor no-hover-padding" href=#references><span aria-hidden=true class=link-icon></span></a> References</h2><p>I've used a lot of sources to improve my understanding on Free Monad. Below you can find a list of links that I found very relevant and helpful:<ul><li>Cats definition (very good explanation): <a href=http://typelevel.org/cats/datatypes/freemonad.html>http://typelevel.org/cats/datatypes/freemonad.html</a><li>Free Monad technical explanation: <a href=http://okmij.org/ftp/Computation/free-monad.html>http://okmij.org/ftp/Computation/free-monad.html</a><li>Tim Perrett's blog post (uses Scalaz): <a href=http://timperrett.com/2013/11/21/free-monads-part-1/>http://timperrett.com/2013/11/21/free-monads-part-1/</a><li>Underscore post by Noel Welsh (uses Scalaz): <a href=http://underscore.io/blog/posts/2015/04/14/free-monads-are-simple.html>http://underscore.io/blog/posts/2015/04/14/free-monads-are-simple.html</a><li>A second post by Noel Welsh: <a href=http://underscore.io/blog/posts/2015/04/23/deriving-the-free-monad.html>http://underscore.io/blog/posts/2015/04/23/deriving-the-free-monad.html</a><li>The always useful Tutorial for Cats: <a href=http://eed3si9n.com/herding-cats/Free-monads.html>http://eed3si9n.com/herding-cats/Free-monads.html</a><li><em>A year living Freely</em> by Chris Myers: <a href="https://www.youtube.com/watch?v=rK53C-xyPWw">https://www.youtube.com/watch?v=rK53C-xyPWw</a><li>A post by John A De Goes (uses Haskell) <a href=http://degoes.net/articles/modern-fp>http://degoes.net/articles/modern-fp</a></ul><p>That's all for now, I hope this was informative and useful. As always, feedback via Twitter/Email is more than welcome. Cheers!<p>PS: Hold the door.</section><nav class="full-width article-navigation"><div><a aria-describedby=left_title aria-label=Next href=https://perevillega.com/posts/freek-and-free-monads/><span class=arrow>←</span> Next</a><p aria-hidden=true id=left_title>Free Monads using FreeK</div><div><a aria-describedby=right_title aria-label=Prev href=https://perevillega.com/posts/monkey-island-battles-and-webkit/>Prev <span class=arrow>→</span></a><p aria-hidden=true id=right_title>Monkey Island Battles and WebKit</div></nav></article></main><script defer src=https://perevillega.com/js/mermaid.min.js></script><span class=hidden id=copy-success> Copied! </span><span class=hidden id=copy-init> Copy code to clipboard </span><script defer src=https://perevillega.com/js/copyCodeToClipboard.min.js></script></div><footer><section><nav class="socials nav-navs"><ul><li><a class="nav-links no-hover-padding social" href=https://perevillega.com/atom.xml> <img alt=feed loading=lazy src=https://perevillega.com/social_icons/rss.svg title=feed> </a><li class=js><a class="nav-links no-hover-padding social" data-encoded-email=cHZpbGxlZ2ErYmxvZ0BhcmFjb24uY29t href=#><img alt=email loading=lazy src=https://perevillega.com/social_icons/email.svg title=email> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://github.com/pvillega> <img alt=github loading=lazy src=https://perevillega.com/social_icons/github.svg title=github> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://gitlab.com/pvillega> <img alt=gitlab loading=lazy src=https://perevillega.com/social_icons/gitlab.svg title=gitlab> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://bsky.app/profile/perevillega.com> <img alt=bluesky loading=lazy src=https://perevillega.com/social_icons/bluesky.svg title=bluesky> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://www.linkedin.com/in/perevillega/> <img alt=linkedin loading=lazy src=https://perevillega.com/social_icons/linkedin.svg title=linkedin> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://stackoverflow.com/users/116791/pere-villega> <img alt="stack overflow" title="stack overflow" loading=lazy src=https://perevillega.com/social_icons/stack-overflow.svg> </a></ul></nav><nav class=nav-navs><small> <ul><li><a class="nav-links no-hover-padding" href=https://perevillega.com/sitemap.xml> sitemap </a></ul> </small></nav><div class=credits><small> Powered by <a href=https://www.getzola.org>Zola</a> & <a href=https://github.com/welpo/tabi>tabi</a> </small></div></section><script async src=https://perevillega.com/js/decodeMail.min.js></script><div class="search-modal js" aria-labelledby=modalTitle id=searchModal role=dialog><h1 class=visually-hidden id=modalTitle>Search</h1><div id=modal-content><div id=searchBar><div aria-hidden=true class=search-icon><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div><input aria-controls=results-container aria-expanded=false autocomplete=off id=searchInput placeholder=Search… role=combobox spellcheck=false><div class="close-icon interactive-icon" title="Clear search" id=clear-search role=button tabindex=0><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div></div><div id=results-container><div id=results-info><span id=zero_results> No results</span><span id=one_results> $NUMBER result</span><span id=many_results> $NUMBER results</span><span id=two_results> $NUMBER results</span><span id=few_results> $NUMBER results</span></div><div id=results role=listbox></div></div></div></div></footer>

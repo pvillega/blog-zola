@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>hudson</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - hudson</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/hudson/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/hudson/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2010-07-04T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/hudson/atom.xml</id><entry xml:lang="en">
+        <title>Sonar and Hudson</title>
+        <published>2010-07-04T00:00:00+00:00</published>
+        <updated>2010-07-04T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/sonar-and-hudson/" type="text/html"/>
+        <id>https://perevillega.com/posts/sonar-and-hudson/</id>
+        
+            <content type="html">&lt;p&gt;Due to my current tasks at &lt;a href=&quot;https:&#x2F;&#x2F;wiki.duraspace.org&#x2F;display&#x2F;GSOC&#x2F;GSOC10+-+Add+Unit+Testing+to+Dspace&quot;&gt;Google Summer of Code 2010&lt;&#x2F;a&gt; I&#x27;ve been setting up a small CI system for my personal use. Yes, it is an overkill, but I wanted to test it and, truth be told, the statistics provided by tools like &lt;a href=&quot;http:&#x2F;&#x2F;www.sonarsource.org&#x2F;&quot;&gt;Sonar&lt;&#x2F;a&gt; and &lt;a href=&quot;http:&#x2F;&#x2F;hudson-ci.org&#x2F;&quot;&gt;Hudson&lt;&#x2F;a&gt; are priceless, they show you many potential errors you may have in the code, coverage you are missing, etc.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I asked my friend Google for a guide on how to set them up together and it came up with this one. Easy five steps to set them up (check the link for more detail):&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Step 1&lt;&#x2F;strong&gt;: Download, install and start the Sonar Server.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Step 2&lt;&#x2F;strong&gt;: Install and Configure Sonar plugin on Hudson.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Step 3&lt;&#x2F;strong&gt;: Configure your Hudson Job&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Step 4&lt;&#x2F;strong&gt;: Build your project&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Step 5&lt;&#x2F;strong&gt;: Browse to Sonar Dashboard (default user is admin&#x2F;admin)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And you have your CI environment ready to go.  Easy. Simple. Powerful. And useful!&lt;&#x2F;p&gt;
+&lt;p&gt;I recommend you to use the following Sonar plugins:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Installing+Sonar+in+Eclipse&quot;&gt;Eclipse Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Taglist+Plugin&quot;&gt;Tag List Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Total+Quality+Plugin&quot;&gt;Total Quality Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;SCM+Activity+Plugin&quot;&gt;SCM Activity Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Sonar+PDF+Plugin&quot;&gt;Sonar PDF Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Motion+Chart+plugin&quot;&gt;Motion Chart Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Build+Breaker+Plugin&quot;&gt;Build Breaker&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;With them you will get some extra data in your reports, you will be able to access them from your IDE (more useful for developers) and the builds will generate a handy pdf report for your project manager. Many benefits for a few customizations. You don&#x27;t even need to change the default settings for any standard project.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Due to my current tasks at Google Summer of Code 2010 I've been setting up a small CI system for my personal use. Yes, it is an overkill, but I wanted to test it and, truth be told, the statistics provided by tools like Sonar and Hudson are priceless, they show you many potential errors you may have in the code, coverage you are missing, etc.
+…</summary>
+        </entry>
+</feed>

@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>software engineering</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - software engineering</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/categories/software-engineering/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/categories/software-engineering/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-02-02T00:00:00+00:00</updated>
+    <id>https://perevillega.com/categories/software-engineering/atom.xml</id><entry xml:lang="en">
+        <title>The year of the Orchestrator</title>
+        <published>2026-02-02T00:00:00+00:00</published>
+        <updated>2026-02-02T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/year-orchestrators-talk/" type="text/html"/>
+        <id>https://perevillega.com/posts/year-orchestrators-talk/</id>
+        
+            <content type="html">&lt;p&gt;Last week, thanks to &lt;a href=&quot;https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;morganbrown&#x2F;&quot;&gt;David Morgan-Brown&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;patchwork.health&#x2F;&quot;&gt;Patchwork Health&lt;&#x2F;a&gt;, I had the opportunity to do something I’ve genuinely missed: presenting in front of a live audience. The subject? Orchestrators, the latest buzzword currently dominating the AI landscape.&lt;&#x2F;p&gt;
+&lt;p&gt;You may know the concept by another name: &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;steveyegge&#x2F;gastown&quot;&gt;Gas Town&lt;&#x2F;a&gt;. Since its release last Christmas, its popularity has (predictably) &#x27;hockey-sticked&#x27;, and become the reference of other orchestrators.&lt;&#x2F;p&gt;
+&lt;p&gt;I have attached the presentation slides below. The first part provides a recap of the architectural steps that moved us here. We trace the path from small agentic loops, through Ralph (July 2025, which feels like an eternity ago!), to the Orchestrator itself.&lt;&#x2F;p&gt;
+&lt;p&gt;The second part focuses on the business impact. Let&#x27;s be realistic: I don&#x27;t expect this to be a choice. With tools like Claude Code enabling orchestrator building blocks natively in the coming releases, this technology will find its way into most software companies. I suspect that, much like early LLM adoption, if you believe your team isn&#x27;t using it, you are likely mistaken.&lt;&#x2F;p&gt;
+&lt;p&gt;We are venturing into new territory. I don&#x27;t believe we have established best practices for these advances yet. I&#x27;ve listed some emerging patterns in the slides, but the balance has shifted. There is so much more code and, consequently, much more risk. I doubt some traditional best practices will survive this change, and I expect accepting new ways of working will be challenging in some environments. Not to talk about those which are still trying to implement Agile since 2005...&lt;&#x2F;p&gt;
+&lt;p&gt;New practices will be a major theme for us to tackle in 2026. I&#x27;m very curious about the outcomes.&lt;&#x2F;p&gt;
+  &lt;iframe src=&quot;&#x2F;files&#x2F;2026-01-28-orchestrators.pdf#toolbar=0&amp;navpanes=0&amp;view=FitH&quot; width=&quot;100%&quot; height=&quot;600&quot; style=&quot;border: none;&quot;&gt;
+  &lt;&#x2F;iframe&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>What&#x27;s the hype about durable computing?</title>
+        <published>2024-12-27T00:00:00+00:00</published>
+        <updated>2024-12-27T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/durable-computing-hype/" type="text/html"/>
+        <id>https://perevillega.com/posts/durable-computing-hype/</id>
+        
+            <content type="html">&lt;p&gt;Durable computing has emerged as a topic in systems design. It may just be my bubble, but it feels as if, suddenly, AI stopped being the next big thing and durable computing is going to solve all our problems.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve also noticed some misunderstandings about the concept. Thus, I&#x27;m taking this chance to pen some explanation on what durable computing is, and why you should care. Or not. Let&#x27;s start.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-process-to-durable-computing&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-process-to-durable-computing&quot; aria-label=&quot;Anchor link for: the-process-to-durable-computing&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The process to durable computing&lt;&#x2F;h2&gt;
+&lt;p&gt;I believe it is very important to understand the technological steps that brought us a technology. Otherwise, you end up with people not understanding that LLMs have randomness at their core. So I will start by tracing the origins of durable computing.&lt;&#x2F;p&gt;
+&lt;p&gt;The first appearance of durable computing is something you are likely familiar with: database transactions. Jim Gray&#x27;s seminal work on transactions and two-phase commit in the 1970s built the foundation for the first transactional systems with ACID semantics.&lt;&#x2F;p&gt;
+&lt;p&gt;Transactions are a self-contained sequence of steps that either &lt;em&gt;all&lt;&#x2F;em&gt; happen or &lt;em&gt;none&lt;&#x2F;em&gt; happen, guaranteeing that the data stays consistent no matter what. This is also the core idea behind durable computing: preservation of state, and managing failure gracefully so that state doesn&#x27;t degrade.&lt;&#x2F;p&gt;
+&lt;p&gt;The next step came with the workflow engines of the 1990s. Microsoft BizTalk and similar products moved from handling atomic operations to managing long-running processes that could span arbitrary amounts of time. Like with transactions, these workflow engines are still in use. The concepts behind them are the foundation of a lot of current tooling, like some products for microservices orchestration.&lt;&#x2F;p&gt;
+&lt;p&gt;This was a big step (pun not intended). At this stage, we don&#x27;t rollback a few operations; we track state across multiple tasks, which may include interactions with other systems and human approval. The complexity is readily apparent, as we need to be able to respond to events and correct errors in the middle of a workflow without corrupting the state.&lt;&#x2F;p&gt;
+&lt;p&gt;The issue with workflow engines is that they are complex products. There are tradeoffs to using them. This meant that some developers looked for simpler alternatives, and they found them when message queues (like RabbitMQ) and the Event Sourcing pattern started becoming more popular. Together, they enable a developer to achieve durability by ensuring message delivery even on consumer failure, while reducing the complexity of maintaining the system.&lt;&#x2F;p&gt;
+&lt;p&gt;This change has some nuance, though. We move from a single monitoring system to multiple independent systems. Each service may use a database to handle internal state via transactions, maybe using STM (Software Transactional Memory) libraries. Communication with other services happens via queues, in asynchronous fashion. With both, we achieve durability and decoupling, and each piece is simple to manage. But it is harder to get a view of the global state, as it involves more components.&lt;&#x2F;p&gt;
+&lt;p&gt;Unfortunately, in some cases, queues are not enough. Some operations must be synchronous. For example, booking a trip. As we enter the era of microservices, we may have distributed transactions that span multiple other services, and the required synchronicity of the operation means we can&#x27;t use queues for durability.&lt;&#x2F;p&gt;
+&lt;p&gt;The solution, and the last step in this evolution towards durable computing, is the &lt;a href=&quot;https:&#x2F;&#x2F;microservices.io&#x2F;patterns&#x2F;data&#x2F;saga.html#example-choreography-based-saga&quot;&gt;Saga pattern&lt;&#x2F;a&gt;. A mechanism to manage distributed transactions in microservice architectures. Sagas break down long-running processes into a series of smaller, local transactions, each with a corresponding compensating transaction that can undo its effects if something goes wrong.&lt;&#x2F;p&gt;
+&lt;p&gt;Sagas are a great insight building on top of all the previous experience. The compensation mechanism ensures that we don&#x27;t corrupt the state, and we can always retry from the point where a failure occurred. For those using existing durable computer services, this is the pattern that services like Temporal.io force you to follow when you declare a workflow with AddCompensation steps.&lt;&#x2F;p&gt;
+&lt;p&gt;And that&#x27;s how we reached durable computing.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;is-that-really-it&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#is-that-really-it&quot; aria-label=&quot;Anchor link for: is-that-really-it&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Is that really it?&lt;&#x2F;h2&gt;
+&lt;p&gt;Yes, that&#x27;s it. Durable computing is a simple concept, albeit not an easy one to implement correctly.&lt;&#x2F;p&gt;
+&lt;p&gt;Traditional computing operates on the principle that a program&#x27;s state exists only while it&#x27;s running. When the program stops, its state is lost unless explicitly saved.&lt;&#x2F;p&gt;
+&lt;p&gt;Durable computing, in contrast, automatically preserves program state across failures, restarts, and even machine boundaries.&lt;&#x2F;p&gt;
+&lt;p&gt;Need an example? Think Microsoft Word (running locally) vs. Google Docs. With Word, you need to save (or enable Autosave) to avoid losing your progress due to an unexpected crash. With Google Docs, data is automatically preserved, and you can recover without losing state after a crash .&lt;&#x2F;p&gt;
+&lt;p&gt;As I mentioned, the concept is simple. The implementation, however, is not. When implementing durable computing patterns, you&#x27;ll inevitably face CAP theorem tradeoffs. For instance:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Saga Pattern implementations often sacrifice immediate consistency for availability. When a distributed transaction is in progress, different services might temporarily show different states. This is a direct consequence of choosing AP (Availability and Partition Tolerance) over C (Consistency).&lt;&#x2F;li&gt;
+&lt;li&gt;Event Sourcing systems typically favor eventual consistency, making them AP systems. This means they can continue operating during network partitions, but there&#x27;s a window where different parts of the system might see different states. This is particularly relevant in globally distributed systems.&lt;&#x2F;li&gt;
+&lt;li&gt;Some durable computing platforms attempt to provide CP (Consistency and Partition Tolerance) guarantees by using consensus protocols like Paxos or Raft. While this ensures strong consistency, it can impact availability during network partitions. Temporal.io uses this approach.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Understanding these tradeoffs is crucial when choosing your durable computing implementation. For example, a financial system might require strong consistency and choose to sacrifice some availability, while a content delivery system might prefer high availability with eventual consistency.&lt;&#x2F;p&gt;
+&lt;p&gt;However, the core concept remains as explained in the previous section. It&#x27;s not a revolution but an evolution, and platforms that market themselves as durable computing solutions are simply making certain choices for you.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-should-a-business-care&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#why-should-a-business-care&quot; aria-label=&quot;Anchor link for: why-should-a-business-care&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Why should a business care?&lt;&#x2F;h2&gt;
+&lt;p&gt;The technology spiel is very nice, but in the end, we serve a business. Should it care? The answer is yes. This is important for the same reason transactions are important for a business. You want data integrity.&lt;&#x2F;p&gt;
+&lt;p&gt;Some business processes may take a long time and require manual approval of some steps. Others must be synchronous, due to customer expectations or the nature of the process itself. In both cases, data consistency is important. But modern applications consist of multiple services, which make ensuring that consistency harder.&lt;&#x2F;p&gt;
+&lt;p&gt;Thus, the concept of durable computing is something important, even critical, to your business. That said, what you care about is the data integrity part. The label, not so much.&lt;&#x2F;p&gt;
+&lt;p&gt;Caring about data integrity also surfaces another truth: not all your systems need to be durable, implementing all the patterns we mentioned. Let&#x27;s not forget that adding compensating mechanisms makes the code more complex, to start with.&lt;&#x2F;p&gt;
+&lt;p&gt;Not only that, durable computing patterns themselves add overhead to the system. Event Sourcing adds I&#x2F;O overhead, event replay can increase latency, and consensus protocols in CP systems (as discussed above) can require multiple round trips.
+State reconstruction takes time. Due to all these factors, among other unmentioned issues, it is not unusual to see performance drops as high as 20%. This has direct cost implications, as more (or larger) servers are needed to provide the same service.&lt;&#x2F;p&gt;
+&lt;p&gt;There are business processes which are fine with eventual consistency and Event Sourcing alone. For other processes, discarding the full task and starting again may be a valid step. Using durable computing for them can be a waste of resources, both developer time and compute.&lt;&#x2F;p&gt;
+&lt;p&gt;In all likelihood, only a few business processes will benefit from durable computing. But for those cases, we want to ensure that we are resilient to errors, and we want to implement all the patterns we can to avoid problems later on.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;can-i-add-durable-computing-to-my-system&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#can-i-add-durable-computing-to-my-system&quot; aria-label=&quot;Anchor link for: can-i-add-durable-computing-to-my-system&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Can I add durable computing to my system?&lt;&#x2F;h2&gt;
+&lt;p&gt;There are many options for you to start using durable computing without having to migrate to a specific platform. Start using Event Sourcing if you are not doing so, and the Saga pattern on relevant operations in your services.&lt;&#x2F;p&gt;
+&lt;p&gt;If you are using the JVM, the Axon framework provides a SagaEventHandler annotation, among others, for Saga management. Or you can use Akka, which provides persistent actors which are, in essence, durable computing interfaces.&lt;&#x2F;p&gt;
+&lt;p&gt;If you are using Go, there are libraries like &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;itimofeev&#x2F;go-saga&quot;&gt;Go-Saga&lt;&#x2F;a&gt; to help you. You will likely find equivalent libraries for your language of choice.&lt;&#x2F;p&gt;
+&lt;p&gt;For AWS users, you can rely on &lt;a href=&quot;https:&#x2F;&#x2F;aws.amazon.com&#x2F;step-functions&#x2F;&quot;&gt;Step Functions&lt;&#x2F;a&gt; as a mechanism for durable computing. Just beware, as at scale they are expensive even by AWS standards. Azure has the equivalent functionality with &lt;a href=&quot;https:&#x2F;&#x2F;learn.microsoft.com&#x2F;en-us&#x2F;azure&#x2F;azure-functions&#x2F;durable&#x2F;durable-functions-overview?tabs=in-process%2Cnodejs-v3%2Cv1-model&amp;amp;pivots=csharp&quot;&gt;Durable Functions&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Users of the Cloudflare ecosystem can rely on &lt;a href=&quot;https:&#x2F;&#x2F;blog.cloudflare.com&#x2F;building-workflows-durable-execution-on-workers&#x2F;&quot;&gt;workflows&lt;&#x2F;a&gt; in their workers, along with Durable Objects, for durable computing.&lt;&#x2F;p&gt;
+&lt;p&gt;As you can see, you probably don&#x27;t need to migrate to a new platform or learn a new language. It is completely possible to achieve this with your current stack and provider.&lt;&#x2F;p&gt;
+&lt;p&gt;There are many new platforms like &lt;a href=&quot;https:&#x2F;&#x2F;temporal.io&quot;&gt;Temporal.io&lt;&#x2F;a&gt; that promote themselves as the true way to achieve durable computing. They may be better in some cases, and they will provide bells and whistles that may make the developer experience simpler. Just beware of the costs of adopting a new technology.&lt;&#x2F;p&gt;
+&lt;p&gt;An important note on the above: I&#x27;ve seen the proliferation of several services that promote themselves as the only true way to do durable computing. Due to some cursed history I wish I wasn&#x27;t aware of, I suspect a few are not being honest with their marketing or benchmarks.&lt;&#x2F;p&gt;
+&lt;p&gt;That is my way of saying that, please, test your use cases properly. Those services may charge you a premium over what you could already achieve in-house with existing tools. They may be worth it. But don&#x27;t trust their word at all. Run your tests, your failure scenarios, before you commit to using them. Evaluate if you can do the same in your current platform and stack. Worst case, you are then convinced they fulfill your needs. Best case, you avoid a headache later on, when their marketing reveals itself empty.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;that-s-all&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#that-s-all&quot; aria-label=&quot;Anchor link for: that-s-all&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+That&#x27;s all&lt;&#x2F;h2&gt;
+&lt;p&gt;The concept of durable computing is not a complex concept, nor something as innovative as it may seem at first glance.&lt;&#x2F;p&gt;
+&lt;p&gt;It is important for a business. There is also a lot of marketing muddling things, as we are prone to do in the software world. But data consistency matters.&lt;&#x2F;p&gt;
+&lt;p&gt;The question is not if you need durable computing. The question is if you need a new platform to achieve it. Avoid all hype, always test and verify first.&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>The Cloud Exit Mirage: A Practical Guide to AWS Alternatives</title>
+        <published>2024-11-12T00:00:00+00:00</published>
+        <updated>2024-11-12T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/cloud-exit-mirage-aws-alternatives/" type="text/html"/>
+        <id>https://perevillega.com/posts/cloud-exit-mirage-aws-alternatives/</id>
+        
+            <content type="html">&lt;p&gt;There&#x27;s a trend that has been going on for a while now. Companies &lt;a href=&quot;https:&#x2F;&#x2F;ziglang.org&#x2F;news&#x2F;migrate-to-self-hosting&#x2F;&quot;&gt;announce&lt;&#x2F;a&gt; they are leaving &quot;The Cloud&quot; (meaning, usually, AWS), for huge savings. This seems counter to all they have ever told us about the benefits of the cloud. But a lot of people seem to be copying the cool guys. In an industry where new trends get adopted without a second thought that is not a surprise.&lt;&#x2F;p&gt;
+&lt;p&gt;Understanding that you are not copying trends thoughtlessly, then the question is: should you do it? And, if so, where should you go? In this post I&#x27;ll summarise some of the reasons why the Cloud has lost its appeal for some companies, and what alternatives there are.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-incumbent&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-incumbent&quot; aria-label=&quot;Anchor link for: the-incumbent&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The incumbent&lt;&#x2F;h2&gt;
+&lt;p&gt;&quot;The Cloud&quot;, in effect AWS and a sprinkle of GCP and Azure, have dominated the landscape for many years. There is a generation of developers that have never known a world without it: EC2 came into public beta in 2006. 18 years ago.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;m not going to rehash &lt;a href=&quot;https:&#x2F;&#x2F;techcrunch.com&#x2F;2021&#x2F;08&#x2F;28&#x2F;how-amazon-ec2-grew-from-a-notion-into-a-foundational-element-of-cloud-computing&#x2F;&quot;&gt;the history&lt;&#x2F;a&gt; of the first services offered by AWS, like EC2 and S3. What we need to remember is what was the status-quo at the time. When you needed a server, you couldn&#x27;t just get one. You had to buy one of &lt;a href=&quot;https:&#x2F;&#x2F;www.delltechnologies.com&#x2F;asset&#x2F;en-us&#x2F;products&#x2F;servers&#x2F;technical-support&#x2F;poweredge-r260-spec-sheet.pdf&quot;&gt;these&lt;&#x2F;a&gt;, get it delivered in a few weeks if lucky, get space in your data center, and go to install it. Compare that with doing a few clicks on a website and waiting 15 minutes. It was revolutionary: cheaper and faster than the current way of working.&lt;&#x2F;p&gt;
+&lt;p&gt;The cloud had another benefit: it allowed turning CAPEX into OPEX. Not long after, the post-2008 financial crisis period and the ZIRP environment started. That meant it was a better choice for companies to use the cloud. This is important: capital preservation was a key motivation for moving towards the cloud&lt;&#x2F;p&gt;
+&lt;p&gt;But, as the Cloud became more and more popular, complexity arrived. Over a &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=BtJAsvJOlhM&quot;&gt;hundred new services&lt;&#x2F;a&gt; in AWS. &lt;a href=&quot;&quot;&gt;Kubernetes&lt;&#x2F;a&gt; release. Serverless. In the meantime, no real competitor appeared for AWS, with GCP and Azure still far behind in market share even today. All this had consequences.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-broken-promises&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-broken-promises&quot; aria-label=&quot;Anchor link for: the-broken-promises&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The broken promises&lt;&#x2F;h2&gt;
+&lt;p&gt;The cloud delivered value, that can&#x27;t be argued with. Many companies wouldn&#x27;t be possible without it. Why, then, this growing disenchantment with it?&lt;&#x2F;p&gt;
+&lt;p&gt;First of all, it would be unfair to not acknowledge that the customers themselves share some of the blame. As I mentioned before the industry loves copying, particularly anything that big tech does. This is how we ended with companies using Hadoop or Spark for Big data, despite their big data fitting in memory in a single machine.&lt;&#x2F;p&gt;
+&lt;p&gt;The core of the issue is that the original promises of the cloud are currently not true. The AWS cloud was a better and cheaper way to provision servers. That&#x27;s not such a clear proposition anymore, at least with the hyper-scale cloud.&lt;&#x2F;p&gt;
+&lt;p&gt;The first big issue is the value for money proposition. The &lt;a href=&quot;https:&#x2F;&#x2F;docs.aws.amazon.com&#x2F;ec2&#x2F;latest&#x2F;instancetypes&#x2F;co.html&quot;&gt;instance types page&lt;&#x2F;a&gt; in AWS shows that a C5.large instance is using a CPU architecture from 2017, with 4Gb of RAM, at $0.085. For comparison, Hetzner offers a server with a CPU from the same year and 8 GB of RAM at €0.0238 ($0.03 at current rate). For the $0.08 that AWS costs, you can get dedicated servers with 64Gb RAM and a CPU from 2023. This server performs 2x better in single core tasks, and 40% better in multithreaded tasks. I&#x27;m &lt;a href=&quot;https:&#x2F;&#x2F;www.linkedin.com&#x2F;posts&#x2F;anilgarggiit_recently-during-a-cloud-implementation-for-activity-7232650822491238400-4JEw&#x2F;&quot;&gt;not the only one&lt;&#x2F;a&gt; noticing the disparity.&lt;&#x2F;p&gt;
+&lt;p&gt;As we can see, you get a much worse deal with AWS. Hetzner is one example, but there are other providers (Digital Ocean, Linode, Vultr, and so on) with the same advantages. Yes, Amazon has saving plans with use commitment, but it is not the only platform that offers that.&lt;&#x2F;p&gt;
+&lt;p&gt;The cost issue goes further than that. AWS surprise bills are not uncommon, to the point that there are &lt;a href=&quot;https:&#x2F;&#x2F;www.lastweekinaws.com&#x2F;blog&#x2F;an-aws-free-tier-bill-shock-your-next-steps&#x2F;&quot;&gt;articles&lt;&#x2F;a&gt; explaining what to do when it happens. And the billing can be so confusing that whole &lt;a href=&quot;https:&#x2F;&#x2F;www.duckbillgroup.com&quot;&gt;companies&lt;&#x2F;a&gt; exists to help you manage that part of your operations. To be fair, runaway costs are &lt;a href=&quot;https:&#x2F;&#x2F;x.com&#x2F;shoeboxdnb&#x2F;status&#x2F;1643639119824801793&quot;&gt;not exclusive&lt;&#x2F;a&gt; to AWS, with some serverless providers being another notorious culprits. But it is a big risk for a smaller company.&lt;&#x2F;p&gt;
+&lt;p&gt;And now that I mention serverless, there are also broken promises with serverless. Serverless should be about not caring about scaling your app, either up or down. The price per hour is more expensive, but you only pay for the real use. So it ends up being cheaper (unless you have 24&#x2F;7 use, in which case you want an EC2 instance). That should mean that the service scales down to 0 when no one is using it. That is &lt;a href=&quot;https:&#x2F;&#x2F;www.lastweekinaws.com&#x2F;blog&#x2F;no-aws-aurora-serverless-v2-is-not-serverless&#x2F;&quot;&gt;not always true&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This muddling of the name comes along another issue, specific to serverless in AWS. The proliferation of services mean you may end up with architecture diagram like this one:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;https:&#x2F;&#x2F;d2908q01vomqb2.cloudfront.net&#x2F;ca3512f4dfa95a03169c5a670a4c91a19b3077b4&#x2F;2019&#x2F;10&#x2F;11&#x2F;main_architecture_diagram.png&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Proponents of serverless argue this is exposing the real complexity of the app. It may be, but these components add very strong coupling and contribute to vendor locking. Additionally, all these extra services are billable. In several cases the billing rules are arcane. The end result is an increase of the cost of running the application.&lt;&#x2F;p&gt;
+&lt;p&gt;To summarise: the cloud provided economic advantages, without extra development work. But, recently, the value proposition doesn&#x27;t seem to be there anymore. And the complexity around some services has increased, making the benefits of the trade-off less clear.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;swapping-clouds&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#swapping-clouds&quot; aria-label=&quot;Anchor link for: swapping-clouds&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Swapping Clouds&lt;&#x2F;h2&gt;
+&lt;p&gt;Is The Cloud (understood as AWS) bad, then? No, of course not. If you are a company like Netflix, it makes sense to use this flavour of the cloud. Or if you have specific regulatory compliance needs (say, HIPAA). Or for many other scenarios.&lt;&#x2F;p&gt;
+&lt;p&gt;But I suspect that too many companies use AWS because it is the default. We underestimate the power of inertia. When most of the industry uses Terraform, AWS (or similar platforms), and Kubernetes, what will they choose for their next project?&lt;&#x2F;p&gt;
+&lt;p&gt;And we also underestimate how much it is possible in modern hardware. The days of &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;C10k_problem&quot;&gt;C10K&lt;&#x2F;a&gt; are far behind. WhatsApp was serving &lt;a href=&quot;https:&#x2F;&#x2F;blog.whatsapp.com&#x2F;1-million-is-so-2011&quot;&gt;2 million connections&lt;&#x2F;a&gt; from a single server, in 2012. Pieter Levels was running &lt;a href=&quot;https:&#x2F;&#x2F;levels.io&#x2F;how-i-build-my-minimum-viable-products&#x2F;&quot;&gt;all his startups&lt;&#x2F;a&gt; in a single Linode box, in 2014. StackOverflow run the site &lt;a href=&quot;https:&#x2F;&#x2F;www.datacenterdynamics.com&#x2F;en&#x2F;news&#x2F;stack-overflow-still-on-prem-runs-qa-platform-off-just-nine-servers&#x2F;&quot;&gt;in just 9 servers&lt;&#x2F;a&gt;, taking advantage of vertical scaling. More than 8 years ago, computers were already powerful, imagine nowadays.&lt;&#x2F;p&gt;
+&lt;p&gt;In an era where servers with dedicated CPU are not expensive, and the hardware can do so much more, it is time to rethink our infrastructure. Yes, there is no silver bullet, but do we need to go all-in with AWS? Are there no alternatives for us?&lt;&#x2F;p&gt;
+&lt;p&gt;I need to clarify what I&#x27;m &lt;strong&gt;not&lt;&#x2F;strong&gt; proposing. I&#x27;m not telling you to go back to on-prem. Yes, that &lt;a href=&quot;https:&#x2F;&#x2F;www.linkedin.com&#x2F;posts&#x2F;david-heinemeier-hansson-374b18221_our-cloud-exit-savings-will-now-top-ten-million-activity-7252755548859727874-k5V2&quot;&gt;DHH post&lt;&#x2F;a&gt; with their savings by doing moving to om-prem is popular. It works for them, but it is not sure if it will work for you. There is a set of pre-requirements to do that, which are not universal. From staff that has experience managing the servers in the data center, to CAPEX capability.&lt;&#x2F;p&gt;
+&lt;p&gt;What I am suggesting is to look at alternatives to AWS, and understand if there is a reason why you could not use them. Companies running applications in AWS connect routinely to SaaS offerings like &lt;a href=&quot;https:&#x2F;&#x2F;aiven.io&quot;&gt;Aiven&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;www.papertrail.com&quot;&gt;Papertrail&lt;&#x2F;a&gt;, or &lt;a href=&quot;https:&#x2F;&#x2F;www.honeycomb.io&quot;&gt;Honeycomb&lt;&#x2F;a&gt;. They get extra functionality outside AWS, using AWS mainly for their compute workloads. Is there a reason you must pay more for a worse compute service? Is there some critical service in AWS itself you need and forces that decision? Or can you move away?&lt;&#x2F;p&gt;
+&lt;p&gt;Let me show you what I mean, by going over alternatives you have depending on your preferences.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;you-really-like-aws-gcp-azure&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#you-really-like-aws-gcp-azure&quot; aria-label=&quot;Anchor link for: you-really-like-aws-gcp-azure&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+You really like AWS&#x2F;GCP&#x2F;Azure&lt;&#x2F;h3&gt;
+&lt;p&gt;You like The Cloud, you have nightmares thinking about the times before EC2. Or, maybe, you have never experienced an alternative way of doing things. You would need convincing to leave your walled garden.&lt;&#x2F;p&gt;
+&lt;p&gt;That is understandable, and I&#x27;m not going to say it is a mistake. But I would suggest that you develop a framework to test if it may be worth considering other options. I am going to write an example next. It is an example, it is not exhaustive, and it should be adapted to the reality of your business. But it will give you an idea of what to ask:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;What are your compliance needs? If you need HIPAA, working in AWS may be easier. For SOC2, alternative platforms are good enough.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Do you need global presence? If you only serve one region (for example, Europe), multi-region is less valuable. For global presence, current edge solutions like Fly.io or Cloudflare may be enough. Or your business may need multi-region AWS for other reasons.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;What are your usage patterns? Predictable workloads, with little change between peak and off-peak, work well with dedicated servers. Very volatile or event-based traffic is more cost-effective with serverless or cloud elasticity. If you use a lot of spot instances, the economics may not differ that much.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;How much are you spending in AWS now, and how much would it cost in another platform? How much engineering effort you need to move? If it takes a huge effort, you may not recover the cost in a long while, making the investment not worthy. But what if the break even point is just 6 months? It turns into a more enticing proposition.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;What are the skills of your team? If you needed to hire people to make this happen, then it is not an option. You can (and should) upskill the team, but that will increase the total cost of the migration.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;As I mentioned, those are some examples. You should ask yourself questions about the current infrastructure, team, and costs, and see if a move could work. Even if you are not planning to move, it may be a good exercise, helping you detect waste in your infrastructure.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;you-like-kubernetes&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#you-like-kubernetes&quot; aria-label=&quot;Anchor link for: you-like-kubernetes&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+You like Kubernetes&lt;&#x2F;h3&gt;
+&lt;p&gt;Kubernetes is not my cup of tea, but it would be foolish to deny the tool. It is a industry standard for a reason. Now, you can be lucky and use managed Kubernetes in GCP, and there you will have a decent experience, compute premiums aside. But I&#x27;ve often heard that managed Kubernetes in AWS is, at best, subpar. AWS is the dominant cloud, which means it is likely your Kubernetes experience is not great.&lt;&#x2F;p&gt;
+&lt;p&gt;If that is the case, and your operations team have the skills, you should look at &lt;a href=&quot;https:&#x2F;&#x2F;reclaim-the-stack.com&quot;&gt;Reclaim the Stack&lt;&#x2F;a&gt;. It is a Kubernetes-based deployment platform designed to work like a PaaS (think Heroku). It provides you with most of what you need: Gitops, Ingres, Databases, Observability, and more.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;you-don-t-like-managing-servers&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#you-don-t-like-managing-servers&quot; aria-label=&quot;Anchor link for: you-don-t-like-managing-servers&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+You don&#x27;t like managing servers&lt;&#x2F;h3&gt;
+&lt;p&gt;Your ideal platform was Heroku, but that is not a good choice anymore. Managing a server is a big responsibility. Security updates, avoiding downtime, managing the load, and the myriad of tiny annoyances that come with the task. You could use Kubernetes, but then again that brings its own set of problems. You can try the following:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;developers.cloudflare.com&quot;&gt;Cloudflare:&lt;&#x2F;a&gt; the Cloudflare ecosystem is one of the most impressive for serverless I&#x27;ve seen up to now. More so considering the price, with a generous free allowance and a subscription that includes plenty of compute. Cloudflare Pages works out of the box with many popular frameworks, making deployment a breeze. And there are the extra services: databases (D1), storage (R2, cheaper than S3 and without transfer fees), Durable objects, and more. No, I&#x27;m not paid by Cloudflare, but I like their service.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.digitalocean.com&#x2F;products&#x2F;app-platform&quot;&gt;Digital Ocean Apps&lt;&#x2F;a&gt;: you can deploy a Docker container or code from a Github&#x2F;Gitlab repository directly. You can also connect to the other services offered, like Redis, Postgres, local S3, etc. One of the closest replacements for Heroku that I&#x27;ve seen. That said databases can become expensive as traffic grows, and you need a more powerful setup.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;render.com&quot;&gt;Render&lt;&#x2F;a&gt; is a service like Digital Ocean Apps, where you can deploy your app into managed nodes, with the option to add databases and other services. As Digital Ocean, it can become pricey at some level of use. But worth considering when you start.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;railway.app&quot;&gt;Railway&lt;&#x2F;a&gt; is another app service. They provide an environment in which you can deploy many services, and you only pay per real use. The risk with this model is any unexpected costs. Luckily they provide the option of purchasing prepaid credits, which can limit exposure.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Special mention to &lt;a href=&quot;https:&#x2F;&#x2F;www.unison.cloud&quot;&gt;Unison&lt;&#x2F;a&gt;, a revolutionary service. Unison provides a supercomputer for your software. The tradeoff is that you need to code in the Unison language. In exchange, you don&#x27;t have to worry about deployments, versioning, and many other tasks that we have normalised in the era of the microservice. As it is common, it offers a free tier. I&#x27;d recommend you to check it out.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;you-are-ok-with-some-infrastructure-work&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#you-are-ok-with-some-infrastructure-work&quot; aria-label=&quot;Anchor link for: you-are-ok-with-some-infrastructure-work&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+You are ok with some infrastructure work&lt;&#x2F;h3&gt;
+&lt;p&gt;Managing a server is ok, but you would like some automation. Tooling has improved, we are in 2024 after all. There are common operations that you should find preconfigured. You want to limit the time spent in Terraform and Ansible, while having more control.&lt;&#x2F;p&gt;
+&lt;p&gt;You are in luck, there are services for that too:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;cleavr.io&quot;&gt;Cleavr.io&lt;&#x2F;a&gt; : this service works on top of your servers, which you have to provision separately on a VPS (see the next section for that). But for $15 per month, you get the full package: securing servers, database backups, monitoring, push to deploy, and more. The downside? It&#x27;s geared to deploying node and php apps, so it won&#x27;t be as useful if you use other programming languages.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.cloud66.com&quot;&gt;Cloud66&lt;&#x2F;a&gt; is an alternative to Cleavr. It allows you to work in any programming language as it supports Docker deployments, but in exchange it is more pricey ($25 per month). Besides that, the offering is similar, it manages the machines you provisioned in your VPS.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;coolify.io&quot;&gt;Coolify&lt;&#x2F;a&gt; is a service like Cleaver and Cloud66, but with an important difference: it is open source. So you can download it and host it yourself. Or you can contribute to the development, by using their cloud offering, which is very affordable. It offers a complete package of functionality, but the documentation for some functionality is lacking.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;dokku.com&quot;&gt;Dokku&lt;&#x2F;a&gt; is an opensource project that tries to reproduce the functionality of Heroku. It requires you to set it up in a server, and then you are ready to go, you can target other servers for deployment.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;fly.io&quot;&gt;Fly.io&lt;&#x2F;a&gt; is slightly different. You can deploy applications with a single docker image, and scale them as needed, and you pay per usage. But you are responsible for any backup of data stored in the Fly Machines.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;you-are-old-school-bring-the-bare-metal&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#you-are-old-school-bring-the-bare-metal&quot; aria-label=&quot;Anchor link for: you-are-old-school-bring-the-bare-metal&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+You are old school, bring the bare metal&lt;&#x2F;h3&gt;
+&lt;p&gt;You have seen the old times, with data centers and bare metal. You just want to provision servers faster, without having to travel to the location. You can handle the setup. I have good news for you.&lt;&#x2F;p&gt;
+&lt;p&gt;The gold standard currently is &lt;a href=&quot;https:&#x2F;&#x2F;www.hetzner.com&quot;&gt;Hetzner.&lt;&#x2F;a&gt; It offers a variety of servers, from dedicated to managed to VPS, all via their web console.&lt;&#x2F;p&gt;
+&lt;p&gt;But that is not the only alternative. If you only care about VPS, &lt;a href=&quot;https:&#x2F;&#x2F;www.vultr.com&quot;&gt;Vultr&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;www.linode.com&quot;&gt;Linode&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;www.digitalocean.com&quot;&gt;Digital Ocean&lt;&#x2F;a&gt;, and many other providers have similar offerings . Choose your server and start working almost immediately. And, often, you can scale vertically as your workload grows without having to migrate the server.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Conclusion&lt;&#x2F;h2&gt;
+&lt;p&gt;The list above is not exhaustive. There are services I have not listed intentionally due to their reputation (many customers are unhappy), and others that I am not aware of. There&#x27;s no denial that we are spoiled for choice.&lt;&#x2F;p&gt;
+&lt;p&gt;The industry defaults to AWS because, paraphrasing the old adage, no one has ever been fired by buying more AWS services. But the offerings in 2024 are not the ones we had 10 years ago, and it may be better for your project or company to look for an alternative platform. You may get better compute resources and save operational costs at the same time. And without taxing your teams with extra engineering work.&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Chaordic collaboration: Understanding Data Mesh</title>
+        <published>2023-11-10T00:00:00+00:00</published>
+        <updated>2023-11-10T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/understanding-data-mesh/" type="text/html"/>
+        <id>https://perevillega.com/posts/understanding-data-mesh/</id>
+        
+            <content type="html">&lt;p&gt;I&#x27;ve written a new series of blog posts, a collaboration with &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&quot;&gt;Chaordic&lt;&#x2F;a&gt;, that you can read in their blog: &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&#x2F;blog&#x2F;understanding-data-mesh&#x2F;&quot;&gt;Understanding Data Mesh&lt;&#x2F;a&gt;. I hope you enjoy it.&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Chaordic collaboration: Running LLMs on your own</title>
+        <published>2023-09-15T00:00:00+00:00</published>
+        <updated>2023-09-15T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/running-llm-on-your-own/" type="text/html"/>
+        <id>https://perevillega.com/posts/running-llm-on-your-own/</id>
+        
+            <content type="html">&lt;p&gt;I&#x27;ve written a new blog post, a collaboration with &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&quot;&gt;Chaordic&lt;&#x2F;a&gt;, that you can read in their blog: &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&#x2F;blog&#x2F;running-llm-on-your-own&#x2F;&quot;&gt;Running LLMs on your own&lt;&#x2F;a&gt;. I hope you enjoy it.&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Chaordic collaboration: Is your LLM use compliant?</title>
+        <published>2023-07-05T00:00:00+00:00</published>
+        <updated>2023-07-05T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/is-your-llm-use-compliant/" type="text/html"/>
+        <id>https://perevillega.com/posts/is-your-llm-use-compliant/</id>
+        
+            <content type="html">&lt;p&gt;I&#x27;ve written a new blog post, a collaboration with &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&quot;&gt;Chaordic&lt;&#x2F;a&gt;, that you can read in their blog: &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&#x2F;blog&#x2F;is-your-llm-use-compliant&#x2F;&quot;&gt;Is your LLM use compliant?&lt;&#x2F;a&gt;. I hope you enjoy it.&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Chaordic collaboration: Yes, Code: How AI can challenge the No-Code movement</title>
+        <published>2023-04-25T00:00:00+00:00</published>
+        <updated>2023-04-25T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/yes-code-ai-no-code/" type="text/html"/>
+        <id>https://perevillega.com/posts/yes-code-ai-no-code/</id>
+        
+            <content type="html">&lt;p&gt;I&#x27;ve written a new blog post, a collaboration with &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&quot;&gt;Chaordic&lt;&#x2F;a&gt;, that you can read in their blog: &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&#x2F;blog&#x2F;yes-code-ai-challenge-no-code-movement&#x2F;&quot;&gt;Yes, Code: How AI can challenge the No-Code movement&lt;&#x2F;a&gt;. I hope you enjoy it.&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Chaordic collaboration: Use Wardley Maps to stop software development waste</title>
+        <published>2023-03-02T00:00:00+00:00</published>
+        <updated>2023-03-02T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/wardley-maps-stop-waste/" type="text/html"/>
+        <id>https://perevillega.com/posts/wardley-maps-stop-waste/</id>
+        
+            <content type="html">&lt;p&gt;I&#x27;ve written a new blog post, a collaboration with &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&quot;&gt;Chaordic&lt;&#x2F;a&gt;, that you can read in their blog: &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&#x2F;blog&#x2F;stop-wasting-money-on-software-development&#x2F;&quot;&gt;Use Wardley Maps to stop software development waste&lt;&#x2F;a&gt;. I hope you enjoy it.&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Chaordic collaboration: ChatGPT won&#x27;t replace software engineers</title>
+        <published>2023-01-24T00:00:00+00:00</published>
+        <updated>2023-01-24T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/gpt-replace-software-engineers/" type="text/html"/>
+        <id>https://perevillega.com/posts/gpt-replace-software-engineers/</id>
+        
+            <content type="html">&lt;p&gt;I&#x27;ve written a new blog post, a collaboration with &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&quot;&gt;Chaordic&lt;&#x2F;a&gt;, that you can read in their blog: &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&#x2F;blog&#x2F;why-chatgpt-wont-replace-software-engineers&#x2F;&quot;&gt;ChatGPT won&#x27;t replace software engineers&lt;&#x2F;a&gt;. I hope you enjoy it.&lt;&#x2F;p&gt;
+</content>
+        </entry>
+</feed>

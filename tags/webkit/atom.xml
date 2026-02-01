@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>webkit</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - webkit</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/webkit/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/webkit/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2016-03-25T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/webkit/atom.xml</id><entry xml:lang="en">
+        <title>Monkey Island Battles and WebKit</title>
+        <published>2016-03-25T00:00:00+00:00</published>
+        <updated>2016-03-25T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/monkey-island-battles-and-webkit/" type="text/html"/>
+        <id>https://perevillega.com/posts/monkey-island-battles-and-webkit/</id>
+        
+            <content type="html">&lt;p&gt;Have you heard about &lt;a href=&quot;http:&#x2F;&#x2F;docs.aws.amazon.com&#x2F;lambda&#x2F;latest&#x2F;dg&#x2F;welcome.html&quot;&gt;AWS Lambda&lt;&#x2F;a&gt;? Do you like &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Monkey_Island_(series)&quot;&gt;Monkey Island&lt;&#x2F;a&gt;? Are you into &lt;a href=&quot;http:&#x2F;&#x2F;monkeyisland.wikia.com&#x2F;wiki&#x2F;Insult_Sword_Fighting&quot;&gt;Insult Sword Fighting&lt;&#x2F;a&gt;? Then, come along, this may interest you ;)&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;backstory&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#backstory&quot; aria-label=&quot;Anchor link for: backstory&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Backstory&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;ve been wanting to try &lt;a href=&quot;http:&#x2F;&#x2F;docs.aws.amazon.com&#x2F;lambda&#x2F;latest&#x2F;dg&#x2F;welcome.html&quot;&gt;AWS Lambda&lt;&#x2F;a&gt; for a while. To be honest I&#x27;ve not yet done so due to laziness: my experience with AWS is that it needs more configuration and tweaking than I care for. Give me a &lt;a href=&quot;https:&#x2F;&#x2F;www.heroku.com&#x2F;&quot;&gt;Heroku&lt;&#x2F;a&gt; any day (pros and cons, lengthy discussion for another day).&lt;&#x2F;p&gt;
+&lt;p&gt;But going through my &#x27;list of stuff you should read&#x27; I recently saw an &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2016&#x2F;02&#x2F;01&#x2F;aws-lambda.html&quot;&gt;Underscore blog-post&lt;&#x2F;a&gt; by &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;d6y&quot;&gt;Richard Dallaway&lt;&#x2F;a&gt;. AWS again, maybe it&#x27;s time to do something that uses it!&lt;&#x2F;p&gt;
+&lt;p&gt;That got me started: sure there must be alternatives, something akin to &quot;Heroku for Lambdas&quot;? Yes, I&#x27;m aware AWS Lambdas are simple to use, but well, procrastination... So I started looking for options and I landed on a &lt;a href=&quot;https:&#x2F;&#x2F;www.quora.com&#x2F;Are-there-any-alternatives-to-Amazon-Lambda&quot;&gt;Quora question&lt;&#x2F;a&gt; which pointed me to &lt;a href=&quot;https:&#x2F;&#x2F;webtask.io&#x2F;&quot;&gt;WebTask.io&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;using-webtask&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#using-webtask&quot; aria-label=&quot;Anchor link for: using-webtask&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Using WebTask&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;webtask.io&#x2F;&quot;&gt;WebTask.io&lt;&#x2F;a&gt; sounds exactly like what I was looking for. And, oh boy, it is simple to use!&lt;&#x2F;p&gt;
+&lt;p&gt;I followed their instructions to install their &lt;a href=&quot;https:&#x2F;&#x2F;webtask.io&#x2F;cli&quot;&gt;cli&lt;&#x2F;a&gt;, which gives you a very intuitive command &lt;code&gt;wt&lt;&#x2F;code&gt; with options you&#x27;d expect (create, rm, ls). In just a few minutes I had my own endpoint running. Neat.&lt;&#x2F;p&gt;
+&lt;p&gt;Now I needed something to test this a bit more. Enter &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Monkey_Island_(series)&quot;&gt;Monkey Island&lt;&#x2F;a&gt;. If you have played those games you most likely remember their &lt;a href=&quot;http:&#x2F;&#x2F;monkeyisland.wikia.com&#x2F;wiki&#x2F;Insult_Sword_Fighting&quot;&gt;Insult Sword Fighting&lt;&#x2F;a&gt; scenes. Even if you didn&#x27;t play it you may know what they are, due to popularity in certain circles.&lt;&#x2F;p&gt;
+&lt;p&gt;Implementing a service that given a specific insult returns the correct answer seemed like a very straightforward task that would let me test the service and find any obvious hurdles. So that&#x27;s what I built; you can get the code in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;webtask-monkey-island&quot;&gt;my github repo&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The service has a very basic behaviour:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;If you just call the endpoint (GET request), returns a random pair of insult-answer (in Json)&lt;&#x2F;li&gt;
+&lt;li&gt;If you call the endpoint with an &lt;code&gt;insult&lt;&#x2F;code&gt; parameter it will return the correct response for that insult&lt;&#x2F;li&gt;
+&lt;li&gt;If you call the endpoint with an invalid&#x2F;unknown &lt;code&gt;insult&lt;&#x2F;code&gt; the response will notify you so&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The interaction is all via &lt;code&gt;GET&lt;&#x2F;code&gt; requests, and it returns &lt;code&gt;Json&lt;&#x2F;code&gt; (no &lt;code&gt;404&lt;&#x2F;code&gt; codes for invalid insults). As I said, a very basic implementation to test how hard is to use that service (note: not hard at all). Webkit  provides the tools to implement all this properly, it&#x27;s just I didn&#x27;t use them ;)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;testing-the-service&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#testing-the-service&quot; aria-label=&quot;Anchor link for: testing-the-service&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Testing the service&lt;&#x2F;h2&gt;
+&lt;p&gt;I published a Webtask endpoint at:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;https:&amp;#x2F;&amp;#x2F;webtask.it.auth0.com&amp;#x2F;api&amp;#x2F;run&amp;#x2F;wt-pere_villega-gmail_com-0&amp;#x2F;sword-fight?webtask_no_cache=1 .
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Be aware it is under a free plan, so it may be rate limited and disappear in 30 days. If you want to try it yourself, remember the sample code is available in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;webtask-monkey-island&quot;&gt;my github repo&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s see how it works. If we run the request without any additional parameter, we should obtain a random pair of insult-response.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ curl https:&amp;#x2F;&amp;#x2F;webtask.it.auth0.com&amp;#x2F;api&amp;#x2F;run&amp;#x2F;wt-pere_villega-gmail_com-0&amp;#x2F;sword-fight\?webtask_no_cache\=1
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;returns:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;json&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;{
+	&amp;quot;received&amp;quot;:&amp;quot;Nobody&amp;#x27;s ever drawn blood from me and nobody ever will.&amp;quot;,
+	&amp;quot;answer&amp;quot;:&amp;quot;You run THAT fast?&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We can provide a parameter with our &lt;em&gt;insult&lt;&#x2F;em&gt; to receive the right response:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ curl  https:&amp;#x2F;&amp;#x2F;webtask.it.auth0.com&amp;#x2F;api&amp;#x2F;run&amp;#x2F;wt-pere_villega-gmail_com-0&amp;#x2F;sword-fight?webtask_no_cache=1&amp;amp;insult=You%27re%20the%20ugliest%20monster%20ever%20created!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;which, as expected, returns:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;json&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;{
+	&amp;quot;received&amp;quot;:&amp;quot;You&amp;#x27;re the ugliest monster ever created!&amp;quot;,
+	&amp;quot;answer&amp;quot;:&amp;quot;If you don&amp;#x27;t count all the ones you&amp;#x27;ve dated.&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If we provide an insult that is not recognised, like:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;$ curl  https:&amp;#x2F;&amp;#x2F;webtask.it.auth0.com&amp;#x2F;api&amp;#x2F;run&amp;#x2F;wt-pere_villega-gmail_com-0&amp;#x2F;sword-fight?webtask_no_cache=1&amp;amp;insult=baka!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;the lambda complains:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;json&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;{
+	&amp;quot;received&amp;quot;:&amp;quot;baka!&amp;quot;,
+	&amp;quot;answer&amp;quot;:&amp;quot;Incorrect insult!&amp;quot;
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Working as expected!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;future-work&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#future-work&quot; aria-label=&quot;Anchor link for: future-work&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Future Work&lt;&#x2F;h1&gt;
+&lt;p&gt;To be honest, I just wanted to dabble with this so I didn&#x27;t put much more effort into it. An obvious improvement is to allow the user to &lt;em&gt;fight&lt;&#x2F;em&gt; against the machine, although this would require preserving some state in the server-side.&lt;&#x2F;p&gt;
+&lt;p&gt;Fortunately WebTask provides limited support for &lt;a href=&quot;https:&#x2F;&#x2F;webtask.io&#x2F;docs&#x2F;storage&quot;&gt;storage&lt;&#x2F;a&gt;, which could be used to manage score for a given user, storing all the information in a map. But there&#x27;ll be concurrency issues with very low loads, so it may not be such a good idea after all. Something stateless like &lt;a href=&quot;http:&#x2F;&#x2F;left-pad.io&#x2F;&quot;&gt;left-pad.io&lt;&#x2F;a&gt; fits the lambda model better ;)&lt;&#x2F;p&gt;
+&lt;p&gt;As an aside, WebTask mentions in their documentation how their service can be used to enhance the security of your application by hiding api keys and other sensitive resources inside lambdas. It&#x27;s an interesting concept worth a bit of research, as it may be a good pattern to adapt in your standard deployment.&lt;&#x2F;p&gt;
+&lt;p&gt;In any case, that&#x27;s all for now. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Have you heard about AWS Lambda? Do you like Monkey Island? Are you into Insult Sword Fighting? Then, come along, this may interest you ;)
+…</summary>
+        </entry>
+</feed>

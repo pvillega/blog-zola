@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>wardley maps</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - wardley maps</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/wardley-maps/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/wardley-maps/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2023-03-02T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/wardley-maps/atom.xml</id><entry xml:lang="en">
+        <title>Chaordic collaboration: Use Wardley Maps to stop software development waste</title>
+        <published>2023-03-02T00:00:00+00:00</published>
+        <updated>2023-03-02T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/wardley-maps-stop-waste/" type="text/html"/>
+        <id>https://perevillega.com/posts/wardley-maps-stop-waste/</id>
+        
+            <content type="html">&lt;p&gt;I&#x27;ve written a new blog post, a collaboration with &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&quot;&gt;Chaordic&lt;&#x2F;a&gt;, that you can read in their blog: &lt;a href=&quot;https:&#x2F;&#x2F;chaordic.io&#x2F;blog&#x2F;stop-wasting-money-on-software-development&#x2F;&quot;&gt;Use Wardley Maps to stop software development waste&lt;&#x2F;a&gt;. I hope you enjoy it.&lt;&#x2F;p&gt;
+</content>
+        </entry>
+</feed>

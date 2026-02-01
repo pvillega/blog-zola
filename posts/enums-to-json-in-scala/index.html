@@ -1,0 +1,94 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://perevillega.com name=base><title>Software serves the Business • Enums to JSON in Scala</title><link href=https://perevillega.com/icons/favicon.ico rel=icon type=image/png><link title="Software serves the Business - Atom Feed" href=https://perevillega.com/atom.xml rel=alternate type=application/atom+xml><link href="https://perevillega.com/inter_subset_en.css?h=d8cf4ad058d6c3a4015b" rel=stylesheet><link href="https://perevillega.com/main.css?h=149ff9e737409b86f9c3" rel=stylesheet><link href="https://perevillega.com/custom.css?h=ff5a5712d2f0bc9d9ac2" rel=stylesheet><meta content="light dark" name=color-scheme><meta content=#087e96 name=theme-color><meta content="Scala gives the developer the possibility of using Enumerations. If they should be used or if Case Classes are better is a debate I'm not going to start here. They exist and they can be used.
+…" name=description><meta content="Scala gives the developer the possibility of using Enumerations. If they should be used or if Case Classes are better is a debate I'm not going to start here. They exist and they can be used.
+…" property=og:description><meta content="index, nofollow" name=robots><meta content="Enums to JSON in Scala" property=og:title><meta content=article property=og:type><meta content="https://perevillega.com/social_cards/index.png?h=125d02cc3c86eaf88fa6" property=og:image><meta content=2088 property=og:image:width><meta content=1000 property=og:image:height><meta content="https://perevillega.com/social_cards/index.png?h=125d02cc3c86eaf88fa6" name=twitter:image><meta content=summary_large_image name=twitter:card><meta content=en_GB property=og:locale><meta content=https://perevillega.com/posts/enums-to-json-in-scala/ property=og:url><meta content="Software serves the Business" property=og:site_name><meta content="default-src 'self';font-src 'self' data: 'self';img-src 'self' https://* data:;media-src 'self' https://cdn.jsdelivr.net/;style-src 'self' 'unsafe-inline';frame-src 'self' player.vimeo.com https://www.youtube-nocookie.com https://view.officeapps.live.com;connect-src 'self' https://umami.villegawilcz.com;script-src 'self' https://umami.villegawilcz.com 'self'" http-equiv=Content-Security-Policy><noscript><link href=https://perevillega.com/no_js.css rel=stylesheet></noscript><script src=https://perevillega.com/js/initializeTheme.min.js></script><script defer src=https://perevillega.com/js/themeSwitcher.min.js></script><script async data-do-not-track=true data-website-id=7bdfa858-bebc-479d-9a1f-bea833a709a8 defer src=https://umami.villegawilcz.com/script.js></script><meta content=@pvillega@mastodon.social name=fediverse:creator><script src="https://perevillega.com/search_index.en.js?h=5e3427c9b8d057d8989e" defer></script><script src="https://perevillega.com/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e" defer></script><body><header><nav class=navbar><div class=nav-title><a class=home-title href=https://perevillega.com>Software serves the Business</a></div><div class=nav-navs><ul><li><a class="nav-links no-hover-padding" href=https://perevillega.com/posts/> blog </a><li><a class="nav-links no-hover-padding" href=https://perevillega.com/tags/> tags </a></li><div class=nav-navs id=menu-icons-group><li class=js><div aria-label="Click or press $SHORTCUT to open search" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" id=search-button role=button tabindex=0><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div><li class="theme-switcher-wrapper js"><div aria-label="Toggle dark mode" title="Toggle dark/light mode" aria-pressed=false class=theme-switcher role=button tabindex=0></div><div aria-label="Reset mode to default" class="theme-resetter arrow" title="Reset mode to default" aria-hidden=true role=button tabindex=0></div></div></ul></div></nav></header><div class=content><main><article><h1 class=article-title>Enums to JSON in Scala</h1><ul class=meta><li>21st Sep 2013<li title="493 words"><span aria-hidden=true class=separator>•</span>3 min read<li class=tag><span aria-hidden=true class=separator>•</span>Tags: <li class=tag><a href=https://perevillega.com/tags/scala/>scala</a>, <li class=tag><a href=https://perevillega.com/tags/json/>json</a>, <li class=tag><a href=https://perevillega.com/tags/enumerations/>enumerations</a></ul><section class=body><p>Scala gives the developer the possibility of using <a href=http://www.scala-lang.org/api/current/index.html#scala.Enumeration>Enumerations</a>. If they should be used or if <a href=http://docs.scala-lang.org/tutorials/tour/case-classes.html>Case Classes</a> are better is a debate I'm not going to start here. They exist and they can be used.</p><span id=continue-reading></span><p>The reason I mention enumerations is that in a personal project (which I hope to publish soon, but I digress) I've been using them inside some <em>case classes</em>. In the same project I'm using <a href=https://github.com/mandubian/play-json-alone>Play-JSON</a>, a standalone version of the <a href=http://www.playframework.com/documentation/2.2.x/ScalaJson>Play Framework JSON libraries</a>, which turn working with JSON into a boilerplate-free pleasure. All was grand until I added my first enumeration as a parameter in a case class. The compiler started to complain and it took me a while to find how to fix it.<p>The solution was provided by, who else, <a href=http://stackoverflow.com/questions/15488639/how-to-write-readst-and-writest-in-scala-enumeration-play-framework-2-1/15489179#15489179>StackOverflow</a> which <a href=http://blog.stackoverflow.com/2013/09/five-years-ago-stack-overflow-launched-then-a-miracle-occurred/>in just 5 years</a> has become an invaluable resource. I thought this may be useful to other people, so I created some basic sample code showing the solution to the issue and pushed it to a <a href=https://github.com/pvillega/scala_enum_json>Github repository</a>. As always, feel free to clone and comment.<h1 id=the-issue><a aria-label="Anchor link for: the-issue" class="header-anchor no-hover-padding" href=#the-issue><span aria-hidden=true class=link-icon></span></a> The issue</h1><p>Let's assume we have the following code structure:<pre><code>// Enum sample #1
+object EnumType1 extends Enumeration {
+  type EnumType1 = Value
+
+  val N = Value("N")
+  val D = Value("D")
+  val A = Value("A")
+  val C = Value("C")
+  val L = Value("L")
+  val P = Value("P")
+}
+
+// Enum sample #2
+object EnumType2 extends Enumeration {
+  type EnumType2 = Value
+
+  val OPTION_A = Value("OPTION_A")
+  val OPTION_B = Value("OPTION_B")
+  val OPTION_C = Value("OPTION_C")
+  val OPTION_D = Value("OPTION_D")
+  val OPTION_E = Value("OPTION_E")
+  val OPTION_F = Value("OPTION_F")
+}
+
+// Case class that uses enums
+case class EnumCaseClass(name: String, enum1: EnumType1, enum2: EnumType2)
+</code></pre><p>We can take advantage of <em>Play-JSON</em> and create a companion object for our case class that will helps us serializing instances of this class from or into JSON.<pre><code>object EnumCaseClass {
+  // Support object to convert EnumCaseClass to Json using Play-JSON
+  implicit val fmt = Json.format[EnumCaseClass]
+
+  def fromJson(json: JsValue) = Json.fromJson[EnumCaseClass](json).get
+
+  def toJson(enumCaseClass: EnumCaseClass) = Json.toJson(enumCaseClass)
+}
+</code></pre><p>Unfortunately, when compiling we will get errors due to the enumerations missing valid <em>Reads</em> and <em>Writes</em>. We can test this by removing the enum parameters from the case class and replacing them by simple types as shown below. The code works and converts the case class into JSON, which proves that the issue is the enumeration type that can't be managed by <em>Play-JSON</em>.<pre><code>case class EnumCaseClass(name: String, enum1: Int, enum2: Int)
+</code></pre><h1 id=solution><a aria-label="Anchor link for: solution" class="header-anchor no-hover-padding" href=#solution><span aria-hidden=true class=link-icon></span></a> Solution</h1><p>The solution is, obviously, to provide <em>Reads</em> and <em>Writes</em> for the enumerations. But we would like to do it in a generic way, to avoid duplication of very similar code. <a href=http://stackoverflow.com/questions/15488639/how-to-write-readst-and-writest-in-scala-enumeration-play-framework-2-1/15489179#15489179>StackOverflow</a> provides an example of a support class that can accomplish this:<pre><code>object EnumUtils {
+  def enumReads[E &LT: Enumeration](enum: E): Reads[E#Value] =
+    new Reads[E#Value] {
+      def reads(json: JsValue): JsResult[E#Value] = json match {
+        case JsString(s) => {
+          try {
+            JsSuccess(enum.withName(s))
+          } catch {
+            case _: NoSuchElementException =>
+               JsError(s"Enumeration expected of type: '${enum.getClass}',
+                      but it does not appear to contain the value: '$s'")
+          }
+        }
+        case _ => JsError("String value expected")
+      }
+  }
+
+  implicit def enumWrites[E &LT: Enumeration]: Writes[E#Value] =
+    new Writes[E#Value] {
+      def writes(v: E#Value): JsValue = JsString(v.toString)
+    }
+
+  implicit def enumFormat[E &LT: Enumeration](enum: E): Format[E#Value] = {
+    Format(enumReads(enum), enumWrites)
+  }
+}
+</code></pre><p>This creates an object that provides generic <em>Reads</em>, <em>Writes</em> and <em>Format</em> methods that can be used with any enumeration. We can use the methods in our enumerations, adding some implicit vals of type <em>Reads</em> and <em>Writes</em> that will redirect the execution flow to the support object, as follows:<pre><code>object EnumType1 extends Enumeration {
+  type EnumType1 = Value
+
+  val N = Value("N")
+  val D = Value("D")
+  val A = Value("A")
+  val C = Value("C")
+  val L = Value("L")
+  val P = Value("P")
+
+  implicit val enumReads: Reads[EnumType1] = EnumUtils.enumReads(EnumType1)
+
+  implicit def enumWrites: Writes[EnumType1] = EnumUtils.enumWrites
+
+}
+
+object EnumType2 extends Enumeration {
+  type EnumType2 = Value
+
+  val OPTION_A = Value("OPTION_A")
+  val OPTION_B = Value("OPTION_B")
+  val OPTION_C = Value("OPTION_C")
+  val OPTION_D = Value("OPTION_D")
+  val OPTION_E = Value("OPTION_E")
+  val OPTION_F = Value("OPTION_F")
+
+  implicit val enumReads: Reads[EnumType2] = EnumUtils.enumReads(EnumType2)
+
+  implicit def enumWrites: Writes[EnumType2] = EnumUtils.enumWrites
+}
+</code></pre><p>By adding this support object and the enumeration-specific <em>vals</em>, we can now compile the project and serialize our <em>case class</em> into JSON.<p>Go to the <a href=https://github.com/pvillega/scala_enum_json>Github repository</a> and experiment with the code.</section><nav class="full-width article-navigation"><div><a aria-describedby=left_title aria-label=Next href=https://perevillega.com/posts/on-learn-startup-and-personal-waste/><span class=arrow>←</span> Next</a><p aria-hidden=true id=left_title>On Learn Startup and Personal Waste</div><div><a aria-describedby=right_title aria-label=Prev href=https://perevillega.com/posts/breaking-the-1000ms-time-to-glass-mobile-barrier/>Prev <span class=arrow>→</span></a><p aria-hidden=true id=right_title>Breaking the 1000ms Time to Glass Mobile Barrier</div></nav></article></main><script defer src=https://perevillega.com/js/mermaid.min.js></script><span class=hidden id=copy-success> Copied! </span><span class=hidden id=copy-init> Copy code to clipboard </span><script defer src=https://perevillega.com/js/copyCodeToClipboard.min.js></script></div><footer><section><nav class="socials nav-navs"><ul><li><a class="nav-links no-hover-padding social" href=https://perevillega.com/atom.xml> <img alt=feed loading=lazy src=https://perevillega.com/social_icons/rss.svg title=feed> </a><li class=js><a class="nav-links no-hover-padding social" data-encoded-email=cHZpbGxlZ2ErYmxvZ0BhcmFjb24uY29t href=#><img alt=email loading=lazy src=https://perevillega.com/social_icons/email.svg title=email> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://github.com/pvillega> <img alt=github loading=lazy src=https://perevillega.com/social_icons/github.svg title=github> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://gitlab.com/pvillega> <img alt=gitlab loading=lazy src=https://perevillega.com/social_icons/gitlab.svg title=gitlab> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://bsky.app/profile/perevillega.com> <img alt=bluesky loading=lazy src=https://perevillega.com/social_icons/bluesky.svg title=bluesky> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://www.linkedin.com/in/perevillega/> <img alt=linkedin loading=lazy src=https://perevillega.com/social_icons/linkedin.svg title=linkedin> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://stackoverflow.com/users/116791/pere-villega> <img alt="stack overflow" title="stack overflow" loading=lazy src=https://perevillega.com/social_icons/stack-overflow.svg> </a></ul></nav><nav class=nav-navs><small> <ul><li><a class="nav-links no-hover-padding" href=https://perevillega.com/sitemap.xml> sitemap </a></ul> </small></nav><div class=credits><small> Powered by <a href=https://www.getzola.org>Zola</a> & <a href=https://github.com/welpo/tabi>tabi</a> </small></div></section><script async src=https://perevillega.com/js/decodeMail.min.js></script><div class="search-modal js" aria-labelledby=modalTitle id=searchModal role=dialog><h1 class=visually-hidden id=modalTitle>Search</h1><div id=modal-content><div id=searchBar><div aria-hidden=true class=search-icon><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div><input aria-controls=results-container aria-expanded=false autocomplete=off id=searchInput placeholder=Search… role=combobox spellcheck=false><div class="close-icon interactive-icon" title="Clear search" id=clear-search role=button tabindex=0><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div></div><div id=results-container><div id=results-info><span id=zero_results> No results</span><span id=one_results> $NUMBER result</span><span id=many_results> $NUMBER results</span><span id=two_results> $NUMBER results</span><span id=few_results> $NUMBER results</span></div><div id=results role=listbox></div></div></div></div></footer>

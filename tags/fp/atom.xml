@@ -1,0 +1,930 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>fp</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - fp</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/fp/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/fp/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2018-12-28T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/fp/atom.xml</id><entry xml:lang="en">
+        <title>Bridging Scala and the Front-End at Underscore blog</title>
+        <published>2018-12-28T00:00:00+00:00</published>
+        <updated>2018-12-28T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/bridges/" type="text/html"/>
+        <id>https://perevillega.com/posts/bridges/</id>
+        
+            <content type="html">&lt;p&gt;This is just a short entry to make you aware of a new post at &lt;a href=&quot;https:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2018&#x2F;12&#x2F;12&#x2F;bridges.html&quot;&gt;Underscore&#x27;s&lt;&#x2F;a&gt; blog.&lt;&#x2F;p&gt;
+&lt;p&gt;As usual, many thanks to Underscore for all the suggestions and reviews, and for publishing it. Contributions were crucial!&lt;&#x2F;p&gt;
+&lt;p&gt;Now please go to &lt;a href=&quot;https:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2018&#x2F;12&#x2F;12&#x2F;bridges.html&quot;&gt;Underscore&#x27;s blog&lt;&#x2F;a&gt; and enjoy the post. Cheers!&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Tips for working with FS2 at Underscore blog</title>
+        <published>2018-03-20T00:00:00+00:00</published>
+        <updated>2018-03-20T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/tips-working-fs2/" type="text/html"/>
+        <id>https://perevillega.com/posts/tips-working-fs2/</id>
+        
+            <content type="html">&lt;p&gt;This is just a short entry to make you aware of a new post at &lt;a href=&quot;https:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2018&#x2F;03&#x2F;20&#x2F;fs2.html&quot;&gt;Underscore&#x27;s&lt;&#x2F;a&gt; blog.&lt;&#x2F;p&gt;
+&lt;p&gt;As usual, many thanks to Underscore for all the suggestions and reviews, and for publishing it. Contributions were crucial!&lt;&#x2F;p&gt;
+&lt;p&gt;Now please go to &lt;a href=&quot;https:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2018&#x2F;03&#x2F;20&#x2F;fs2.html&quot;&gt;Underscore&#x27;s blog&lt;&#x2F;a&gt; and enjoy the post. Cheers!&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Refining your data post at Underscore blog</title>
+        <published>2017-03-09T00:00:00+00:00</published>
+        <updated>2017-03-09T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/refining-your-data/" type="text/html"/>
+        <id>https://perevillega.com/posts/refining-your-data/</id>
+        
+            <content type="html">&lt;p&gt;This is just a short entry to make you aware of a new post (again!) at &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2017&#x2F;03&#x2F;07&#x2F;refined-data-config-database.html&quot;&gt;Underscore&#x27;s&lt;&#x2F;a&gt; blog.&lt;&#x2F;p&gt;
+&lt;p&gt;As usual, many thanks to Underscore for all the suggestions and reviews, and for publishing it. Contributions were crucial!&lt;&#x2F;p&gt;
+&lt;p&gt;Now please go to &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2017&#x2F;03&#x2F;07&#x2F;refined-data-config-database.html&quot;&gt;Underscore&#x27;s blog&lt;&#x2F;a&gt; and enjoy the post. Cheers!&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Finch post at Underscore blog</title>
+        <published>2017-01-25T00:00:00+00:00</published>
+        <updated>2017-01-25T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/finch-underscore-post/" type="text/html"/>
+        <id>https://perevillega.com/posts/finch-underscore-post/</id>
+        
+            <content type="html">&lt;p&gt;This is just a short entry to make you aware of a new post by yours truly at &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2017&#x2F;01&#x2F;24&#x2F;finch-functional-web-development.html&quot;&gt;Underscore&#x27;s&lt;&#x2F;a&gt; blog.&lt;&#x2F;p&gt;
+&lt;p&gt;Many thanks to Underscore for all the suggestions and review, and for publishing it.&lt;&#x2F;p&gt;
+&lt;p&gt;Now please go to &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2017&#x2F;01&#x2F;24&#x2F;finch-functional-web-development.html&quot;&gt;Underscore&#x27;s blog&lt;&#x2F;a&gt; and enjoy the post. Cheers!&lt;&#x2F;p&gt;
+</content>
+        </entry><entry xml:lang="en">
+        <title>Free Monads and Stockfighter</title>
+        <published>2016-08-22T00:00:00+00:00</published>
+        <updated>2016-08-22T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/free-monads-and-stockfighter/" type="text/html"/>
+        <id>https://perevillega.com/posts/free-monads-and-stockfighter/</id>
+        
+            <content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.stockfighter.io&#x2F;&quot;&gt;StockFighter&lt;&#x2F;a&gt; is a game by &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;patio11&#x2F;&quot;&gt;Patrick McKenzie&lt;&#x2F;a&gt; (Hi Patrick!) and &lt;a href=&quot;https:&#x2F;&#x2F;www.starfighters.io&#x2F;about&quot;&gt;others&lt;&#x2F;a&gt; that makes you compete in a virtual Stock Exchange to accomplish certain objectives. They use it as a recruitment tool (kind of, read their website) but it&#x27;s a very entertaining game, even if you are not looking for a new job.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Why am I talking about &lt;a href=&quot;https:&#x2F;&#x2F;www.stockfighter.io&#x2F;&quot;&gt;StockFighter&lt;&#x2F;a&gt;? Well, as you can guess from the title, because &lt;a href=&quot;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;tut&#x2F;freemonad.html&quot;&gt;Free Monads&lt;&#x2F;a&gt;! Care to join?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-mission&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-mission&quot; aria-label=&quot;Anchor link for: the-mission&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Mission&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.stockfighter.io&#x2F;&quot;&gt;StockFighter&lt;&#x2F;a&gt; provides an environment which is limited in scope, but still complex enough that showcases limitations&#x2F;strengths for a given tool. I&#x27;ve had in my backlog, for a looong while, the &lt;em&gt;mission&lt;&#x2F;em&gt; of completing the game. Building an API to do so using Free seemed like the perfect match.&lt;&#x2F;p&gt;
+&lt;p&gt;The aim was to build a Free Monad wrapper on top of the &lt;a href=&quot;https:&#x2F;&#x2F;starfighter.readme.io&#x2F;docs&#x2F;&quot;&gt;Stockfighter API&lt;&#x2F;a&gt;, using &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ProjectSeptemberInc&#x2F;freek&quot;&gt;Freek&lt;&#x2F;a&gt;, which allows us to solve the levels of the game. The API would only focus on the &lt;em&gt;Trading&lt;&#x2F;em&gt; part of the game as the other component, &lt;em&gt;Jailbreak&lt;&#x2F;em&gt;, is not fully ready to be used.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;caveats&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#caveats&quot; aria-label=&quot;Anchor link for: caveats&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Caveats&lt;&#x2F;h2&gt;
+&lt;p&gt;Before we start, I want to make you aware that I am a beginner regarding Free. I&#x27;ve heard a lot about the subject, and I previously wrote two posts about them: &lt;a href=&quot;&#x2F;understanding-free-monads&quot;&gt;Free Monad&lt;&#x2F;a&gt; and &lt;a href=&quot;&#x2F;freek-and-free-monads&quot;&gt;Freek and Free Monads&lt;&#x2F;a&gt; as a result of my research around the concept.&lt;&#x2F;p&gt;
+&lt;p&gt;But these posts approached the subject in a very theoretical way; they described how to build a Free Monad and potential applications, but you don&#x27;t really understand something until you have used it in production or, at least, in a realistic environment.&lt;&#x2F;p&gt;
+&lt;p&gt;This is my first &lt;em&gt;real(ish)&lt;&#x2F;em&gt; experience using Free for something more than a proof of concept, and as such I may have missed something obvious. If you believe so, please contact me via twitter (&lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;pvillega&quot;&gt;@pvillega&lt;&#x2F;a&gt;) as I&#x27;m very keen on fixing gaps in my knowledge :)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-implementation&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-implementation&quot; aria-label=&quot;Anchor link for: the-implementation&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Implementation&lt;&#x2F;h2&gt;
+&lt;p&gt;Releasing your code to the public is scary, isn&#x27;t it? Oh, well, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;stockfighter&quot;&gt;here you have it&lt;&#x2F;a&gt;. The code took longer than I wanted, as during its conception I realised several misconceptions I had regarding Free Monads and their implementation. I also experimented a bit with unrelated stuff which delayed this post &lt;em&gt;slightly&lt;&#x2F;em&gt; more. Ah, shiny baubles...&lt;&#x2F;p&gt;
+&lt;p&gt;You may want to start by opening &lt;code&gt;Introduction.scala&lt;&#x2F;code&gt; and reading it top to bottom, as it exposes the API and usage cases.&lt;&#x2F;p&gt;
+&lt;p&gt;If we ignore all the stuff not purely related to Free Monads, there are three files to focus on: &lt;code&gt;LogApi.scala&lt;&#x2F;code&gt;, &lt;code&gt;TradeApi.scala&lt;&#x2F;code&gt;, and &lt;code&gt;TradingAppHelpers.scala&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-free-monads&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-free-monads&quot; aria-label=&quot;Anchor link for: the-free-monads&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Free Monads&lt;&#x2F;h3&gt;
+&lt;p&gt;Files &lt;code&gt;LogApi.scala&lt;&#x2F;code&gt; and &lt;code&gt;TradeApi.scala&lt;&#x2F;code&gt; implement the Free Monads for the library. I won&#x27;t enter into the implementation details as they should be straightforward, and you can refer to my previous post on &lt;a href=&quot;&#x2F;freek-and-free-monads&quot;&gt;Freek&lt;&#x2F;a&gt; for guidance.&lt;&#x2F;p&gt;
+&lt;p&gt;What I want to discuss is: why these two DSL and not more?&lt;&#x2F;p&gt;
+&lt;p&gt;We can argue about the abstraction levels, but I&#x27;ve come to these two as a natural evolution of the API. My initial idea was to build everything based on Free. When I say &lt;em&gt;everything&lt;&#x2F;em&gt; I mean it: my http calls would be a Free DSL (Get, Post, etc). Logs? Free. Free all the way down (and then turtles). It even sounded easy: Freek &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ProjectSeptemberInc&#x2F;freek&#x2F;blob&#x2F;master&#x2F;src&#x2F;test&#x2F;scala&#x2F;AppSpec.scala&quot;&gt;examples&lt;&#x2F;a&gt; showcase a Log and Http DSL, so why not?&lt;&#x2F;p&gt;
+&lt;p&gt;Well, it may be possible, in fact it&#x27;s my next aim (v 2.0?) to experiment more around this area. But it makes things more complex than needed.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s take an example: Http DSL. Given the way natural transformations work, and that you want a generic DSL, you&#x27;ll end up with two DSL for your Http calls: a &lt;em&gt;request&lt;&#x2F;em&gt; one and one to manage &lt;em&gt;responses&lt;&#x2F;em&gt;. This is ok, the problem comes when you want to start defining &lt;code&gt;TradeAPI&lt;&#x2F;code&gt; using these DSL.&lt;&#x2F;p&gt;
+&lt;p&gt;A natural transformation converts a monad into another. Although Free is a monad, I had lots of problems trying to compile a Natural transformation from &lt;code&gt;TradeApi.DSL&lt;&#x2F;code&gt; to &lt;code&gt;Task&lt;&#x2F;code&gt; that internally used &lt;code&gt;Http.DSL&lt;&#x2F;code&gt;, as it wasn&#x27;t a one-to-one transformation, but a one-to-for-comprehension transformation. It just didn&#x27;t work.&lt;&#x2F;p&gt;
+&lt;p&gt;The easy solution was to implement the calls in &lt;code&gt;TradeApi&lt;&#x2F;code&gt; as for-comprehensions that used &lt;code&gt;Http.DSL&lt;&#x2F;code&gt; to define the behaviour. So &lt;code&gt;buy&lt;&#x2F;code&gt; would call the corresponding &lt;code&gt;Http.DSL&lt;&#x2F;code&gt; helpers, and so on. Something like:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def buy(stock: String) = for {
+	body &amp;lt;- Post(buyUrl, toBody(stock))
+	rsp &amp;lt;- DecodeResponse[OrderStatus](body)
+} yield rsp
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;At this point, though, we won&#x27;t have an interpreter for &lt;code&gt;TradeAPI&lt;&#x2F;code&gt;, only for &lt;code&gt;Http.DSL&lt;&#x2F;code&gt;. And there may be scenarios where we want to go that path. But, in this one, we may as well use our own interpreter for &lt;code&gt;TradeAPI&lt;&#x2F;code&gt; that manages the http calls and decoding inside, like a black box. We end up using a single interpreter anyway, but a slightly saner one.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;LogApi&lt;&#x2F;code&gt; survived because, despite the option of doing the logging within the interpreter, it makes sense to allow the user to document the intention of programs built using &lt;code&gt;TradeAPI&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;So, in the end, we only need these two. Yes, we could go deeper and replace &lt;code&gt;TradeAPI&lt;&#x2F;code&gt; by several lower-level API, but the current form seemed simpler and more usable.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;helper-class&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#helper-class&quot; aria-label=&quot;Anchor link for: helper-class&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Helper class&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;code&gt;TradingAppHelpers.scala&lt;&#x2F;code&gt; is mostly support methods and declarations: it defines the Onion we will use in our program, as well as some common methods like &lt;code&gt;run&lt;&#x2F;code&gt; to abstract calling the interpreter for our program and managing the lifecycle of our http client (to avoid leaking connections). I believe the comments in the file suffice to explain the intentions.&lt;&#x2F;p&gt;
+&lt;p&gt;There are three parts of its code I want to elaborate a bit on.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;onion-type&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#onion-type&quot; aria-label=&quot;Anchor link for: onion-type&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Onion type&lt;&#x2F;h4&gt;
+&lt;p&gt;Below we have the declaration for API and Onion, as usual when using Freek to work with several DSL at once.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;type API = LogApi.PRG :||: TradeApi.PRG
+val API = Program[API]
+type O = Result[?] :&amp;amp;: List :&amp;amp;: Bulb
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Note that the Onion declaration, &lt;code&gt;O&lt;&#x2F;code&gt;, includes both &lt;code&gt;Result&lt;&#x2F;code&gt; (an alias to &lt;code&gt;Xor&lt;&#x2F;code&gt;) and &lt;code&gt;List&lt;&#x2F;code&gt;. Without adding &lt;code&gt;List&lt;&#x2F;code&gt; I could not make it compile with result types of the form &lt;code&gt;Result[List[A]]&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The side effect of this is that using the Onion causes all the programs to return &lt;code&gt;Result[List[A]]&lt;&#x2F;code&gt; results. We can avoid this if we know we won&#x27;t use a call that return &lt;code&gt;Result[List[A]]&lt;&#x2F;code&gt; inside a program. In that case we may avoid the Onion and obtain just &lt;code&gt;Result[A]&lt;&#x2F;code&gt; at the end (using &lt;code&gt;.freek&lt;&#x2F;code&gt; and not &lt;code&gt;.freeko&lt;&#x2F;code&gt;), but I&#x27;ve provided no helper methods similar to &lt;code&gt;run&lt;&#x2F;code&gt; for this use case. Feel free to send a pull-request with one ;)&lt;&#x2F;p&gt;
+&lt;p&gt;There&#x27;s a better discussion on the matter in &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mandubian&#x2F;freek&#x2F;issues&#x2F;5&quot;&gt;this issue&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;task-interpreter&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#task-interpreter&quot; aria-label=&quot;Anchor link for: task-interpreter&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Task Interpreter&lt;&#x2F;h4&gt;
+&lt;p&gt;Our Task interpreter, the natural transformation from the DSL to &lt;code&gt;Task&lt;&#x2F;code&gt;, is declared as:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def taskInterpreter(httpClient: &amp;#x2F;*...*&amp;#x2F;) = LogApiTaskInterpreter :&amp;amp;: new TradeApiTaskInterpreter(&amp;#x2F;*...*&amp;#x2F;)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this implementation &lt;code&gt;TradeApiTaskInterpreter&lt;&#x2F;code&gt; depends on an &lt;code&gt;httpClient&lt;&#x2F;code&gt; to be able to contact Stockfighter. Encapsulating the &lt;code&gt;httpClient&lt;&#x2F;code&gt; inside the interpreter is problematic, as we can&#x27;t control the lifecycle of the client itself. At no point during the natural transformation are you aware that this is the last step (unless you add an explicit &lt;em&gt;last step&lt;&#x2F;em&gt; command, but kind of defeats the point). Which means that closing your http connections needs to be done outside the interpreter itself.&lt;&#x2F;p&gt;
+&lt;p&gt;I know it sounds obvious, and it is. But the examples I&#x27;ve seen regarding interpreters and natural transformations showcase them as static objects with no dependencies, although the interpreters are the areas where we will perform side effects, like an http request. This mislead me, initially, to try to encapsulate everything inside the interpreter itself. I&#x27;m open to suggestions on improving the code, if you believe there&#x27;s a better way to manage the client.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;run-the-onion&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#run-the-onion&quot; aria-label=&quot;Anchor link for: run-the-onion&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Run the Onion&lt;&#x2F;h4&gt;
+&lt;p&gt;The code to run an interpreter on a given Onion is always the same, which means we can abstract it:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def run[A](program: OnionT[Free, API.Cop, O, A], waitTime: Duration = 10 seconds) = {
+    val client = new GigahorseHttpClientManager()
+    try {
+      val interpreter = taskInterpreter(client)
+      val taskResult = program.value.interpret(interpreter)
+      Await.result(taskResult.runAsync, waitTime)
+    } finally {
+      client.close()
+    }
+  }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see the function &lt;code&gt;run&lt;&#x2F;code&gt; instantiates its own &lt;code&gt;TradeApiTaskInterpreter&lt;&#x2F;code&gt; to manage the &lt;code&gt;httpClient&lt;&#x2F;code&gt;, as discussed in the previous section.&lt;&#x2F;p&gt;
+&lt;p&gt;The relevant part of this code is the type of the parameter &lt;code&gt;program&lt;&#x2F;code&gt;: &lt;code&gt;OnionT[Free, API.Cop, O, A]&lt;&#x2F;code&gt;. It&#x27;s another obvious thing, but when I tried to generalise the signature from my existing programs the values &lt;code&gt;sbt&lt;&#x2F;code&gt; gave me didn&#x27;t compile properly due to several implicit-related errors. Freek uses quite a few of them implicits, and you can find yourself in a tangle trying to derive the implicit you need for your program. Next time, just copy this method&#x27;s signature.&lt;&#x2F;p&gt;
+&lt;p&gt;Or, as I discovered a bit too late (to my chagrin) pay more attention when reading the Freek instructions. That type is declared in the Readme file. D&#x27;oh!&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;the-case-for-freek&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-case-for-freek&quot; aria-label=&quot;Anchor link for: the-case-for-freek&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The case for Freek&lt;&#x2F;h3&gt;
+&lt;p&gt;I want to explicitly comment on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ProjectSeptemberInc&#x2F;freek&quot;&gt;Freek&lt;&#x2F;a&gt;, as it deserves all praise I can give it.&lt;&#x2F;p&gt;
+&lt;p&gt;My experience building these monads is a vindication for the library. Honestly, if you are going to use Free Monads in your code, add it to your dependencies. Right now. I&#x27;ll wait. Done?&lt;&#x2F;p&gt;
+&lt;p&gt;I tried the Cats approach I described in my old post about &lt;a href=&quot;&#x2F;understanding-free-monads&quot;&gt;Free Monad&lt;&#x2F;a&gt; to implement the API, stubborn in &lt;em&gt;keeping it simple and using few dependencies&lt;&#x2F;em&gt;. The pain was real, oh so real, when trying to work with the different answer types the DSL provides.&lt;&#x2F;p&gt;
+&lt;p&gt;In fact, it didn&#x27;t work. Without Freek, the compiler was beating me. No chances, full surrender.&lt;&#x2F;p&gt;
+&lt;p&gt;Yes, it is not perfect. For example see &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mandubian&#x2F;freek&#x2F;issues&#x2F;5&quot;&gt;this issue&lt;&#x2F;a&gt; related to the return types of Onions. It&#x27;s slightly cumbersome to having to manually peel responses each time you use the Onion. But given the alternative, I found it perfectly acceptable. And, come on, it&#x27;s barely version 0.6.0 and improving fast!&lt;&#x2F;p&gt;
+&lt;p&gt;If you are a Scala magician at the level of Pascal, Travis, or Miles you may not need it. Otherwise, just use it and spend your valuable time in something else.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-are-free-monads-for&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#what-are-free-monads-for&quot; aria-label=&quot;Anchor link for: what-are-free-monads-for&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+What are Free Monads for&lt;&#x2F;h2&gt;
+&lt;p&gt;Based on the, arguably limited, experience I&#x27;ve had while building the API and running programs using it there are several things to consider when using Free.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;free-monads-are-for-api&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#free-monads-are-for-api&quot; aria-label=&quot;Anchor link for: free-monads-are-for-api&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Free Monads are for API&lt;&#x2F;h3&gt;
+&lt;p&gt;Free Monads are intended to abstract your API. You define your DSLs, you build a program that uses them, and your construct interpreters to match. They are not for doing business logic, though.&lt;&#x2F;p&gt;
+&lt;p&gt;What do I mean by that?&lt;&#x2F;p&gt;
+&lt;p&gt;When I read about them, my naive mind thought you could buy a stack of Free on top of Free and only at the end you&#x27;d use the interpreter, creating a kind of pure universe untouched by side effects. Crazy, maybe.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s start by the fact that Free doesn&#x27;t (can&#x27;t?) implement &lt;code&gt;filter&lt;&#x2F;code&gt;. This removes the capability of using &lt;code&gt;if&lt;&#x2F;code&gt; statements inside your for-comprehension. At some point in your application you&#x27;ll need to make decisions based on results, and avoiding &lt;code&gt;filter&lt;&#x2F;code&gt; gets complicated, fast.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, using the API provided try to create a program that buys a stock if the quote is lower than a value, and otherwise sells but only if you have enough shares and doing so would generate a benefit. Most likely you will end up with programs that mix Free statements with non-Free statements. You may argue the API is limited, so how complex do you want it to become to cover all particular once-off cases?&lt;&#x2F;p&gt;
+&lt;p&gt;So, Free is great when you define a contract to hide implementation details. Think interfaces that do IO behind the scenes, or other side-effects, or combine calls to several services in one go. But it&#x27;s doubtful you&#x27;ll build your application (unless trivial) with &lt;em&gt;only&lt;&#x2F;em&gt; Free.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;ddd-ready&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#ddd-ready&quot; aria-label=&quot;Anchor link for: ddd-ready&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+DDD ready&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Domain-driven_design&quot;&gt;DDD&lt;&#x2F;a&gt; is popular and you most likely use it. Bounded contexts and ubiquitous languages are a great fit for Free.&lt;&#x2F;p&gt;
+&lt;p&gt;Your context is defined by a contract, an API that other components will use. Your logic will often use more than one context to achieve something, for example communicating with Authentication, User data, and Image storage to get the information it needs. Free are perfectly suited for this task.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;interpreters-are-your-io-monad&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#interpreters-are-your-io-monad&quot; aria-label=&quot;Anchor link for: interpreters-are-your-io-monad&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Interpreters are your IO Monad&lt;&#x2F;h3&gt;
+&lt;p&gt;I hear somebody screaming due to this statement. Apologies! But, in a sense, your interpreters can be considered a black box that will have side effects inside, which you don&#x27;t care much about.&lt;&#x2F;p&gt;
+&lt;p&gt;Your Free programs define steps to be done against a certain API, but nothing else. They are pure, no side effects, nothing, just a list of steps. Only when interpreted is when they really do something useful.&lt;&#x2F;p&gt;
+&lt;p&gt;This means all the side effects happen in your interpreter. And that is good. We want to isolate side-effects in our codebases, but when trying to do so we may end up with some cumbersome stuff:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;This is your return type: Int.
+This is your return type on microservices: IO (Logger (Either HttpError Int))&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Credit to &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;krisajenkins&#x2F;status&#x2F;762901550696194048&quot;&gt;Kris Jenkins&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;Jokes aside, we want to push side effects to the boundaries, which means we get horrible return types piling Task on top of Writer on top of Xor on top of any other monad we found. Within the interpreter we don&#x27;t need that. We know things will happen there, we can be ok with logging and running an IO fest within that black box. Because it&#x27;s isolated, and won&#x27;t leak, and we run it at the end, anyway.&lt;&#x2F;p&gt;
+&lt;p&gt;And we get a cleaner return type as a consequence.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;interpreters-should-be-your-test-target&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#interpreters-should-be-your-test-target&quot; aria-label=&quot;Anchor link for: interpreters-should-be-your-test-target&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Interpreters should be your test target&lt;&#x2F;h3&gt;
+&lt;p&gt;In the codebase you&#x27;ll see a blunder I realised too late. Initially I tried to test programs by using an accumulating interpreter that stored the calls to the api in a State monad, returning some default values. This allowed me to compare expected output of the program vs the real output.&lt;&#x2F;p&gt;
+&lt;p&gt;The accumulating interpreter can be good to see what happens with a program (print all the calls, to the bottom of the stack), but it&#x27;s not a great fit for testing due to hardcoded values. I experimented with another interpreter that allowed me to mock expected responses, so I could test most complex values, but this wasn&#x27;t ideal nor satisfactory.&lt;&#x2F;p&gt;
+&lt;p&gt;Then I realised I was approaching it wrong.&lt;&#x2F;p&gt;
+&lt;p&gt;Without Free, what I&#x27;d usually do is test a method for expected outputs given certain input. And that&#x27;s what I tried to do here. But with Free your method is nothing. I mean, it&#x27;s a description, so the test will be fully tangled with the program you defined.&lt;&#x2F;p&gt;
+&lt;p&gt;What you want to test is the interpreter, or its core. You want to make sure the output for a given DSL call is what you expect. In our scenario, &lt;code&gt;TradeApiTaskInterpreter&lt;&#x2F;code&gt; uses a client to to http calls. The return types are enforced during compilation of the DSL (we know a call to &lt;code&gt;buy&lt;&#x2F;code&gt; will return an object of a certain type), but we may want to guarantee we are passing values like &lt;code&gt;price&lt;&#x2F;code&gt; or &lt;code&gt;quantity&lt;&#x2F;code&gt; correctly, or that if the http client returns an error we are capturing it and returning the proper &lt;code&gt;Left&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;This is where we want to focus our test efforts, which incidentally reduces the surface of code to be tested a lot, arguably giving us much robust code. Of course, there will be methods that mix Free monads with logical statements (if x call this monad, otherwise the other) which you will want to test as usual. But for methods that only use Free, focus on testing the interpreters.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;beware-the-layers&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#beware-the-layers&quot; aria-label=&quot;Anchor link for: beware-the-layers&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Beware the layers&lt;&#x2F;h3&gt;
+&lt;p&gt;I talked about it when discussing why I implemented the two DSL I chose, but it&#x27;s worth repeating.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember that your interpreter (as a natural transformation) has limitations. Start with the top level API and consider if you need a lower level DSL for your purposes. It may be, as in our case, that a single layer is good enough. It may as well be that you have a case that justifies building your Free on a lower layer.&lt;&#x2F;p&gt;
+&lt;p&gt;In any case, stacking Free is not trivial and may cause pain. Thread carefully.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;they-are-not-easy&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#they-are-not-easy&quot; aria-label=&quot;Anchor link for: they-are-not-easy&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+They are not easy&lt;&#x2F;h3&gt;
+&lt;p&gt;People talking about Free mention they are not easy and that new teams (or teams without much experience in functional programming) should not adopt them directly. I realised I didn&#x27;t fully understand the warning when I started using them for this library. They seem easy, they are misleadingly so. But you will find yourself scratching your head many, many times, due to subtleties that arise when using them.&lt;&#x2F;p&gt;
+&lt;p&gt;Don&#x27;t underestimate them.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;aims-achieved&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#aims-achieved&quot; aria-label=&quot;Anchor link for: aims-achieved&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Aims achieved?&lt;&#x2F;h2&gt;
+&lt;p&gt;I have to make a confession: I&#x27;ve not completed StockFighter. I got sidetracked while experimenting with the API  using their test server, so I&#x27;ve only solved the first (and trivial) level. Someday I&#x27;ll finish it :) I failed that aim.&lt;&#x2F;p&gt;
+&lt;p&gt;But it&#x27;s been an enlightening experiment, which made me realise the limitations and strengths of Free. That said, it&#x27;s a first step on the path and most likely in a few months I&#x27;ll revisit this and realise I was wrong. But, hey, learning. Or something ;)&lt;&#x2F;p&gt;
+&lt;p&gt;So, yes, Free Monad are useful, but they are no silver bullet. What a surprise, isn&#x27;t it? Like everything else in IT.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all for now, I hope this was informative and useful. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">StockFighter is a game by Patrick McKenzie (Hi Patrick!) and others that makes you compete in a virtual Stock Exchange to accomplish certain objectives. They use it as a recruitment tool (kind of, read their website) but it's a very entertaining game, even if you are not looking for a new job.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Free Monads using FreeK</title>
+        <published>2016-05-30T00:00:00+00:00</published>
+        <updated>2016-05-30T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/freek-and-free-monads/" type="text/html"/>
+        <id>https://perevillega.com/posts/freek-and-free-monads/</id>
+        
+            <content type="html">&lt;p&gt;My previous post on &lt;a href=&quot;&#x2F;understanding-free-monads&quot;&gt;Free Monad&lt;&#x2F;a&gt; implemented a few DSL using Free Monads. The same day I published it I discovered &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ProjectSeptemberInc&#x2F;freek&quot;&gt;FreeK&lt;&#x2F;a&gt; by &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;mandubian&quot;&gt;Pascal Voitot&lt;&#x2F;a&gt;. How does FreeK help you when building a Free Monad?&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I&#x27;ve updated my &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;free-monad-sample&quot;&gt;code&lt;&#x2F;a&gt; on Free Monad with a sample using FreeK. The sample contains my previous implementation which only used &lt;a href=&quot;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;tut&#x2F;freemonad.html&quot;&gt;Cats&lt;&#x2F;a&gt; Free implementation, so you can compare both side by side.&lt;&#x2F;p&gt;
+&lt;p&gt;I can say upfront that FreeK removed a bit of &lt;em&gt;boilerplate&lt;&#x2F;em&gt; and made the implementation slightly cleaner. I feel the main benefit of FreeK is not so much the Free Monad tooling (which, don&#x27;t misunderstand me, is good!) but it&#x27;s integration with monad transformers, as well as the way it manages what Pascal calls &lt;em&gt;monadic onions of result types&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;implementing-free-with-freek&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#implementing-free-with-freek&quot; aria-label=&quot;Anchor link for: implementing-free-with-freek&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Implementing Free with FreeK&lt;&#x2F;h2&gt;
+&lt;p&gt;The first step is, as expected, to define our languages. I assume (from now onwards) that you have read &lt;a href=&quot;&#x2F;understanding-free-monads&quot;&gt;my previous post&lt;&#x2F;a&gt; so I won&#x27;t discuss details already tackled in there.&lt;&#x2F;p&gt;
+&lt;p&gt;With FreeK we define our language like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;object Orders {
+  sealed trait DSL[A]
+  final case class ListStocks() extends DSL[List[Symbol]]
+  final case class Buy(stock: Symbol, amount: Int) extends DSL[Response]
+  final case class Sell(stock: Symbol, amount: Int) extends DSL[Response]
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;which is no different as how we were doing it before; a trait with case classes. The convention of calling the trait &lt;code&gt;DSL&lt;&#x2F;code&gt; and embedding it in the object is one I&#x27;ll use from now on, but it&#x27;s not exclusive of &lt;em&gt;FreeK&lt;&#x2F;em&gt;, can be used without it.&lt;&#x2F;p&gt;
+&lt;p&gt;An interpreter is defined as:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;object OrderInterpreter extends (Orders.DSL ~&amp;gt; Id) {
+  import Orders._
+
+  def apply[A](a: Orders.DSL[A]) = a match {
+    case ListStocks() =&amp;gt;
+      println(s&amp;quot;Getting list of stocks: FB, TWTR&amp;quot;)
+      List(&amp;quot;FB&amp;quot;, &amp;quot;TWTR&amp;quot;)
+    case Buy(stock, amount) =&amp;gt;
+      println(s&amp;quot;Buying $amount of $stock&amp;quot;)
+      &amp;quot;ok&amp;quot;
+    case Sell(stock, amount) =&amp;gt;
+      println(s&amp;quot;Selling $amount of $stock&amp;quot;)
+      &amp;quot;ok&amp;quot;
+  }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;which, again, is an alternative to the way we were defining interpreters before. Not &lt;em&gt;FreeK&lt;&#x2F;em&gt; exclusive, but nicer :)&lt;&#x2F;p&gt;
+&lt;p&gt;So let&#x27;s define the rest of our languages:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;&amp;#x2F;&amp;#x2F; Log dsl
+object Log {
+  sealed trait DSL[A]
+  final case class Info(msg: String) extends DSL[Unit]
+  final case class Error(msg: String) extends DSL[Unit]
+}
+
+&amp;#x2F;&amp;#x2F; Defining the interpreter for Log
+object LogInterpreter extends (Log.DSL ~&amp;gt; Id) {
+  import Log._
+
+  def apply[A](a: Log.DSL[A]) = a match {
+    case Info(msg) =&amp;gt;
+      println(s&amp;quot;[Info] - $msg&amp;quot;)
+    case Error(msg) =&amp;gt;
+      println(s&amp;quot;[Error] - $msg&amp;quot;)
+  }
+}
+
+&amp;#x2F;&amp;#x2F; Audit dsl
+object Audit {
+  sealed trait DSL[A]
+  final case class UserAction(user: UserId, action: String, values: List[Values]) extends DSL[Unit]
+  final case class SystemAction(job: JobId, action: String, values: List[Values]) extends DSL[Unit]
+}
+
+&amp;#x2F;&amp;#x2F; Audit interpreter
+object AuditInterpreter extends (Audit.DSL ~&amp;gt; Id) {
+  import Audit._
+
+  def apply[A](a: Audit.DSL[A]) = a match {
+    case UserAction(user, action, values) =&amp;gt;
+      println(s&amp;quot;[USER Action] - user $user called $action with values $values&amp;quot;)
+    case SystemAction(job, action, values) =&amp;gt;
+      println(s&amp;quot;[SYSTEM Action] - $job called $action with values $values&amp;quot;)
+  }
+}
+
+&amp;#x2F;&amp;#x2F; Messaging dsl
+object Messaging {
+  sealed trait DSL[A]
+  final case class Publish(channelId: ChannelId, source: SourceId, messageId: MessageId, message: String) extends DSL[Response]
+  final case class Subscribe(channelId: ChannelId, filterBy: Condition) extends DSL[Payload]
+}
+
+&amp;#x2F;&amp;#x2F; Messaging interpreter
+object MessagingInterpreter extends (Messaging.DSL ~&amp;gt; Id) {
+  import Messaging._
+
+  def apply[A](a: Messaging.DSL[A]) = a match {
+    case Publish(channelId, source, messageId, message) =&amp;gt;
+      println(s&amp;quot;Publish [$channelId] From: [$source] Id: [$messageId] Payload: [$message]&amp;quot;)
+      &amp;quot;ok&amp;quot;
+    case Subscribe(channelId, filterBy) =&amp;gt;
+      val payload = &amp;quot;Event fired&amp;quot;
+      println(s&amp;quot;Received message from [$channelId] (filter: [$filterBy]): [$payload]&amp;quot;)
+      List(payload)
+  }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Ok, languages defined. Next, let&#x27;s define our &lt;em&gt;Free&lt;&#x2F;em&gt; type (or &lt;em&gt;Coproduct&lt;&#x2F;em&gt; for multiple types)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-free-coproduct-type&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-free-coproduct-type&quot; aria-label=&quot;Anchor link for: the-free-coproduct-type&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Free&#x2F;Coproduct type&lt;&#x2F;h2&gt;
+&lt;p&gt;In here is where &lt;em&gt;FreeK&lt;&#x2F;em&gt; provides the first big improvement. &lt;em&gt;FreeK&lt;&#x2F;em&gt; contains a specialised implementation of Shapeless &lt;code&gt;Coproduct&lt;&#x2F;code&gt; for higher-kinded structures. The result is that we can define a type that includes several languages in one go, instead of having to create the chain of &lt;code&gt;Coproduct&lt;&#x2F;code&gt; we built in the previous post.&lt;&#x2F;p&gt;
+&lt;p&gt;With &lt;em&gt;FreeK&lt;&#x2F;em&gt; you use the same syntax for a Free that includes one or several languages:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;type PRGOne[A] = (Log.DSL :|: FXNil)#Cop[A]
+&amp;#x2F;&amp;#x2F; PRG is the one we will use in our code
+type PRG[A] = (Log.DSL :|: Audit.DSL :|: Orders.DSL :|: FXNil)#Cop[A]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Interpreters get a similar benefit. You can leverage &lt;em&gt;FreeK&lt;&#x2F;em&gt; specific syntax to easily compose interpreters from multiple languages. The only restrictions are:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;the interpreters must all be transformations to the same Monad (as with any composition of Natural Transformations, nothing new here)&lt;&#x2F;li&gt;
+&lt;li&gt;they must be declared in the same order the types are defined in our &lt;code&gt;PRG&lt;&#x2F;code&gt; declaration.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;val interpreter: Interpreter[PRG, Id] = LogInterpreter :|: AuditInterpreter :|: OrderInterpreter
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With this we have our &lt;em&gt;free type&lt;&#x2F;em&gt; and the &lt;em&gt;interpreter&lt;&#x2F;em&gt;. That was easy! We just need the program to execute, and we are done.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-program&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-program&quot; aria-label=&quot;Anchor link for: the-program&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The program&lt;&#x2F;h2&gt;
+&lt;p&gt;If you have noticed, in the previous post we created some kind of support methods that lifted our case classes to a Free Monad. But this time we have not built anything similar. So, how are we going to use our case classes in a for-comprehension?&lt;&#x2F;p&gt;
+&lt;p&gt;The answer is given by *FreeK and a support method appropriately called &lt;code&gt;freek[A]&lt;&#x2F;code&gt;. Let&#x27;s see an example of its usage by replicating the logic in our original program:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;val program: Free[PRG, Response] = for {
+      _ &amp;lt;- Info(&amp;quot;I&amp;#x27;m going to trade smartly&amp;quot;).freek[PRG]
+      _ &amp;lt;- UserAction(&amp;quot;ID102&amp;quot;, &amp;quot;buy&amp;quot;, List(&amp;quot;APPL&amp;quot;, &amp;quot;100&amp;quot;)).freek[PRG]
+      _ &amp;lt;- Buy(&amp;quot;APPL&amp;quot;, 200).freek[PRG]
+      _ &amp;lt;- Info(&amp;quot;I&amp;#x27;m going to trade even more smartly&amp;quot;).freek[PRG]
+      _ &amp;lt;- UserAction(&amp;quot;ID102&amp;quot;, &amp;quot;buy&amp;quot;, List(&amp;quot;MSFT&amp;quot;, &amp;quot;100&amp;quot;)).freek[PRG]
+      _ &amp;lt;- Buy(&amp;quot;MSFT&amp;quot;, 100).freek[PRG]
+      _ &amp;lt;- UserAction(&amp;quot;ID102&amp;quot;, &amp;quot;sell&amp;quot;, List(&amp;quot;GOOG&amp;quot;, &amp;quot;100&amp;quot;)).freek[PRG]
+      rsp &amp;lt;- Sell(&amp;quot;GOOG&amp;quot;, 300).freek[PRG]
+      _ &amp;lt;- SystemAction(&amp;quot;BACKOFFICE&amp;quot;, &amp;quot;tradesCheck&amp;quot;, List(&amp;quot;ID102&amp;quot;, &amp;quot;lastTrades&amp;quot;)).freek[PRG]
+      _ &amp;lt;- Error(&amp;quot;Wait, what?!&amp;quot;).freek[PRG]
+    } yield rsp
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see we are using the case classes we defined with our languages, directly. The magic happens within the &lt;code&gt;freek[PRG]&lt;&#x2F;code&gt; call, which lifts our case class to a Free Monad of the &lt;code&gt;Coproduct&lt;&#x2F;code&gt; defined by &lt;code&gt;PRG&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;We have replaced support methods using &lt;code&gt;Free.liftF&lt;&#x2F;code&gt; or &lt;code&gt;Inject&lt;&#x2F;code&gt; with this call, which some people may argue is not a huge benefit, code wise. Personally, I believe it&#x27;s a big win as we have less clutter around our languages, where now we just see case classes and interpreters, and all the extra syntax is located within the program itself. Also, adding new languages is much simpler. What&#x27;s not to like?&lt;&#x2F;p&gt;
+&lt;p&gt;We can execute this program to verify it works:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;println(s&amp;quot;Use interpreter on `program`: ${program.foldMap(interpreter.nat)}&amp;quot;)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Oh, by the way, remember that program that was returning a &lt;code&gt;List&lt;&#x2F;code&gt; inside the monad, and thus required the use of traverse? Yes, we can also implement it using &lt;em&gt;FreeK&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;val programWithList: Free[PRG, Response] = for {
+  st &amp;lt;- ListStocks().freek[PRG]
+  _ &amp;lt;- st.traverseU(Buy(_, 100).freek[PRG])
+  rsp &amp;lt;- Sell(&amp;quot;GOOG&amp;quot;, 100).freek[PRG]
+} yield rsp
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We still need the &lt;code&gt;traverseU&lt;&#x2F;code&gt; trick, but it works the same, as &lt;code&gt;freek[PRG]&lt;&#x2F;code&gt; returns a monad an that fits the signature of &lt;code&gt;traverseU&lt;&#x2F;code&gt;. So we can port our programs, we are not losing any core functionality by using &lt;em&gt;FreeK&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;orders-via-messages&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#orders-via-messages&quot; aria-label=&quot;Anchor link for: orders-via-messages&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Orders via Messages&lt;&#x2F;h2&gt;
+&lt;p&gt;The last use case explored in the previous post was to define &lt;code&gt;Orders&lt;&#x2F;code&gt; as a set of &lt;code&gt;Messaging&lt;&#x2F;code&gt; operations, by chaining natural transformations from &lt;code&gt;Orders&lt;&#x2F;code&gt;, to &lt;code&gt;Messaging&lt;&#x2F;code&gt;, and to &lt;code&gt;Id&lt;&#x2F;code&gt;. Can we do this with &lt;em&gt;FreeK&lt;&#x2F;em&gt;? Let&#x27;s start by defining a new interpreter from &lt;code&gt;Orders&lt;&#x2F;code&gt; to &lt;code&gt;Messaging&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;object OrdersToMessagesInterpreter extends (Orders.DSL ~&amp;gt; Messaging.DSL) {
+  import Orders._
+  import Messaging._
+
+  def apply[A](a: Orders.DSL[A]) = a match {
+    case ListStocks() =&amp;gt;
+      Publish(&amp;quot;001&amp;quot;, &amp;quot;Orders&amp;quot;, UUID.randomUUID().toString, &amp;quot;Get Stocks List&amp;quot;)
+      Subscribe(&amp;quot;001&amp;quot;, &amp;quot;*&amp;quot;)
+    case Buy(stock, amount) =&amp;gt;
+      Publish(&amp;quot;001&amp;quot;, &amp;quot;Orders&amp;quot;, UUID.randomUUID().toString, s&amp;quot;Buy $stock $amount&amp;quot;)
+    case Sell(stock, amount) =&amp;gt;
+      Publish(&amp;quot;001&amp;quot;, &amp;quot;Orders&amp;quot;, UUID.randomUUID().toString, s&amp;quot;Sell $stock $amount&amp;quot;)
+  }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Next step, let&#x27;s integrate this interpreter into the interpreter chain we defined before. To do this, we need to replace &lt;code&gt;OrderInterpreter&lt;&#x2F;code&gt; by a composition of the new interpreter (from &lt;code&gt;Orders&lt;&#x2F;code&gt; to &lt;code&gt;Messaging&lt;&#x2F;code&gt;) and the existing interpreter from &lt;code&gt;Messaging&lt;&#x2F;code&gt; to &lt;code&gt;Id&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;val interpreterWithMessaging: Interpreter[PRG, Id] =
+  LogInterpreter :|: AuditInterpreter :|: (MessagingInterpreter compose OrdersToMessagesInterpreter)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and then we run our program:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;println(s&amp;quot;Use interpreter with Messaging on `program`: ${program.foldMap(interpreterWithMessaging.nat)}&amp;quot;)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It works, so it seems we can do what we expected! Can&#x27;t we?&lt;&#x2F;p&gt;
+&lt;p&gt;Well, the astute reader (i.e.: one that has read up to this point... congratulations!) will notice that in our previous implementation we were using a for-comprehension in &lt;code&gt;OrdersToMessagesInterpreter&lt;&#x2F;code&gt; for the case of &lt;code&gt;ListStocks&lt;&#x2F;code&gt;. As we are working with case classes directly, not with monads, we can&#x27;t build the for-comprehension.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve tried to work around it by creating some additional types to lift the classes via &lt;code&gt;freek[A]&lt;&#x2F;code&gt;, so we can have the same code as before, but it&#x27;s become a bit verbose which means that, most likely, I&#x27;m doing something wrong :) Just be aware this use case may require a bit more effort than the others.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;in-summary&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#in-summary&quot; aria-label=&quot;Anchor link for: in-summary&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+In summary&lt;&#x2F;h2&gt;
+&lt;p&gt;I like &lt;em&gt;FreeK&lt;&#x2F;em&gt;, as it simplifies working with Free Monads. There may be a couple of scenarios which need either more work or a better understanding of the library, but in general it seems like a robust solutions. Let&#x27;s not forget it also provides utilities to mix monad transformers with our Free monads, which will solve several pains related to monad stacks.&lt;&#x2F;p&gt;
+&lt;p&gt;So if you want to use Free monads in our code, please give &lt;em&gt;Freek&lt;&#x2F;em&gt; a go :)&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all for now, I hope this was informative and useful. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">My previous post on Free Monad implemented a few DSL using Free Monads. The same day I published it I discovered FreeK by Pascal Voitot. How does FreeK help you when building a Free Monad?
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>On Free Monads</title>
+        <published>2016-05-28T00:00:00+00:00</published>
+        <updated>2016-05-28T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/understanding-free-monads/" type="text/html"/>
+        <id>https://perevillega.com/posts/understanding-free-monads/</id>
+        
+            <content type="html">&lt;p&gt;The concept of &lt;a href=&quot;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;datatypes&#x2F;freemonad.html&quot;&gt;Free Monad&lt;&#x2F;a&gt; is becoming popular, or at least I&#x27;ve seen plenty of mentions about it in the Scala Functional Programming community as of late. Why is it relevant?&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;A couple of warnings before I start. Judging by the code I wrote, this will be a &lt;em&gt;very long&lt;&#x2F;em&gt; post. You can look at the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;free-monad-sample&quot;&gt;code&lt;&#x2F;a&gt; and come back to read this post later. Also, I&#x27;m going to take a &lt;em&gt;practical&lt;&#x2F;em&gt; approach to Free Monad. I&#x27;ll provide a list of relevant links at the end you can use to learn more about Free Monad and its nuisances, including Cat&#x27;s explanation on &lt;a href=&quot;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;datatypes&#x2F;freemonad.html#what-is-free-in-theory&quot;&gt;the theory behind Free&lt;&#x2F;a&gt;. But no theory here, sorry :)&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s do this.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-should-i-care-about-free-monad&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#why-should-i-care-about-free-monad&quot; aria-label=&quot;Anchor link for: why-should-i-care-about-free-monad&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Why should I care about Free Monad?&lt;&#x2F;h2&gt;
+&lt;p&gt;Anything related to &lt;a href=&quot;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;typeclasses&#x2F;monad.html&quot;&gt;Monads&lt;&#x2F;a&gt; seems scary and complex for the uninitiated. Why should I spend time learning that? What&#x27;s the benefit?&lt;&#x2F;p&gt;
+&lt;p&gt;There are descriptions of &lt;a href=&quot;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;datatypes&#x2F;freemonad.html&quot;&gt;Free Monad&lt;&#x2F;a&gt; that give a good overview on why to use it. In my humble opinion, the main benefit that Free provides is separation between the program definition and its execution.&lt;&#x2F;p&gt;
+&lt;p&gt;You start by building an embedded DSL, which can be understood by the business. Using that language, you define a program as a series of actions that cover a business case, without any implementation details associated.&lt;&#x2F;p&gt;
+&lt;p&gt;At this point you can test the business-defined logic in isolation (with fast unit tests, no need of mocks). You can &lt;em&gt;talk the same language&lt;&#x2F;em&gt; as the business. And only at the end, when needed, you provide a &lt;em&gt;real-world&lt;&#x2F;em&gt; implementation that interacts with 3rd party services and such.&lt;&#x2F;p&gt;
+&lt;p&gt;This has the potential to provide more robust code, that can be tested easily, and which is a better fit to the business requirements. Also, replacing implementations (say, you change your sms provider) has minimal impact in the codebase as you only modify the interpreter, nothing else. Wether you do &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Domain-driven_design&quot;&gt;DDD&lt;&#x2F;a&gt; or not, all this must sound &lt;em&gt;very appealing&lt;&#x2F;em&gt; ;)&lt;&#x2F;p&gt;
+&lt;p&gt;In addition, implementations of Free Monad (both in Cats and Scalaz) provide other benefits, for example the use of Trampolining for stack-safe recursion.&lt;&#x2F;p&gt;
+&lt;p&gt;A bit like with &lt;a href=&quot;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;typeclasses&#x2F;monad.html&quot;&gt;Monad&lt;&#x2F;a&gt;, a &lt;a href=&quot;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;datatypes&#x2F;freemonad.html&quot;&gt;Free Monad&lt;&#x2F;a&gt; is a relatively simple concept behind a scary name. Easier than it seems, and very useful. Either that, or I&#x27;ve understood nothing and need to go back to the study desk ;)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-business-case&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#a-business-case&quot; aria-label=&quot;Anchor link for: a-business-case&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+A business case&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;ll start with a very simplistic business case. We want to implement an application to buy and sell stocks. Our standard approach may generate code similar to:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;object Orders {
+	type Symbol = String
+	type Response = String
+	def buy(stock: Symbol, amount: Int): Response = ???
+	def sell(stock: Symbol, amount: Int): Response = ???
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;But we have heard about this new thing called &lt;code&gt;Free Monad&lt;&#x2F;code&gt; and we want to use it. We start by creating a DSL, a business language, that describes our actions. For example, we convert&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;  def buy(stock: Symbol, amount: Int): Response
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;into&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;  case class Buy(stock: Symbol, amount: Int) extends Orders[Response]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;You can see there is an equivalence in meaning between the two forms: case class parameters and method parameters, return value and type parameter in our case class (specifically in &lt;code&gt;Orders[Response]&lt;&#x2F;code&gt;). We are converting our methods into a language, but one that has no implementation associated.&lt;&#x2F;p&gt;
+&lt;p&gt;If we do this with both methods, we get:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;  sealed trait Orders[A]
+  case class Buy(stock: Symbol, amount: Int) extends Orders[Response]
+  case class Sell(stock: Symbol, amount: Int) extends Orders[Response]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Please take a moment to see and understand the parallelisms between the above implementation, using case classes, and our original methods. Note that the parent trait &lt;code&gt;Orders&lt;&#x2F;code&gt; is similar to a &lt;code&gt;Functor&lt;&#x2F;code&gt; (a structure with a hole); this is a requirement of &lt;code&gt;Free&lt;&#x2F;code&gt;, all the languages you define &lt;em&gt;must&lt;&#x2F;em&gt; follow a similar structure.&lt;&#x2F;p&gt;
+&lt;p&gt;So, what do we have at this point? We have a language that defines buying or selling a stock. But it has no logic associated, and creating an instance does nothing (besides instantiating the case class). Furthermore, we can&#x27;t try to compile something like:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;  for {
+	r &amp;lt;- Buy(&amp;quot;FB&amp;quot;, 100)
+  } yield r
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;as it won&#x27;t work. We need to turn this into a Monad, somehow.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;lifting-to-free&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#lifting-to-free&quot; aria-label=&quot;Anchor link for: lifting-to-free&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Lifting to Free&lt;&#x2F;h2&gt;
+&lt;p&gt;To be able to use the language in our programs, we want to convert it into something we can run. For example, a Monad. That&#x27;s the task of a Free Monad, and Cats provides a very easy way to do that:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;  import cats.free.Free
+
+  type OrdersF[A] = Free[Orders, A]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have defined a new type, a &lt;code&gt;Free&lt;&#x2F;code&gt; Monad on &lt;code&gt;Orders&lt;&#x2F;code&gt; and a parameter &lt;code&gt;A&lt;&#x2F;code&gt;. But that&#x27;s not enough, we need to map our case classes to instances of &lt;code&gt;Free&lt;&#x2F;code&gt;. Thankfully &lt;code&gt;Free&lt;&#x2F;code&gt; itself makes this step easy:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;  import cats.free.Free._
+
+  def buy(stock: Symbol, amount: Int): OrdersF[Response] = liftF[Orders, Response](Buy(stock, amount))
+  def sell(stock: Symbol, amount: Int): OrdersF[Response] = liftF[Orders, Response](Sell(stock, amount))
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Notice that the return types of the methods, &lt;code&gt;OrdersF[Response]&lt;&#x2F;code&gt;, match the Free Monad (as defined above). Also, the type parameter returned, &lt;code&gt;Response&lt;&#x2F;code&gt;, matches the parameter in the &lt;code&gt;extends&lt;&#x2F;code&gt; portion of our case class definition, which we mapped to work akin to &lt;em&gt;return type&lt;&#x2F;em&gt; when converting from methods to case classes.&lt;&#x2F;p&gt;
+&lt;p&gt;Now we can use these support methods, &lt;code&gt;buy&lt;&#x2F;code&gt; and &lt;code&gt;sell&lt;&#x2F;code&gt;, to obtain our monads. And it works:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;  val flatMapThat = buy(&amp;quot;APPL&amp;quot;, 100).flatMap(rsp =&amp;gt; sell(&amp;quot;GOOG&amp;quot;, 100))
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The code above builds and returns a &lt;code&gt;Free&lt;&#x2F;code&gt; structure. This means that we can use the monads to define some business logic. For example, we can define a smart algorithm to buy and sell shares:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;val smartTrade: OrdersF[Response] = for {
+    _ &amp;lt;- buy(&amp;quot;APPL&amp;quot;, 50)
+    _ &amp;lt;- buy(&amp;quot;MSFT&amp;quot;, 10)
+    rsp &amp;lt;- sell(&amp;quot;GOOG&amp;quot;, 200)
+  } yield rsp
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We are using a for-comprehension to chain a series of actions. &lt;code&gt;buy&lt;&#x2F;code&gt; and &lt;code&gt;sell&lt;&#x2F;code&gt; are used to obtain the monads that define the steps of the algorithm. As you can see, the return type is &lt;code&gt;OrdersF[Response]&lt;&#x2F;code&gt; as expected by the logic, which yields the result of calling &lt;code&gt;sell&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;At this point we have built a language for our business case, along algorithms that use that language. But this code still does nothing else than defining the steps, we have no way to obtain a result from it. We need a way to execute, or interpret, our language.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;our-first-interpreter&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#our-first-interpreter&quot; aria-label=&quot;Anchor link for: our-first-interpreter&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Our first interpreter&lt;&#x2F;h2&gt;
+&lt;p&gt;An interpreter is something that will read our program and do something with it. Technically, an interpreter is a &lt;code&gt;natural transformation&lt;&#x2F;code&gt;, but as I said at the start I don&#x27;t want to focus on the theory right now. The key thing to know is that an interpreter requires a monad as the end-part of the transformation. This means you can use an interpreter to obtain &lt;code&gt;Option&lt;&#x2F;code&gt;, &lt;code&gt;Xor&lt;&#x2F;code&gt;, or some other monad, but not to obtain anything that is not a monad.&lt;&#x2F;p&gt;
+&lt;p&gt;As usual an example is better than a thousand words, so let&#x27;s use the simplest monad, &lt;code&gt;Id&lt;&#x2F;code&gt;, to build an interpreter:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;import cats.{Id, ~&amp;gt;}
+
+def orderPrinter: Orders ~&amp;gt; Id =
+    new (Orders ~&amp;gt; Id) {
+      def apply[A](fa: Orders[A]): Id[A] = fa match {
+        case Buy(stock, amount) =&amp;gt;
+          println(s&amp;quot;Buying $amount of $stock&amp;quot;)
+          &amp;quot;ok&amp;quot;
+        case Sell(stock, amount) =&amp;gt;
+          println(s&amp;quot;Selling $amount of $stock&amp;quot;)
+          &amp;quot;ok&amp;quot;
+      }
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This squiggly sign &lt;code&gt;~&amp;gt;&lt;&#x2F;code&gt; is the syntax sugar for &lt;code&gt;natural transformation&lt;&#x2F;code&gt;. Note that in the interpreter we do a pattern match over each member of our language. As &lt;code&gt;Buy&lt;&#x2F;code&gt; is of type &lt;code&gt;Order[Response]&lt;&#x2F;code&gt; (equivalent to &lt;code&gt;Order[String]&lt;&#x2F;code&gt; in this scenario), the method signature forces us to return a result of &lt;code&gt;Id[String]&lt;&#x2F;code&gt;. The same for &lt;code&gt;Sell&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;As you can see, we are also executing some &lt;code&gt;println&lt;&#x2F;code&gt; statements before returning the result. The only restriction given by the signature is the return type, we can have side effects in our code (as we do in this case). Obviously this is not advisable, but it can be useful when we create interpreters for testing purposes.&lt;&#x2F;p&gt;
+&lt;p&gt;We have our interpreter, which means that we have all the pieces we need to execute the program. We can do this via the &lt;code&gt;foldMap&lt;&#x2F;code&gt; operation:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt; smartTrade.foldMap(orderPrinter)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and we will see the result of the &lt;code&gt;println&lt;&#x2F;code&gt; operations in our terminal:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Buying 50 of APPL
+Buying 10 of MSFT
+Selling 200 of GOOG
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;It&#x27;s working! We have built our first Free Monad, and it works. Take your time to understand what we have done, and remember the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;free-monad-sample&quot;&gt;code&lt;&#x2F;a&gt; is available to download.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;xor-interpreters&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#xor-interpreters&quot; aria-label=&quot;Anchor link for: xor-interpreters&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Xor Interpreters&lt;&#x2F;h2&gt;
+&lt;p&gt;We have built our first interpreter, but let&#x27;s be honest: &lt;code&gt;Id&lt;&#x2F;code&gt; is not so useful, and we want to avoid side-effects in our code. If we aim to do something akin to &lt;a href=&quot;http:&#x2F;&#x2F;fsharpforfunandprofit.com&#x2F;posts&#x2F;recipe-part2&#x2F;&quot;&gt;railway oriented programming&lt;&#x2F;a&gt; we may want to use &lt;code&gt;Xor&lt;&#x2F;code&gt; instead.&lt;&#x2F;p&gt;
+&lt;p&gt;But this reveals a slight issue: the natural transformation expects a monad with shape &lt;code&gt;G[_]&lt;&#x2F;code&gt;, and &lt;code&gt;Xor&lt;&#x2F;code&gt; is &lt;code&gt;Xor[+A, +B]&lt;&#x2F;code&gt;. There is a mismatch in the number of &lt;em&gt;holes&lt;&#x2F;em&gt;. Thankfully we can fix that with a small trick, by fixing the type of the left side of &lt;code&gt;Xor&lt;&#x2F;code&gt;, like:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;type ErrorOr[A] = Xor[String, A]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This creates a new monadic type with a single type parameter, which fits the requirements of natural transformation. You may want to use an ADT instead of &lt;code&gt;String&lt;&#x2F;code&gt; on the left side, to make it more flexible. In any case, we can now construct a new interpreter:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;import cats.syntax.xor._
+import cats.data.Xor
+
+def xorInterpreter: Orders ~&amp;gt; ErrorOr =
+ new (Orders ~&amp;gt; ErrorOr) {
+   def apply[A](fa: Orders[A]): ErrorOr[A] =
+     fa match {
+       case Buy(stock, amount) =&amp;gt;
+         s&amp;quot;$stock - $amount&amp;quot;.right
+       case Sell(stock, amount) =&amp;gt;
+         &amp;quot;Why are you selling that?&amp;quot;.left
+     }
+ }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and if we execute it&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt; smartTrade.foldMap(xorInterpreter)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;we will see that the result is a left:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Left(Why are you selling that?)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Which brings us to a very important point: you are using your interpreter in a for-comprehension (usually). If you return a monadic value that would usually shortcut the process, like &lt;code&gt;Xor.Left&lt;&#x2F;code&gt; or &lt;code&gt;Nil&lt;&#x2F;code&gt; or &lt;code&gt;None&lt;&#x2F;code&gt;, the remainder of the program won&#x27;t we executed.
+This may be what you want, but be aware of this behaviour. For a relevant example, if we had a case class extending &lt;code&gt;Orders[Unit]&lt;&#x2F;code&gt; and a natural transformation to &lt;code&gt;Option&lt;&#x2F;code&gt;, we may want to return &lt;code&gt;Some(())&lt;&#x2F;code&gt; instead of &lt;code&gt;None&lt;&#x2F;code&gt; to avoid this behaviour.&lt;&#x2F;p&gt;
+&lt;p&gt;Ok, so we have built another interpreter, and it works. But our language is still very simple, let&#x27;s make it a bit more useful.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;extending-the-language&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#extending-the-language&quot; aria-label=&quot;Anchor link for: extending-the-language&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Extending the language&lt;&#x2F;h2&gt;
+&lt;p&gt;We want smart algorithms, and hardcoding the stocks to buy won&#x27;t help. We are aiming to build programs similar to:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt; val smartTradeWithList: Free[Orders, String] = for {
+    st &amp;lt;- listStocks()
+    _ &amp;lt;- buy(st, 100)
+    rsp &amp;lt;- sell(&amp;quot;GOOG&amp;quot;, 100)
+  } yield rsp
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So we can start by defining a new case class and lifting it to a Free Monad instance:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;case class ListStocks() extends Orders[List[Symbol]]
+
+def listStocks(): OrdersF[List[Symbol]] =
+  liftF[Orders, List[Symbol]](ListStocks())
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you execute the program above (&lt;code&gt;smartTradeWithList&lt;&#x2F;code&gt;) you will see it doesn&#x27;t compile. The reason is that &lt;code&gt;buy&lt;&#x2F;code&gt; expects a single &lt;code&gt;Symbol&lt;&#x2F;code&gt;, but &lt;code&gt;st&lt;&#x2F;code&gt; is &lt;code&gt;List[Symbol]&lt;&#x2F;code&gt;. Ah, but of course! We are flatmapping over &lt;code&gt;OrdersF[A]&lt;&#x2F;code&gt; and, as expected, the left side of the for-comprehension binds to the &lt;code&gt;A&lt;&#x2F;code&gt; value. In our case, as &lt;code&gt;listStocks&lt;&#x2F;code&gt; returns &lt;code&gt;OrdersF[List[Symbol]]&lt;&#x2F;code&gt; then &lt;code&gt;st&lt;&#x2F;code&gt; will be &lt;code&gt;List[Symbol]&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;So what now? If we couldn&#x27;t work around this restriction, the utility of Free Monads would be very limited, as this is a common use case. Luckily, the &lt;a href=&quot;http:&#x2F;&#x2F;eed3si9n.com&#x2F;herding-cats&#x2F;Traverse.html&quot;&gt;Traverse&lt;&#x2F;a&gt; typeclass solves exactly this kind of issue. We can rewrite our program as:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;import cats.std.list._
+import cats.syntax.traverse._
+
+val smartTradeWithList: Free[Orders, String] = for {
+    st &amp;lt;- listStocks()
+    _ &amp;lt;- st.traverseU(buy(_, 100))
+    rsp &amp;lt;- sell(&amp;quot;GOOG&amp;quot;, 100)
+  } yield rsp
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and, with slightly more verbose code, it will compile. We could always hide the extra verbosity behind a helper method, if we want. We must also update our &lt;code&gt;orderPrinter&lt;&#x2F;code&gt; to tackle the new &lt;code&gt;ListStocks&lt;&#x2F;code&gt; case:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt; def orderPrinter: Orders ~&amp;gt; Id =
+    new (Orders ~&amp;gt; Id) {
+      def apply[A](fa: Orders[A]): Id[A] =
+	  fa match {
+        case ListStocks() =&amp;gt;
+          println(s&amp;quot;Getting list of stocks: FB, TWTR&amp;quot;)
+          List(&amp;quot;FB&amp;quot;, &amp;quot;TWTR&amp;quot;)
+        case Buy(stock, amount) =&amp;gt;
+          println(s&amp;quot;Buying $amount of $stock&amp;quot;)
+          &amp;quot;ok&amp;quot;
+        case Sell(stock, amount) =&amp;gt;
+          println(s&amp;quot;Selling $amount of $stock&amp;quot;)
+          &amp;quot;ok&amp;quot;
+      }
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And now we can execute the new program:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;smartTradeWithList.foldMap(orderPrinter)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;to see the expected output:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Getting list of stocks: FB, TWTR
+Buying 100 of FB
+Buying 100 of TWTR
+Selling 100 of GOOG
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The language works. We can now build our smart programs and release into production to, hopefully, earn us a lot of money. Well, almost. The programs work, but if someone makes a mistake, how will we know? We might want to add some logging, but we don&#x27;t want to use side effects. How to do it?&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;adding-logs&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#adding-logs&quot; aria-label=&quot;Anchor link for: adding-logs&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Adding Logs&lt;&#x2F;h2&gt;
+&lt;p&gt;Logging is a language in itself. We want to embed log messages in the application, but how to manage them is another matter: we may want to ignore them on testing, to send them to a log file, or even to several destination. As such, using a Free Monad for logs makes sense. So let&#x27;s define the language and create the associated Free Monad:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;sealed trait Log[A]
+
+case class Info(msg: String) extends Log[Unit]
+
+case class Error(msg: String) extends Log[Unit]
+
+type LogF[A] = Free[Log, A]
+
+def info(msg: String): LogF[Unit] =
+  liftF[Log, Unit](Info(msg))
+
+def error(msg: String): LogF[Unit] =
+  liftF[Log, Unit](Error(msg))
+
+def logPrinter: Log ~&amp;gt; Id =
+  new (Log ~&amp;gt; Id) {
+    def apply[A](fa: Log[A]): Id[A] =
+	  fa match {
+        case Info(msg) =&amp;gt;
+		  println(s&amp;quot;[Info] - $msg&amp;quot;)
+        case Error(msg) =&amp;gt;
+		  println(s&amp;quot;[Error] - $msg&amp;quot;)
+      }
+  }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We have seen this before, nothing new here. We can now log &lt;code&gt;info&lt;&#x2F;code&gt; and &lt;code&gt;error&lt;&#x2F;code&gt; messages and we have an interpreter to &lt;code&gt;Id&lt;&#x2F;code&gt; that will send some output to the terminal. Let&#x27;s add some logging to our program, then:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;val smartTradeWithLogs = for {
+    _ &amp;lt;- info(&amp;quot;I&amp;#x27;m going to trade smartly&amp;quot;)
+    _ &amp;lt;- buy(&amp;quot;APPL&amp;quot;, 100)
+    _ &amp;lt;- info(&amp;quot;I&amp;#x27;m going to trade even more smartly&amp;quot;)
+    _ &amp;lt;- buy(&amp;quot;MSFT&amp;quot;, 100)
+    rsp &amp;lt;- sell(&amp;quot;GOOG&amp;quot;, 100)
+    _ &amp;lt;- error(&amp;quot;Wait, what?!&amp;quot;)
+  } yield rsp
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and, no, this doesn&#x27;t compile. The reason is clear once you look at the signature of &lt;code&gt;flatMap&lt;&#x2F;code&gt;, &lt;code&gt;flatMap[A,B](a: F[A])(f: A =&amp;gt; F[B]): F[B]&lt;&#x2F;code&gt;. The initial and final monad must be the same when using &lt;code&gt;flatMap&lt;&#x2F;code&gt;, but in here we are mixing &lt;code&gt;OrdersF&lt;&#x2F;code&gt; and &lt;code&gt;LogF&lt;&#x2F;code&gt; monads in the same for-comprehension. So it won&#x27;t compile.&lt;&#x2F;p&gt;
+&lt;p&gt;The solution, in Cats, is to use an alternative way to lift our case classes to Monads. Instead of using the &lt;code&gt;liftF&lt;&#x2F;code&gt; method from &lt;code&gt;Free&lt;&#x2F;code&gt; we will use a slightly more complex structure that will help us later to mix both Monads. Let&#x27;s start with an example:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;import cats.free.{Free, Inject}
+
+class OrderI[F[_]](implicit I: Inject[Orders, F]) {
+  def buyI(stock: Symbol, amount: Int): Free[F, Response] = Free.inject[Orders, F](Buy(stock, amount))
+
+  def sellI(stock: Symbol, amount: Int): Free[F, Response] = Free.inject[Orders, F](Sell(stock, amount))
+}
+
+&amp;#x2F;&amp;#x2F; We need this implicit
+implicit def orderI[F[_]](implicit I: Inject[Orders, F]): OrderI[F] = new OrderI[F]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see we create a class &lt;code&gt;OrderI&lt;&#x2F;code&gt; that contains two methods which will lift our case classes into monads, by using &lt;code&gt;Free.inject&lt;&#x2F;code&gt;. The key part here is the implicit &lt;code&gt;Inject[Orders, F]&lt;&#x2F;code&gt; which, on compilation, will resolve to a type that binds everything together. The implicit method &lt;code&gt;orderI&lt;&#x2F;code&gt; is there to facilitate using this construct in our program, as we will see later on.&lt;&#x2F;p&gt;
+&lt;p&gt;Take this as a template to follow, a bit of boilerplate to lift case classes into monads, no need to understand all the details right now. Note that we can use both &lt;code&gt;liftF&lt;&#x2F;code&gt; and this &lt;em&gt;new&lt;&#x2F;em&gt; way to lift our case classes into monads, they are not exclusive nor incompatible.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s do the same for our new language &lt;code&gt;Log&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;import cats.free.{Free, Inject}
+
+class LogI[F[_]](implicit I: Inject[Log, F]) {
+  def infoI(msg: String): Free[F, Unit] =
+    Free.inject[Log, F](Info(msg))
+
+  def errorI(msg: String): Free[F, Unit] =
+    Free.inject[Log, F](Error(msg))
+}
+
+implicit def logI[F[_]](implicit I: Inject[Log, F]): LogI[F] = new LogI[F]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now that we have a way to lift both languages into monads, we need a way to use both in a for-comprehension. The solution here is given by &lt;code&gt;Coproduct&lt;&#x2F;code&gt; (explanation on this typeclass outside of the scope, sorry!) which will allow us to wire both types together.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;import cats.data.Coproduct
+
+type TradeApp[A] = Coproduct[Orders, Log, A]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With this we can now define our program, again:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def smartTradeWithLogs(implicit O: OrderI[TradeApp],
+                                L: LogI[TradeApp]): Free[TradeApp, Response] = {
+  import L._
+  import O._
+
+  &amp;#x2F;&amp;#x2F; Look, ma, both monads at once!
+  for {
+    _ &amp;lt;- infoI(&amp;quot;I&amp;#x27;m going to trade smartly&amp;quot;)
+    _ &amp;lt;- buyI(&amp;quot;APPL&amp;quot;, 100)
+    _ &amp;lt;- infoI(&amp;quot;I&amp;#x27;m going to trade even more smartly&amp;quot;)
+    _ &amp;lt;- buyI(&amp;quot;MSFT&amp;quot;, 100)
+    rsp &amp;lt;- sellI(&amp;quot;GOOG&amp;quot;, 100)
+    _ &amp;lt;- errorI(&amp;quot;Wait, what?!&amp;quot;)
+  } yield rsp
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This compiles. We are using the implicit methods defined before to create instances of &lt;code&gt;OrderI&lt;&#x2F;code&gt; and &lt;code&gt;LogI&lt;&#x2F;code&gt;. By receiving our &lt;code&gt;Coproduct&lt;&#x2F;code&gt; as the type parameter, their implicit &lt;code&gt;Inject&lt;&#x2F;code&gt; will help us build a compatibility layer between both monads. You can check the source code of &lt;code&gt;Inject&lt;&#x2F;code&gt; to understand how this works.&lt;&#x2F;p&gt;
+&lt;p&gt;We have our program, with both behaviour and logs in it. Now we want to execute it. Unfortunately, the interpreters we defined before can&#x27;t be used as they are, we need an interpreter for the new &lt;code&gt;TradeApp&lt;&#x2F;code&gt; type. The good news are that this new interpreter can be built on top of the existing ones:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def composedInterpreter: TradeApp ~&amp;gt; Id = orderPrinter or logPrinter
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This interpreter is defining a natural transformation from &lt;code&gt;TradeApp&lt;&#x2F;code&gt; (a monad) to &lt;code&gt;Id&lt;&#x2F;code&gt; (another monad). As &lt;code&gt;TradeApp&lt;&#x2F;code&gt; is a &lt;code&gt;Coproduct&lt;&#x2F;code&gt;, and we already have interpreters from each of its elements to &lt;code&gt;Id&lt;&#x2F;code&gt;, we can take advantage of the &lt;code&gt;or&lt;&#x2F;code&gt; method in a natural transformation and delegate the task to our existing interpreters. Reuse is always good :)&lt;&#x2F;p&gt;
+&lt;p&gt;We can run this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;smartTradeWithLogs.foldMap(composedInterpreter)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and we will see the output in our terminal, including the logs:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;[Info] - I&amp;#x27;m going to trade smartly
+Buying 100 of APPL
+[Info] - I&amp;#x27;m going to trade even more smartly
+Buying 100 of MSFT
+Selling 100 of GOOG
+[Error] - Wait, what?!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;There you have it. Two full languages working together to define a program, that we can later on run with a specific interpreter. Isn&#x27;t it neat? Although the code seems more verbose that with the original example, remember that we are defining all these elements (implicit classes and interpreters) just once, and they will work with all our programs using these languages. Not a bad trade-off.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-s-better-than-2-languages&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#what-s-better-than-2-languages&quot; aria-label=&quot;Anchor link for: what-s-better-than-2-languages&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+What&#x27;s better than 2 languages?&lt;&#x2F;h2&gt;
+&lt;p&gt;So we can build programs with two languages, but... what if we want three? We are managing money and shares, so besides logs we may be required to add auditing to the application. How easy is that? Let&#x27;s start by defining a third language, &lt;code&gt;Audit&lt;&#x2F;code&gt;, as we just did with the other two:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;sealed trait Audit[A]
+
+case class UserActionAudit(user: UserId, action: String, values: List[Values]) extends Audit[Unit]
+
+case class SystemActionAudit(job: JobId, action: String, values: List[Values]) extends Audit[Unit]
+
+class AuditI[F[_]](implicit I: Inject[Audit, F]) {
+  def userAction(user: UserId, action: String, values: List[Values]): Free[F, Unit] =
+    Free.inject[Audit, F](UserActionAudit(user, action, values))
+
+  def systemAction(job: JobId, action: String, values: List[Values]): Free[F, Unit] =
+    Free.inject[Audit, F](SystemActionAudit(job, action, values))
+}
+
+implicit def auditI[F[_]](implicit I: Inject[Audit, F]): AuditI[F] = new AuditI[F]
+
+def auditPrinter: Audit ~&amp;gt; Id =
+  new (Audit ~&amp;gt; Id) {
+    def apply[A](fa: Audit[A]): Id[A] =
+	  fa match {
+        case UserActionAudit(user, action, values) =&amp;gt;
+		  println(s&amp;quot;[USER Action] - user $user called $action with values $values&amp;quot;)
+        case SystemActionAudit(job, action, values) =&amp;gt;
+		  println(s&amp;quot;[SYSTEM Action] - $job called $action with values $values&amp;quot;)
+      }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Again, you have seen all this before. We have a language, we lift the case classes to Free Monad and we create an interpreter to &lt;code&gt;Id&lt;&#x2F;code&gt;. Easy. The complex part comes when we want to define our &lt;code&gt;Coproduct&lt;&#x2F;code&gt; and the typeclass is declared as &lt;code&gt;Coproduct[F[_], G[_], A]&lt;&#x2F;code&gt;, which means we have room for only two monads, &lt;code&gt;F&lt;&#x2F;code&gt; and &lt;code&gt;G&lt;&#x2F;code&gt;. But we need 3. Ouch!&lt;&#x2F;p&gt;
+&lt;p&gt;But, wait! In the previous section we defined the &lt;code&gt;TradeApp&lt;&#x2F;code&gt; coproduct. Which is a coproduct, yes, but also behaves like our Free Monads, so we can consider it a Monad (I&#x27;m not sure if it is technically correct to call it a Monad, but let&#x27;s ignore that by now). This means, in fact, we have only two monads: &lt;code&gt;Audit&lt;&#x2F;code&gt; and &lt;code&gt;TradeApp&lt;&#x2F;code&gt;. So we can build the &lt;code&gt;Coproduct&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;type AuditableTradeApp[A] = Coproduct[Audit, TradeApp, A]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;A note of interest: due to the way &lt;code&gt;Inject&lt;&#x2F;code&gt; is implemented, our &lt;code&gt;TradeApp&lt;&#x2F;code&gt; class needs to be on the right hand side, otherwise this code won&#x27;t compile.&lt;&#x2F;p&gt;
+&lt;p&gt;We have the type, what about the interpreter? Yes, we can reuse our existing ones, this has not changed:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def auditableInterpreter: AuditableTradeApp ~&amp;gt; Id = auditPrinter or composedInterpreter
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Notice that in the interpreter the order also matters, due to the implementation details of &lt;code&gt;or&lt;&#x2F;code&gt;. But, at this point, we have all the pieces we need and we can build our program:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def smartTradeWithAuditsAndLogs(implicit O: OrderI[AuditableTradeApp],
+                                         L: LogI[AuditableTradeApp],
+										 A: AuditI[AuditableTradeApp]
+							    ): Free[AuditableTradeApp, Response] = {
+  import A._
+  import L._
+  import O._
+
+  for {
+    _ &amp;lt;- infoI(&amp;quot;I&amp;#x27;m going to trade smartly&amp;quot;)
+    _ &amp;lt;- userAction(&amp;quot;ID102&amp;quot;, &amp;quot;buy&amp;quot;, List(&amp;quot;APPL&amp;quot;, &amp;quot;100&amp;quot;))
+    _ &amp;lt;- buyI(&amp;quot;APPL&amp;quot;, 200)
+    _ &amp;lt;- infoI(&amp;quot;I&amp;#x27;m going to trade even more smartly&amp;quot;)
+    _ &amp;lt;- userAction(&amp;quot;ID102&amp;quot;, &amp;quot;buy&amp;quot;, List(&amp;quot;MSFT&amp;quot;, &amp;quot;100&amp;quot;))
+    _ &amp;lt;- buyI(&amp;quot;MSFT&amp;quot;, 100)
+    _ &amp;lt;- userAction(&amp;quot;ID102&amp;quot;, &amp;quot;sell&amp;quot;, List(&amp;quot;GOOG&amp;quot;, &amp;quot;100&amp;quot;))
+    rsp &amp;lt;- sellI(&amp;quot;GOOG&amp;quot;, 300)
+    _ &amp;lt;- systemAction(&amp;quot;BACKOFFICE&amp;quot;, &amp;quot;tradesCheck&amp;quot;, List(&amp;quot;ID102&amp;quot;, &amp;quot;lastTrades&amp;quot;))
+    _ &amp;lt;- errorI(&amp;quot;Wait, what?!&amp;quot;)
+  } yield rsp
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and on execution&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;smartTradeWithAuditsAndLogs.foldMap(auditableInterpreter)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;we see&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;[Info] - I&amp;#x27;m going to trade smartly
+[USER Action] - user ID102 called buy with values List(APPL, 100)
+Buying 200 of APPL
+[Info] - I&amp;#x27;m going to trade even more smartly
+[USER Action] - user ID102 called buy with values List(MSFT, 100)
+Buying 100 of MSFT
+[USER Action] - user ID102 called sell with values List(GOOG, 100)
+Selling 300 of GOOG
+[SYSTEM Action] - BACKOFFICE called tradesCheck with values List(ID102, lastTrades)
+[Error] - Wait, what?!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We did it. We have three languages working together in our program. And the only additional definitions are a couple of &lt;code&gt;Coproduct&lt;&#x2F;code&gt; types as well as interpreters, which are built reusing existing interpreters for our types. Not a lot of work for the benefits we get, if I can say so.&lt;&#x2F;p&gt;
+&lt;p&gt;At this stage we could try to add more languages, but we see the pattern on how it would work. So let&#x27;s try something different.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;free-monads-all-the-way-down&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#free-monads-all-the-way-down&quot; aria-label=&quot;Anchor link for: free-monads-all-the-way-down&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Free Monads all the way down&lt;&#x2F;h2&gt;
+&lt;p&gt;Our original &lt;code&gt;Orders&lt;&#x2F;code&gt; language didn&#x27;t specify how would we send an order to someone. We could code that into an interpreter, true. But we can safely assume that Orders will be propagated via either HTTP requests or Messages to some system. Given the recent popularity of event-sourcing and Kafka, let&#x27;s say some publish-subscribe system. It would be wasteful to redefine the details to interact with that system in each interpreter that needed so.&lt;&#x2F;p&gt;
+&lt;p&gt;In fact, we can think that a language exists to interact with that system, so we should be able to define a Free Monad to work with that language. Let&#x27;s do so:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;sealed trait Messaging[A]
+case class Publish(channelId: ChannelId, source: SourceId, messageId: MessageId, payload: Payload) extends Messaging[Response]
+case class Subscribe(channelId: ChannelId, filterBy: Condition) extends Messaging[Payload]
+
+type MessagingF[A] = Free[Messaging, A]
+
+def publish(channelId: ChannelId, source: SourceId, messageId: MessageId, payload: Payload): MessagingF[Response] =
+  liftF[Messaging, Response](Publish(channelId, source, messageId, payload))
+
+def subscribe(channelId: ChannelId, filterBy: Condition): MessagingF[Payload] =
+  liftF[Messaging, Payload](Subscribe(channelId, filterBy))
+
+def messagingPrinter: Messaging ~&amp;gt; Id =
+  new (Messaging ~&amp;gt; Id) {
+    def apply[A](fa: Messaging[A]): Id[A] =
+	  fa match {
+        case Publish(channelId, source, messageId, payload) =&amp;gt;
+          println(s&amp;quot;Publish [$channelId] From: [$source] Id: [$messageId] Payload: [$payload]&amp;quot;)
+          &amp;quot;ok&amp;quot;
+        case Subscribe(channelId, filterBy) =&amp;gt;
+          val payload = &amp;quot;Event fired&amp;quot;
+          println(s&amp;quot;Received message from [$channelId](filter: [$filterBy]): [$payload]&amp;quot;)
+          payload
+      }
+   }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Nothing new here either, we defined another language, this time using &lt;code&gt;liftF&lt;&#x2F;code&gt;, along an interpreter to &lt;code&gt;Id&lt;&#x2F;code&gt; to print messages to the terminal. By now, you should be able to do this with your eyes closed ;)&lt;&#x2F;p&gt;
+&lt;p&gt;We have the language. How to make &lt;code&gt;Orders&lt;&#x2F;code&gt; work with this language, such that we can define our orders in terms of operations against a publish-subscribe network? The answer is natural transformation. If you remember, a natural transformation allows us to convert our original language to a new monad. And &lt;code&gt;MessagingF&lt;&#x2F;code&gt; is a monad, a free one. Which means we can do the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def orderToMessageInterpreter: Orders ~&amp;gt; MessagingF =
+  new (Orders ~&amp;gt; MessagingF) {
+    def apply[A](fa: Orders[A]): MessagingF[A] = {
+      fa match {
+        case ListStocks() =&amp;gt;
+          for {
+            _ &amp;lt;- publish(&amp;quot;001&amp;quot;, &amp;quot;Orders&amp;quot;, UUID.randomUUID().toString, &amp;quot;Get Stocks List&amp;quot;)
+            payload &amp;lt;- subscribe(&amp;quot;001&amp;quot;, &amp;quot;*&amp;quot;)
+          } yield List(payload)
+        case Buy(stock, amount) =&amp;gt;
+          publish(&amp;quot;001&amp;quot;, &amp;quot;Orders&amp;quot;, UUID.randomUUID().toString, s&amp;quot;Buy $stock $amount&amp;quot;)
+        case Sell(stock, amount) =&amp;gt;
+          publish(&amp;quot;001&amp;quot;, &amp;quot;Orders&amp;quot;, UUID.randomUUID().toString, s&amp;quot;Sell $stock $amount&amp;quot;)
+      }
+    }
+  }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This compiles (and works, as we will see later). And yes, you can use a for-comprehension inside the interpreter, as we do in our &lt;code&gt;ListStocks&lt;&#x2F;code&gt; case. This specific transformation is simpler due to the fact that &lt;code&gt;publish&lt;&#x2F;code&gt;, &lt;code&gt;buy&lt;&#x2F;code&gt; and &lt;code&gt;sell&lt;&#x2F;code&gt; have the same response type &lt;code&gt;Response&lt;&#x2F;code&gt;, but as you can see adapting the results wouldn&#x27;t be a problem, if required.&lt;&#x2F;p&gt;
+&lt;p&gt;That was easy, wasn&#x27;t it? So what about our interpreter? How do we bridge from &lt;code&gt;Orders&lt;&#x2F;code&gt; to &lt;code&gt;Id&lt;&#x2F;code&gt; while using &lt;code&gt;MessagingF&lt;&#x2F;code&gt;? For this case we need to build a small bridge between interpreters. Let me show you what I mean:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def messagingFreePrinter: MessagingF ~&amp;gt; Id =
+  new (MessagingF ~&amp;gt; Id) {
+    def apply[A](fa: MessagingF[A]): Id[A] =
+	  fa.foldMap(messagingPrinter)
+  }
+
+def ordersToTerminalViaMessage: Orders ~&amp;gt; Id =
+  orderToMessageInterpreter andThen messagingFreePrinter
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We can chain natural transformations via their &lt;code&gt;andThen&lt;&#x2F;code&gt; method. In this case, though, we have a small mismatch of parameters: &lt;code&gt;orderToMessageInterpreter&lt;&#x2F;code&gt; returns a &lt;code&gt;MessagingF&lt;&#x2F;code&gt; but &lt;code&gt;messagingPrinter&lt;&#x2F;code&gt; expects &lt;code&gt;Messaging&lt;&#x2F;code&gt;. The solution is to create a new interpreter from &lt;code&gt;MessagingF&lt;&#x2F;code&gt; to &lt;code&gt;Id&lt;&#x2F;code&gt;. The good news is that this interpreter can reuse our existing &lt;code&gt;messagingPrinter&lt;&#x2F;code&gt; via &lt;code&gt;foldMap&lt;&#x2F;code&gt;, which means this bridge is not adding risk (as in new logic) to our application.&lt;&#x2F;p&gt;
+&lt;p&gt;If we use all this together to run our original program, without logging nor auditing:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;smartTrade.foldMap(ordersToTerminalViaMessage)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;we see&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;Publish [001] From: [Orders] Id: [c7f22b1e-b688-4f61-82cb-39b421b8ab6c] Payload: [Buy APPL 50]
+Publish [001] From: [Orders] Id: [94bbf71d-1c95-4c26-97a3-ce0b970893aa] Payload: [Buy MSFT 10]
+Publish [001] From: [Orders] Id: [27311809-97f9-4e04-b813-7a2cf9743415] Payload: [Sell GOOG 200]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;So now we are running our orders via another Free Monad that represents a lower-level layer in the stack. This means we can compose this new monad with other languages, as needed. This has the benefit that improvements to the interpreters of this new &lt;code&gt;Messaging&lt;&#x2F;code&gt; language will be automatically propagated to any program indirectly using it, as well as reducing the amount of code that needs to be tested thanks to reuse.&lt;&#x2F;p&gt;
+&lt;p&gt;We have one last task left: use this new &lt;code&gt;Messaging&lt;&#x2F;code&gt; language with our program that has logs and audit commands.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;all-together&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#all-together&quot; aria-label=&quot;Anchor link for: all-together&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+All together&lt;&#x2F;h2&gt;
+&lt;p&gt;The last step is to put all this together. We have a program, &lt;code&gt;smartTradeWithAuditsAndLogs&lt;&#x2F;code&gt;, that has logging and auditing. We want to run it against an interpreter that also uses our &lt;code&gt;Orders&lt;&#x2F;code&gt; to &lt;code&gt;Messaging&lt;&#x2F;code&gt; to &lt;code&gt;Id&lt;&#x2F;code&gt; interpreter defined above, &lt;code&gt;ordersToTerminalViaMessage&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;To do this, we need to define two new interpreters. The reason is that our original &lt;code&gt;TradeApp ~&amp;gt; Id&lt;&#x2F;code&gt; interpreter wasn&#x27;t running through our &lt;code&gt;Messaging&lt;&#x2F;code&gt; language, and by changing the interpreter for &lt;code&gt;TradeApp&lt;&#x2F;code&gt; we will also need to define a new one for &lt;code&gt;AuditableTradeApp&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;def composedViaMessageInterpreter: TradeApp ~&amp;gt; Id =
+  ordersToTerminalViaMessage or logPrinter
+
+def auditableToTerminalViaMessage: AuditableTradeApp ~&amp;gt; Id =
+  auditPrinter or composedViaMessageInterpreter
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As before, the good news is that we are reusing our previous original interpreters, just modifying how we combine them. When you think about it, we have only 4 interpreters to &lt;code&gt;Id&lt;&#x2F;code&gt;, one per language. All the other interpreters are combinations of these. Which means that, although it seems we are reimplementing them often, in fact we are not.&lt;&#x2F;p&gt;
+&lt;p&gt;With this last interpreter we can run our full program:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;smartTradeWithAuditsAndLogs.foldMap(auditableToTerminalViaMessage)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and see in our terminal&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;[Info] - I&amp;#x27;m going to trade smartly
+[USER Action] - user ID102 called buy with values List(APPL, 100)
+Publish [001] From: [Orders] Id: [1198b3b5-c4bd-4f96-90e7-56553f0d2a54] Payload: [Buy APPL 200]
+[Info] - I&amp;#x27;m going to trade even more smartly
+[USER Action] - user ID102 called buy with values List(MSFT, 100)
+Publish [001] From: [Orders] Id: [98b19c50-6b61-4f92-b28e-59395c103362] Payload: [Buy MSFT 100]
+[USER Action] - user ID102 called sell with values List(GOOG, 100)
+Publish [001] From: [Orders] Id: [8f95b6ae-47d4-4a70-aea3-feca73d63e7a] Payload: [Sell GOOG 300]
+[SYSTEM Action] - BACKOFFICE called tradesCheck with values List(ID102, lastTrades)
+[Error] - Wait, what?!
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And that&#x27;s it. We have defined a program using 4 different languages, used at different levels of abstraction. Quite a comprehensive case, if the length of this post is any indication :) I hope this showcases the main uses of Free Monad and gives you a better understanding on the subject.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember that you can clone the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;free-monad-sample&quot;&gt;code&lt;&#x2F;a&gt; to play with all this yourself.&lt;&#x2F;p&gt;
+&lt;p&gt;Now, let&#x27;s talk about a couple of issues with Free Monads.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;performance-impact&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#performance-impact&quot; aria-label=&quot;Anchor link for: performance-impact&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Performance impact&lt;&#x2F;h2&gt;
+&lt;p&gt;Every time we add an abstraction, performance may diminish. I&#x27;ve not done any tests on performance using Free Monads as doing a proper benchmark is very hard, but I found a couple of references on the subject which may help understanding the impact.&lt;&#x2F;p&gt;
+&lt;p&gt;This &lt;a href=&quot;http:&#x2F;&#x2F;okmij.org&#x2F;ftp&#x2F;Computation&#x2F;free-monad.html&quot;&gt;Free Monad explanation&lt;&#x2F;a&gt; is quite comprehensive, and it says about performance:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Do we have to pay for all the benefits of free and freer monads in performance?
+With the simplest free and freer monads described so far: yes, the performance suffers.
+One should keep in mind that performance does not always matter: a large portion of software
+we successfully interact with every day is written in Python, Perl or Ruby, and which are not
+exactly speed kings.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I agree with the statement above in that most of our applications are not performance sensitive, within certain limits. For most operations the overhead introduced by Free Monad is not relevant, but don&#x27;t use it if performance is critical to your business case.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;mandubian&quot;&gt;Pascal Voitot&lt;&#x2F;a&gt; wrote last year a post on &lt;a href=&quot;http:&#x2F;&#x2F;mandubian.com&#x2F;2015&#x2F;04&#x2F;09&#x2F;freer&#x2F;&quot;&gt;better implementations&lt;&#x2F;a&gt; of Free. As far as I understand, some of the concepts are already implemented in Cats and may reduce the impact of Free a bit.&lt;&#x2F;p&gt;
+&lt;p&gt;As usual, each use case is different. You should test your implementation to ensure resulting performance is acceptable to you.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-criticisms&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-criticisms&quot; aria-label=&quot;Anchor link for: the-criticisms&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The criticisms&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;ve left this part to the last, at the point where saw a full implementation of Free and we can judge the criticisms from a more informed perspective. Shouldn&#x27;t come as a surprise that not everybody likes Free Monad, and there are some justified criticisms to it.&lt;&#x2F;p&gt;
+&lt;p&gt;As an example, recently &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;alexelcu&quot;&gt;Alexandru Nedelcu&lt;&#x2F;a&gt;, of &lt;a href=&quot;https:&#x2F;&#x2F;monix.io&#x2F;&quot;&gt;Monix&lt;&#x2F;a&gt; fame, tweeted a series of &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;alexelcu&#x2F;status&#x2F;736090380999888898&quot;&gt;opinions&lt;&#x2F;a&gt; where he highlights some trade offs you make when you decide to use Free Monads.&lt;&#x2F;p&gt;
+&lt;p&gt;This &lt;a href=&quot;http:&#x2F;&#x2F;event.scaladays.org&#x2F;scaladays-nyc-2016#!#schedulePopupExtras-7558&quot;&gt;talk&lt;&#x2F;a&gt; by &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;kelleyrobinson&quot;&gt;Kelley Robinson&lt;&#x2F;a&gt; gave a bit more detail on situations in which Free Monad may not be a good fit. The video has not been published yet, but there are &lt;a href=&quot;http:&#x2F;&#x2F;www.slideshare.net&#x2F;KelleyRobinson1&#x2F;why-the-free-monad-isnt-free-61836547&quot;&gt;slides&lt;&#x2F;a&gt; available.&lt;&#x2F;p&gt;
+&lt;p&gt;Unfortunately I&#x27;ve lost a couple of references I had with people raising concerns about Free Monad. But I hope these two give you an idea of the general issues people have with this pattern.&lt;&#x2F;p&gt;
+&lt;p&gt;In the end, you have to remember the Free Monad is just a tool, and no tool is a silver bullet. It may be a perfect fit for your application and team, right now, but you should understand the trade offs you are accepting. Unfortunately you can only understand that through experience; my advice is to start using it in areas of the code where the impact will be small and spread it as you learn.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;thanks&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#thanks&quot; aria-label=&quot;Anchor link for: thanks&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Thanks&lt;&#x2F;h2&gt;
+&lt;p&gt;With concepts like Free Monad, existing literature and people&#x27;s help are crucial to navigate the hard parts. It would be unfair to not mention all contributions that helped me to understand (or so I hope) Free Monad, and to write this post.&lt;&#x2F;p&gt;
+&lt;p&gt;There&#x27;s plenty of information online that has been extremely useful. The most relevant links are listed in the next section. A big thanks to all the authors, the time spent on that documentation has helped at least one person :)&lt;&#x2F;p&gt;
+&lt;p&gt;I need to thank &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;milessabin&quot;&gt;Miles Sabin&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;channingwalton&quot;&gt;Channing Walton&lt;&#x2F;a&gt;, and &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;lancewalton&quot;&gt;Lance Walton&lt;&#x2F;a&gt;, as experimentation we did with Free Monad provided a foundation for this post.&lt;&#x2F;p&gt;
+&lt;p&gt;Many thanks to &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;julientruffaut&quot;&gt;Julien Truffaut&lt;&#x2F;a&gt;. He pointed to &lt;code&gt;traversableU&lt;&#x2F;code&gt; as the solution to mixing &lt;code&gt;List&lt;&#x2F;code&gt; results in the program for &lt;code&gt;Orders&lt;&#x2F;code&gt;. I got stuck in that case and, without his contribution, I&#x27;d be giving a horribly wrong solution to you, my reader.&lt;&#x2F;p&gt;
+&lt;p&gt;Last, but not least, I need to thank &lt;a href=&quot;https:&#x2F;&#x2F;gitter.im&#x2F;typelevel&#x2F;cats&quot;&gt;Cat&#x27;s Gitter channel&lt;&#x2F;a&gt;, in particular &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;adelbertchang&quot;&gt;Adelbert Chang&lt;&#x2F;a&gt;, as he corrected a few misconceptions I had whilst porting a Free Monad built using Scalaz to a version using Cats.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;references&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#references&quot; aria-label=&quot;Anchor link for: references&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+References&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;ve used a lot of sources to improve my understanding on Free Monad. Below you can find a list of links that I found very relevant and helpful:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Cats definition (very good explanation): &lt;a href=&quot;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;datatypes&#x2F;freemonad.html&quot;&gt;http:&#x2F;&#x2F;typelevel.org&#x2F;cats&#x2F;datatypes&#x2F;freemonad.html&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Free Monad technical explanation: &lt;a href=&quot;http:&#x2F;&#x2F;okmij.org&#x2F;ftp&#x2F;Computation&#x2F;free-monad.html&quot;&gt;http:&#x2F;&#x2F;okmij.org&#x2F;ftp&#x2F;Computation&#x2F;free-monad.html&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Tim Perrett&#x27;s blog post (uses Scalaz): &lt;a href=&quot;http:&#x2F;&#x2F;timperrett.com&#x2F;2013&#x2F;11&#x2F;21&#x2F;free-monads-part-1&#x2F;&quot;&gt;http:&#x2F;&#x2F;timperrett.com&#x2F;2013&#x2F;11&#x2F;21&#x2F;free-monads-part-1&#x2F;&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Underscore post by Noel Welsh (uses Scalaz): &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2015&#x2F;04&#x2F;14&#x2F;free-monads-are-simple.html&quot;&gt;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2015&#x2F;04&#x2F;14&#x2F;free-monads-are-simple.html&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;A second post by Noel Welsh: &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2015&#x2F;04&#x2F;23&#x2F;deriving-the-free-monad.html&quot;&gt;http:&#x2F;&#x2F;underscore.io&#x2F;blog&#x2F;posts&#x2F;2015&#x2F;04&#x2F;23&#x2F;deriving-the-free-monad.html&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;The always useful Tutorial for Cats: &lt;a href=&quot;http:&#x2F;&#x2F;eed3si9n.com&#x2F;herding-cats&#x2F;Free-monads.html&quot;&gt;http:&#x2F;&#x2F;eed3si9n.com&#x2F;herding-cats&#x2F;Free-monads.html&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;A year living Freely&lt;&#x2F;em&gt; by Chris Myers: &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=rK53C-xyPWw&quot;&gt;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=rK53C-xyPWw&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;A post by John A De Goes (uses Haskell) &lt;a href=&quot;http:&#x2F;&#x2F;degoes.net&#x2F;articles&#x2F;modern-fp&quot;&gt;http:&#x2F;&#x2F;degoes.net&#x2F;articles&#x2F;modern-fp&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;That&#x27;s all for now, I hope this was informative and useful. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+&lt;p&gt;PS: Hold the door.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">The concept of Free Monad is becoming popular, or at least I've seen plenty of mentions about it in the Scala Functional Programming community as of late. Why is it relevant?
+…</summary>
+        </entry>
+</feed>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>redmine</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - redmine</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/redmine/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/redmine/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2009-08-17T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/redmine/atom.xml</id><entry xml:lang="en">
+        <title>Redmine on Ubuntu 9.04 with NGinx</title>
+        <published>2009-08-17T00:00:00+00:00</published>
+        <updated>2009-08-17T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/redmine-on-ubuntu-9-dot-04-with-nginx/" type="text/html"/>
+        <id>https://perevillega.com/posts/redmine-on-ubuntu-9-dot-04-with-nginx/</id>
+        
+            <content type="html">&lt;p&gt;Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, only available for Ubuntu 9.04, which doesn&#x27;t work too well on a server. I&#x27;ll keep an eye on it as I like the way Canonical does things (and applications), but in the meantime I decided to use &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;&quot;&gt;Redmine&lt;&#x2F;a&gt; as I found Trac lacking on some areas.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;redmine&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#redmine&quot; aria-label=&quot;Anchor link for: redmine&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Redmine&lt;&#x2F;h2&gt;
+&lt;p&gt;Redmine is an open source, web-based project management and bug-tracking tool, written in Ruby on Rails and heavily influenced by Trac. It improves on several areas, like providing multiple project support, integrating with several source control systems (from popular SVN to less popular Bazaar or Darcs) and allowing extension of its functionalities through plugins. This guide describes how to install Redmine in an Ubuntu 9.04 server using Mongrel as web server, Nginx as proxy and MySQL as database. To achieve this we have to follow 3 steps:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;install ruby and rails and MySQL&lt;&#x2F;li&gt;
+&lt;li&gt;install Redmine&lt;&#x2F;li&gt;
+&lt;li&gt;install Mongrel and Nginx&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This guide can be adapted to older versions of Ubuntu and most Linux distributions, just replacing the tools&#x2F;packages by the specific ones available in that distribution. The guide is a quick overview of the main steps, for  more information on configuration options check the documentation of the corresponding tool.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;install-ruby-and-rails-and-mysql&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-ruby-and-rails-and-mysql&quot; aria-label=&quot;Anchor link for: install-ruby-and-rails-and-mysql&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Ruby and Rails and MySQL&lt;&#x2F;h2&gt;
+&lt;p&gt;To install the components first ensure the system is up to date:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get update
+    sudo apt-get dist-upgrade
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then run the following command:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get install build-essential ruby ri rdoc mysql-server libmysql-ruby ruby1.8-dev irb1.8 libdbd-mysql-perl libdbi-perl
+          libmysql-ruby1.8 libmysqlclient15off libnet-daemon-perl libplrpc-perl libreadline-ruby1.8 libruby1.8 rdoc1.8 ri1.8 ruby1.8
+          irb libopenssl-ruby libopenssl-ruby1.8 libhtml-template-perl mysql-client-5.0 mysql-common mysql-server-5.0 mysql-server-core-5.0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now that we have Ruby installed, we use Gems to install Rails:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo gem update
+    sudo gem install rails --no-rdoc –no-ri
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The flags –no-rdoc and –no-ri are included to reduce the RAM footprint of the component, feel free to remove them if your machine has more than enough RAM. To finish this part, open the MySQL client and create the Redmine database:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    create database redmine character set utf8;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-redmine&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-redmine&quot; aria-label=&quot;Anchor link for: install-redmine&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Redmine&lt;&#x2F;h2&gt;
+&lt;p&gt;Get the code from the &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;Download&quot;&gt;download&lt;&#x2F;a&gt; page. Although the stable release is recommended, if you are going to use Bazaar the svn contains some fixes you want to use, so do an export from the trunk and use that. (Note: if you use the trunk, you&#x27;ll have to install a newer Rails using Gems due to version requirements). Select a folder in your server (from now on, APP) and copy the downloaded code there. Move to the APP folder and run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo cp config&amp;#x2F;database.yml.example config&amp;#x2F;database.yml
+    sudo cp config&amp;#x2F;email.yml.example config&amp;#x2F;email.yml
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Edit the new yml files and change the configuration as required (MySQL details, mail server, etc).  Now run these commands to create the database and populate it:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    rake db:migrate RAILS_ENV=&amp;quot;production&amp;quot;
+    rake redmine:load_default_data RAILS_ENV=&amp;quot;production&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We also need ImageMagick  (although is optional):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get install imagemagick libmagickwand-dev
+    sudo gem install rmagick
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-mongrel-and-nginx&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-mongrel-and-nginx&quot; aria-label=&quot;Anchor link for: install-mongrel-and-nginx&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Mongrel and Nginx&lt;&#x2F;h2&gt;
+&lt;p&gt;To run Redmine we will use a standard setup for Rails applications, consistent on Mongrel as web server and Nginx as proxy that interacts with the network. We will run Mongrel as Mongrel Cluster, to improve the performance as Mongrel is single threaded and we will need multiple instances to server multiple clients. First we need to install Mongrel and Mongrel Cluster:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo gem install mongrel
+    sudo gem install mongrel_cluster
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now move to APP folder and run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    mongrel_rails cluster::configure -e production -p 8000 -N 2 -c APP -a 127.0.0.1
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The flag -p indicates the initial port to use by Mongrel. Flag -N tells how many instances you want running in the cluster. Flag -a shows the bind address of the cluster. Once created, we need to set it up so it starts automatically with the server:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo mkdir &amp;#x2F;etc&amp;#x2F;mongrel_cluster
+    sudo ln -s APP&amp;#x2F;config&amp;#x2F;mongrel_cluster.yml &amp;#x2F;etc&amp;#x2F;mongrel_cluster&amp;#x2F;your-app-name.yml
+    sudo cp &amp;#x2F;var&amp;#x2F;lib&amp;#x2F;gems&amp;#x2F;1.8&amp;#x2F;gems&amp;#x2F;mongrel_cluster-1.0.5&amp;#x2F;resources&amp;#x2F;mongrel_cluster &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;
+    sudo chmod +x &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;mongrel_cluster
+    sudo &amp;#x2F;usr&amp;#x2F;sbin&amp;#x2F;update-rc.d mongrel_cluster defaults
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now you can control the cluster with the commands:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    mongrel_cluster_ctl start
+    mongrel_cluster_ctl stop
+    mongrel_cluster_ctl restart
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now install nginx (if you don&#x27;t have it):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get install nginx
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We need to create a virtual host for Nginx, that will receive the requests and forward them to Redmine. Assuming your public domain will be “domain.com”:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo nano &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;nginx&amp;#x2F;sites-available&amp;#x2F;domain.com
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And copy inside:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    upstream domain1 {
+
+     server 127.0.0.1:5000;
+     server 127.0.0.1:5001;
+     server 127.0.0.1:5002;
+
+    }
+
+    server {
+
+     listen   80;
+     server_name  www.domain.com;
+     rewrite ^&amp;#x2F;(.*) http:&amp;#x2F;&amp;#x2F;domain.com&amp;#x2F;$1 permanent;
+
+    }
+
+    server {
+
+     listen   80;
+     server_name domain.com;
+
+     access_log &amp;#x2F;home&amp;#x2F;demo&amp;#x2F;public_html&amp;#x2F;railsapp&amp;#x2F;log&amp;#x2F;access.log;
+     error_log &amp;#x2F;home&amp;#x2F;demo&amp;#x2F;public_html&amp;#x2F;railsapp&amp;#x2F;log&amp;#x2F;error.log;
+
+     root   &amp;#x2F;home&amp;#x2F;demo&amp;#x2F;public_html&amp;#x2F;railsapp&amp;#x2F;public&amp;#x2F;;
+
+     index  index.html;
+
+     location &amp;#x2F; {
+
+          proxy_set_header  X-Real-IP  $remote_addr;
+          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $http_host;
+          proxy_redirect false;
+
+          if (-f $request_filename&amp;#x2F;index.html) {
+            rewrite (.*) $1&amp;#x2F;index.html break;
+          }
+
+          if (-f $request_filename.html) {
+            rewrite (.*) $1.html break;
+          }
+
+          if (!-f $request_filename) {
+            proxy_pass http:&amp;#x2F;&amp;#x2F;domain1;
+            break;
+          }
+
+     }
+
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Be careful to change the port numbers and domain name to the ones you&#x27;ll use on your server. Now enable the site:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ln -s &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;nginx&amp;#x2F;sites-available&amp;#x2F;domain.com &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;nginx&amp;#x2F;sites-enabled&amp;#x2F;domain.com
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and once you restart Nginx your Redmine installation is ready to go. Configure Bazaar First we need to edit the file config&#x2F;environment.rb to add new environment variables related to Python, to avoid problems while accessing Bazaar:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    ENV[&amp;#x27;PYTHONPATH&amp;#x27;] = &amp;#x27;&amp;#x2F;usr&amp;#x2F;lib&amp;#x2F;python2.6&amp;#x27;
+    ENV[&amp;#x27;PATH&amp;#x27;] = &amp;quot;#{ENV[&amp;#x27;PATH&amp;#x27;]}:&amp;#x2F;usr&amp;#x2F;bin&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;When you create a project you just need to point Redmine to your Bazaar main folder, this will allow you to browse the repository. Be aware it still has some limitations when displaying contents, but it works quite well. To work with Bazaar, let&#x27;s set up a repository on  our server. This will be a dumb repository, it means is nothing more than a  folder that can be accessed via sftp that stores the data of the repository. First of all, in Ubuntu 9.04 (our server) let&#x27;s install the needed tools (sftp) and enable them as accepted shell:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $apt-get install ssh openssh-server
+    $echo &amp;#x27;&amp;#x2F;usr&amp;#x2F;lib&amp;#x2F;sftp-server&amp;#x27; &amp;gt;&amp;gt; &amp;#x2F;etc&amp;#x2F;shells
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then create a user to connect via sftp to the server:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $sudo useradd --create-home --home-dir &amp;#x2F;home&amp;#x2F;bzr --shell &amp;#x2F;usr&amp;#x2F;lib&amp;#x2F;sftp-server bzr
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And that&#x27;s it, we have a folder (&#x2F;home&#x2F;bzr&#x2F;) ready to receive our Bazaar projects. Is a good practice to give write rights to that folder to members of group “bzr”, and to add a password to the &#x27;bzr&#x27; user. On your client machine, install Bazaar (using apt-get or similar). Then download the Uploader plugin which eases the task to commit changes to “dumb servers”:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $ mkdir &amp;#x2F;home&amp;#x2F;pvillega&amp;#x2F;.bazaar&amp;#x2F;plugins
+    $ bzr co lp:bzr-upload ~&amp;#x2F;.bazaar&amp;#x2F;plugins&amp;#x2F;upload
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;or if you use Ubuntu&#x2F;Debian with:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $sudo apt-get install bzr-upload
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then create the base repository. There are two ways of doing this, you can create a shared repository which stores every child branch revision, or you can create standalone repositories, which are good if you don’t want to share revision information with other branches. Here we create a shared repository:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    bzr init-repository some_directory
+    bzr init some_directory&amp;#x2F;trunk
+    bzr init some_directory&amp;#x2F;branches
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now, to interact with the server we created before, first run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    bzr push --create-prefix sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This pushes the project to the server and creates the folder &#x27;test&#x27; if needed. After that, all the interaction with the server can be (usually) reduced to:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;     bzr pull sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test   #update changes from the server to our client
+     bzr co sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test      #checkout the project
+     bzr push sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test  #push changes to the server
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Ok, is not the nicest way to do that, but remember this is a distributed repository, you won&#x27;t update or push changes too often, usually only when you are done with a piece of work.  There&#x27;s an alternative method, using what is called a “smart server”, which is faster than the previous way (but not always possible to use for several reasons). In this case we will use an ssh connection to communicate with the repository, but this requires that our user belongs to the group “bzr” to be able to write in that folder. The command for the first commit is:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    bzr push --create-prefix bzr+ssh:&amp;#x2F;&amp;#x2F;server:port&amp;#x2F;home&amp;#x2F;bzr&amp;#x2F;test #requires full path, from root
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In a similar way we interact with the server using:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;     bzr pull bzr+ssh:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test   #update changes from the server to our client
+     bzr co bzr+ssh:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test      #checkout the project
+     bzr push bzr+ssh:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test  #push changes to the server
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-redmine-themes&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-redmine-themes&quot; aria-label=&quot;Anchor link for: install-redmine-themes&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Redmine Themes&lt;&#x2F;h2&gt;
+&lt;p&gt;You can install some new themes for Redmine, available &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;Theme_List&quot;&gt;here&lt;&#x2F;a&gt;. Although is mainly a cosmetic change, some themes provide enhancements like colouring tickets according to priority and they are really easy to manage. For example, to install the &lt;a href=&quot;http:&#x2F;&#x2F;theill.com&#x2F;stuff&#x2F;redmine&#x2F;&quot;&gt;Basecamp&lt;&#x2F;a&gt; theme:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Download application.css&lt;&#x2F;li&gt;
+&lt;li&gt;Create required directories: mkdir -p redmine&#x2F;public&#x2F;themes&#x2F;basecamp&#x2F;stylesheets&lt;&#x2F;li&gt;
+&lt;li&gt;Copy downloaded file:  cp application.css redmine&#x2F;public&#x2F;themes&#x2F;basecamp&#x2F;stylesheets&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;That&#x27;s it .. now restart your instance running Redmine and select the new basecamp theme from &#x2F;settings&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;install-redmine-plugins&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-redmine-plugins&quot; aria-label=&quot;Anchor link for: install-redmine-plugins&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Redmine Plugins&lt;&#x2F;h2&gt;
+&lt;p&gt;Redmine provides several plugins that enhance the capabilities of the tool. Amongst them you can find some nice ones like:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bots Filter: avoids bots from accessing certain areas of the application&lt;&#x2F;li&gt;
+&lt;li&gt;Charts: adds some project based charts&lt;&#x2F;li&gt;
+&lt;li&gt;Exception Handler: notifies admins when an exception occurs&lt;&#x2F;li&gt;
+&lt;li&gt;Hudson: integrates Redmine and Hudson, allowing you to see Hudson reports&lt;&#x2F;li&gt;
+&lt;li&gt;Status updates: allows users to say what are they doing, kind of Twitter per project.&lt;&#x2F;li&gt;
+&lt;li&gt;Vote: allows users to vote on issues so you see which ones are important to them&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;You can find these and many more in this &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;Plugin_List&quot;&gt;page&lt;&#x2F;a&gt; . To install a plugin, follow the instructions on the “Installation” section of its page. Then restart Redmine and you are good to go.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;connect-mylyn-to-redmine&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#connect-mylyn-to-redmine&quot; aria-label=&quot;Anchor link for: connect-mylyn-to-redmine&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Connect Mylyn to Redmine&lt;&#x2F;h2&gt;
+&lt;p&gt;If you use Mylyn (and you should!) use these &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;HowTo_Mylyn&quot;&gt;instructions&lt;&#x2F;a&gt; to connect it to your Redmine repository.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, only available for Ubuntu 9.04, which doesn't work too well on a server. I'll keep an eye on it as I like the way Canonical does things (and applications), but in the meantime I decided to use Redmine as I found Trac lacking on some areas.
+…</summary>
+        </entry>
+</feed>

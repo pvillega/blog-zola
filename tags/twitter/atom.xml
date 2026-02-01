@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>twitter</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - twitter</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/twitter/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/twitter/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2019-02-05T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/twitter/atom.xml</id><entry xml:lang="en">
+        <title>Playing with Rust</title>
+        <published>2019-02-05T00:00:00+00:00</published>
+        <updated>2019-02-05T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/playing-with-rust/" type="text/html"/>
+        <id>https://perevillega.com/posts/playing-with-rust/</id>
+        
+            <content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&quot;&gt;Rust&lt;&#x2F;a&gt; is not, at this stage, a new language. But I have to confess that I had not checked it out until now. I built a &lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;twitter_privacy&quot;&gt;small tool&lt;&#x2F;a&gt; to test it out. In this post I&#x27;ll briefly talk about how it felt working with Rust from the point of view of a Scala developer.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;During the last &lt;a href=&quot;https:&#x2F;&#x2F;skillsmatter.com&#x2F;conferences&#x2F;10488-scala-exchange-2018&quot;&gt;Scala Exchange&lt;&#x2F;a&gt; I heard a lot of people talking about Rust. As a consequence, learning more about the language became a higher priority, as it is always good to listen to people with more experience :). It was also an excuse to use &lt;a href=&quot;https:&#x2F;&#x2F;code.visualstudio.com&quot;&gt;Visual Studio Code&lt;&#x2F;a&gt; a bit more, to familiarise with its bindings so I can get the most out of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;scalameta&#x2F;metals&quot;&gt;Metals&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The best way to learn a new language is to build something with it, as that is the scenario when you hit all the common problems. What I wanted to avoid is to fight not only Rust but also some web framework or library on top of it. Time ago I built a tool to delete old tweets from my account, using Scala: &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;twitter-privacy&quot;&gt;twitter privacy&lt;&#x2F;a&gt;. It works well, but the nature of the program (running in a cron job once a day) makes it much slower than it should be, due to cold-start time of the JVM.&lt;&#x2F;p&gt;
+&lt;p&gt;Rust is known as a fast language, and a replacement of this tool using Rust seemed like a good fit for learning the language without having too many libraries involved. You can find the source code of the outcome  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;twitter_privacy&quot;&gt;in github&lt;&#x2F;a&gt;, and it has been published &lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;twitter_privacy&quot;&gt;to cargo.io&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;If you want to use it for your own social media maintenance, instructions on how to run it are in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;twitter_privacy&#x2F;blob&#x2F;master&#x2F;Readme.md&quot;&gt;Readme file&lt;&#x2F;a&gt; in Github.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rust-as-a-language&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#rust-as-a-language&quot; aria-label=&quot;Anchor link for: rust-as-a-language&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Rust as a language&lt;&#x2F;h2&gt;
+&lt;p&gt;As a Scala developer, I found Rust a very interesting language. For example, I&#x27;ve heard very often criticism towards the duality OO-FP of Scala,
+pointing it was a bad decision. Rust clearly states in &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;&quot;&gt;their book&lt;&#x2F;a&gt; that they support both, having a chapter dedicated
+to each one, and on how to work in that particular way with the language.&lt;&#x2F;p&gt;
+&lt;p&gt;Rust has a very active community and very good documentation for their tooling and libraries. For example, check the documentation for &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;cargo&#x2F;&quot;&gt;Cargo&lt;&#x2F;a&gt;, it&#x27;s build tool. Or for one of the libraries I used, &lt;a href=&quot;https:&#x2F;&#x2F;tonberry.quietmisdreavus.net&#x2F;doc&#x2F;egg_mode&#x2F;index.html&quot;&gt;Egg_Mode&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The community is actively trying to exploit the advantages of Rust (speed, memory management). There&#x27;s a lot of work to build libraries using Rust in domains like &lt;a href=&quot;http:&#x2F;&#x2F;arewegameyet.com&quot;&gt;game development&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;www.arewelearningyet.com&quot;&gt;machine learning&lt;&#x2F;a&gt;, or &lt;a href=&quot;https:&#x2F;&#x2F;www.arewewebyet.org&quot;&gt;web development&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;A key area for Rust growth may be &lt;a href=&quot;https:&#x2F;&#x2F;webassembly.org&quot;&gt;WebAssembly&lt;&#x2F;a&gt;, a binary format enabling deployment on the web for client and server applications. Rust already compiles to it and has good tolling and  &lt;a href=&quot;https:&#x2F;&#x2F;rustwasm.github.io&#x2F;book&#x2F;introduction.html&quot;&gt;documentation&lt;&#x2F;a&gt;. This could enable a real &#x27;build once and deploy anywhere&#x27; development mode, without the issues caused by nuances of different platforms.&lt;&#x2F;p&gt;
+&lt;p&gt;In general working with it felt familiar and there weren&#x27;t many unexpected surprises. The following comments come from someone which has been working extensively in the JVM world, with some non-professional experience in non-JVM languages.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-good&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-good&quot; aria-label=&quot;Anchor link for: the-good&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Good&lt;&#x2F;h2&gt;
+&lt;p&gt;I liked the language and I felt comfortable with it, but there are some things worth of mention:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Speed. It&#x27;s been so many years using Scala that I forgot how fast can a CPU. Both compilation and execution are &lt;em&gt;fast&lt;&#x2F;em&gt;, and help with keeping the development flow. No time for a small break on Twitter, or similar.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Typeclasses (using Traits). I got too used to Typeclasses and it would be hard to move to a language without them. The restriction on implementing instances of a Typeclass which doesn&#x27;t belong to your package have been a bit of a nuisance at some stages, but I understand the motivation behind that call, and it&#x27;s not a deal breaker.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Cargo. It&#x27;s what &lt;code&gt;sbt&lt;&#x2F;code&gt; should be. The only tool you need as a developer to compile, test, benchmark, or publish to a central repository. Which, by the way, is a trivial to do (compared to the nightmare of publishing to Sonatype).&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Local documentation. The fact that you can, with a single cargo command, open the documentation of your dependencies for the specific version you are using is a life-saver. In this particular project the library that interacts with Twitter has changed a lot between the last published version and the current version under development, thus going to the online documentation could be very confusing.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;the-less-good&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-less-good&quot; aria-label=&quot;Anchor link for: the-less-good&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Less Good&lt;&#x2F;h2&gt;
+&lt;p&gt;Nothing is perfect, less so when you are experimenting with a new language. Some aspects that made the learning-curve harder:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Lifetimes. It&#x27;s one of the main features of Rust, it comes with major benefits, but it was a pain to manage. I had to refactor a lot of code because at the top level a closure would give me a lifetime error that I couldn&#x27;t fix. I guess with experience you get better at it, and it forces you to make smaller methods to avoid odd dependencies, but... it can be a pain. Garbage collection is a blessing, sometimes.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Semicolons. Used to Scala, having to add semicolons at the end of most of the lines wasn&#x27;t a great experience. The worst is exactly that &lt;em&gt;most of the lines&lt;&#x2F;em&gt; part, as there are lines in which you don&#x27;t want semicolons as they change the meaning of the expression. Not hard to grasp, but feels like a step backwards.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Snake Case. Ok, it&#x27;s something minor, but after so many years in the JVM world, moving to Snake case wasn&#x27;t easy, habits die hard. And &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;rust-clippy&quot;&gt;clippy&lt;&#x2F;a&gt; was complaining non-stop about it.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Bigger files. In Rust it is idiomatic to add your unit tests at the end of the file. The issue is that you end up having very long files, which are harder to navigate. It may be due to being used to the JVM way, but having a separate test folder with specific code in there feels, somehow, cleaner.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;conclusions&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#conclusions&quot; aria-label=&quot;Anchor link for: conclusions&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Conclusions&lt;&#x2F;h2&gt;
+&lt;p&gt;I feel that Rust is great for low level work, but currently it can&#x27;t replace a stack like &lt;code&gt;http4s&lt;&#x2F;code&gt; and &lt;code&gt;cats&lt;&#x2F;code&gt; due to a lack of libraries supporting it. There are a set of community pages (the &lt;code&gt;AreWe&lt;&#x2F;code&gt; pages, as seen before) that explain the progress in some areas. Looking at, for example, &lt;a href=&quot;https:&#x2F;&#x2F;areweasyncyet.rs&quot;&gt;Are We Async&lt;&#x2F;a&gt; one can see that today (February 2019) several &lt;code&gt;RFC&lt;&#x2F;code&gt; are still in progress and some &lt;code&gt;unresolved&lt;&#x2F;code&gt; questions remain open.&lt;&#x2F;p&gt;
+&lt;p&gt;I hope they catch up soon, as the speed on both compilation and execution plus the FP support may make it a worthy alternative to Scala. But, right now, I think I&#x27;ll stick to my trusted tools for backend development, and dable with Rust only for specific needs.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all for now, I hope this was informative and useful. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Rust is not, at this stage, a new language. But I have to confess that I had not checked it out until now. I built a small tool to test it out. In this post I'll briefly talk about how it felt working with Rust from the point of view of a Scala developer.
+…</summary>
+        </entry>
+</feed>

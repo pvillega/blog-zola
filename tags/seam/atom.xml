@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>seam</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - seam</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/seam/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/seam/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2010-06-05T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/seam/atom.xml</id><entry xml:lang="en">
+        <title>MyNet</title>
+        <published>2010-06-05T00:00:00+00:00</published>
+        <updated>2010-06-05T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/mynet/" type="text/html"/>
+        <id>https://perevillega.com/posts/mynet/</id>
+        
+            <content type="html">&lt;p&gt;One of the many reasons I&#x27;ve been barely posting these past weeks is that I&#x27;m finishing my Master in Open Source Software by UOC. I&#x27;ve had to develop a project for it, and I&#x27;ve chosen to develop a portal similar to Pirate Bay. You can checkout the code &lt;a href=&quot;https:&#x2F;&#x2F;bitbucket.org&#x2F;pvillega&#x2F;mynet&quot;&gt;here&lt;&#x2F;a&gt; at Bitbucket.The project is a Java web application and it uses Seam as framework.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I warn you the project is under development and more of a &quot;minimal viable product&quot; than anything else. Don&#x27;t expect awesome code, but it has served me to work with Seam in something &quot;serious&quot; and I learned a lot. Sadly code is only 30% of the final grade, so now it&#x27;s time to polish it a bit and document, document, document...&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">One of the many reasons I've been barely posting these past weeks is that I'm finishing my Master in Open Source Software by UOC. I've had to develop a project for it, and I've chosen to develop a portal similar to Pirate Bay. You can checkout the code here at Bitbucket.The project is a Java web application and it uses Seam as framework.
+…</summary>
+        </entry>
+</feed>

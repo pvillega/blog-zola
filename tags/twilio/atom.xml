@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>twilio</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - twilio</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/twilio/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/twilio/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2014-01-10T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/twilio/atom.xml</id><entry xml:lang="en">
+        <title>Twilio and Play Framework</title>
+        <published>2014-01-10T00:00:00+00:00</published>
+        <updated>2014-01-10T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/twilio-and-play-framework/" type="text/html"/>
+        <id>https://perevillega.com/posts/twilio-and-play-framework/</id>
+        
+            <content type="html">&lt;p&gt;Another year, more technology to test :) Busy as I am in &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt;, I&#x27;ve been able to test some interesting stuff. You know, evaluation of technologies to see if they make sense from a business perspective. Or playing around, it depends on the point of view ;)&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;This time the testing platform has been &lt;a href=&quot;https:&#x2F;&#x2F;www.twilio.com&#x2F;&quot;&gt;Twilio&lt;&#x2F;a&gt;. I built a prototype using Play Framework, Scala and the Twilio API to see how things work and if we could use some of them in the site. Granted, by prototype I mean 2 pages to test some calls to the API, but I guess this covers the core of Twilio, and extending it should be quite straightforward.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve written about it in a post in the &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;using-twilio-from-within-play-framework-81b174e31a84&quot;&gt;Gumtree dev blog&lt;&#x2F;a&gt;, where I also link to the sample code in Github.&lt;&#x2F;p&gt;
+&lt;p&gt;As always, feedback via Twitter&#x2F;Email is more than welcome.&lt;&#x2F;p&gt;
+&lt;p&gt;Oh, and Happy 2014! May the (reactive?) code be with you ;)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Another year, more technology to test :) Busy as I am in Gumtree, I've been able to test some interesting stuff. You know, evaluation of technologies to see if they make sense from a business perspective. Or playing around, it depends on the point of view ;)
+…</summary>
+        </entry>
+</feed>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>ec2</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - ec2</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/ec2/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/ec2/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2013-04-01T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/ec2/atom.xml</id><entry xml:lang="en">
+        <title>Using Ansible to deploy Play Framework apps in EC2 instances</title>
+        <published>2013-04-01T00:00:00+00:00</published>
+        <updated>2013-04-01T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/using-ansible-to-deploy-play-framework-apps-in-ec2-instances/" type="text/html"/>
+        <id>https://perevillega.com/posts/using-ansible-to-deploy-play-framework-apps-in-ec2-instances/</id>
+        
+            <content type="html">&lt;p&gt;&lt;strong&gt;TL;DR:&lt;&#x2F;strong&gt; Clone &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;ansible-ec2-play&quot;&gt;Ansible for Play Framework&lt;&#x2F;a&gt; to automate the task of deploying Play 2.x projects from a git repository into an EC2 instance.&lt;&#x2F;p&gt;
+&lt;p&gt;As many developers I&#x27;m not a good sysadmin. That&#x27;s why I was happy to see the raise of PaaS like &lt;a href=&quot;http:&#x2F;&#x2F;www.heroku.com&#x2F;&quot;&gt;Heroku&lt;&#x2F;a&gt;, which facilitated deploying a webapp without having to spend time in sysadmin tasks which I didn&#x27;t know how to do correctly and which took me too much time.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Unfortunately, as with most abstractions, the PaaS environments are simple to use but also quite limited in options. Heroku offering of 512Mb per dyno plus limitations on what you can do can be a problem, and the third party addons get expensive quickly. Then you have Amazon EC2, cheaper and quite flexible, but in exchange you need a bit more of &quot;sysadmin knowledge&quot;. Not a big deal for apps like this blog, running in a Micro instance, but if your app is bigger and spans several servers, it may become time consuming.&lt;&#x2F;p&gt;
+&lt;p&gt;I wanted to automate the task of managing the server so I did not have to worry too much about it. I looked at both &lt;a href=&quot;http:&#x2F;&#x2F;www.opscode.com&#x2F;chef&#x2F;&quot;&gt;Chef&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;puppetlabs.com&#x2F;&quot;&gt;Puppet&lt;&#x2F;a&gt;, but somehow I couldn&#x27;t bring myself to spend enough time with them. The release of &lt;a href=&quot;http:&#x2F;&#x2F;aws.amazon.com&#x2F;opsworks&#x2F;&quot;&gt;Amazon OpsWorks&lt;&#x2F;a&gt; raised the issue again as they don&#x27;t have a Play Framework 2 script ready out of the box, but it was hard to try to focus on that task.&lt;&#x2F;p&gt;
+&lt;p&gt;That was it until this last weekend when I discovered, somehow, &lt;a href=&quot;http:&#x2F;&#x2F;ansible.cc&#x2F;&quot;&gt;Ansible&lt;&#x2F;a&gt;. Ansible is a tool in the same category as Chef and Puppet (purists will start pointing at relevant differences here, but I only care about the fact that they automate my sysadmin tasks). For some reason Ansible seemed much simpler to understand and use, and I got hooked. Ansible Playbooks consist on a series of yaml files that declare the steps to execute, in order. Ansible itself manages the execution of the steps across servers, so you can run one script on as many servers as you need all at the same time. I won&#x27;t enter into details as &lt;a href=&quot;http:&#x2F;&#x2F;ansible.cc&#x2F;&quot;&gt;Ansible&lt;&#x2F;a&gt; has good enough documentation, but to put an example let&#x27;s see a possible Ansible Playbook to install &lt;code&gt;Authbind&lt;&#x2F;code&gt; into an EC2 instance:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    # Run with: ansible-playbook -i hosts.ini playenv.yaml -u ubuntu
+    ---
+    - hosts: ec2Instance
+      vars:
+      - ubuntu_release: quantal
+
+    tasks:
+      - name: Install Authbind
+        action: apt pkg=authbind state=latest install_recommends=yes
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Having the tool the task ahead was clear: my main 3 sysadmin issues with EC2 (given my current usage level) are securing the Ubuntu AMI, deploying a Play environment and deploying the app itself. With Ansible, I should be able to automate these steps so I won&#x27;t do mistakes like forgetting one step as well as reducing the time I have to spend on these tasks.&lt;&#x2F;p&gt;
+&lt;p&gt;It wasn&#x27;t easy (as I said I&#x27;m not a sysadmin) and the scripts could be better, but I managed to create something that works: &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;ansible-ec2-play&quot;&gt;Ansible for Play Framework in EC2&lt;&#x2F;a&gt;. Instructions for execution are included in the Github repository.&lt;&#x2F;p&gt;
+&lt;p&gt;There are 3 relevant scripts:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;bootstrap.yaml:&lt;&#x2F;strong&gt; runs a series of commands to enhance security of an EC2 Ubuntu AMI. I&#x27;m not a sysadmin so some step may be wrong or incomplete, but what&#x27;s in there seems to work fine. Requires sudo privilege in the target machine to run.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;playenv.yaml:&lt;&#x2F;strong&gt; sets some Play Framework dependencies (basically pvm and java 7) as well as Authbind so Play can use port 80 without root privileges. Requires sudo privilege in the target machine to run.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;deploy.yaml:&lt;&#x2F;strong&gt; clones a Play project from a given Git repository and deploys it on the target machine. The script assumes the repository contains a &lt;code&gt;start&lt;&#x2F;code&gt; file in the format provided with the script (see &lt;code&gt;exec&lt;&#x2F;code&gt; folder) to be able to successfully launch the app. Customise the &lt;code&gt;start&lt;&#x2F;code&gt; file as required. No sudo required, the script uses authbind to link Play to port 80. Be aware that in EC2 Micro instances this script will fail due to low memory as Linux memory manager kills the JVM when building the distributable zip for the app.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;If you have a project in Github (or any publicly available Git repository) and an EC2 instance, run the scripts through Ansible and there you go, app deployed and running!&lt;&#x2F;p&gt;
+&lt;p&gt;So, that&#x27;s all. If you see something that can be improved, please contribute with a pull request. I hope with this you can save some time on your next deployment.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">TL;DR: Clone Ansible for Play Framework to automate the task of deploying Play 2.x projects from a git repository into an EC2 instance.
+As many developers I'm not a good sysadmin. That's why I was happy to see the raise of PaaS like Heroku, which facilitated deploying a webapp without having to spend time in sysadmin tasks which I didn't know how to do correctly and which took me too much time.
+…</summary>
+        </entry>
+</feed>

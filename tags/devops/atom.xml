@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>devops</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - devops</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/devops/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/devops/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2014-01-12T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/devops/atom.xml</id><entry xml:lang="en">
+        <title>Raspberry Pi as NAS with Samba</title>
+        <published>2014-01-12T00:00:00+00:00</published>
+        <updated>2014-01-12T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/raspberry-pi-as-nas-with-samba/" type="text/html"/>
+        <id>https://perevillega.com/posts/raspberry-pi-as-nas-with-samba/</id>
+        
+            <content type="html">&lt;p&gt;This year I&#x27;ve bought a &lt;a href=&quot;http:&#x2F;&#x2F;www.raspberrypi.org&#x2F;&quot;&gt;Raspberry Pi&lt;&#x2F;a&gt;. I&#x27;ve wanted to play with it for a long time, but it was one of these things you keep delaying as I wasn&#x27;t sure what to use it for. After moving to London, and given that my NAS died, I found myself in need of a replacement, one that allowed me to install &lt;a href=&quot;http:&#x2F;&#x2F;www.code42.com&#x2F;crashplan&#x2F;&quot;&gt;Crashplan&lt;&#x2F;a&gt; on it if possible (for cloud backup).&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;A commercial NAS unit was a no go even if they had support for Crashplan: they are quite expensive and my experience with Lacie units has not been the best. Having a desktop on 24&#x2F;7 to manage backups would allow me to install Crashplan on it, but it seemed a waste of cpu and electricity. And here is when Raspberry Pi came to save the day: it can be used as a low power PC, but it has enough RAM and CPU to work as NAS and provide some other services. Low power consumption (some estimates are £5-10 per year) and my files are safe. Success!&lt;&#x2F;p&gt;
+&lt;p&gt;As I write this I have my Raspberry Pi connected to 1 Tb storage, using &lt;a href=&quot;http:&#x2F;&#x2F;www.samba.org&#x2F;&quot;&gt;Samba&lt;&#x2F;a&gt; to allow access to the files across the network and backing up all my data via Crashplan. It can even serve videos to my TV via &lt;a href=&quot;http:&#x2F;&#x2F;www.dlna.org&#x2F;&quot;&gt;DLNA&lt;&#x2F;a&gt;. It is not complex to do, but it required browsing a few articles online and putting together some information. In this post I summarise the steps on how to achieve this. I apologise in advance as the post has no images, which makes it a bit dry, but hopefully it is easy to follow.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;requirements&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#requirements&quot; aria-label=&quot;Anchor link for: requirements&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Requirements&lt;&#x2F;h1&gt;
+&lt;p&gt;To follow these steps you need:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Raspberry Pi B with 8 Gb SD card. Take the B model as it has 512Mb of RAM (and you WILL need them). Also buy the SD card they sell, as it has the default operating system (Raspbian) preloaded. It saves time and problems.&lt;&#x2F;li&gt;
+&lt;li&gt;Seagate Backup Plus (1 Tb). This hard drive doesn&#x27;t require an external power cable, it only uses 1 USB cable to connect it to the Raspberry unit, which makes it convenient.&lt;&#x2F;li&gt;
+&lt;li&gt;Power supply for Raspberry Pi. They sell one in their shop, but you can also use any mini USB power supply you have that follows their specifications.&lt;&#x2F;li&gt;
+&lt;li&gt;HDMI cable. To connect Raspberry Pi to a monitor during the initial setup.&lt;&#x2F;li&gt;
+&lt;li&gt;USB keyboard. For the first configuration steps.&lt;&#x2F;li&gt;
+&lt;li&gt;Network cable. You will have one USB port taken by the HD, so it&#x27;s better to keep the other free for a keyboard and connect the Raspberry to the network by cable.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Once you have all the pieces, you can start. I have added references to the sources where I found how to set up the Raspberry in each section, but if you get stuck check &lt;a href=&quot;http:&#x2F;&#x2F;raspberrypi.stackexchange.com&#x2F;&quot;&gt;Stack Exchange&lt;&#x2F;a&gt; as they have a forum dedicated to Raspberry with a lot of useful information.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;setup-of-raspberry-pi&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#setup-of-raspberry-pi&quot; aria-label=&quot;Anchor link for: setup-of-raspberry-pi&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Setup of Raspberry Pi&lt;&#x2F;h1&gt;
+&lt;p&gt;Raspberry has a helpful &lt;a href=&quot;http:&#x2F;&#x2F;www.raspberrypi.org&#x2F;wp-content&#x2F;uploads&#x2F;2012&#x2F;04&#x2F;quick-start-guide-v2_1.pdf&quot;&gt;guide to set up&lt;&#x2F;a&gt; the unit. If you bought the SD card with NOOBS preinstalled then you can skip the few first steps and go straight to the part talking about the first boot.&lt;&#x2F;p&gt;
+&lt;p&gt;Basically, select Raspbian (the recommended OS for Raspberry, &lt;a href=&quot;http:&#x2F;&#x2F;www.debian.org&#x2F;&quot;&gt;Debian&lt;&#x2F;a&gt; based) and wait for it to be installed. It will take a while. Then you will be prompted to restart the unit. After rebooting Raspbian will automatically load a configuration menu, in which we will tweak some options:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Option 1, expand filesystem. It is not needed in NOOBS but run it just in case&lt;&#x2F;li&gt;
+&lt;li&gt;Option 2, set a new password for the user pi. Given that we will log via ssh, you need this&lt;&#x2F;li&gt;
+&lt;li&gt;Option 8, in advanced options make sure that ssh is enabled. I also overclocked the unit (middle option) as it will be running quite a few services.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Once you are done, exit and reboot the unit. Then log into it and install &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Avahi_(software)&quot;&gt;avahi&lt;&#x2F;a&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install avahi-daemon
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This will allow us to ssh to the Raspberry via the hostname &lt;em&gt;raspberrypi.local&lt;&#x2F;em&gt;, removing the need to keep track of its ip. Once installed, reboot again the unit and try to log into it via ssh:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;ssh pi@raspberrypi.local
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This is the recommended way to connect to the Raspberry Pi. You can remove the HDMI cable and the keyboard from the unit and use ssh from now on to operate on it.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is &lt;a href=&quot;http:&#x2F;&#x2F;www.howtogeek.com&#x2F;138281&#x2F;the-htg-guide-to-getting-started-with-raspberry-pi&#x2F;&quot;&gt;another guide&lt;&#x2F;a&gt; that can help you by covering areas that may not be clear.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;raspberry-as-nas&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#raspberry-as-nas&quot; aria-label=&quot;Anchor link for: raspberry-as-nas&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Raspberry as NAS&lt;&#x2F;h1&gt;
+&lt;p&gt;After setting our Raspberry Pi, we will turn it into a NAS system using Samba, so we can copy files across the network. This requires the external HD to be connected to the unit. There are a couple of step by step &lt;a href=&quot;http:&#x2F;&#x2F;www.howtogeek.com&#x2F;139433&#x2F;how-to-turn-a-raspberry-pi-into-a-low-power-network-storage-device&#x2F;&quot;&gt;guides&lt;&#x2F;a&gt; &lt;a href=&quot;http:&#x2F;&#x2F;www.makeuseof.com&#x2F;tag&#x2F;turn-your-raspberry-pi-into-a-nas-box&#x2F;&quot;&gt;available&lt;&#x2F;a&gt; which can help you through the process. The guides also mention how to use a second hard drive for local data redundancy. I only use one HD by now, but it can be a recommended step to ensure you don&#x27;t lose data.&lt;&#x2F;p&gt;
+&lt;p&gt;As per the guides, the HD is left in NTFS. It is slower than EXT4, but allows us to connect it to a Windows machine directly in case of need. To be able to use that filesystem we need some extra packages, installed via:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install ntfs-3g
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;mounting-the-hd&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#mounting-the-hd&quot; aria-label=&quot;Anchor link for: mounting-the-hd&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Mounting the HD&lt;&#x2F;h2&gt;
+&lt;p&gt;The external hard drive (if you only use one) will be recognised as &lt;strong&gt;&#x2F;dev&#x2F;sda1&lt;&#x2F;strong&gt; by Raspbian. We need to mount it permanently in our filesystem. I chose to mount it in the folder &lt;em&gt;&#x2F;media&#x2F;hd1&lt;&#x2F;em&gt;, by doing the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo mkdir &amp;#x2F;media&amp;#x2F;hd1
+sudo mount -t auto &amp;#x2F;dev&amp;#x2F;sda1 &amp;#x2F;media&amp;#x2F;hd1
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This creates the folder, and mounts the external HD into it. We now need to tell the system to mount the unit every time it boots. Edit &lt;em&gt;fstab&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo nano &amp;#x2F;etc&amp;#x2F;fstab
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and add the following line at the bottom:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;dev&amp;#x2F;sda1 &amp;#x2F;media&amp;#x2F;hd1 auto noatime 0 0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Save and you can restart the Raspberry Pi to check that the disk is mounted at &lt;em&gt;&#x2F;media&#x2F;hd1&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;samba&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#samba&quot; aria-label=&quot;Anchor link for: samba&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Samba&lt;&#x2F;h2&gt;
+&lt;p&gt;We use a specific folder in the HD for our Samba share, so we can isolate the shared folder from other files we may want to store in the disk.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo mkdir &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;share
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Install Samba, do a backup of the default configuration and edit it by running:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install samba samba-common-bin
+sudo cp &amp;#x2F;etc&amp;#x2F;samba&amp;#x2F;smb.conf &amp;#x2F;etc&amp;#x2F;samba&amp;#x2F;smb.conf.old
+sudo nano &amp;#x2F;etc&amp;#x2F;samba&amp;#x2F;smb.conf
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the config file, uncomment the line:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;security = user
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and add at the bottom of the file:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;[Share]
+comment = My share
+path = &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;share
+valid users = @users
+force group = users
+create mask = 0660
+directory mask = 0771
+read only = no
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I also took a page of this &lt;a href=&quot;https:&#x2F;&#x2F;calomel.org&#x2F;samba_optimize.html&quot;&gt;guide&lt;&#x2F;a&gt; on optimising Samba and replaced the &lt;em&gt;socket options&lt;&#x2F;em&gt; in the file by:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;socket options = TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=65536 SO_SNDBUF=65536
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;with the aim of improving performance.&lt;&#x2F;p&gt;
+&lt;p&gt;The next step is creating a user that can access the share when connecting via the network. I created a user called &lt;em&gt;nas&lt;&#x2F;em&gt;, typing the password I chose when prompted:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;useradd nas -m -G users
+passwd nas
+smbpasswd -a nas
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Restart Samba:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;service samba restart
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and you should be able to access the share in your network by using the user &lt;em&gt;nas&lt;&#x2F;em&gt; and its credentials.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;crashplan&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#crashplan&quot; aria-label=&quot;Anchor link for: crashplan&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Crashplan&lt;&#x2F;h1&gt;
+&lt;p&gt;Crashplan is my tool of choice for remote backups, sending the data in our NAS to the cloud. We will run it as a headless client, which means that we run the service in Raspberry but the client, which we use to configure the backup options, runs in another computer and connects via the network.&lt;&#x2F;p&gt;
+&lt;p&gt;The service is a Java application, which means that we have to install the &lt;em&gt;jvm&lt;&#x2F;em&gt; into Raspberry Pi. Given that the Oracle implementation is much better than the OpenJDK one, the first step is to purge OpenJDK and install Oracle&#x27;s Java, ensuring it is the default choice in the system:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get purge openjdk-\* icedtea-\* icedtea6-\*
+sudo apt-get install oracle-java7-jdk
+sudo update-alternatives --list java
+sudo update-alternatives —config java
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;At this point, we can follow the steps in &lt;a href=&quot;http:&#x2F;&#x2F;www.bionoren.com&#x2F;blog&#x2F;2013&#x2F;02&#x2F;raspberry-pi-crashplan&#x2F;&quot;&gt;this guide&lt;&#x2F;a&gt; to install Crashplan in our Raspberry.  The guide also install Java 8, we skip that and go straight to point 8. I summarise the steps in here as a quick reference.&lt;&#x2F;p&gt;
+&lt;p&gt;First &lt;a href=&quot;http:&#x2F;&#x2F;www.crashplan.com&#x2F;consumer&#x2F;download.html?os=Linux&quot;&gt;Download&lt;&#x2F;a&gt; Crashplan for Linux, copy it to the Raspberry (via scp) and extract it there. Then run the installer:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;sudo Crashplan-install&amp;#x2F;install.sh
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Accept the license and select the default locations for the installation. Then you need to patch &lt;a href=&quot;http:&#x2F;&#x2F;www.jonrogers.co.uk&#x2F;wp-content&#x2F;uploads&#x2F;2012&#x2F;05&#x2F;libjtux.so&quot;&gt;libjtux&lt;&#x2F;a&gt; and &lt;a href=&quot;http:&#x2F;&#x2F;www.jonrogers.co.uk&#x2F;wp-content&#x2F;uploads&#x2F;2012&#x2F;05&#x2F;libmd5.so&quot;&gt;md5 library&lt;&#x2F;a&gt; by downloading the linked files and copying them to &lt;em&gt;&#x2F;usr&#x2F;local&#x2F;crashplan&#x2F;&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;You also need to install &lt;em&gt;libjna&lt;&#x2F;em&gt; for Java:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;sudo apt-get install libjna-java
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Once done, edit &lt;em&gt;&#x2F;usr&#x2F;local&#x2F;crashplan&#x2F;bin&#x2F;CrashPlanEngine&lt;&#x2F;em&gt; and find the line that begins with &lt;em&gt;FULL_CP=&lt;&#x2F;em&gt;, around the start case, and edit it so it looks like:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;FULL_CP=&amp;quot;&amp;#x2F;usr&amp;#x2F;share&amp;#x2F;java&amp;#x2F;jna.jar:$TARGETDIR&amp;#x2F;lib&amp;#x2F;com.backup42.desktop.jar:$TARGETDIR&amp;#x2F;lang&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The last step is to run the Crashplan engine at boot time by editing &lt;em&gt;&#x2F;etc&#x2F;rc.local&lt;&#x2F;em&gt; and adding on the line above &lt;em&gt;exit 0&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;usr&amp;#x2F;local&amp;#x2F;crashplan&amp;#x2F;bin&amp;#x2F;CrashPlanEngine start
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Restart the unit and if everything worked when you run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;usr&amp;#x2F;local&amp;#x2F;crashplan&amp;#x2F;bin&amp;#x2F;CrashPlanEngine status
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;you should see the service is running.&lt;&#x2F;p&gt;
+&lt;p&gt;There is &lt;a href=&quot;http:&#x2F;&#x2F;www.bionoren.com&#x2F;blog&#x2F;2013&#x2F;02&#x2F;raspberry-pi-crashplan&#x2F;#comment-97&quot;&gt;a comment&lt;&#x2F;a&gt; in the above guide that shows how to modify the swap to point to another file. There are two good reasons for this. First of all, the default swap in Raspberry is not much, and Raspbian may kill processes heavy in RAM when running low on memory, increasing the swap will avoid it killing Crashplan on a whim. Secondly, Java may do heavy use of the swap and thus shorten the life of the SD card by doing many writes to it, which we can fix by moving the swap to our external disk. I created a swap file in the external hd by following the instructions:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;dd if=&amp;#x2F;dev&amp;#x2F;zero of=&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile bs=1M count=1024
+mkswap &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile
+chown root:root &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile
+chmod 0600 &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile
+swapon &amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile
+sudo apt-get purge dphys-swapfile
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then we apply this change on each boot by editing &lt;em&gt;&#x2F;etc&#x2F;fstab&lt;&#x2F;em&gt; and adding to the bottom (to ensure the disk that contains the swap is mounted first):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;swapfile swap swap defaults 0 0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Restart the Raspberry and execute &lt;em&gt;free&lt;&#x2F;em&gt;. You should see a swap of 1Gb.&lt;&#x2F;p&gt;
+&lt;p&gt;I won&#x27;t enter into detail on how to connect a headless client as the &lt;a href=&quot;http:&#x2F;&#x2F;support.code42.com&#x2F;CrashPlan&#x2F;Latest&#x2F;Configuring&#x2F;Configuring_A_Headless_Client&quot;&gt;official guide&lt;&#x2F;a&gt; explains it perfectly. Just remember that you will need to run the tunnel every time you connect via the client, and the tunnels timeout from time to time.&lt;&#x2F;p&gt;
+&lt;p&gt;Now configure Crashplan to backup the files in &lt;em&gt;&#x2F;media&#x2F;hd1&#x2F;share&lt;&#x2F;em&gt; to their cloud and you are done.&lt;&#x2F;p&gt;
+&lt;p&gt;There is an optional last step you can follow. The settings above should ensure that Crashplan is not killed by Raspbian, but this may happen. To fix this without us having to ssh into the box every day, I&#x27;ve added a &lt;em&gt;cronjob&lt;&#x2F;em&gt; that restarts the Raspberry every day at 2 am. If you are not a &lt;em&gt;crontab&lt;&#x2F;em&gt; expert you can see how to do this &lt;a href=&quot;http:&#x2F;&#x2F;raspberrypi.stackexchange.com&#x2F;questions&#x2F;2150&#x2F;how-do-i-reboot-at-a-specific-time&quot;&gt;in this stack exchange&lt;&#x2F;a&gt; question, just replace the &lt;em&gt;0,8&lt;&#x2F;em&gt; by a &lt;em&gt;2&lt;&#x2F;em&gt;. In my case 2am is not a time when I will be using the NAS, so a restart should not be an issue and it will ensure that any services that were killed are restarted accordingly.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;torrents&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#torrents&quot; aria-label=&quot;Anchor link for: torrents&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Torrents&lt;&#x2F;h1&gt;
+&lt;p&gt;We have a NAS backed up in the cloud. Given that it will be running 24&#x2F;7, we can try to squeeze it a bit more by adding a torrent client to the box. That way you can download you latest Linux distro without having to keep your desktop on all night, Raspberry rakes care about it. There is a guide on how to &lt;a href=&quot;http:&#x2F;&#x2F;www.howtogeek.com&#x2F;142044&#x2F;how-to-turn-a-raspberry-pi-into-an-always-on-bittorrent-box&#x2F;&quot;&gt;install deluge&lt;&#x2F;a&gt; as a headless server, which we can then access via a remote client or a web interface.&lt;&#x2F;p&gt;
+&lt;p&gt;To start, we install &lt;em&gt;deluged&lt;&#x2F;em&gt; and we run it so it creates the default config files:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install deluged
+sudo apt-get install deluge-console
+deluged
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Wait for a couple of minutes so all the files are created, and then kill the process:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo pkill deluged
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now we backup the authentication file and edit it to add a new user:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;cp ~&amp;#x2F;.config&amp;#x2F;deluge&amp;#x2F;auth ~&amp;#x2F;.config&amp;#x2F;deluge&amp;#x2F;auth.old
+nano ~&amp;#x2F;.config&amp;#x2F;deluge&amp;#x2F;auth
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;There you can add a user in the format &lt;em&gt;user:password:10&lt;&#x2F;em&gt;. The user and password don&#x27;t need to match any existing user, they are the credentials you will use to remotely connect to the server via the client. Now we start the service again and we enter into the console:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;deluged
+deluge-console
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In the console we run the following commands to allow for remote connections to the service:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;config -s allow_remote True
+config allow_remote
+exit
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And to apply the new configuration we restart the service:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo pkill deluged
+deluged
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The last step is to run &lt;em&gt;deluged&lt;&#x2F;em&gt; at boot time by editing &lt;em&gt;&#x2F;etc&#x2F;rc.local&lt;&#x2F;em&gt; and adding on the line above &lt;em&gt;exit 0&lt;&#x2F;em&gt;:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;deluged
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I won&#x27;t explain how to connect via the client as the guide linked above has a complete explanation, with images, and it is quite straightforward. I just recommend you to only download 1 torrent at once and to set the destination folder for all the torrents to a path inside the &lt;em&gt;samba share&lt;&#x2F;em&gt;, so you can access it from the network. Just make sure Crashplan doesn&#x27;t backup that folder. As we have plenty of memory in use in this Raspberry I&#x27;ve not installed the web interface as I thought it was of little benefit and we can use that RAM for other things.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;dlna&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#dlna&quot; aria-label=&quot;Anchor link for: dlna&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+DLNA&lt;&#x2F;h1&gt;
+&lt;p&gt;Given the amount of storage in the NAS, we will probably keep plenty of photos and videos in it. We can install a &lt;a href=&quot;http:&#x2F;&#x2F;www.dlna.org&#x2F;&quot;&gt;DLNA&lt;&#x2F;a&gt; compliant server in our Raspberry that will index all the media files in our share and make them available to any DLNA compatible device: smartphones, laptops or TVs. We do this by installing &lt;em&gt;minidlna&lt;&#x2F;em&gt;, an open source implementation of the protocol.&lt;&#x2F;p&gt;
+&lt;p&gt;The process, taken from &lt;a href=&quot;http:&#x2F;&#x2F;www.raspberrypi.org&#x2F;phpBB3&#x2F;viewtopic.php?t=16352&quot;&gt;this guide&lt;&#x2F;a&gt;, is extremely simple. Be aware that the guide does many other things we already took care of, just skip them and scroll down to the part that says &lt;em&gt;install minidlna&lt;&#x2F;em&gt;. In your Raspberry run:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo apt-get install minidlna
+sudo update-rc.d minidlna defaults
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With this minidlna is installed and ready to run when rebooting the unit. Modify the configuration by editing &lt;em&gt;&#x2F;etc&#x2F;minidlna.conf&lt;&#x2F;em&gt; (as root). In the config, look for the following sections and update accordingly:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;media_dir=A,&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;share&amp;#x2F;Music
+media_dir=V,&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;share&amp;#x2F;Video
+media_dir=P,&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;share&amp;#x2F;Photos
+
+db_dir=&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;dlna
+
+log_dir=&amp;#x2F;media&amp;#x2F;hd1&amp;#x2F;dlna
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The media folders are an example, set them accordingly as per your &lt;em&gt;share&lt;&#x2F;em&gt; folder structure. The other two entries store minidlna metadata and logs in the external hd so we have enough room for them.&lt;&#x2F;p&gt;
+&lt;p&gt;Restart the service via:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;sudo service minidlna force-reload
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And wait for the service to index all the files. It is quite fast, depending on how many media files you own, but until a file is indexed you won&#x27;t be able to access it.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#conclusion&quot; aria-label=&quot;Anchor link for: conclusion&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Conclusion&lt;&#x2F;h1&gt;
+&lt;p&gt;You are done, you have a NAS with full cloud backup, torrenting capabilities and that can act as a media centre and show videos or photos in your TV. Congratulations! Enjoy it as much as I do enjoy mine :)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">This year I've bought a Raspberry Pi. I've wanted to play with it for a long time, but it was one of these things you keep delaying as I wasn't sure what to use it for. After moving to London, and given that my NAS died, I found myself in need of a replacement, one that allowed me to install Crashplan on it if possible (for cloud backup).
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Sonar and Hudson</title>
+        <published>2010-07-04T00:00:00+00:00</published>
+        <updated>2010-07-04T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/sonar-and-hudson/" type="text/html"/>
+        <id>https://perevillega.com/posts/sonar-and-hudson/</id>
+        
+            <content type="html">&lt;p&gt;Due to my current tasks at &lt;a href=&quot;https:&#x2F;&#x2F;wiki.duraspace.org&#x2F;display&#x2F;GSOC&#x2F;GSOC10+-+Add+Unit+Testing+to+Dspace&quot;&gt;Google Summer of Code 2010&lt;&#x2F;a&gt; I&#x27;ve been setting up a small CI system for my personal use. Yes, it is an overkill, but I wanted to test it and, truth be told, the statistics provided by tools like &lt;a href=&quot;http:&#x2F;&#x2F;www.sonarsource.org&#x2F;&quot;&gt;Sonar&lt;&#x2F;a&gt; and &lt;a href=&quot;http:&#x2F;&#x2F;hudson-ci.org&#x2F;&quot;&gt;Hudson&lt;&#x2F;a&gt; are priceless, they show you many potential errors you may have in the code, coverage you are missing, etc.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;I asked my friend Google for a guide on how to set them up together and it came up with this one. Easy five steps to set them up (check the link for more detail):&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Step 1&lt;&#x2F;strong&gt;: Download, install and start the Sonar Server.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Step 2&lt;&#x2F;strong&gt;: Install and Configure Sonar plugin on Hudson.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Step 3&lt;&#x2F;strong&gt;: Configure your Hudson Job&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Step 4&lt;&#x2F;strong&gt;: Build your project&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Step 5&lt;&#x2F;strong&gt;: Browse to Sonar Dashboard (default user is admin&#x2F;admin)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And you have your CI environment ready to go.  Easy. Simple. Powerful. And useful!&lt;&#x2F;p&gt;
+&lt;p&gt;I recommend you to use the following Sonar plugins:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Installing+Sonar+in+Eclipse&quot;&gt;Eclipse Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Taglist+Plugin&quot;&gt;Tag List Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Total+Quality+Plugin&quot;&gt;Total Quality Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;SCM+Activity+Plugin&quot;&gt;SCM Activity Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Sonar+PDF+Plugin&quot;&gt;Sonar PDF Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Motion+Chart+plugin&quot;&gt;Motion Chart Plugin&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;docs.codehaus.org&#x2F;display&#x2F;SONAR&#x2F;Build+Breaker+Plugin&quot;&gt;Build Breaker&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;With them you will get some extra data in your reports, you will be able to access them from your IDE (more useful for developers) and the builds will generate a handy pdf report for your project manager. Many benefits for a few customizations. You don&#x27;t even need to change the default settings for any standard project.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Due to my current tasks at Google Summer of Code 2010 I've been setting up a small CI system for my personal use. Yes, it is an overkill, but I wanted to test it and, truth be told, the statistics provided by tools like Sonar and Hudson are priceless, they show you many potential errors you may have in the code, coverage you are missing, etc.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Ubuntu Server Maintenance</title>
+        <published>2009-08-18T00:00:00+00:00</published>
+        <updated>2009-08-18T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/ubuntu-server-maintenance/" type="text/html"/>
+        <id>https://perevillega.com/posts/ubuntu-server-maintenance/</id>
+        
+            <content type="html">&lt;p&gt;This guide will show some basic stuff you might need to maintain an Ubuntu server. You might not need all of them, but thy are handy enough and I&#x27;ve had to use them at least once.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;secure-a-fresh-ubuntu-installation&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#secure-a-fresh-ubuntu-installation&quot; aria-label=&quot;Anchor link for: secure-a-fresh-ubuntu-installation&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Secure a fresh Ubuntu installation&lt;&#x2F;h2&gt;
+&lt;p&gt;Original source: &lt;a href=&quot;http:&#x2F;&#x2F;www.mensk.com&#x2F;webmaster-toolbox&#x2F;perfect-ubuntu-hardy-nginx-mysql5-php5-wordpress&#x2F;&quot;&gt;Mensk&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;When you install your fresh server, you have a completely unsafe Ubuntu installation. To make it a bit safer, follow these steps (change names and ports accordingly): Login as root (via ssh or using the console, it depends on your physical access to the machine) and change root password:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;passwd
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Add new username - yourself:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    adduser jsmith
+    visudo
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Append this line to end of file (to navigate within &#x27;vi&#x27; editor to create next line - use these: L, $, a, &lt;ENTER&gt;):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    jsmith ALL=(ALL) ALL
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To save and exit do: &lt;ESC&gt;, :wq, &lt;ENTER&gt;. Now let&#x27;s set up SSH configuration:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    nano &amp;#x2F;etc&amp;#x2F;ssh&amp;#x2F;sshd_config
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Find Port 22 and change number to something different (12345) to make hacking more difficult.Then change the following settings:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    PermitRootLogin no
+    X11Forwarding no
+    UsePAM no
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Append these lines to the very end:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    UseDNS no
+    AllowUsers jsmith
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;After this, we must secure the server with iptables&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    iptables-save &amp;gt; &amp;#x2F;etc&amp;#x2F;iptables.up.rules
+    nano &amp;#x2F;etc&amp;#x2F;iptables.test.rules
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Copy contents of &lt;a href=&quot;http:&#x2F;&#x2F;articles.slicehost.com&#x2F;assets&#x2F;2007&#x2F;9&#x2F;4&#x2F;iptables.txt&quot;&gt;this file&lt;&#x2F;a&gt; (content below) and paste it into &#x27;iptables.test.rules&#x27;&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    *filter
+
+
+    #  Allows all loopback (lo0) traffic and drop all traffic to 127&amp;#x2F;8 that doesn&amp;#x27;t use lo0
+    -A INPUT -i lo -j ACCEPT
+    -A INPUT -i ! lo -d 127.0.0.0&amp;#x2F;8 -j REJECT
+
+
+    #  Accepts all established inbound connections
+    -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+
+
+    #  Allows all outbound traffic
+    #  You can modify this to only allow certain traffic
+    -A OUTPUT -j ACCEPT
+
+
+    # Allows HTTP and HTTPS connections from anywhere (the normal ports for websites)
+    -A INPUT -p tcp --dport 80 -j ACCEPT
+    -A INPUT -p tcp --dport 443 -j ACCEPT
+
+    #  Allows SSH connections
+    #
+    # THE -dport NUMBER IS THE SAME ONE YOU SET UP IN THE SSHD_CONFIG FILE
+    #
+    -A INPUT -p tcp -m state --state NEW --dport 30000 -j ACCEPT
+
+    # Allow ping
+    -A INPUT -p icmp -m icmp --icmp-type 8 -j ACCEPT
+
+
+    # log iptables denied calls
+    -A INPUT -m limit --limit 5&amp;#x2F;min -j LOG --log-prefix &amp;quot;iptables denied: &amp;quot; --log-level 7
+
+    # Reject all other inbound - default deny unless explicitly allowed policy
+    -A INPUT -j REJECT
+    -A FORWARD -j REJECT
+
+    COMMIT
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Change port number to your SSH port number on this line:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    -A INPUT -p tcp -m state --state NEW --dport 30000 -j ACCEPT
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Save and exit (Ctrl+O, Ctrl+X). To apply new iptables rules:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    iptables-restore &amp;lt; &amp;#x2F;etc&amp;#x2F;iptables.test.rules
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then save iptables rules permanently:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    iptables-save &amp;gt; &amp;#x2F;etc&amp;#x2F;iptables.up.rules
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Make sure iptables rules will apply when server is rebooted as well:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    nano &amp;#x2F;etc&amp;#x2F;network&amp;#x2F;interfaces
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Add new line after these 2:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    auto lo
+
+    iface lo inet loopbackpre-up iptables-restore &amp;lt; &amp;#x2F;etc&amp;#x2F;iptables.up.rules
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Save and exit. Reload SSH to use new ports and configurations:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;     &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;ssh reload
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Keep &#x27;root&#x27; session running and open second session. SSH login to your slice to new port, with your new username and password:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    ssh -p 12345 jsmith@123.45.6.78
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you logged on successfully via your new username: &#x27;jsmith&#x27; - you may close &#x27;root&#x27; session now. If not - you still have &#x27;root&#x27; session opened to fix problems. As your user, edit .bashrc file to make terminal window a bit more helpful:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    nano ~&amp;#x2F;.bashrc
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Append these lines to the end of it:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    export PS1=&amp;quot;\[\e[32;1m\]\u\[\e[0m\]\[\e[32m\]@\h\[\e[36m\]\w \[\e[33m\]\$ \[\e[0m\]&amp;quot;
+    alias ll=&amp;quot;ls -la&amp;quot;
+    alias a2r=&amp;quot;sudo &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;apache2 stop &amp;amp;&amp;amp; sleep 2 &amp;amp;&amp;amp; sudo &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;apache2 start&amp;quot;
+    alias n2r=&amp;quot;sudo &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;nginx stop &amp;amp;&amp;amp; sleep 2 &amp;amp;&amp;amp; sudo &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;nginx start&amp;quot;
+    alias ver=&amp;quot;cat &amp;#x2F;etc&amp;#x2F;lsb-release&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Save and exit. Reload .bashrc to make changes active:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    source ~&amp;#x2F;.bashrc
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Update sources:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo aptitude update
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Set system locale:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo locale-gen en_US.UTF-8
+    sudo &amp;#x2F;usr&amp;#x2F;sbin&amp;#x2F;update-locale LANG=en_US.UTF-8
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Upgrade system now:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo aptitude -y safe-upgrade
+    sudo aptitude -y full-upgrade
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;clean-the-server-via-ubuntugeek&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#clean-the-server-via-ubuntugeek&quot; aria-label=&quot;Anchor link for: clean-the-server-via-ubuntugeek&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Clean the server (via &lt;a href=&quot;http:&#x2F;&#x2F;www.ubuntugeek.com&#x2F;ubucleaner-simple-bash-script-to-keep-your-ubuntu-system-clean.html&quot;&gt;UbuntuGeek&lt;&#x2F;a&gt;)&lt;&#x2F;h2&gt;
+&lt;p&gt;I have a special fixation on cleaning my servers. I don&#x27;t want any extra file (package, log, whatever) to be there if it is not needed. That&#x27;s why when I discovered UbuntuCleaner I got quite happy. This tools does this for you:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Cleans apt cache&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Removes config files left from uninstalled .deb packages(it happens if you don’t use the --purge switch with apt-get)&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Removes every kernel except the one you are using&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Empties the trashes of every user(including root)&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;It uses apt and the kernel removing thing searches for ubuntu-only packages, so it can’t work on non-debian system and the result is undetermined for other debian-based system, but you can still use the other features of the script(you’ll just have to comment the parts you don’t want).&lt;&#x2F;p&gt;
+&lt;p&gt;The script assumes that you are using the text-based Aptitude application, rather than apt-get and dpkg. If you are not using Aptitude, you should also replace the reference to aptitude clean with apt-get clean and the reference to aptitude purge to dpkg –purge.This can be done done by editing the following script. First you need to download the script from &lt;a href=&quot;http:&#x2F;&#x2F;opendesktop.org&#x2F;content&#x2F;show.php&#x2F;Ubucleaner?content=71529&quot;&gt;here&lt;&#x2F;a&gt; or using the following command&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    wget http:&amp;#x2F;&amp;#x2F;www.opendesktop.org&amp;#x2F;CONTENT&amp;#x2F;content-files&amp;#x2F;71529-ubucleaner.sh
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now you should have 71529-ubucleaner.sh file you need to give execute permissions using the following command&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo chmod +x 71529-ubucleaner.sh
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Run the script using the following command&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    .&amp;#x2F;71529-ubucleaner.sh
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;upgrading-to-a-new-release-via-howtoforge&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#upgrading-to-a-new-release-via-howtoforge&quot; aria-label=&quot;Anchor link for: upgrading-to-a-new-release-via-howtoforge&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Upgrading to a new release (via &lt;a href=&quot;http:&#x2F;&#x2F;www.howtoforge.com&#x2F;how-to-upgrade-ubuntu-8.04-to-ubuntu-8.10-desktop-and-server&quot;&gt;HowToForge&lt;&#x2F;a&gt;)&lt;&#x2F;h2&gt;
+&lt;p&gt;For an Ubuntu server, the main advice is to stick to LTS releases, due to their stability. That said, sometimes you might need to upgrade to a non-LTS release, as it happened to me when Launchpad was released and I wanted to install it (it required 9.04). So here I will describe the steps needed to update your distribution. It assumes you are running a server (no X11 installed) and this is your first upgrade:&lt;&#x2F;p&gt;
+&lt;p&gt;First become root:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo su
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then run&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    apt-get update
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and install the package update-manager-core:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    apt-get install update-manager-core
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;If you are running a LTS release, open the file &#x2F;etc&#x2F;update-manager&#x2F;release-upgrades&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    vi &amp;#x2F;etc&amp;#x2F;update-manager&amp;#x2F;release-upgrades
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and change Prompt=lts to Prompt=normal. Then run&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    do-release-upgrade
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;to start the distribution upgrade.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enabling-php-fastcgi-via-howtoforge&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#enabling-php-fastcgi-via-howtoforge&quot; aria-label=&quot;Anchor link for: enabling-php-fastcgi-via-howtoforge&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Enabling PHP-FastCGI (via &lt;a href=&quot;http:&#x2F;&#x2F;www.howtoforge.com&#x2F;installing-nginx-with-php5-and-mysql-support-on-ubuntu-9.04&quot;&gt;HowToForge&lt;&#x2F;a&gt;)&lt;&#x2F;h2&gt;
+&lt;p&gt;If you need to run fastcgi scripts on your Ubuntu 9.04 machine, you are lucky as this version provides a FastCGI-enabled PHP5 package. To activate it: Install PHP5 on Ubuntu:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    aptitude install php5-cgi php5-mysql php5-curl
+    php5-gd php5-idn php-pear php5-imagick php5-imap php5-mcrypt
+    php5-memcache php5-mhash php5-ming php5-pspell php5-recode php5-snmp
+    php5-sqlite php5-tidy php5-xmlrpc php5-xsl
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then open &#x2F;etc&#x2F;php5&#x2F;cgi&#x2F;php.ini and add the line&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;     cgi.fix_pathinfo = 1
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;right at the end of the file. This enables the FastCGI package. But there&#x27;s no standalone FastCGI daemon package for Ubuntu 9.04, therefore we use the spawn-fcgi program from lighttpd. We install lighttpd as follows:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    aptitude install lighttpd
+    update-rc.d -f lighttpd remove
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;so that lighttpd will not start at boot time, as we&#x27;ve installed lighttpd because we need just one program that comes with the package, &#x2F;usr&#x2F;bin&#x2F;spawn-fcgi, which we can use to start FastCGI processes. Of course, you don&#x27;t want to type in that command manually whenever you boot the system, so to have the system execute the command automatically at boot time, open &#x2F;etc&#x2F;rc.local&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    vi &amp;#x2F;etc&amp;#x2F;rc.local
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and add the command at the end of the file (before the exit line):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    &amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;spawn-fcgi -a 127.0.0.1 -p 9000 -u www-data -g www-data -f &amp;#x2F;usr&amp;#x2F;bin&amp;#x2F;php5-cgi -P &amp;#x2F;var&amp;#x2F;run&amp;#x2F;fastcgi-php.pid
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        <summary type="html">This guide will show some basic stuff you might need to maintain an Ubuntu server. You might not need all of them, but thy are handy enough and I've had to use them at least once.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Redmine on Ubuntu 9.04 with NGinx</title>
+        <published>2009-08-17T00:00:00+00:00</published>
+        <updated>2009-08-17T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/redmine-on-ubuntu-9-dot-04-with-nginx/" type="text/html"/>
+        <id>https://perevillega.com/posts/redmine-on-ubuntu-9-dot-04-with-nginx/</id>
+        
+            <content type="html">&lt;p&gt;Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, only available for Ubuntu 9.04, which doesn&#x27;t work too well on a server. I&#x27;ll keep an eye on it as I like the way Canonical does things (and applications), but in the meantime I decided to use &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;&quot;&gt;Redmine&lt;&#x2F;a&gt; as I found Trac lacking on some areas.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;redmine&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#redmine&quot; aria-label=&quot;Anchor link for: redmine&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Redmine&lt;&#x2F;h2&gt;
+&lt;p&gt;Redmine is an open source, web-based project management and bug-tracking tool, written in Ruby on Rails and heavily influenced by Trac. It improves on several areas, like providing multiple project support, integrating with several source control systems (from popular SVN to less popular Bazaar or Darcs) and allowing extension of its functionalities through plugins. This guide describes how to install Redmine in an Ubuntu 9.04 server using Mongrel as web server, Nginx as proxy and MySQL as database. To achieve this we have to follow 3 steps:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;install ruby and rails and MySQL&lt;&#x2F;li&gt;
+&lt;li&gt;install Redmine&lt;&#x2F;li&gt;
+&lt;li&gt;install Mongrel and Nginx&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This guide can be adapted to older versions of Ubuntu and most Linux distributions, just replacing the tools&#x2F;packages by the specific ones available in that distribution. The guide is a quick overview of the main steps, for  more information on configuration options check the documentation of the corresponding tool.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;install-ruby-and-rails-and-mysql&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-ruby-and-rails-and-mysql&quot; aria-label=&quot;Anchor link for: install-ruby-and-rails-and-mysql&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Ruby and Rails and MySQL&lt;&#x2F;h2&gt;
+&lt;p&gt;To install the components first ensure the system is up to date:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get update
+    sudo apt-get dist-upgrade
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then run the following command:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get install build-essential ruby ri rdoc mysql-server libmysql-ruby ruby1.8-dev irb1.8 libdbd-mysql-perl libdbi-perl
+          libmysql-ruby1.8 libmysqlclient15off libnet-daemon-perl libplrpc-perl libreadline-ruby1.8 libruby1.8 rdoc1.8 ri1.8 ruby1.8
+          irb libopenssl-ruby libopenssl-ruby1.8 libhtml-template-perl mysql-client-5.0 mysql-common mysql-server-5.0 mysql-server-core-5.0
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now that we have Ruby installed, we use Gems to install Rails:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo gem update
+    sudo gem install rails --no-rdoc –no-ri
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The flags –no-rdoc and –no-ri are included to reduce the RAM footprint of the component, feel free to remove them if your machine has more than enough RAM. To finish this part, open the MySQL client and create the Redmine database:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    create database redmine character set utf8;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-redmine&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-redmine&quot; aria-label=&quot;Anchor link for: install-redmine&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Redmine&lt;&#x2F;h2&gt;
+&lt;p&gt;Get the code from the &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;Download&quot;&gt;download&lt;&#x2F;a&gt; page. Although the stable release is recommended, if you are going to use Bazaar the svn contains some fixes you want to use, so do an export from the trunk and use that. (Note: if you use the trunk, you&#x27;ll have to install a newer Rails using Gems due to version requirements). Select a folder in your server (from now on, APP) and copy the downloaded code there. Move to the APP folder and run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo cp config&amp;#x2F;database.yml.example config&amp;#x2F;database.yml
+    sudo cp config&amp;#x2F;email.yml.example config&amp;#x2F;email.yml
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Edit the new yml files and change the configuration as required (MySQL details, mail server, etc).  Now run these commands to create the database and populate it:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    rake db:migrate RAILS_ENV=&amp;quot;production&amp;quot;
+    rake redmine:load_default_data RAILS_ENV=&amp;quot;production&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We also need ImageMagick  (although is optional):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get install imagemagick libmagickwand-dev
+    sudo gem install rmagick
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-mongrel-and-nginx&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-mongrel-and-nginx&quot; aria-label=&quot;Anchor link for: install-mongrel-and-nginx&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Mongrel and Nginx&lt;&#x2F;h2&gt;
+&lt;p&gt;To run Redmine we will use a standard setup for Rails applications, consistent on Mongrel as web server and Nginx as proxy that interacts with the network. We will run Mongrel as Mongrel Cluster, to improve the performance as Mongrel is single threaded and we will need multiple instances to server multiple clients. First we need to install Mongrel and Mongrel Cluster:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo gem install mongrel
+    sudo gem install mongrel_cluster
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now move to APP folder and run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    mongrel_rails cluster::configure -e production -p 8000 -N 2 -c APP -a 127.0.0.1
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The flag -p indicates the initial port to use by Mongrel. Flag -N tells how many instances you want running in the cluster. Flag -a shows the bind address of the cluster. Once created, we need to set it up so it starts automatically with the server:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo mkdir &amp;#x2F;etc&amp;#x2F;mongrel_cluster
+    sudo ln -s APP&amp;#x2F;config&amp;#x2F;mongrel_cluster.yml &amp;#x2F;etc&amp;#x2F;mongrel_cluster&amp;#x2F;your-app-name.yml
+    sudo cp &amp;#x2F;var&amp;#x2F;lib&amp;#x2F;gems&amp;#x2F;1.8&amp;#x2F;gems&amp;#x2F;mongrel_cluster-1.0.5&amp;#x2F;resources&amp;#x2F;mongrel_cluster &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;
+    sudo chmod +x &amp;#x2F;etc&amp;#x2F;init.d&amp;#x2F;mongrel_cluster
+    sudo &amp;#x2F;usr&amp;#x2F;sbin&amp;#x2F;update-rc.d mongrel_cluster defaults
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now you can control the cluster with the commands:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    mongrel_cluster_ctl start
+    mongrel_cluster_ctl stop
+    mongrel_cluster_ctl restart
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now install nginx (if you don&#x27;t have it):&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo apt-get install nginx
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We need to create a virtual host for Nginx, that will receive the requests and forward them to Redmine. Assuming your public domain will be “domain.com”:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo nano &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;nginx&amp;#x2F;sites-available&amp;#x2F;domain.com
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And copy inside:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    upstream domain1 {
+
+     server 127.0.0.1:5000;
+     server 127.0.0.1:5001;
+     server 127.0.0.1:5002;
+
+    }
+
+    server {
+
+     listen   80;
+     server_name  www.domain.com;
+     rewrite ^&amp;#x2F;(.*) http:&amp;#x2F;&amp;#x2F;domain.com&amp;#x2F;$1 permanent;
+
+    }
+
+    server {
+
+     listen   80;
+     server_name domain.com;
+
+     access_log &amp;#x2F;home&amp;#x2F;demo&amp;#x2F;public_html&amp;#x2F;railsapp&amp;#x2F;log&amp;#x2F;access.log;
+     error_log &amp;#x2F;home&amp;#x2F;demo&amp;#x2F;public_html&amp;#x2F;railsapp&amp;#x2F;log&amp;#x2F;error.log;
+
+     root   &amp;#x2F;home&amp;#x2F;demo&amp;#x2F;public_html&amp;#x2F;railsapp&amp;#x2F;public&amp;#x2F;;
+
+     index  index.html;
+
+     location &amp;#x2F; {
+
+          proxy_set_header  X-Real-IP  $remote_addr;
+          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header Host $http_host;
+          proxy_redirect false;
+
+          if (-f $request_filename&amp;#x2F;index.html) {
+            rewrite (.*) $1&amp;#x2F;index.html break;
+          }
+
+          if (-f $request_filename.html) {
+            rewrite (.*) $1.html break;
+          }
+
+          if (!-f $request_filename) {
+            proxy_pass http:&amp;#x2F;&amp;#x2F;domain1;
+            break;
+          }
+
+     }
+
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Be careful to change the port numbers and domain name to the ones you&#x27;ll use on your server. Now enable the site:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    sudo ln -s &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;nginx&amp;#x2F;sites-available&amp;#x2F;domain.com &amp;#x2F;usr&amp;#x2F;local&amp;#x2F;nginx&amp;#x2F;sites-enabled&amp;#x2F;domain.com
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;and once you restart Nginx your Redmine installation is ready to go. Configure Bazaar First we need to edit the file config&#x2F;environment.rb to add new environment variables related to Python, to avoid problems while accessing Bazaar:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    ENV[&amp;#x27;PYTHONPATH&amp;#x27;] = &amp;#x27;&amp;#x2F;usr&amp;#x2F;lib&amp;#x2F;python2.6&amp;#x27;
+    ENV[&amp;#x27;PATH&amp;#x27;] = &amp;quot;#{ENV[&amp;#x27;PATH&amp;#x27;]}:&amp;#x2F;usr&amp;#x2F;bin&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;When you create a project you just need to point Redmine to your Bazaar main folder, this will allow you to browse the repository. Be aware it still has some limitations when displaying contents, but it works quite well. To work with Bazaar, let&#x27;s set up a repository on  our server. This will be a dumb repository, it means is nothing more than a  folder that can be accessed via sftp that stores the data of the repository. First of all, in Ubuntu 9.04 (our server) let&#x27;s install the needed tools (sftp) and enable them as accepted shell:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $apt-get install ssh openssh-server
+    $echo &amp;#x27;&amp;#x2F;usr&amp;#x2F;lib&amp;#x2F;sftp-server&amp;#x27; &amp;gt;&amp;gt; &amp;#x2F;etc&amp;#x2F;shells
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then create a user to connect via sftp to the server:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $sudo useradd --create-home --home-dir &amp;#x2F;home&amp;#x2F;bzr --shell &amp;#x2F;usr&amp;#x2F;lib&amp;#x2F;sftp-server bzr
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And that&#x27;s it, we have a folder (&#x2F;home&#x2F;bzr&#x2F;) ready to receive our Bazaar projects. Is a good practice to give write rights to that folder to members of group “bzr”, and to add a password to the &#x27;bzr&#x27; user. On your client machine, install Bazaar (using apt-get or similar). Then download the Uploader plugin which eases the task to commit changes to “dumb servers”:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $ mkdir &amp;#x2F;home&amp;#x2F;pvillega&amp;#x2F;.bazaar&amp;#x2F;plugins
+    $ bzr co lp:bzr-upload ~&amp;#x2F;.bazaar&amp;#x2F;plugins&amp;#x2F;upload
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;or if you use Ubuntu&#x2F;Debian with:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    $sudo apt-get install bzr-upload
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then create the base repository. There are two ways of doing this, you can create a shared repository which stores every child branch revision, or you can create standalone repositories, which are good if you don’t want to share revision information with other branches. Here we create a shared repository:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    bzr init-repository some_directory
+    bzr init some_directory&amp;#x2F;trunk
+    bzr init some_directory&amp;#x2F;branches
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Now, to interact with the server we created before, first run:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    bzr push --create-prefix sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;This pushes the project to the server and creates the folder &#x27;test&#x27; if needed. After that, all the interaction with the server can be (usually) reduced to:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;     bzr pull sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test   #update changes from the server to our client
+     bzr co sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test      #checkout the project
+     bzr push sftp:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test  #push changes to the server
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Ok, is not the nicest way to do that, but remember this is a distributed repository, you won&#x27;t update or push changes too often, usually only when you are done with a piece of work.  There&#x27;s an alternative method, using what is called a “smart server”, which is faster than the previous way (but not always possible to use for several reasons). In this case we will use an ssh connection to communicate with the repository, but this requires that our user belongs to the group “bzr” to be able to write in that folder. The command for the first commit is:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;    bzr push --create-prefix bzr+ssh:&amp;#x2F;&amp;#x2F;server:port&amp;#x2F;home&amp;#x2F;bzr&amp;#x2F;test #requires full path, from root
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In a similar way we interact with the server using:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;     bzr pull bzr+ssh:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test   #update changes from the server to our client
+     bzr co bzr+ssh:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test      #checkout the project
+     bzr push bzr+ssh:&amp;#x2F;&amp;#x2F;bzr@server:port&amp;#x2F;~&amp;#x2F;test  #push changes to the server
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;install-redmine-themes&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-redmine-themes&quot; aria-label=&quot;Anchor link for: install-redmine-themes&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Redmine Themes&lt;&#x2F;h2&gt;
+&lt;p&gt;You can install some new themes for Redmine, available &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;Theme_List&quot;&gt;here&lt;&#x2F;a&gt;. Although is mainly a cosmetic change, some themes provide enhancements like colouring tickets according to priority and they are really easy to manage. For example, to install the &lt;a href=&quot;http:&#x2F;&#x2F;theill.com&#x2F;stuff&#x2F;redmine&#x2F;&quot;&gt;Basecamp&lt;&#x2F;a&gt; theme:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Download application.css&lt;&#x2F;li&gt;
+&lt;li&gt;Create required directories: mkdir -p redmine&#x2F;public&#x2F;themes&#x2F;basecamp&#x2F;stylesheets&lt;&#x2F;li&gt;
+&lt;li&gt;Copy downloaded file:  cp application.css redmine&#x2F;public&#x2F;themes&#x2F;basecamp&#x2F;stylesheets&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;That&#x27;s it .. now restart your instance running Redmine and select the new basecamp theme from &#x2F;settings&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;install-redmine-plugins&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#install-redmine-plugins&quot; aria-label=&quot;Anchor link for: install-redmine-plugins&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Install Redmine Plugins&lt;&#x2F;h2&gt;
+&lt;p&gt;Redmine provides several plugins that enhance the capabilities of the tool. Amongst them you can find some nice ones like:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Bots Filter: avoids bots from accessing certain areas of the application&lt;&#x2F;li&gt;
+&lt;li&gt;Charts: adds some project based charts&lt;&#x2F;li&gt;
+&lt;li&gt;Exception Handler: notifies admins when an exception occurs&lt;&#x2F;li&gt;
+&lt;li&gt;Hudson: integrates Redmine and Hudson, allowing you to see Hudson reports&lt;&#x2F;li&gt;
+&lt;li&gt;Status updates: allows users to say what are they doing, kind of Twitter per project.&lt;&#x2F;li&gt;
+&lt;li&gt;Vote: allows users to vote on issues so you see which ones are important to them&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;You can find these and many more in this &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;Plugin_List&quot;&gt;page&lt;&#x2F;a&gt; . To install a plugin, follow the instructions on the “Installation” section of its page. Then restart Redmine and you are good to go.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;connect-mylyn-to-redmine&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#connect-mylyn-to-redmine&quot; aria-label=&quot;Anchor link for: connect-mylyn-to-redmine&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Connect Mylyn to Redmine&lt;&#x2F;h2&gt;
+&lt;p&gt;If you use Mylyn (and you should!) use these &lt;a href=&quot;http:&#x2F;&#x2F;www.redmine.org&#x2F;projects&#x2F;redmine&#x2F;wiki&#x2F;HowTo_Mylyn&quot;&gt;instructions&lt;&#x2F;a&gt; to connect it to your Redmine repository.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, only available for Ubuntu 9.04, which doesn't work too well on a server. I'll keep an eye on it as I like the way Canonical does things (and applications), but in the meantime I decided to use Redmine as I found Trac lacking on some areas.
+…</summary>
+        </entry>
+</feed>

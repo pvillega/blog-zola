@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>shapeless</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - shapeless</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/shapeless/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/shapeless/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2016-11-14T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/shapeless/atom.xml</id><entry xml:lang="en">
+        <title>Learning Shapeless</title>
+        <published>2016-11-14T00:00:00+00:00</published>
+        <updated>2016-11-14T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/learning-shapeless/" type="text/html"/>
+        <id>https://perevillega.com/posts/learning-shapeless/</id>
+        
+            <content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;milessabin&#x2F;shapeless&quot;&gt;Shapeless&lt;&#x2F;a&gt; is a type class and dependent type based generic programming library for Scala. It had its origins in several talks by &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;milessabin&quot;&gt;Miles Sabin&lt;&#x2F;a&gt;, and he has been the main contributor to the project.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Within the community, &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;milessabin&#x2F;shapeless&quot;&gt;Shapeless&lt;&#x2F;a&gt; is considered both as a stepping stone towards very advanced Scala constructs and a hard to learn (and to master) library. Unfortunately, Shapeless documentation is a bit sparse so users must find external resources to learn parts of the library.&lt;&#x2F;p&gt;
+&lt;p&gt;My aim with this blog post is to provide a list of useful resources that may help you understand &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;milessabin&#x2F;shapeless&quot;&gt;Shapeless&lt;&#x2F;a&gt; and how your project can benefit from using it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-shapeless&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#why-shapeless&quot; aria-label=&quot;Anchor link for: why-shapeless&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Why Shapeless&lt;&#x2F;h2&gt;
+&lt;p&gt;First of all you may want to know what are the benefits of using Shapeless. Is it only relevant for library authors, or is it a library you want to use on your production codebase?&lt;&#x2F;p&gt;
+&lt;p&gt;These &lt;a href=&quot;https:&#x2F;&#x2F;speakerdeck.com&#x2F;nigewarren&#x2F;introduction-to-shapeless&quot;&gt;slides&lt;&#x2F;a&gt; from &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;nigewarren&quot;&gt;Nigel Warren&lt;&#x2F;a&gt; show some realistic use cases for Shapeless. A short read that can give you an idea on what you could achieve with it.&lt;&#x2F;p&gt;
+&lt;p&gt;This &lt;a href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=JKaCCYZYBWo&quot;&gt;video&lt;&#x2F;a&gt; from &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;valentinkasas?lang=en&quot;&gt;Valentin Kasas&lt;&#x2F;a&gt; at &lt;a href=&quot;http:&#x2F;&#x2F;www.scalar-conf.com&quot;&gt;Scalar 2016&lt;&#x2F;a&gt; shows a practical use case of Shapeless and HList, with example code.&lt;&#x2F;p&gt;
+&lt;p&gt;The above links are introductions to the library and, as such, limited in scope. But you can already see a common theme, via the use of HList constructs: to provide a single implementation that works with all your types, instead of one implementation for every single type.&lt;&#x2F;p&gt;
+&lt;p&gt;This approach has obvious advantages: less code means less bugs and less surface to be tested, while the fact it works for any case class makes the code more robust against new types introduced in the future.&lt;&#x2F;p&gt;
+&lt;p&gt;I won&#x27;t deny the type signatures are a bit off-putting, but that is a small price to pay for the flexibility you can obtain.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;a-business-case&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#a-business-case&quot; aria-label=&quot;Anchor link for: a-business-case&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+A Business Case&lt;&#x2F;h2&gt;
+&lt;p&gt;Even after reading the links above you may still be a Shapeless skeptic, with the belief that is a tool with little benefit &#x27;in the real world&#x27; (whatever that means to you). Confession time: I also was one, and it was a real-world issue at work what changed my mind.&lt;&#x2F;p&gt;
+&lt;p&gt;The scenario is simple: we had a set of case classes representing different value types, and we needed to render them as Html, with reasonable expectations of adding many more types in the near future. So we wanted a simple way to convert exiting types plus any other type we would create later on.&lt;&#x2F;p&gt;
+&lt;p&gt;If you have read some tutorials on Shapeless you may recognise this case as a common example to introduce some of the functionalities of the library, and this is so for a good reason: Shapeless excels at this task.&lt;&#x2F;p&gt;
+&lt;p&gt;I am not allowed to publish all the code, but you can see a relevant snippet below:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;object ShowHtml {
+
+  implicit val hnilEncoder: ShowHtml[HNil] =
+    new ShowHtml[HNil] {
+      def showHtml(t: HNil): NodeSeq = NodeSeq.Empty
+    }
+
+  implicit def hlistEncoder[H, T &amp;lt;: HList](
+                            implicit
+                            hEncoder: Lazy[ShowHtml[H]],
+                            tEncoder: ShowHtml[T]
+                          ): ShowHtml[H :: T] =
+    new ShowHtml[H :: T] {
+      def showHtml(hlist: H :: T): NodeSeq = hlist match {
+        case h :: t =&amp;gt; hEncoder.value.showHtml(h) ++ tEncoder.showHtml(t)
+      }
+    }
+
+  implicit val cnilEncoder: ShowHtml[CNil] =
+    new ShowHtml[CNil] {
+      def showHtml(t: CNil): NodeSeq = NodeSeq.Empty
+    }
+
+  implicit def coproductEncoder[H, T &amp;lt;: Coproduct](
+                    implicit
+                    hEncoder: Lazy[ShowHtml[H]],
+                    tEncoder: ShowHtml[T]
+                  ): ShowHtml[H :+: T] =
+    new ShowHtml[H :+: T] {
+      def showHtml(hlist: H :+: T): NodeSeq = hlist match {
+        case Inl(h) =&amp;gt; hEncoder.value.showHtml(h)
+        case Inr(t) =&amp;gt; tEncoder.showHtml(t)
+      }
+    }
+
+  implicit def genericEncoder[A, R](
+                   implicit
+                   gen: Generic.Aux[A, R],
+                   enc: Lazy[ShowHtml[R]]
+                 ): ShowHtml[A] =
+    new ShowHtml[A] {
+      def showHtml(a: A) = enc.value.showHtml(gen.to(a))
+    }
+
+
+  implicit def stringShow: ShowHtml[String] = new ShowHtml[String] {
+    def showHtml(t: String): NodeSeq = &amp;lt;ul&amp;gt;{t}&amp;lt;&amp;#x2F;ul&amp;gt;
+  }
+
+  implicit def booleanShow: ShowHtml[Boolean] = new ShowHtml[Boolean] {
+    def showHtml(b: Boolean) = stringShow.showHtml(b.toString)
+  }
+
+  implicit def intShow: ShowHtml[Int] = new ShowHtml[Int] {
+    def showHtml(n: Int) = stringShow.showHtml(n.toString)
+  }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;I won&#x27;t explain the code itself, that&#x27;s not the aim of this post and in any case it&#x27;s not complete. What matters is that this snippet is the core of a fragment of code that thanks to methods &lt;code&gt;hlistEncoder&lt;&#x2F;code&gt;, &lt;code&gt;coproductEncoder&lt;&#x2F;code&gt;, and related definitions will convert any case class in the codebase to HTML. This includes any future case class we create later on, no changes required.&lt;&#x2F;p&gt;
+&lt;p&gt;As a developer, it hardly gets better than this :)&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;effortless-shapeless&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#effortless-shapeless&quot; aria-label=&quot;Anchor link for: effortless-shapeless&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Effortless Shapeless&lt;&#x2F;h2&gt;
+&lt;p&gt;You may not be convinced of the benefits of Shapeless (ok, keep reading then) or maybe you feel learning Shapeless requires an amount of effort and time you cannot spare. I have good news for you: you don&#x27;t need to learn Shapeless to benefit from it.&lt;&#x2F;p&gt;
+&lt;p&gt;If you browse the &lt;a href=&quot;https:&#x2F;&#x2F;index.scala-lang.org&#x2F;&quot;&gt;Scala index&lt;&#x2F;a&gt; and search for &lt;code&gt;shapeless&lt;&#x2F;code&gt; you&#x27;ll see a lot of results. Besides Shapeless itself you will find entries like:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;index.scala-lang.org&#x2F;alexarchambault&#x2F;argonaut-shapeless&quot;&gt;Argonaut Shapeless&lt;&#x2F;a&gt; which provides automatic derivation of codecs for your case classes&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;index.scala-lang.org&#x2F;typelevel&#x2F;shapeless-contrib&quot;&gt;Shapeless Contrib&lt;&#x2F;a&gt; which enables integration of Shapeless with libraries like Scalaz, which benefit from automatic derivation&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And many more. These libraries make your coding experience easier by leveraging shapeless. But you are not exposed to Shapeless itself, that&#x27;s hidden from you. For example, &lt;a href=&quot;https:&#x2F;&#x2F;index.scala-lang.org&#x2F;alexarchambault&#x2F;argonaut-shapeless&quot;&gt;Argonaut Shapeless&lt;&#x2F;a&gt; provides json codecs for your case classes automatically. So, as per the library documentation, this just works:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;import argonaut._, Argonaut._, ArgonautShapeless._
+
+sealed trait Base
+case class First(i: Int) extends Base
+case class Second(s: String) extends Base
+
+&amp;#x2F;&amp;#x2F; encoding
+val encode = EncodeJson.of[Base]
+
+val json = encode(First(2))
+json.nospaces == &amp;quot;&amp;quot;&amp;quot;{&amp;quot;First&amp;quot;:{&amp;quot;i&amp;quot;:2}}&amp;quot;&amp;quot;&amp;quot;
+
+&amp;#x2F;&amp;#x2F; decoding
+val decode = DecodeJson.of[Base]
+
+val result = decode.decodeJson(json)
+result == DecodeResult.ok(First(2))
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see, no encoder nor decoder have been defined in the code, that being a tedious and repetitive task. Any new case class or ADT you add to your codebase benefits from this behaviour, automatically.&lt;&#x2F;p&gt;
+&lt;p&gt;By using these libraries you will understand what Shapeless offers you much better, and they may be your &#x27;gateway library&#x27; to learning Shapeless.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;learning-shapeless&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#learning-shapeless&quot; aria-label=&quot;Anchor link for: learning-shapeless&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Learning Shapeless&lt;&#x2F;h2&gt;
+&lt;p&gt;You have been convinced and want to learn Shapeless. Now what?&lt;&#x2F;p&gt;
+&lt;p&gt;A while ago that would mean scouring lots of links and blog posts online, to find information about the most recent release of the library. Nowadays there is a much straightforward solution, thanks to &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;davegurnell&quot;&gt;Dave Gurnell&lt;&#x2F;a&gt; and &lt;a href=&quot;http:&#x2F;&#x2F;underscore.io&#x2F;&quot;&gt;Underscore&lt;&#x2F;a&gt;: read the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;underscoreio&#x2F;shapeless-guide&quot;&gt;Shapeless book&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Yes, there is a free ebook that explains how to use Shapeless, and it is a great book. Thanks Dave!&lt;&#x2F;p&gt;
+&lt;p&gt;Not only that, but &lt;a href=&quot;http:&#x2F;&#x2F;www.47deg.com&#x2F;&quot;&gt;47 Degrees&lt;&#x2F;a&gt; have released &lt;a href=&quot;https:&#x2F;&#x2F;www.scala-exercises.org&#x2F;&quot;&gt;Scala Exercises&lt;&#x2F;a&gt;, a free website where you can practice some of the Shapeless concepts.&lt;&#x2F;p&gt;
+&lt;p&gt;And for the cases not covered by &lt;a href=&quot;https:&#x2F;&#x2F;www.scala-exercises.org&#x2F;&quot;&gt;Scala Exercises&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;scalafiddle.io&#x2F;&quot;&gt;Scala Fiddle&lt;&#x2F;a&gt; allows you to select Shapeless as an available library (see &lt;em&gt;Libraries&lt;&#x2F;em&gt; section on the left-hand panel), so that you can test your Shapeless snippets online. Who needs an IDE?&lt;&#x2F;p&gt;
+&lt;p&gt;This means you can easily read documentation on Shapeless and solve some exercises to test your newly acquired knowledge. What&#x27;s your excuse? Go and start learning!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;additional-guides&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#additional-guides&quot; aria-label=&quot;Anchor link for: additional-guides&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Additional Guides&lt;&#x2F;h2&gt;
+&lt;p&gt;The existence of the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;underscoreio&#x2F;shapeless-guide&quot;&gt;Shapeless book&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;www.scala-exercises.org&#x2F;&quot;&gt;Scala Exercises&lt;&#x2F;a&gt; makes learning Shapeless much easier, but I would be remiss if I dismissed other guides you can find online.&lt;&#x2F;p&gt;
+&lt;p&gt;I find it very useful, when trying to learn a new and complex subject, to read many posts about the same idea. The repetition of the concepts breeds familiarity (hopefully without contempt!) with the concepts, and an array of examples allows for better understanding of the core ideas plus some of their nuances.&lt;&#x2F;p&gt;
+&lt;p&gt;To this aim I recommend you to read the following posts, either before starting the book or as complementary documentation to flesh out the trickier concepts:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;skaalf&quot;&gt;Julien&lt;&#x2F;a&gt; wrote an &lt;a href=&quot;http:&#x2F;&#x2F;jto.github.io&#x2F;articles&#x2F;getting-started-with-shapeless&#x2F;&quot;&gt;introduction to Shapeless&lt;&#x2F;a&gt; which describes (at a very high level) the main components of the library&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;evacchi&quot;&gt;Edoardo Vacchi&lt;&#x2F;a&gt; wrote a good &lt;a href=&quot;http:&#x2F;&#x2F;rnduja.github.io&#x2F;2016&#x2F;01&#x2F;19&#x2F;a_shapeless_primer&#x2F;&quot;&gt;primer on Shapeless&lt;&#x2F;a&gt; that delves into a bit more detail than Julien&#x27;s article.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;AKmetyuk&quot;&gt;Anatolii Kmetiuk&lt;&#x2F;a&gt; wrote a couple of posts that describe both &lt;a href=&quot;http:&#x2F;&#x2F;akmetiuk.com&#x2F;blog&#x2F;2016&#x2F;09&#x2F;30&#x2F;dissecting-shapeless-hlists.html&quot;&gt;HList&lt;&#x2F;a&gt; and &lt;a href=&quot;http:&#x2F;&#x2F;akmetiuk.com&#x2F;blog&#x2F;2016&#x2F;10&#x2F;09&#x2F;dissecting-shapeless-poly.html&quot;&gt;Poly&lt;&#x2F;a&gt; in much more detail.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;vlpavkin&quot;&gt;Vladimir Pavkin&lt;&#x2F;a&gt; shows how to &lt;a href=&quot;http:&#x2F;&#x2F;pavkin.ru&#x2F;implementing-typesafe-request-builder&#x2F;&quot;&gt;implement a typesafe request builder&lt;&#x2F;a&gt; using Shapeless, a more practical example.&lt;&#x2F;li&gt;
+&lt;li&gt;And, lastly, if you want to see &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;travisbrown&quot;&gt;Travis Brown&lt;&#x2F;a&gt; doing some magic with Shapeless to solve a &lt;a href=&quot;https:&#x2F;&#x2F;projecteuler.net&#x2F;problem=2&quot;&gt;Project Euler problem&lt;&#x2F;a&gt; please read &lt;a href=&quot;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;31615371&#x2F;scala-shapeless-code-for-project-euler-2&#x2F;31640467#31640467&quot;&gt;this stack overflow answer&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;As mentioned, these links are complementary to the book but worth reading.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all for now, I hope this was informative and useful. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Shapeless is a type class and dependent type based generic programming library for Scala. It had its origins in several talks by Miles Sabin, and he has been the main contributor to the project.
+…</summary>
+        </entry>
+</feed>

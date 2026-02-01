@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>scalax</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - scalax</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/scalax/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/scalax/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2015-12-11T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/scalax/atom.xml</id><entry xml:lang="en">
+        <title>Scala Exchange 2015 Day Two</title>
+        <published>2015-12-11T00:00:00+00:00</published>
+        <updated>2015-12-11T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/scala-exchange-2015-day-two/" type="text/html"/>
+        <id>https://perevillega.com/posts/scala-exchange-2015-day-two/</id>
+        
+            <content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;skillsmatter.com&#x2F;conferences&#x2F;6862-scala-exchange-2015#program&quot;&gt;Scala Exchange 2015&lt;&#x2F;a&gt; is on! I will be updating this entry with summaries on the talks I attended. Typos a plenty, be warned, but I hope this proves useful to somebody while we wait for the videos to be made available. You can also read my &lt;a href=&quot;&#x2F;scala-exchange-2015-day-one&#x2F;&quot;&gt;summary of day one&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h1 id=&quot;keynote-spark-hadoop-and-how-it-relates-to-scala&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#keynote-spark-hadoop-and-how-it-relates-to-scala&quot; aria-label=&quot;Anchor link for: keynote-spark-hadoop-and-how-it-relates-to-scala&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Keynote: Spark+Hadoop and how it relates to Scala&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;sean_r_owen&quot;&gt;Sean Owen&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Intends to give a different perspective on Scala, a less technical talk, more about his path into Scala coming from Hadoop and Java.&lt;&#x2F;p&gt;
+&lt;p&gt;Sean started with EJB and Struts. Some of these ideas faded after the dot-com bust. Moved to Google, built Barcode scanner in Android. He chose to move towards Java to avoid C++. After Google got involved with open-source in a project that ended up being Apache Mahout. There were ML systems before Hadoop, but Hadoop attracted all those Java developers interested in the area. He worked with it until 2 years ago where he moved to Spark, and Scala.&lt;&#x2F;p&gt;
+&lt;p&gt;The common thread on most of this path is the JVM. For enterprise people, everything looks like Spring&#x2F;Maven&#x2F;etc, the standard stack. Your world view is defined by it, you mold problems to fit that.&lt;&#x2F;p&gt;
+&lt;p&gt;Why Hadoop in Java, instead of C++ which was used in Google for Map-Reduce? Officially due to the usual reasons: type-safe, garbage colector, easier to debug, libraries available, and platform independence. But Sean thinks there are other reasons: lots of people fled the dot-com burst to the safety of tech giants. Enterprise architecture meets web scale and Hadoop is born. A colleague thinks the real reason is Lucene used Java as an experiment, and Hadoop inherited that decision along the way.&lt;&#x2F;p&gt;
+&lt;p&gt;Hadoop has some functional ideas from the start. Map-reduce, HDFS (immutable file system), no side effects in mappers&#x2F;reducers. They probably were not taken directly from FP, they are just good ideas and assumptions that work well in a distributed environment, almost essential.&lt;&#x2F;p&gt;
+&lt;p&gt;However, Hadoop &#x27;feels&#x27; enterprise-y. For example, a Mapper is a heavy-weight object instead of a simple function. It allows you to store state, exposes threading to you, makes you manage serialisation, etc. There may be reasons behind (performance, etc) but it&#x27;s not very functional.&lt;&#x2F;p&gt;
+&lt;p&gt;In a parallel world, Python grew in the &#x27;big-data&#x27; environment. Python is different: has an interpreter, sometype inference, has lambdas, libraries for ML, and pip to manage dependencies. Not at all like enterprise software. There are some nice things in the Python environment we wish we could have in the Java world (at that time). But if you are used to Java&#x27;s world you won&#x27;t realise you may want these things.&lt;&#x2F;p&gt;
+&lt;p&gt;Then we arrive to 2014, where functional invades the Hadoop ecosystem via Spark, Kafka, and Java 8 lambdas. Mentions to Storm and other similars projects that reinforce the trend. So suddenly the JVM has access to some of the features it was lacking.&lt;&#x2F;p&gt;
+&lt;p&gt;But this is not about Spark replacing Map-reduce unexpectedly, we already had projects (like Crunch) that had improved in that area so the progression is &#x27;natural&#x27;, it has been coming for a while. This is just a next step in the evolution.&lt;&#x2F;p&gt;
+&lt;p&gt;Why do Scala&#x2F;Spark fit Hadoop? Many reasons:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Immutable data at the foundation, perfect match between FP and Hadoop&lt;&#x2F;li&gt;
+&lt;li&gt;Functional paradigm from the start&lt;&#x2F;li&gt;
+&lt;li&gt;Unlocks caching due to immutability, at all levels from Spark to HDFS&lt;&#x2F;li&gt;
+&lt;li&gt;Scala naturally from Java, which in turn replaced C++. Natural progression&lt;&#x2F;li&gt;
+&lt;li&gt;Hybrid imperative&#x2F;functional wins, easier to adapt to and quickly grab benefits&lt;&#x2F;li&gt;
+&lt;li&gt;Memory caching allows for fast iteration, which benefits data scientists as iteration is at the core of ML&lt;&#x2F;li&gt;
+&lt;li&gt;The provided Shell allows for exploratory analytics, makes it easier to prototype&lt;&#x2F;li&gt;
+&lt;li&gt;It&#x27;s more familiar to Python devs and the environment&#x2F;features they are used to&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;What do I like about Scala as a former Java developer?&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Love collections, say what you will but they give you a lot of expressiveness&lt;&#x2F;li&gt;
+&lt;li&gt;Love case classes and tuples, save you a lot of boilerplate&lt;&#x2F;li&gt;
+&lt;li&gt;Love language constructs like val, lazy and match. They simplify and clarify what you intend to write&lt;&#x2F;li&gt;
+&lt;li&gt;Love closures, which are much better than Java 8 lambdas, cleaner and slicker&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;What do I dislike about Scala as a former Java developer?&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dislike Option, not sure it&#x27;s way better than &lt;em&gt;null&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Dislikes incompatible minor releases, has been very painful in Spark. A big deal for projects&lt;&#x2F;li&gt;
+&lt;li&gt;Dislikes Sbt imperative style, still prefers Maven declarative style. Writing code in your build script is a step backwards when you try to understand somebody else Sbt build script.&lt;&#x2F;li&gt;
+&lt;li&gt;Dislike the fact &lt;em&gt;scalac&lt;&#x2F;em&gt; is incredibly heavy. Yes, he understands the Scala compiler does so much more for you, but compiling park takes so long it seems crazy on 2015.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The last complain about Scala community it&#x27;s the excessive fascination with syntax, sometimes using complex functional chain of operations to express simple ideas which could be expressed in a simpler way in Java.&lt;&#x2F;p&gt;
+&lt;p&gt;Scala is, no doubt, the future for Hadoop ecosystem. That is good.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;streams-reactive-functional-or-akka-scalaz-streams-side-by-side&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#streams-reactive-functional-or-akka-scalaz-streams-side-by-side&quot; aria-label=&quot;Anchor link for: streams-reactive-functional-or-akka-scalaz-streams-side-by-side&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Streams: reactive? functional? Or: akka- &amp;amp; scalaz- streams side-by-side&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;adamwarski&quot;&gt;Adam Warski&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;The aim of today is to see the differences between Akka and Scalaz streams. Most of the talk will be live coding, so please watch the video.&lt;&#x2F;p&gt;
+&lt;p&gt;The problem we want to solve is to process data as it comes. We can&#x27;t hold all the data into memory for some reason, irrelevant why. We focus on scenarios with a single node which cover a lot of common scenarios, for multi-node computations please check Spark.&lt;&#x2F;p&gt;
+&lt;p&gt;Akka Streams introduces itself as a library to process and transfer a sequence of elements in a bounded buffer space.
+Scalaz Streams is a streaming I&#x2F;O library focussed on compositionally, expressiveness and resource safety.&lt;&#x2F;p&gt;
+&lt;p&gt;In both cases we want to define a pipeline, in a type-safe way, and then run data through it. Scalaz-stream is slightly more typesafe than Akka Streams. In both libraries the first step is to create a &#x27;blue-print&#x27; (graph for Akka, process for Scalaz) that defines how to transform the data. After that is defined we can execute it (materialise in Akka, run in Scalaz).&lt;&#x2F;p&gt;
+&lt;p&gt;The basic building blocks for Akka is a Graph (simple caseL linear pipeline), that has a source (produces elements), Sink (consumes an input) and some Flow pieces that transforms elements. At runtime each component is materialised into an Actor, and each actor does the operation defined in the relevant component. Each component also materialise into an additional value (example: Source into a Future you can use to get the result of the processing).&lt;&#x2F;p&gt;
+&lt;p&gt;In Scalaz the approach is different. We initially create a data type &lt;code&gt;Process[F[_], T]&lt;&#x2F;code&gt;. &lt;code&gt;T&lt;&#x2F;code&gt; is the output type, &lt;code&gt;F[_]&lt;&#x2F;code&gt; describes side-effects that can occur while processing. In simplest case we have &lt;code&gt;Process[Nothing, T]&lt;&#x2F;code&gt; that emits &lt;code&gt;T&lt;&#x2F;code&gt; without any change. We also have aliases like &lt;code&gt;Sink[F[_],0] = Process[F, O =&amp;gt; F[Unit]]&lt;&#x2F;code&gt;. The Process is in fact akin to a state machine.&lt;&#x2F;p&gt;
+&lt;p&gt;Akka implements the reactive-streams standard, which provides back-pressure via a back-channel, via dynamic push-pull. Source only produces data when the back-channel indicates it is needed, to avoid overwhelming components downstream. Everything is actor based, things happen concurrently.&lt;&#x2F;p&gt;
+&lt;p&gt;Scalaz has back-pressure for free as it is entirely pull-based. Elements are evaluated on by one, in a functional approach by which we only process one element once the state machine says we can do so. Not dependent on Scalaz except for &lt;code&gt;Task&lt;&#x2F;code&gt;. To be clear, Scalaz is slower than Akka version (2-3x).&lt;&#x2F;p&gt;
+&lt;p&gt;(Code examples via live-coding start, please watch video. I&#x27;ll try to summarise any key ideas mentioned)&lt;&#x2F;p&gt;
+&lt;p&gt;In Akka operations over the Source (like &lt;code&gt;map&lt;&#x2F;code&gt; or &lt;code&gt;filter&lt;&#x2F;code&gt;) are converted into actors behind the scenes. The first example to manipulate a text file (read, filter, map and save) already creates at least 8 actors. You can&#x27;t influence the concurrency.&lt;&#x2F;p&gt;
+&lt;p&gt;Code in Scalaz version looks similar, just using different types as Source. Scalaz calls &lt;code&gt;run&lt;&#x2F;code&gt; twice, first once compiles process into a &lt;code&gt;Task&lt;&#x2F;code&gt;, the second runs the &lt;code&gt;Task&lt;&#x2F;code&gt;. If you want parallelism you need to be explicit about it, there is none by default.&lt;&#x2F;p&gt;
+&lt;p&gt;In the first test Akka took 3.84s while Scalaz took 6.93s. Take in account Scalaz was using a single thread (no parallelism defined).&lt;&#x2F;p&gt;
+&lt;p&gt;The second example wants to transform Int to Int, processing odd and even elements in parallel. For Akka this means creating a FlowGrap that defines the data flow by first creating components of the Graph and then declaring the connections. Beware the graph correctness is checked at runtime, not at compile time! Adam comments that creating a component, &lt;code&gt;SplitStage&lt;&#x2F;code&gt;, was complex and more so due to the use of a mutable API.&lt;&#x2F;p&gt;
+&lt;p&gt;Scalaz version of the Int processing, all purely functional. Adam confesses it was hard to write the first time. Scalaz requires us to be explicit on parallelism, so we need to create bounded queues (for memory protection) and we use streams to add&#x2F;get elements to&#x2F;from them. We also need to close the queues once we are done. In the code we define several components, please watch the video to see the full structure (hard to describe without showing the code). All the code is purely functional with full control on side-effects. All the connections are checked at compile time.&lt;&#x2F;p&gt;
+&lt;p&gt;In the second test Akka took 3.43s and Scalaz 3.25s, as both were waiting for 1s during processing.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;fast-automatic-type-class-derivation-with-shapeless&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#fast-automatic-type-class-derivation-with-shapeless&quot; aria-label=&quot;Anchor link for: fast-automatic-type-class-derivation-with-shapeless&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Fast automatic type class derivation with shapeless&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;alxarchambault&quot;&gt;Alexandre Archambault&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Modelisation: in Scala you use a lot of case classes and sealed traits to represent your domain. Hundreds or more on big projects. The usual tasks include conversion to&#x2F;from JSON, persist in binary format, render as CSV, pretty-print, etc. You do this a lot, so you want to automate these tasks.&lt;&#x2F;p&gt;
+&lt;p&gt;You could use macros, but the Scala type system is quite complex and that means you need to consider a lot of things. Also, macros have some surprises within the API (side effects). All in all, using macros to automate these tasks becomes unwieldy.&lt;&#x2F;p&gt;
+&lt;p&gt;A solution is to use Shapeless instead.&lt;&#x2F;p&gt;
+&lt;p&gt;A first example is a &lt;code&gt;Printer&lt;&#x2F;code&gt; class that takes a value of type &lt;code&gt;T&lt;&#x2F;code&gt; and prints it. To explain how to do it, first let&#x27;s talk about &lt;code&gt;HLists&lt;&#x2F;code&gt;. &lt;code&gt;HLists&lt;&#x2F;code&gt; are a sequence of types&#x2F;values, similar to Scala &lt;code&gt;List&lt;&#x2F;code&gt; except its elements may have different types inside the same list (&lt;code&gt;String :: Int :: HNil&lt;&#x2F;code&gt; as an example). We can identify a &lt;code&gt;HList&lt;&#x2F;code&gt; to a case class of the same types.&lt;&#x2F;p&gt;
+&lt;p&gt;As we can build &lt;code&gt;HLists&lt;&#x2F;code&gt; inductively, by prepending elements (&lt;code&gt;::&lt;&#x2F;code&gt;), we can define our &lt;code&gt;Printer&lt;&#x2F;code&gt; class by recursively iterating over the &lt;code&gt;HList&lt;&#x2F;code&gt; and printing the values. We use support &lt;code&gt;Printer&lt;&#x2F;code&gt; for basic types (&lt;code&gt;Printer[String]&lt;&#x2F;code&gt;, &lt;code&gt;Printer[Int]&lt;&#x2F;code&gt;, etc) and as we can decompose the &lt;code&gt;HList&lt;&#x2F;code&gt; into these basic components, we know we will print as expected.&lt;&#x2F;p&gt;
+&lt;p&gt;As we mentioned, we can map case classes to &lt;code&gt;HList&lt;&#x2F;code&gt;. Given that, defining &lt;code&gt;Printer&lt;&#x2F;code&gt; in terms of &lt;code&gt;HList&lt;&#x2F;code&gt; (which is easy) provides us a way to print any existing case class in our code, including any case class we create in the future.&lt;&#x2F;p&gt;
+&lt;p&gt;Sometimes there are issues due to wrong divergences or recursive types. We can make our derivation more robust by using Shapeless&#x27; &lt;code&gt;Lazy&lt;&#x2F;code&gt; type, which helps the compiler resolve the issues mentioned before and handles real recursion in types properly.&lt;&#x2F;p&gt;
+&lt;p&gt;A caveat to consider is that implicit priorities may cause issues in automatic generation. There are workarounds, like using &lt;code&gt;export-hook&lt;&#x2F;code&gt; from Miles Sabin, or break implicits into an object hierarchy.&lt;&#x2F;p&gt;
+&lt;p&gt;There are ways to speed up the process, for example using &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;lihaoyi&#x2F;upickle-pprint&quot;&gt;upickle&lt;&#x2F;a&gt;, a project that uses macros to help with type generation.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;keynote-typelevel-the-benefits-of-collaboration&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#keynote-typelevel-the-benefits-of-collaboration&quot; aria-label=&quot;Anchor link for: keynote-typelevel-the-benefits-of-collaboration&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Keynote: Typelevel - the benefits of collaboration&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;milessabin&quot;&gt;Miles Sabin&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This is a different talk from the ones Miles usually gives, where he codes live. This one has slides! And no talking about Shapeless either.&lt;&#x2F;p&gt;
+&lt;p&gt;The title was chosen months ago. This is about Typelevel and how collaboration is good. But, following Jessica&#x27;s talk, I feel the subtitle should be &#x27;The benefits of community&#x27;.&lt;&#x2F;p&gt;
+&lt;p&gt;A year ago, Lars gave a keynote in this very stage. I watched that video and was astonished to how much has happened in the last year. Some very good, some not quite so great.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s travel to September 2014, where Typelevel announced a fork of the Scala compiler. We wanted to push some prevalent Typelevel ideas into it, to fix some particular things. It&#x27;s something that can cause a lot of friction and disruption, but luckily the reaction was mostly positive. This shows that there is a big vibrant OS community around Scala. Shows that Typesafe is happy to let people help. It&#x27;s better to have people collaborate instead of moaning. EPFL also showed a generally positive feeling about the possible outcomes of experimentation and prototyping in Scala compiler.&lt;&#x2F;p&gt;
+&lt;p&gt;A few months later, Scala Exchange 2014, Lars did his keynote. There was a friendly panel and everybody seemed going along very well.&lt;&#x2F;p&gt;
+&lt;p&gt;After that, something came to the spotlight: Typelevel is not only about technology and functional programming, it also wants to promote a good environment for minorities in the community. This caused Typelevel to adopt a code of conduct, seen as a means to an end: encourage good behaviour and deal with bad behaviour. Although most of the people accepted the code of conduct, this lead to a certain amount of drama in a part of the Scalaz community (where Lars was a primary maintainer). This had some cascading effects and shaped Typelevel since them up to now.&lt;&#x2F;p&gt;
+&lt;p&gt;One of the first things that became clear is that Scalaz couldn&#x27;t continue as part of Typelevel. Lars stepped down as a Scalaz maintainer. But there was the need for the abstractions Scalaz provided for Typelevel libraries. As a consequence, Cats was created, to cover the technical needs while agreeing to the code of conduct, thus following Typelevel aims.&lt;&#x2F;p&gt;
+&lt;p&gt;As a result of the drama, we realised it wasn&#x27;t clear to everybody else what is Typelevel about. So we needed to define Typelevel better to help people understand us besides our technical projects like Cats.&lt;&#x2F;p&gt;
+&lt;p&gt;So what is Typelevel? (Mind, the following is work-in-progress and Typelevel wants feedback on it). Typelevel is a community of projects and individuals organised around:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;pure, typeful, functional programming in Scala (not in Haskell!)&lt;&#x2F;li&gt;
+&lt;li&gt;independent free and open-source software, not linked to any organisation or company. Scala owes &lt;strong&gt;a lot&lt;&#x2F;strong&gt; to the community, don&#x27;t forget it.&lt;&#x2F;li&gt;
+&lt;li&gt;a desire to share ideas and code&lt;&#x2F;li&gt;
+&lt;li&gt;accessible and idiomatic learning resources&lt;&#x2F;li&gt;
+&lt;li&gt;inclusive, welcoming and safe environment&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This is evolving, but what is we think Typelevel is about. Please watch Erik Osheim&#x27;s Scala World talk to see ways you can build open source communities. Very recommended.&lt;&#x2F;p&gt;
+&lt;p&gt;Typelevel has always been a collection of projects. Since one year ago we had some changes: Scalaz, Scalaz-streams and Argonaut left, other libraries like Circe, Cats, Dogs, and a few more joined. There&#x27;s been new tools, tests and laws like Ensime and tut (among others). There have also appeared several integration projects, like shapeless-argonaut, which enhance existing libraries; as well as macro&#x2F;plugin helpers which facilitate the job of library maintainers. A lot of stuff in one year :)&lt;&#x2F;p&gt;
+&lt;p&gt;Typelevel Scala has not moved very much due to all the effort being put into Cats and related projects. But there have been tools developed that proof some concepts we wanted in the forked compiler, so some progress has been achieved. See George Leontiev&#x27;s Scala World talk for more details. There&#x27;s been some specific compiler work, minor, but it proves we can work with it.&lt;&#x2F;p&gt;
+&lt;p&gt;Some details on some of the libraries:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;well stablished libraries like Scodec (binary data, very powerful and performant), Shapeless (generic programming) and Spire (numeric library for high precision operations). All widely used, directly or indirectly.&lt;&#x2F;li&gt;
+&lt;li&gt;also well stablished are Discipline (law checking for type classes), ScalaCheck (automated property-based testing) and Spec2 (software specification)&lt;&#x2F;li&gt;
+&lt;li&gt;we have integrations, generic extensions of other libraries. For example, argonaut-shapeless.&lt;&#x2F;li&gt;
+&lt;li&gt;we have news things: Algebra, Cats, and Alleycats. Cats ia a Scalaz replacement. Algebra provides a set of algebraic type classes, comprising some fundamental type classes which are then used in Cats. Alleycats are lawless type classes and instances, which are also used in Cats.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;There&#x27;s been a lot of activity lately. For example, since January 2015 there have been 1558 commits to Cats by 57 contributors.&lt;&#x2F;p&gt;
+&lt;p&gt;Our guiding principles for Algebra, Cats, and Alleycats:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;approachability: we want people to be able to approach the library much more easily than it was with Scalaz. For example, preference for text-based operators, make sure terminology is expressive enough instead of just focussing on the mathematical origin of the concept.&lt;&#x2F;li&gt;
+&lt;li&gt;modularity: we broke Cats into submodules so it can be used as required instead of being a massive jar&lt;&#x2F;li&gt;
+&lt;li&gt;documentation: we strive to have a massively improved documentation so we can convey useful information in a simple and centralised way&lt;&#x2F;li&gt;
+&lt;li&gt;efficiency: we are willing to compromise and use (under the hood) non-functional constructs to improve performance. Watch Stew O&#x27;Connors talk at Scala by the Bay.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Let&#x27;s talk about Tut. It&#x27;s a markdown processor which interprets Scala in code blocks. This provides type-checked documentation, which helps us having useful and relevant documentation. It&#x27;s been even used by Underscore to produce a book, Essential Slick!&lt;&#x2F;p&gt;
+&lt;p&gt;Circe is a JSON library for Scala and Scala.js. Derived from Argonaut, uses &lt;em&gt;jawn&lt;&#x2F;em&gt; for parsing. Uses Monocle for lenses, works with Refined. Uses Shapeless for codec derivation.&lt;&#x2F;p&gt;
+&lt;p&gt;(Miles is running out of time so it skips some stuff, like explaining other Typelevel libraries)&lt;&#x2F;p&gt;
+&lt;p&gt;Simulacrum: provides annotations to automatically generate boilerplate when creating type classes. Machinist is a macro that eliminates overhead associated with Simulacrum.&lt;&#x2F;p&gt;
+&lt;p&gt;The experience with all these projects has influenced the way we think about the forked compiler. We have a better picture of the trade offs, and we can tackle small issues in helpers and bigger pieces in the compiler itself.&lt;&#x2F;p&gt;
+&lt;p&gt;We want people to get involved. We hope we have created an active and lively community. But we want you in. There is an up-to-date list of projects in our homepage. Most projects exist in Github and Gitter.&lt;&#x2F;p&gt;
+&lt;p&gt;News! There will be two Typelevel summits next year! Please join us!&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;workshop-shapeless-for-mortals&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#workshop-shapeless-for-mortals&quot; aria-label=&quot;Anchor link for: workshop-shapeless-for-mortals&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Workshop: Shapeless for Mortals&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;fommil&quot;&gt;Sam Halliday&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;It is a workshop so there will be no notes on it, sorry!&lt;&#x2F;p&gt;
+&lt;p&gt;Don&#x27;t forget to join us at &lt;a href=&quot;https:&#x2F;&#x2F;skillsmatter.com&#x2F;conferences&#x2F;7402-scalaxhack&quot;&gt;ScalaXHack&lt;&#x2F;a&gt; tomorrow. Hope you enjoyed the content :)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Scala Exchange 2015 is on! I will be updating this entry with summaries on the talks I attended. Typos a plenty, be warned, but I hope this proves useful to somebody while we wait for the videos to be made available. You can also read my summary of day one.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Scala Exchange 2015 Day One</title>
+        <published>2015-12-10T00:00:00+00:00</published>
+        <updated>2015-12-10T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/scala-exchange-2015-day-one/" type="text/html"/>
+        <id>https://perevillega.com/posts/scala-exchange-2015-day-one/</id>
+        
+            <content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;skillsmatter.com&#x2F;conferences&#x2F;6862-scala-exchange-2015#program&quot;&gt;Scala Exchange 2015&lt;&#x2F;a&gt; is on! I will be updating this entry with summaries on the talks I attended. Typos a plenty, be warned, but I hope this proves useful to somebody while we wait for the videos to be made available. You can also read my &lt;a href=&quot;&#x2F;scala-exchange-2015-day-two&#x2F;&quot;&gt;summary of day two&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h1 id=&quot;keynote-scaling-intelligence-moving-ideas-forward&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#keynote-scaling-intelligence-moving-ideas-forward&quot; aria-label=&quot;Anchor link for: keynote-scaling-intelligence-moving-ideas-forward&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Keynote: Scaling Intelligence: moving ideas forward&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;jessitron&quot;&gt;Jessica Kerr&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Scala as a language is about scaling. There is an inherent limit on development: what fits in our head (see this &lt;a href=&quot;http:&#x2F;&#x2F;www.infoq.com&#x2F;presentations&#x2F;complexity-simplicity-esb&quot;&gt;other talk&lt;&#x2F;a&gt; by Jessica Kerr and Dan North). Given that limit, we need to scale outside of ourselves, use our team and community. People learn best in teams, people are not superstars by themselves, great teams create stars.&lt;&#x2F;p&gt;
+&lt;p&gt;Most of what we do is not coding, nor learning, but teaching. We teach computer what to do, teach business about their own process (via requirement gathering), teach users via the UI we build, and we teach each other. Reusable code, flexible code, that is learnable code. A good commit message, that teaches what intention is behind the change. Documentation teaches what something does.&lt;&#x2F;p&gt;
+&lt;p&gt;We want people in our community as only that way we can scale that knowledge that makes us better. There are two things we need to know about Scala which we can only learn from members and group diversity:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Clarity: a teacher looks at the context of the learner, appreciates that context and adapts to that to teach. If something is not clear to you is not your fault, it is being explained wrong.&lt;&#x2F;li&gt;
+&lt;li&gt;Usefulness: if code is not useful then it doesn&#x27;t matter how correct it is. Determined by aggregate support of the community.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Scala is designed to scale the community. Scala is supposed to be a staircase, to start by using features that make more sense to us and gradually learn more things and advance. But currently you can hit roadblocks due to lack of context when trying to learn something, which forces you to learn stuff you do&#x27;t care about not or you are not ready to tackle.&lt;&#x2F;p&gt;
+&lt;p&gt;You should write blogs, even for very basic information. Writing blogs helps less experienced people to find solutions to problems when they Google the error and they learn why something is that way. If many people do this we accelerate the community and help moving to next step in the language.&lt;&#x2F;p&gt;
+&lt;p&gt;Documentation written by leaders or experts of a community that know too much on the subject is too sparse as they have too much context. They can&#x27;t scale a community themselves. New joiners, with less experience, can help because they can identify what context is needed for an explanation. Scala can be hard, don&#x27;t feel stupid for nto understanding! Write and collaborate.&lt;&#x2F;p&gt;
+&lt;p&gt;Your contribution is valuable. If something (blog post, stack overflow question) helps you, writing a post pointing to it and saying that helped you and how it was useful makes Google raise its relevance and helps the community to find it easily, helping all. Writing that makes you part of Scala. A language by itself doesn&#x27;t do anything, Scala is part of a programming system that includes libraries, tools, editors, AND the community.&lt;&#x2F;p&gt;
+&lt;p&gt;We can learn a lot from the Ruby community (and they can learn about language form us :P) It is a community that has scaled and it is still growing, still writing very useful software in it. We can learn on how they interact with each other, we can bring the same community scale to us.&lt;&#x2F;p&gt;
+&lt;p&gt;We can learn things like:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Scala values evolution vs stability. Ruby solved this dilema because libraries have a lot of maintainers, so they can be upgraded and evolve while being stable. In Scala with Typesafe, Typelevel you are still good. But other groups (Twitter, Foursquare, etc) which have few maintainers you are at risk, you don&#x27;t know when will they use newer idioms.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;What is idiomatic scala? Still not clear, everybody&#x27;s Scala is different, and we spend time arguing about this while people leaves the community. We need to find a way, and only the community can do that, no one can tell us, no other community can offer us the solution. Ruby found a way to solve this issue and developed common idioms, we can too. Ruby spent time where people was reading each other&#x27;s useful code (business code, not library code), which helps spreading knowledge.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;You should approach code with humility and respect for the reader. Be a teacher. For example: always include imports on your code examples and be explicit on the imports you use (not just ._). Give context.&lt;&#x2F;p&gt;
+&lt;p&gt;Beware symbolic representations.They make things harder than necessary. Words are clearer than symbols and can be Googled, so really make sure that symbol is necessary. Naming in scala is a very strong asset, we should use this power more. Naming is hard, but then if it is hard, do it more! It is hard because you need to think about the problem you solve. So do it.&lt;&#x2F;p&gt;
+&lt;p&gt;Avoid words like simply, obviously, etc... They tell you are supposed to know something you may not know. As a teacher, help the students by being more clear, providing links, helping to set a context for the action. Use&lt;&#x2F;p&gt;
+&lt;p&gt;Use Stack Overflow. Write blog posts. All that helps the community. We need to discuss not only the language and FP but also code style, tools, etc. Don&#x27;t just show syntax, teach me why is that option better, what is the concept behind. Make documentation better and more complete.&lt;&#x2F;p&gt;
+&lt;p&gt;Accept help from newer users. Saying &#x27;no, that is not the right way&#x27; to a pull request you have closed the door of the community to that person. Accept pull-requests, even more so for documentation. If it is not great, help that person to improve but don&#x27;t shut the community&#x27;s door to new joiners.&lt;&#x2F;p&gt;
+&lt;p&gt;Assuming context or acting like someone is stupid for not knowing context is a bad idea. That will alienate people and hurt us as a group. Don&#x27;t define scala documentation in terms of learn you a Haskell. If you learn scala you want to learn Scala in Scala&#x27;s context, asking me to learn Haskell is not the way. Don&#x27;t ask me to learn category theory to write a useful business application. Give me the context I need to do what I want.&lt;&#x2F;p&gt;
+&lt;p&gt;Finally, publish boring Scala code that teaches business domain and how to build useful things to the community. Use that hashtag  #blueSkyScala to spread that knowledge to the community.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;functional-patterns-for-fp-beginners&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#functional-patterns-for-fp-beginners&quot; aria-label=&quot;Anchor link for: functional-patterns-for-fp-beginners&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Functional Patterns for FP beginners&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;clementd&quot;&gt;Clément Delafargue&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;(Note: you should watch the video once released to see more detailed examples on the concepts)&lt;&#x2F;p&gt;
+&lt;p&gt;Functional programmer, day to day work with Javascript, but what I learned from Scala helped to write better JS. This talk is about simple patterns for FP. Not common abstractions like Functors or Monads, no Category Theory, but the tools we can use to build these abstractions. This is a way (of many possible) to do these things. Customise it to your needs.&lt;&#x2F;p&gt;
+&lt;p&gt;Scala documentation in FP refers mostly to Haskell documentation, but if you don&#x27;t know Haskell that is a problem. Here we want to avoid that and focus on common FP patterns.&lt;&#x2F;p&gt;
+&lt;p&gt;FP (functional programming) being &#x27;programming with values&#x27;, where everything is an expression and you tweak values to get to the desired result. For example &lt;code&gt;if&lt;&#x2F;code&gt; is not a block anymore, is an expression that returns a value. Pattern match is not a substitute for switch, is a way to produce a value.&lt;&#x2F;p&gt;
+&lt;p&gt;We have Typed FP in Scala. All your expressions have types and you can type check the results, letting the compiler check the control flow and ensure correctness.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;algebraic-data-types-adt&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#algebraic-data-types-adt&quot; aria-label=&quot;Anchor link for: algebraic-data-types-adt&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Algebraic data types (ADT)&lt;&#x2F;h2&gt;
+&lt;p&gt;We use Algebraic Design, where you start with values, combine values and get desired values. Your workflow is data driven. So how do we model the data? Via Algebraic data types (ADT).&lt;&#x2F;p&gt;
+&lt;p&gt;Algebraic because they have two properties:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Product types: compound type created by combining two or more types. Example: Tuple; case class User(name: String, age: Int)&lt;&#x2F;li&gt;
+&lt;li&gt;Sum types (or Co-products): a simple example is a Json value, which can be either a string, object, array or number. A Sum type is a group of values. In Scala this is implemented via a &lt;code&gt;sealed trait&lt;&#x2F;code&gt; and we use pattern matching to work with them (deconstruct and inspect structure). Example:&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;pre&gt;&lt;code&gt;sealed trait JsonElem
+
+case classe JsonBoolean extends JsonElem
+
+case classe JsonNumber extends JsonElem
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Pattern matching raises compiler warnings if you forget a member of the Sum, which is handy. In Scala you can also combine Sum types to share elements across types. An example is Json is &#x27;root elements&#x27; or Json values (which can be only object or array) vs all possible Json elements.&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;sealed trait JsonElem
+sealed trait JsonValue
+
+case classe JsonBoolean extends JsonElem
+
+case classe JsonNumber extends JsonElem
+
+case classe JsonObject extends JsonElem with JsonValue
+
+case classe JsonArray extends JsonElem with JsonValue
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;OOP makes it easy to add cases, while FP makes it easy to add functions. Compiler helps in both cases, but there is a trade-off for the developer. Thankfully in Scala you can choose the way you want to implement things as it gives both options.&lt;&#x2F;p&gt;
+&lt;p&gt;Should you hand roll your own ADT or use generic types (like tuples or Either)? ADT are preferred unless you are deconstructing the result right away, as when the application grows your own ADT will help you more (compiler works for you).&lt;&#x2F;p&gt;
+&lt;p&gt;Sum and Product types keep properties of mathematical sum and product, like associativity, exponentials and factorisation. We have neutral value (Unit). For example:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;A * 1  =&amp;gt; A  and  (A, Unit) =&amp;gt; A
+A + 0  =&amp;gt; A  and  A | Unit =&amp;gt; A
+
+(User(&amp;quot;Me&amp;quot;, 27), Pet(&amp;quot;cat&amp;quot;))  and  UserWithPet(&amp;quot;Me&amp;quot;, 27, &amp;quot;cat&amp;quot;)
+&amp;#x2F;&amp;#x2F; more examples in the video, watch it
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;These are equivalent but one gives more information via types:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;sealed trait X
+case class Bad(v: String) extends X
+case class Good(v: String) extends X
+
+case class Y(v: String, isGood: Boolean)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Please void booleans in ADT, you want to use the types to provide information. Types make you more precise and allow compiler to type check.&lt;&#x2F;p&gt;
+&lt;p&gt;ADT are used to do Domain Driven Design, where you observe your data and build domain based on that. Much better than POJOs.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;programming-with-contextualised-values&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#programming-with-contextualised-values&quot; aria-label=&quot;Anchor link for: programming-with-contextualised-values&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Programming with Contextualised Values&lt;&#x2F;h2&gt;
+&lt;p&gt;We can program expressing into types if a computation failed, is asynchronous, etc.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;error-handling&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#error-handling&quot; aria-label=&quot;Anchor link for: error-handling&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Error handling&lt;&#x2F;h3&gt;
+&lt;p&gt;&lt;code&gt;Option&lt;&#x2F;code&gt; type is useful when only one thing can go wrong. For example when you parse String to Integer, there is no need of extra precision. It is simple to use, but restricted, if many things can go wrong you are losing information.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;Either&lt;&#x2F;code&gt; is a Sum type (Left -&amp;gt; Error, Right -&amp;gt; value) which allows you to handle several errors cases. Please use ADT to describe errors as Strings provide less information on the error type. With ADT you can handle all error cases. Beware &lt;code&gt;Either&lt;&#x2F;code&gt; is not biased in Scala and doesn&#x27;t work too well with type inference. You can use &lt;code&gt;Disjunction&lt;&#x2F;code&gt; from Scalaz which behaves better and it&#x27;s biased (defaults to Right and provides flatMap operation to use inside a for-comprehension).&lt;&#x2F;p&gt;
+&lt;p&gt;If chained, both &lt;code&gt;Either&lt;&#x2F;code&gt; and &lt;code&gt;Disjunction&lt;&#x2F;code&gt; fail on the first error. Sometimes you want to accumulate errors, then you should use &lt;code&gt;Validation&lt;&#x2F;code&gt; from Scalaz. The error list is a &lt;code&gt;NonEmptyList&lt;&#x2F;code&gt; to ensure we have error messages on failure.&lt;&#x2F;p&gt;
+&lt;p&gt;Sometimes you want to accumulate errors, some times you want to fail on first error. Don&#x27;t flatten your errors, decide what is what you want.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;extend-types&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#extend-types&quot; aria-label=&quot;Anchor link for: extend-types&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Extend types&lt;&#x2F;h3&gt;
+&lt;p&gt;Type &lt;code&gt;Monoid&lt;&#x2F;code&gt; allows you to combine 2 values and provides a neutral element. With subclassing you can&#x27;t declare a Zero element or extend Standard library classes (they are final). The workaround is to use &lt;code&gt;traits&lt;&#x2F;code&gt; that provide the desired behaviour and that you pass as additional parameter to functions.&lt;&#x2F;p&gt;
+&lt;p&gt;To avoid the work of explicitly passing that new type as a parameter, you declare the new type as implicit so the compiler autowires the proper implementation. Just be careful with Typeclass convergence where a type could have multiple implementations of the same behaviours, which causes problems.&lt;&#x2F;p&gt;
+&lt;p&gt;Simulacrum library helps you creating typeclasses and boilerplate for these types.&lt;&#x2F;p&gt;
+&lt;p&gt;(see examples from the talk when the video is published)&lt;&#x2F;p&gt;
+&lt;p&gt;Recommended to read Cats code as it is simple code and will help you understand.&lt;&#x2F;p&gt;
+&lt;p&gt;Final tips as we are running out of time:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Use property testing for everything&lt;&#x2F;li&gt;
+&lt;li&gt;Separate effects from logic (Free Monads?)&lt;&#x2F;li&gt;
+&lt;li&gt;Read FP in Scala book&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;building-a-cqrs-application-using-the-scala-type-system-and-akka&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#building-a-cqrs-application-using-the-scala-type-system-and-akka&quot; aria-label=&quot;Anchor link for: building-a-cqrs-application-using-the-scala-type-system-and-akka&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Building a CQRS application using the Scala Type System and Akka&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;renatocaval&quot;&gt;Renato Cavalcanti&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Content of talk comes from current work done by Renato for the Belgium Government, so real world problems and lessons.&lt;&#x2F;p&gt;
+&lt;p&gt;CQRS: the idea behind is to have 2 objects, one which accepts commands and produces events, another object which receives the events and generates views on the model. If you don&#x27;t use event sourcing you need to produce event and save both write and read model in same transaction, otherwise you will lose event and data. If the commit fails, you have a problem. That is why event sourcing is important, as events can be stored and replayed.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;command&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#command&quot; aria-label=&quot;Anchor link for: command&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Command&lt;&#x2F;h2&gt;
+&lt;p&gt;Replaying events is very powerful, as you can use the stored events from production in a test environment to check all your components work as expected and produce the desired results. Facilitates verification of code.&lt;&#x2F;p&gt;
+&lt;p&gt;The talk will show how to use CQRS in Akka, please watch video for full code examples. The examples uses mostly Akka-Http and Akka-Stream, two solutions for pretty well defined domains that help building the solution. The problem with Akka is that Akka is in fact a function to =&amp;gt; Any, which means you lose type safety and has its own problems.&lt;&#x2F;p&gt;
+&lt;p&gt;The solution is to build something on top of Akka that isolates you from these issue. You find the building blocks of a CQRS system, following DDD: &lt;code&gt;DomainCommand&lt;&#x2F;code&gt;, &lt;code&gt;DomainEvent&lt;&#x2F;code&gt; and &lt;code&gt;Aggregate&lt;&#x2F;code&gt;. These are traits that help you define your building blocks.
+We also define some functions to validate events (which return a Future) and to construct Aggregates from DomainEvents.&lt;&#x2F;p&gt;
+&lt;p&gt;That solved, we have another issue to tackle. We need to persist the events, which we can do via Akka Persistence. We don&#x27;t store the message received in the actor, but the event generated as reaction to that message. If an Aggregate (implemented as an actor) is restarted, it can recover its status from reading the chain of events in the event-store.&lt;&#x2F;p&gt;
+&lt;p&gt;But for all this to work we need a Protocol, a set of command and events for a given Aggregate. We also define the Behaviour (mapping between commands and events). We can create a DSL to facilitate generating Behaviours for an Aggregate.&lt;&#x2F;p&gt;
+&lt;p&gt;[Renato now shows code showcases the implementation of a Protocol, the corresponding Behaviour DSL and an Aggregate. Please watch video for more details]&lt;&#x2F;p&gt;
+&lt;p&gt;If I have Aggregate, Protocol and Behaviour then I can create an AggregateManager, an Actor, that creates AggregateActors and manages its life-cycle. Your AggregateService is fully typed, via the protocol, and the Manager abstracts the Akka details from you.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;query&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#query&quot; aria-label=&quot;Anchor link for: query&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Query&lt;&#x2F;h2&gt;
+&lt;p&gt;The Query side is about reading the events and producing Views on the data. We use Akka Persistence Query, an experimental feature. An actor generates a Projection from the events, so we don&#x27;t need to recalculate the status every time (snapshot-style). Each projection has an id to identify it and provide versioning. The actor doesn&#x27;t accept new events while generating a Projection, only after it has finished.&lt;&#x2F;p&gt;
+&lt;p&gt;[Renato now shows code of the Query part of the system]&lt;&#x2F;p&gt;
+&lt;p&gt;The Projection object is not typed, as usually you handle multiple events in a single projection. A future improvement is to strongly type projections, but not there yet. A Projection also has more data than the Aggregate stores, as there may be inferred data that is valuable for the business when viewing data, but we don&#x27;t need to store explicitly.&lt;&#x2F;p&gt;
+&lt;p&gt;The DSL used by Renato also provides methods to &lt;code&gt;watch&lt;&#x2F;code&gt; a Projection, so we can detect events and, for example, wait until all events required are received before generating a projection result.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;takeways&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#takeways&quot; aria-label=&quot;Anchor link for: takeways&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Takeways&lt;&#x2F;h2&gt;
+&lt;p&gt;Given a Protocol, Behaviour and Aggregate then you can have an actor that understand the life-cycle and a fully typed AggregateService.&lt;&#x2F;p&gt;
+&lt;p&gt;Command validations can usually be asynchronous, but events must be pure and always succeed.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;keynote-without-resilience-nothing-else-matters&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#keynote-without-resilience-nothing-else-matters&quot; aria-label=&quot;Anchor link for: keynote-without-resilience-nothing-else-matters&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Keynote: Without Resilience, Nothing Else Matters&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;jboner&quot;&gt;Jonas Bonér&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;If your application is not available, doing something useful, nothing else matters: quality, speed, etc.&lt;&#x2F;p&gt;
+&lt;p&gt;&quot;It isn&#x27;t about how hard you hit, is about how hard can you be hit and keep moving forward. [...] That&#x27;s how winning is done.&quot; (from Rocky Movie)&lt;&#x2F;p&gt;
+&lt;p&gt;Fault tolerance is not enough. Resilience is beyond fault tolerance, and it&#x27;s all that matters. Resilience is the ability to spring back into shape, to recover quickly from difficulties. Software today can be incredibly complex, and we need to understand resilience in the context of these complex systems.&lt;&#x2F;p&gt;
+&lt;p&gt;A complicated system has multiple small parts that interact to do something. It can be understood, although it is hard. A complex system is made of many similarly interacting parts with simple rules (ala Game of Life). Those rules define emerging properties which are impossible to understand. You can understand individual rules, but not the full interactions and outcomes. Complicated is not the same a Complex.&lt;&#x2F;p&gt;
+&lt;p&gt;Complex systems run in degraded mode. Complex systems run as broken systems. In a Complex system there is something failing somewhere, always! And humans make things worse, as complex systems are counterintuitive and when we use intuition we usually end up worsening the existing issues.&lt;&#x2F;p&gt;
+&lt;p&gt;Complex systems operate at the edge of failure. There is the economic failure boundary, where you can run out of business. There is the unacceptable workload boundary where you can&#x27;t cope with the work. There is the accident boundary, when an undefined event causes us to fail. The operating point moves between these boundaries, and if it crosses one of them we fail.&lt;&#x2F;p&gt;
+&lt;p&gt;This means we have 3 pressures on the operating point. Management tries to minimise economic failure, workload tends to least effort, and as a result we are pushing the point towards the accident boundary which is undefined. We try to counteract with tools, systems, but this keeps happening as we can&#x27;t understand all implications. The only solution is to add an error margin to protect us from failure, so when we get into dangerous territory we can act before we fail.&lt;&#x2F;p&gt;
+&lt;p&gt;The problem is that we don&#x27;t know much, if anything, about the failure boundary so it is hard to define a proper error boundary. And we keep pushing it closer to the failure boundary as the system looks stable to us, until the point where the boundary is not helping anymore and we fail.&lt;&#x2F;p&gt;
+&lt;p&gt;We must embrace failure. We know complex systems always work as broken system, so we need to accept failure as normality. We must understand that resilience is by design, it can&#x27;t be bolted in afterwards.&lt;&#x2F;p&gt;
+&lt;p&gt;&quot;In the animal kingdom simplicity leads to complexity which leads to resilience&quot;. Complexity may help building resilience. Another example on how complexity builds resilience is how the current world protects us: it feeds us, give sus shelter, etc. And it is very complex. So we can learn about resilience in both biological and social systems:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Feature diversity and redundancy&lt;&#x2F;li&gt;
+&lt;li&gt;Interconnected network structure&lt;&#x2F;li&gt;
+&lt;li&gt;Wide distribution&lt;&#x2F;li&gt;
+&lt;li&gt;Capacity to self-adapt and self-organise&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;How does this apply to computer systems? We need to change the way we manage failure. Failure is natural and expected. One way: Let it crash, like Erlang does.&lt;&#x2F;p&gt;
+&lt;p&gt;So we have Crash Only software (name of a paper). Stop is equal to crash safely. Start is equal to recover fast from a crash. We can apply this recursively and turn the big sledgehammer into a scalpel to tolerate failures at many levels. It is recommended to read the paper.&lt;&#x2F;p&gt;
+&lt;p&gt;We need a way out of the &#x27;State Tar Pit&#x27; (another paper). A lot of failure is related to data (partial data, wrong data, etc). We have input data, provided by customers, and derived data, data we compute from the input data. The critical one is input data, that we need to keep and take care of to avoid annoying users.&lt;&#x2F;p&gt;
+&lt;p&gt;In the traditional way of managing state a error at the end of an input path will cause all the path to fail and we will lose the input data, which is an utterly broken way to manage this. We react to this by abusing defensive programming, adding try-catch blocks everywhere, etc.&lt;&#x2F;p&gt;
+&lt;p&gt;&quot;Accidents come from relationships, not broken parts.&quot; A Sane failure model means that Failures need to be:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Contained to avoid cascading failures&lt;&#x2F;li&gt;
+&lt;li&gt;Reified as messages&lt;&#x2F;li&gt;
+&lt;li&gt;Signalled asynchronously&lt;&#x2F;li&gt;
+&lt;li&gt;Observed by at least 1 actor, up to N observers&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Basically, the bulkhead pattern used by ship industry. If a compartment breaks the ship is not affected. But we can still do better, by adding Supervision: observe and manage failures from a healthy context. Components that fail should notify the Supervisor so something can be done about it. An &#x27;Onion Later State &amp;amp; Failure management&#x27; or &#x27;Error Kernel pattern&#x27;. The kernel delegates all work and supervises so the task is performed correctly, managing any errors as necessary. We apply this recursively, with a layer managing failures of the underlying level.&lt;&#x2F;p&gt;
+&lt;p&gt;We can&#x27;t put all eggs in same basket. We need to maintain diversity and redundancy. Servers crash, AWS goes down. We need multiple servers, even multiple data centers, which means running a distributed system. And they should be decoupled in time (to enable concurrency) and space (enables mobility of nodes). This gives a very solid base for resilience.&lt;&#x2F;p&gt;
+&lt;p&gt;We need to decompose systems using consistency boundaries. We need to think about isolation of components. We need to start with the weakest consistency guarantees we can, and add stronger ones as we go if we need them. The less ACID and coordination you need, the better. Within the boundary we can have strong consistency (example: actors are single threaded with an inbox). Between boundaries it is a &#x27;zoo&#x27;, all bets are off, we need to manage failure as described above. But that is good, as weak coupling and other properties of the &#x27;zoo&#x27; enhance our resilience.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember: strong consistency is the wrong default, it adds too strong coupling, but what we need is to decompose systems and create safe islands (consistency boundaries).&lt;&#x2F;p&gt;
+&lt;p&gt;To conclude, let&#x27;s talk about resilient protocols, the way to manage the &#x27;zoo&#x27; outside consistency boundaries. They depends on asynchronous communication and eventual consistency. They must embrace ACID 2.0 (Associative, Commutative, Idempotent, Distributed); they must be tolerant to message loss, reordering, and duplication.&lt;&#x2F;p&gt;
+&lt;p&gt;Remember: Complex systems run as borken systems. Something is always failing. Resilience is by design. Without resilience, nothing else matters.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;a-purely-functional-approach-to-building-large-applications&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#a-purely-functional-approach-to-building-large-applications&quot; aria-label=&quot;Anchor link for: a-purely-functional-approach-to-building-large-applications&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+A purely functional approach to building large applications&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;noelmarkham&quot;&gt;Noel Markham&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This talks follow a bit on his talk last year about &#x27;Introduction to Scalaz&#x27;. We will look at tools and techniques and how to do things in a more purely functional manner. (Talk will be heavy on screen-coding, so please watch the video! I will try to summarise the concepts explained, but without seeing the code it may not make too much sense)&lt;&#x2F;p&gt;
+&lt;p&gt;Start by breaking rules and using &lt;code&gt;import scalaz._; import Scalaz._&lt;&#x2F;code&gt; and other generic imports. Sorry Jessica Kerr ;)&lt;&#x2F;p&gt;
+&lt;p&gt;Starting point are a couple of API which are not too flexible but we can&#x27;t modify, they are external API.&lt;&#x2F;p&gt;
+&lt;p&gt;First concept: let&#x27;s talk about &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Markov_chain&quot;&gt;&lt;code&gt;Markov Chains&lt;&#x2F;code&gt;&lt;&#x2F;a&gt;. We want to build a structure to, given 2 words, try to guess what would be the next word and a function that would use that to generate possible sentences. We could use a method that returns a &lt;code&gt;Future&lt;&#x2F;code&gt;, and use &lt;code&gt;Await.result&lt;&#x2F;code&gt; over the external API and then use the result to the generator. We can improve that by using a for-comprehension.&lt;&#x2F;p&gt;
+&lt;p&gt;We can improve the code more by extracting the configuration. Side concept: we can compose functions (f andThen g), but a function can be considered a Functor, so it can be mapped over! So we can group all our configuration into a case class and create functions &lt;code&gt;Config =&amp;gt; String&lt;&#x2F;code&gt; or &lt;code&gt;Config =&amp;gt; Int&lt;&#x2F;code&gt; to extract config. And we can group those functions to extract several values at once. We can go further and use functions as Monads to extract config (via the functions) using a for-comprehension.&lt;&#x2F;p&gt;
+&lt;p&gt;Given all we did above, we can create functions that given a config (as a parameter) return a function that will return what we want (tweets, other data). We can do the same for the string generator, to make it depend on config. And then we can use both in a for-comprehension as functions are Monads, although we still have the Future type around.&lt;&#x2F;p&gt;
+&lt;p&gt;We can tackle that Future type by wrapping the function with a Reader type. Then we need to understand the concept of Monad transformers, which allows us to &lt;em&gt;unwrap&lt;&#x2F;em&gt; a monad to interact with it&#x27;s element. For example, given a &lt;code&gt;Future[Option[Int]]&lt;&#x2F;code&gt; we can interact with the &lt;code&gt;Option&lt;&#x2F;code&gt; directly, without having to call a method in &lt;code&gt;Future&lt;&#x2F;code&gt;. In Scalaz that would be &lt;code&gt;OptionT[Future, Int]&lt;&#x2F;code&gt;. Given Monad transformers, we can then work with &lt;code&gt;ReaderT&lt;&#x2F;code&gt; which will allow us to ignore the Future in our methods until we really want to. This gives us a &lt;code&gt;ReaderT[Future, String, Int]&lt;&#x2F;code&gt; which allows us to work with all the elements of our computation independently (&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Kleisli_category&quot;&gt;kleisli&lt;&#x2F;a&gt;).&lt;&#x2F;p&gt;
+&lt;p&gt;Going back to our example, we can then change our functions to become &lt;code&gt;kleisli&lt;&#x2F;code&gt; for &lt;code&gt;ReaderT[Future, Config, List[Tweet]]&lt;&#x2F;code&gt; or &lt;code&gt;ReaderT[Future, Config, String]&lt;&#x2F;code&gt;. We have separated constituent types and we can deal with each one as we need to. Which helps us produce a very sane for-comprehension, very legible and understandable. And we get as result a &lt;code&gt;Future[String]&lt;&#x2F;code&gt; but that is at the end of the calculation, so we block at a point after we defined all the task to do, decoupling task from execution.&lt;&#x2F;p&gt;
+&lt;p&gt;An advantage is that this makes this code easier to test. Our methods take functions as arguments, a home-grown dependency injection system where we can plug anything we want (respecting types!) so we can test the code without interacting with 3rd party services or doing other steps of the process. No need to mock, just use simple stubs.&lt;&#x2F;p&gt;
+&lt;p&gt;A suggestion to test is to use ScalaCheck. With ScalaCheck you suggest properties for your code, and the framework makes sure your properties hold by trying to find values that break them. (Also adding a dash of Shapeless, because why not). With this we can, for example, make sure our code doesn&#x27;t modify the text of the tweets in any way by default.&lt;&#x2F;p&gt;
+&lt;p&gt;We can still do better, let&#x27;s try to abstract over ReaderT. Right now we are only using ReaderT as Mond, so we may as well replace it by &lt;code&gt;M[List[Tweet]]&lt;&#x2F;code&gt; and &lt;code&gt;M[String]&lt;&#x2F;code&gt; on our functions. Our for-comprehension doesn&#x27;t change, but it has other benefits. For example, our test code can be simpler as we can use the &lt;code&gt;Id&lt;&#x2F;code&gt; (identity) monad to generate values.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s say we now want to add logging to it. How can we tackle this? Let&#x27;s assume we are given a method &lt;code&gt;log&lt;&#x2F;code&gt; that returns a &lt;code&gt;Future&lt;&#x2F;code&gt;. We can integrate this as a parameter &lt;code&gt;String =&amp;gt; M[Unit]&lt;&#x2F;code&gt; and we are done. Except we don&#x27;t like side-effects and &lt;code&gt;Unit&lt;&#x2F;code&gt;. We can wrap the log in a &lt;code&gt;Writer&lt;&#x2F;code&gt; which allows us to do an operation and do an additional operation into a secondary store (basically, a log). With this we replace our &lt;code&gt;Reader&lt;&#x2F;code&gt; by &lt;code&gt;Writer&lt;&#x2F;code&gt; to integrate the logging, but both are Monads so the signatures and for-comprehension don&#x27;t change, only implementation details. (Note: I may have missed some detail in that last part! Check the video.)&lt;&#x2F;p&gt;
+&lt;p&gt;After all this process, we found nice ways to provide configuration, wire functions (akin to dependency injection) and abstract over Monads, all by leveraging the power of libraries like Scalaz, Shapeless, and ScalaCheck. And by using the libraries you reduce boilerplate and make code easier to understand.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Important Note&lt;&#x2F;strong&gt;: you really need to see the slides with the code to follow the talk fully, very recommended talk if you are interested in FP.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;exploiting-dependent-types-for-safer-faster-code&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#exploiting-dependent-types-for-safer-faster-code&quot; aria-label=&quot;Anchor link for: exploiting-dependent-types-for-safer-faster-code&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Exploiting Dependent Types for Safer, Faster Code&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;propensive&quot;&gt;Jon Pretty&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;This is an advanced feature of Scala&#x27;s type system. Not difficult to use, but writing libraries that use them can be complex.&lt;&#x2F;p&gt;
+&lt;p&gt;The &#x27;Slippery road&#x27; represent a dynamic language, where you can&#x27;t control the types and you have no guidance. Throughout the talk an example library will be used: Raptured command-line.&lt;&#x2F;p&gt;
+&lt;p&gt;Example: a bash command&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;ls -lah --sort time --width=120
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We would like to convert that to Scala. We can try to parse the arguments into Scala values. We may even specify a type parameter so the parsing doesn&#x27;t return a String but an Int. We may want to use several representations for a value (-s, --size). All this an be abstracted further into a value of type &lt;code&gt;Param[Int](&#x27;s&#x27;, &quot;size&quot;)&lt;&#x2F;code&gt;. Nothing too exciting.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s stash that for a moment and talk about Rapture I18N, a library to support I18N Strings in apps. The standard solution is to use string bundles, one per language, managed separately from the code itself. But what if you forget to add a translation for a sentence in a language? You get a runtime error. Rapture I18N embeds the languages in the source and makes the compiler check for completeness.&lt;&#x2F;p&gt;
+&lt;p&gt;(Some examples of Rapture I18N follow)&lt;&#x2F;p&gt;
+&lt;p&gt;A type behind Rapture I18N is:&lt;&#x2F;p&gt;
+&lt;pre&gt;&lt;code&gt;class IString[L1] {
+	def |[L2](that: IString[L2]): IString[L1 with L2] = ???
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;That gives us a type intersection, a type per language, and we track the contents of an IString as if it was a map of language type to string. The intersection type &lt;code&gt;En with De&lt;&#x2F;code&gt; means the type is both an &lt;code&gt;En&lt;&#x2F;code&gt; and a &lt;code&gt;De&lt;&#x2F;code&gt;. In Scala we can create an intersection between any two types, for example: &lt;code&gt;Int with String&lt;&#x2F;code&gt;. A type can exists even if we can&#x27;t have instance of it.&lt;&#x2F;p&gt;
+&lt;p&gt;These kind of types are called &lt;code&gt;phantom types&lt;&#x2F;code&gt; which exist purely for compiler benefit, they will never be instantiated. After compilation they get erased, they don&#x27;t exist in bytecode (type erasure). But the compiler can use them to enforce constraints on other types and to drive implicit resolution.&lt;&#x2F;p&gt;
+&lt;p&gt;For example we can use the constraint enforce to make sure &lt;code&gt;sayHi[Ru]&lt;&#x2F;code&gt; will fail compilation if we didn&#x27;t define a &lt;code&gt;Ru&lt;&#x2F;code&gt; version of Hi. We can do that by requiring a supertype of the phantom type &lt;code&gt;V &amp;gt;:T&lt;&#x2F;code&gt;. Given &lt;code&gt;En with De&lt;&#x2F;code&gt;, &lt;code&gt;En&lt;&#x2F;code&gt; is a supertype and will compile, but &lt;code&gt;Ru&lt;&#x2F;code&gt; is not a supertype and it will fail compilation.&lt;&#x2F;p&gt;
+&lt;p&gt;As all accesses are checked at compile time, we know they are safe operations and total functions, which we know won&#x27;t fail. But we don&#x27;t know which times we are going to access at compile time, we will know at runtime time. How can we convert the string indicating language from the user into a type? What if they send a request for a language that doesn&#x27;t exist?&lt;&#x2F;p&gt;
+&lt;p&gt;We can write parsers like &lt;code&gt;(en | de).parse(inputLang)&lt;&#x2F;code&gt; which becomes the only point of failure at runtime. We can&#x27;t avoid that, but all the rest of the code has been checked at compile time, so we know we can handle the exceptional cases in there and do not worry anymore about I18N types. Narrowing failure points is good for programming.&lt;&#x2F;p&gt;
+&lt;p&gt;(Quick demo on Rapture I18N follows)&lt;&#x2F;p&gt;
+&lt;p&gt;After the demo, back to the Command Line problem stated at the start. We want to enforce some constrains on the parameters passed to a command line instruction. We can do it naively via pattern matching and for comprehension, but could do better and try to reduce this to a single point of failure as we did with the I18n library.&lt;&#x2F;p&gt;
+&lt;p&gt;We potentially have a complex structure of conjunctions and disjunctions over parameter preferences and alternative representations. We can represent them in Scala types, so &lt;code&gt;A &amp;amp; B &amp;amp; C&lt;&#x2F;code&gt; becomes &lt;code&gt;Product[A with B with C]&lt;&#x2F;code&gt;. &lt;code&gt;A | B | C&lt;&#x2F;code&gt; becomes &lt;code&gt;CoProduct[A with B with C]&lt;&#x2F;code&gt;. And then we define combinators for &lt;code&gt;|&lt;&#x2F;code&gt; and &lt;code&gt;&amp;amp;&lt;&#x2F;code&gt; (see slides for definitions, basically pattern matching grouping parameters into &lt;code&gt;Product&lt;&#x2F;code&gt; or &lt;code&gt;CoProduct&lt;&#x2F;code&gt; instances). The result will be a complex type built following the defined combinations.&lt;&#x2F;p&gt;
+&lt;p&gt;With these definitions we can do as we did with I18N, reducing the point of failure to &lt;code&gt;parse&lt;&#x2F;code&gt; (Note: you will need to see the slides&#x2F;video to follow the code that generates all this, can&#x27;t reproduce in this summary).&lt;&#x2F;p&gt;
+&lt;p&gt;In summary: multiple failure points increase the burden on error handling. Instead we want to handle all failures together, up-front. Use total functions and many more operations are now dafe, with more code becoming free of distracting error handling. We have reduced the surface of failure.&lt;&#x2F;p&gt;
+&lt;p&gt;Predictions: dependent types will be increasingly important in the future of typed languages. Work will be around make it easier to write. In Scala, error messages CAN be improved, we can have better tooling to manage them. Hopefully we will have more code that consists entirely of total functions, with very reduce surface for error. Lastly, this additional information provided by the types can offer opportunities to improve performance.&lt;&#x2F;p&gt;
+&lt;hr &#x2F;&gt;
+&lt;h1 id=&quot;lighting-talks-track-1&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#lighting-talks-track-1&quot; aria-label=&quot;Anchor link for: lighting-talks-track-1&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Lighting Talks - Track 1&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;ozgus4000&quot;&gt;Andrew (Gus) Gustafson&lt;&#x2F;a&gt; - Making your life easier with macros&lt;&#x2F;p&gt;
+&lt;p&gt;Problem: write out a class using snake case JSON field names. By default you need to override a method provided by some JSON library to provide what you want. Or for example, if you want to convert an ADT to JSON, to process the parent sealed trait you need a (potentially big) pattern match for every possible child.&lt;&#x2F;p&gt;
+&lt;p&gt;Macros are a simple way to generate this &#x27;boilerplate&#x27; code, following a DRY principle. Write macro once, apply everywhere, without duplicating code.&lt;&#x2F;p&gt;
+&lt;p&gt;Tips and Tricks for Macros:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;println&lt;&#x2F;code&gt; is your friend. Auto-complete too. Keep typing until something good happens&lt;&#x2F;li&gt;
+&lt;li&gt;macro code needs to be in a separate codebase than your domain model&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;(Code example follows)&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;lighting-talks-track-1-1&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#lighting-talks-track-1-1&quot; aria-label=&quot;Anchor link for: lighting-talks-track-1-1&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Lighting Talks - Track 1&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;jamiepullar&quot;&gt;Jamie Pullar&lt;&#x2F;a&gt; - Handling Partially Dynamic Data&lt;&#x2F;p&gt;
+&lt;p&gt;Subtitle: exploring a DSL approach to lenses with Jsentric and Dsentric.&lt;&#x2F;p&gt;
+&lt;p&gt;Examples of partially dynamic data:  given a JSON object we validate only fields of interest in the server. Or microservices supporting arbitrary content structures, they only care about specific fields and ignore the rest of the data.&lt;&#x2F;p&gt;
+&lt;p&gt;The first challenge: how do we deserialise data to work with it? Use type safe structures (ADT vs Map[String, Any]).&lt;&#x2F;p&gt;
+&lt;p&gt;How to extract the data we want? We can use Lenses to extract the fields we want. Lenses allow us to target parts of the data and operate with it. The issue is that it can become a bit unwieldy code wise.&lt;&#x2F;p&gt;
+&lt;p&gt;To solve code verbosity we introduce a Contract structure, which defines the structure we care about. Then we can use it to pattern match over the input data (for example JSON) and work with the relevant values, while not relevant data is silently ignored. The Contract allows us to read, modify, and delete the relevant values. Using Shapeless we can improve usability by providing helpers which reduce boilerplate even more.&lt;&#x2F;p&gt;
+&lt;p&gt;We can extend the Contract to add validations, as precise as we need (example: age &amp;gt; 0 and &amp;lt; 150). These validations can be type safe. Further extension allows us to build querying over the structures, so we can filter the data. All this is possible because the Contract is abstracting the data structure from our business logic.&lt;&#x2F;p&gt;
+&lt;p&gt;Dsentric is custom contract configuration with Monocle.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;lighting-talks-track-1-2&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#lighting-talks-track-1-2&quot; aria-label=&quot;Anchor link for: lighting-talks-track-1-2&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Lighting Talks - Track 1&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;leakimav&quot;&gt;Mikael Valot&lt;&#x2F;a&gt; - Flexible data structures in Scala&lt;&#x2F;p&gt;
+&lt;p&gt;(Talk heavy on code examples, check slides for more clarity)&lt;&#x2F;p&gt;
+&lt;p&gt;Project &lt;code&gt;Strucs&lt;&#x2F;code&gt;. Case classes are not composable. How can I define common fields only once without using Shapeless records?&lt;&#x2F;p&gt;
+&lt;p&gt;Structs enables you to concatenate case classes via &lt;code&gt;+&lt;&#x2F;code&gt; operator to generate new types. So you can create one case class per each field, and concatenate to generate a composite type. Compiler checks to avoid field duplication. You can compose these struct types, so having a &lt;code&gt;Person&lt;&#x2F;code&gt; and an &lt;code&gt;Address&lt;&#x2F;code&gt; you can then have a &lt;code&gt;Person with Address&lt;&#x2F;code&gt; that includes values of both.&lt;&#x2F;p&gt;
+&lt;p&gt;These compositions can be used in structural types, so you can define a type parameter &lt;code&gt;T &amp;lt;: Age with Name&lt;&#x2F;code&gt; to ensure type safety of your operations.&lt;&#x2F;p&gt;
+&lt;p&gt;Under the hood, a Struct is a &lt;code&gt;Struct[F](private val fields: Map[StructKey, Any])&lt;&#x2F;code&gt;, where all access to the map is via parametrised types, for example &lt;code&gt;get[T](implicit k: StructKeyProvider[T], ev: F &amp;lt;:&amp;lt; T): T&lt;&#x2F;code&gt;. This should avoid the issues usually related to using &lt;code&gt;Any&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Struct enables us to provide automatic JSON encode&#x2F;decode via macros.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;lighting-talks-track-1-3&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#lighting-talks-track-1-3&quot; aria-label=&quot;Anchor link for: lighting-talks-track-1-3&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Lighting Talks - Track 1&lt;&#x2F;h1&gt;
+&lt;p&gt;By &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;nick_engb&quot;&gt;Nick Pollard&lt;&#x2F;a&gt; - More Typing, Less Typing - Driving behaviour with types&lt;&#x2F;p&gt;
+&lt;p&gt;Scala has a very powerful type system. What is it good for? Usually we though about Validation, what about generating behaviour? We do that all the time, for example when we overload methods or we use Typeclasses.&lt;&#x2F;p&gt;
+&lt;p&gt;Typeclasses revisited: interface across type, common capability but varied behaviour by type. Each instance provides behaviour, implemented using &lt;code&gt;trait&lt;&#x2F;code&gt; and used via &lt;code&gt;implicit&lt;&#x2F;code&gt;. Instances are defined as implicit values and def. Implicit def can take another implicit as parameter.&lt;&#x2F;p&gt;
+&lt;p&gt;When searching for an implicit the compiler can chain successive implicits if it will produce the required type.&lt;&#x2F;p&gt;
+&lt;p&gt;How can we handle more complex types via implicits? We need an algebra for types. An algebra is just a group of objects and operators you can use on those objects. Like numbers and mathematical operators, or types and type operators.&lt;&#x2F;p&gt;
+&lt;p&gt;How do we operate on types? What is a type? A type can be seen as a set of values. Example: &lt;code&gt;Boolean&lt;&#x2F;code&gt; is &lt;code&gt;Set(true, false)&lt;&#x2F;code&gt;. &lt;code&gt;Char&lt;&#x2F;code&gt; is &lt;code&gt;Set(&#x27;a&#x27;, &#x27;b&#x27;, ...)&lt;&#x2F;code&gt;. So we can use Set operators, of which we care about two, &lt;code&gt;product&lt;&#x2F;code&gt; (cartesian product) and &lt;code&gt;coproduct&lt;&#x2F;code&gt; (also named disjoint union, like Scalaz &#x2F;, or sum).&lt;&#x2F;p&gt;
+&lt;p&gt;With this we can express types in the terms of operators. &lt;code&gt;Option[A] = () \&#x2F; A&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;If we can model types as operators in simple types, we can construct typeclasses from that. This is what Shapeless does for this.&lt;&#x2F;p&gt;
+&lt;p&gt;Shapeless uses HList (heterogeneous lists). Equivalent to nested tuples &lt;code&gt;(A, (B, C))&lt;&#x2F;code&gt;. The base case is HNil, we can recurse over the list until we hit HNil. Shapeless also provides CoProduct, similar to Tuples of &lt;code&gt;\&#x2F;&lt;&#x2F;code&gt; (simplifying).&lt;&#x2F;p&gt;
+&lt;p&gt;How is that useful? It allows us, for example, to generate parsers for any type of case class by treating them as HList. Shapeless automatically turns ADTs into HList (it has implicits and macros to do that). This reduces boilerplate, we write a generic parser once and we can apply it to any present or future ADT we use.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Scala Exchange 2015 is on! I will be updating this entry with summaries on the talks I attended. Typos a plenty, be warned, but I hope this proves useful to somebody while we wait for the videos to be made available. You can also read my summary of day two.
+…</summary>
+        </entry>
+</feed>

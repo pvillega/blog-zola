@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>rust</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - rust</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/rust/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/rust/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2019-05-07T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/rust/atom.xml</id><entry xml:lang="en">
+        <title>WebAssembly, Rust, and Edge Computing</title>
+        <published>2019-05-07T00:00:00+00:00</published>
+        <updated>2019-05-07T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/webassembly-rust-edge-computing/" type="text/html"/>
+        <id>https://perevillega.com/posts/webassembly-rust-edge-computing/</id>
+        
+            <content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Serverless_computing&quot;&gt;Serverless&lt;&#x2F;a&gt; has been out there for a while, seemingly surviving the hype cycle. In fact it has recently received an upgrade of sorts with &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Edge_computing&quot;&gt;Edge Computing&lt;&#x2F;a&gt;. In this blog post I write about my experience using &lt;a href=&quot;https:&#x2F;&#x2F;developers.cloudflare.com&#x2F;workers&#x2F;about&#x2F;&quot;&gt;Cloudflare Workers&lt;&#x2F;a&gt; to build a worker that calculates simple linear regression over a set of data.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;If you want to skip the blog post and just play with the code, download the source of the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;edge-sample&quot;&gt;linear regression calculator&lt;&#x2F;a&gt; and run it in &lt;a href=&quot;https:&#x2F;&#x2F;developers.cloudflare.com&#x2F;workers&#x2F;&quot;&gt;Cloudflare workers&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-is-edge-computing&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#what-is-edge-computing&quot; aria-label=&quot;Anchor link for: what-is-edge-computing&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+What is Edge Computing&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Edge_computing&quot;&gt;Edge Computing&lt;&#x2F;a&gt; is a term that has evolved from the original concept. Originally it was coined with the raise of &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Internet_of_things&quot;&gt;IoT&lt;&#x2F;a&gt; and the consequences of having thousands (or even more) devices connecting to your servers for each task. All these connections require network bandwith and server resources, which become expensive given the amount of connections we are talking about.&lt;&#x2F;p&gt;
+&lt;p&gt;A solution is to delegate some of these computation to the IoT devices themselves, so they don&#x27;t need to connect to the server. That is, given a network formed by the server and the IoT devices, we move some of the computations &#x27;to the edge&#x27; of the network, to the devices themselves. This comes with its own set of trade-off, as you need a more capable CPU in the IoT devices as well as building effectively a distributed computing cluster for some of your operations, but it reduces the requirements of bandwith and CPU of the central servers.&lt;&#x2F;p&gt;
+&lt;p&gt;The term has been coopted by hosting and CDN companies, which now use it to refer to operations resolved in the &#x27;edges&#x27; of their own networks, which can comprise hundreds of nodes in several geographical locations. The edges selected to run the computation are usually the edges closer to the user generating the request, which as a consequence reduces latency considerably.&lt;&#x2F;p&gt;
+&lt;p&gt;At its core, Edge is just an evolution of Serverless with simplified deployment across geographical areas and reduced latency for the user. The fact AWS offers both &lt;a href=&quot;https:&#x2F;&#x2F;aws.amazon.com&#x2F;lambda&#x2F;&quot;&gt;Lambda&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;aws.amazon.com&#x2F;lambda&#x2F;edge&#x2F;&quot;&gt;Lambda@Edge&lt;&#x2F;a&gt; should be a clear hint of this. but with reduced latency for the end user due to having the server in a network closer to their physical location.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;edge-computing-in-cloudflare&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#edge-computing-in-cloudflare&quot; aria-label=&quot;Anchor link for: edge-computing-in-cloudflare&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Edge Computing in Cloudflare&lt;&#x2F;h2&gt;
+&lt;p&gt;The Edge Computing implementation in Cloudflare is called &lt;a href=&quot;https:&#x2F;&#x2F;developers.cloudflare.com&#x2F;workers&#x2F;about&#x2F;&quot;&gt;Workers&lt;&#x2F;a&gt;. You can deploy workers associated to a domain in Cloudflare, and have them execute on some or all of the requests against the domain.&lt;&#x2F;p&gt;
+&lt;p&gt;For those familiar with JEE, they work similarly to Servlet filters. You receive the request and you can decide to either send a response or to forward the request to some underlying service. Note that there is no need for any underlying service to exist, the workers can generate a response by themselves. You can also take advantage of a KV store (currently in Beta).&lt;&#x2F;p&gt;
+&lt;p&gt;Your code can be written in Javascript (not Node.js, mind you, but Javascript for V8 engine) or WebAssembly compiled from Rust. If that&#x27;s your choice, Cloudflare provides a tool &lt;a href=&quot;https:&#x2F;&#x2F;developers.cloudflare.com&#x2F;workers&#x2F;webassembly&#x2F;&quot;&gt;wrangler&lt;&#x2F;a&gt; to facilitate working with your code.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cloudflare-workers-vs-serverless&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#cloudflare-workers-vs-serverless&quot; aria-label=&quot;Anchor link for: cloudflare-workers-vs-serverless&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Cloudflare Workers vs Serverless&lt;&#x2F;h2&gt;
+&lt;p&gt;There are already several articles like &lt;a href=&quot;https:&#x2F;&#x2F;www.smashingmagazine.com&#x2F;2019&#x2F;04&#x2F;cloudflare-workers-serverless&#x2F;&quot;&gt;this one&lt;&#x2F;a&gt; comparing Workers and other offers like AWS Lambda.&lt;&#x2F;p&gt;
+&lt;p&gt;Most of the comparisons focus on the following benefits:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Deployment is as easy (or even easier) as with AWS Lambda,&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Workers are much cheaper than AWS Lambda. Workers bill per request, while Lambda bills for CPU used during the request. Running equivalent code in both can be 10x times cheaper in Workers&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Workers are much faster to start up and serve a request than Lambda, up to 8x times faster in some benchmarks.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Note that some of the benefits like speed are due to the way Workers are constructed, using V8 directly instead of containers. This means you work with a faster but specialised platform in which you will only run  either Javascript or WebAssembly. If you want a platform that can support Go, Python, and others then Workers are not for you.&lt;&#x2F;p&gt;
+&lt;p&gt;Another big difference between Lambda and Workers is execution time allowed for your function. In Workers the free tier gives you 5ms of CPU per request, while the top tiers provide 50ms. In Lambda you could take up to 30s to answer a request (although that would be quite expensive given you are billed per time spent). The smaller time windows allocated in workers justify running WebAssembly to make the most of it, but if your calls have to interact with several external components even WebAssembly won&#x27;t be enough and you should either stay in Lambda or consider if that call should be a function at all.&lt;&#x2F;p&gt;
+&lt;p&gt;One area where Lambda has clearly the edge is the dashboard to manage your functions. Workers&#x27; dashboard needs some love: I am not able to see the execution time per request on my worker, and tasks like assigning routes to a worker are not intuitive. Furthermore, the editor is only supported in Chrome by default. There&#x27;s room for improvement here.&lt;&#x2F;p&gt;
+&lt;p&gt;Another concern I have with workers is the process for managing QA environments or canary deployments. You can test your worker implementation using &lt;code&gt;wrangler preview&lt;&#x2F;code&gt; but I can&#x27;t find documentation on how to do a proper blue&#x2F;green deployment with Workers. Given that they sit in front of most of the requests to your app, this scares me a bit. A faulty deployment can have serious consequences.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;when-to-use-edge-computing&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#when-to-use-edge-computing&quot; aria-label=&quot;Anchor link for: when-to-use-edge-computing&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+When to use Edge Computing&lt;&#x2F;h2&gt;
+&lt;p&gt;I have to acknowledge that I am skeptical of &#x27;serverless&#x27; as I feel it shares the same pitfalls of microservices, where we went from &#x27;everything must be a microservice&#x27; to &#x27;give me back my monoliths, please&#x27;. But it would be a mistake to ignore &lt;a href=&quot;https:&#x2F;&#x2F;www.troyhunt.com&#x2F;serverless-to-the-max-doing-big-things-for-small-dollars-with-cloudflare-workers-and-azure-functions&#x2F;&quot;&gt;compelling use cases&lt;&#x2F;a&gt; for which serverless or edge architectures can provide a tangible benefit.&lt;&#x2F;p&gt;
+&lt;p&gt;Cloudflare documentation promotes many uses ranging from &lt;a href=&quot;https:&#x2F;&#x2F;developers.cloudflare.com&#x2F;workers&#x2F;recipes&#x2F;hotlink-protection&#x2F;&quot;&gt;hotlink protection&lt;&#x2F;a&gt; to &lt;a href=&quot;https:&#x2F;&#x2F;developers.cloudflare.com&#x2F;workers&#x2F;recipes&#x2F;a-b-testing&#x2F;&quot;&gt;A&#x2F;B testing&lt;&#x2F;a&gt; to &lt;a href=&quot;https:&#x2F;&#x2F;developers.cloudflare.com&#x2F;workers&#x2F;recipes&#x2F;aggregating-multiple-requests&#x2F;&quot;&gt;request aggregation&lt;&#x2F;a&gt;. And as per &lt;a href=&quot;https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=17447355&quot;&gt;this comment&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;discordapp.com&#x2F;&quot;&gt;Discord&lt;&#x2F;a&gt; is making the most of Workers, using them to serve pre-rendered sites or even to override build artefacts sent to clients.&lt;&#x2F;p&gt;
+&lt;p&gt;You usually don&#x27;t want to run long computations in Lambda, due to overall cost for execution, so the CPU restrictions in Workers shouldn&#x27;t matter much. In theory, most things you may want to run as a Lambda can be a fit for Workers. In practice there is a big difference: if your functions need to talk to external services, managing those requests may eat a lot of your CPU allocation in Workers.&lt;&#x2F;p&gt;
+&lt;p&gt;This means that, as it currently stands, there&#x27;s a subset of use cases which are not a good fit for Workers. You may want to split your code between both platforms, taking advantage of the cheaper and faster Workers for as many tasks as you can, while using Lambda for operations that rely heavily on 3rd party connections. But, of course, this comes with its own overhead.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;can-we-please-talk-about-code&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#can-we-please-talk-about-code&quot; aria-label=&quot;Anchor link for: can-we-please-talk-about-code&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Can we please talk about code?&lt;&#x2F;h2&gt;
+&lt;p&gt;Yes, let&#x27;s talk about the code. As a test I&#x27;ve implemented a small &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;edge-sample&quot;&gt;linear regression calculator&lt;&#x2F;a&gt; based on &lt;a href=&quot;https:&#x2F;&#x2F;cheesyprogrammer.com&#x2F;2018&#x2F;12&#x2F;13&#x2F;simple-linear-regression-from-scratch-in-rust&#x2F;&quot;&gt;this blog post&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The idea is to have some functionality that requires a lot of calculations to test the performance of WebAssembly in the Workers environment. Doing a simple linear regression fits the bill as we can work with the data the user sends each request in isolation and without requiring a database to store intermediate results.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;code&gt;wrangler&lt;&#x2F;code&gt; tool that Cloudflare provides creates a template you can use to start building your worker. I won&#x27;t go over every line of the codebase, but we have the following main components:&lt;&#x2F;p&gt;
+&lt;p&gt;Modules &lt;code&gt;linreg&lt;&#x2F;code&gt; and &lt;code&gt;math&lt;&#x2F;code&gt; are taken from the &lt;a href=&quot;https:&#x2F;&#x2F;cheesyprogrammer.com&#x2F;2018&#x2F;12&#x2F;13&#x2F;simple-linear-regression-from-scratch-in-rust&#x2F;&quot;&gt;simple linear regression post&lt;&#x2F;a&gt;. They are pure Rust code without any changes needed to make it work in WebAssembly, which is great as it shows that we can reuse our Rust libraries for our workers.&lt;&#x2F;p&gt;
+&lt;p&gt;The file &lt;code&gt;worker.js&lt;&#x2F;code&gt; is where we load our WebAssembly modules using specific API calls like &lt;code&gt;wasm_bindgen&lt;&#x2F;code&gt;. It extracts values from the request received, sends them to the WebAssembly function, and returns a response to the user once the regression has been calculated. It also catches errors.&lt;&#x2F;p&gt;
+&lt;p&gt;The file &lt;code&gt;lib.rs&lt;&#x2F;code&gt; is the entry point to our WebAssembly code, and the link between Rust and Javascript. We use some macros (&lt;code&gt;wasm_bindgen&lt;&#x2F;code&gt;) to indicate this has to be compiled as WebAssembly. The code in the &lt;code&gt;linear_regression&lt;&#x2F;code&gt; method itself is pure Rust, and we make use of the &lt;code&gt;linreg&lt;&#x2F;code&gt; module. Most of it would be standard Rust in another codebase,&lt;&#x2F;p&gt;
+&lt;p&gt;The main difference comes in the input and output types for the function, which are not the standard choices for Rust. Currently WebAssembly doesn&#x27;t work well with &lt;code&gt;Vec&lt;&#x2F;code&gt; so we need to define our input parameters as &lt;code&gt;Box&amp;lt;[f32]&amp;gt;&lt;&#x2F;code&gt;, which means we need to do some extra work to convert those into the &lt;code&gt;Vec&lt;&#x2F;code&gt; structures expected by our modules.&lt;&#x2F;p&gt;
+&lt;p&gt;Another issue comes with the output parameters. Rust is not mapping &lt;code&gt;Vec&lt;&#x2F;code&gt; nor some structs to WebAssembly when returning them as a function result. As a consequence, if we want to return some complex data structure the easiest solution is to serialise it to Json, which we do using &lt;code&gt;serde&lt;&#x2F;code&gt;. Luckily this is not a complex process, but it is something to consider when planning what functions you want to define.&lt;&#x2F;p&gt;
+&lt;p&gt;One last question may be: why WebAssembly and not just Javascript? Why to do all this extra work, wiring Rust and Javascript, while we could do it all with pure Javascript?&lt;&#x2F;p&gt;
+&lt;p&gt;We talked about performance and how CPU is at a premium in Workers, due to restrictions on execution. That by itself may be a good enough reason. But there is more: WebAssembly has been considered by some as the realisation of what the JVM should have been, a &#x27;write once run anywhere&#x27; platform. Given that, it is not a bad idea to use any chance you have to evaluate this stack. If this prediction comes true, you may soon be compiling to WebAssembly all your code.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusions&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#conclusions&quot; aria-label=&quot;Anchor link for: conclusions&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Conclusions&lt;&#x2F;h2&gt;
+&lt;p&gt;Edge Computing as deployed by Cloudflare and other vendors is an evolution of Serverless with its own set of trade-off, on top of the ones you have by using Serverless. Workers allow you to improve performance and reduce cost on a subset of your Serverless calls.&lt;&#x2F;p&gt;
+&lt;p&gt;WebAssembly is a great tool for developing your Worker&#x27;s code. Not only helps you obtain optimised code in a platform where CPU is at a premium, you can potentially share most of that code with the rest of your components.&lt;&#x2F;p&gt;
+&lt;p&gt;Unfortunately Worker are currently not a full replacement of platforms like Lambda as they have some limitations, both in user experience (dashboard, blue&#x2F;green deployments) as in how much can you do within the allocated CPU time.&lt;&#x2F;p&gt;
+&lt;p&gt;The expected use case is to move some Lambda functions to Workers as a way to increase performance and reduce cost, while leaving other functions in AWS. If the benefits are worth the extra complexity, that will depend on your specific use case.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all for now, I hope this was informative and useful. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Serverless has been out there for a while, seemingly surviving the hype cycle. In fact it has recently received an upgrade of sorts with Edge Computing. In this blog post I write about my experience using Cloudflare Workers to build a worker that calculates simple linear regression over a set of data.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Playing with Rust</title>
+        <published>2019-02-05T00:00:00+00:00</published>
+        <updated>2019-02-05T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/playing-with-rust/" type="text/html"/>
+        <id>https://perevillega.com/posts/playing-with-rust/</id>
+        
+            <content type="html">&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;www.rust-lang.org&quot;&gt;Rust&lt;&#x2F;a&gt; is not, at this stage, a new language. But I have to confess that I had not checked it out until now. I built a &lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;twitter_privacy&quot;&gt;small tool&lt;&#x2F;a&gt; to test it out. In this post I&#x27;ll briefly talk about how it felt working with Rust from the point of view of a Scala developer.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;During the last &lt;a href=&quot;https:&#x2F;&#x2F;skillsmatter.com&#x2F;conferences&#x2F;10488-scala-exchange-2018&quot;&gt;Scala Exchange&lt;&#x2F;a&gt; I heard a lot of people talking about Rust. As a consequence, learning more about the language became a higher priority, as it is always good to listen to people with more experience :). It was also an excuse to use &lt;a href=&quot;https:&#x2F;&#x2F;code.visualstudio.com&quot;&gt;Visual Studio Code&lt;&#x2F;a&gt; a bit more, to familiarise with its bindings so I can get the most out of &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;scalameta&#x2F;metals&quot;&gt;Metals&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The best way to learn a new language is to build something with it, as that is the scenario when you hit all the common problems. What I wanted to avoid is to fight not only Rust but also some web framework or library on top of it. Time ago I built a tool to delete old tweets from my account, using Scala: &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;twitter-privacy&quot;&gt;twitter privacy&lt;&#x2F;a&gt;. It works well, but the nature of the program (running in a cron job once a day) makes it much slower than it should be, due to cold-start time of the JVM.&lt;&#x2F;p&gt;
+&lt;p&gt;Rust is known as a fast language, and a replacement of this tool using Rust seemed like a good fit for learning the language without having too many libraries involved. You can find the source code of the outcome  &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;twitter_privacy&quot;&gt;in github&lt;&#x2F;a&gt;, and it has been published &lt;a href=&quot;https:&#x2F;&#x2F;crates.io&#x2F;crates&#x2F;twitter_privacy&quot;&gt;to cargo.io&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;If you want to use it for your own social media maintenance, instructions on how to run it are in the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;twitter_privacy&#x2F;blob&#x2F;master&#x2F;Readme.md&quot;&gt;Readme file&lt;&#x2F;a&gt; in Github.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rust-as-a-language&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#rust-as-a-language&quot; aria-label=&quot;Anchor link for: rust-as-a-language&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Rust as a language&lt;&#x2F;h2&gt;
+&lt;p&gt;As a Scala developer, I found Rust a very interesting language. For example, I&#x27;ve heard very often criticism towards the duality OO-FP of Scala,
+pointing it was a bad decision. Rust clearly states in &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;stable&#x2F;book&#x2F;&quot;&gt;their book&lt;&#x2F;a&gt; that they support both, having a chapter dedicated
+to each one, and on how to work in that particular way with the language.&lt;&#x2F;p&gt;
+&lt;p&gt;Rust has a very active community and very good documentation for their tooling and libraries. For example, check the documentation for &lt;a href=&quot;https:&#x2F;&#x2F;doc.rust-lang.org&#x2F;cargo&#x2F;&quot;&gt;Cargo&lt;&#x2F;a&gt;, it&#x27;s build tool. Or for one of the libraries I used, &lt;a href=&quot;https:&#x2F;&#x2F;tonberry.quietmisdreavus.net&#x2F;doc&#x2F;egg_mode&#x2F;index.html&quot;&gt;Egg_Mode&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The community is actively trying to exploit the advantages of Rust (speed, memory management). There&#x27;s a lot of work to build libraries using Rust in domains like &lt;a href=&quot;http:&#x2F;&#x2F;arewegameyet.com&quot;&gt;game development&lt;&#x2F;a&gt;, &lt;a href=&quot;https:&#x2F;&#x2F;www.arewelearningyet.com&quot;&gt;machine learning&lt;&#x2F;a&gt;, or &lt;a href=&quot;https:&#x2F;&#x2F;www.arewewebyet.org&quot;&gt;web development&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;A key area for Rust growth may be &lt;a href=&quot;https:&#x2F;&#x2F;webassembly.org&quot;&gt;WebAssembly&lt;&#x2F;a&gt;, a binary format enabling deployment on the web for client and server applications. Rust already compiles to it and has good tolling and  &lt;a href=&quot;https:&#x2F;&#x2F;rustwasm.github.io&#x2F;book&#x2F;introduction.html&quot;&gt;documentation&lt;&#x2F;a&gt;. This could enable a real &#x27;build once and deploy anywhere&#x27; development mode, without the issues caused by nuances of different platforms.&lt;&#x2F;p&gt;
+&lt;p&gt;In general working with it felt familiar and there weren&#x27;t many unexpected surprises. The following comments come from someone which has been working extensively in the JVM world, with some non-professional experience in non-JVM languages.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-good&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-good&quot; aria-label=&quot;Anchor link for: the-good&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Good&lt;&#x2F;h2&gt;
+&lt;p&gt;I liked the language and I felt comfortable with it, but there are some things worth of mention:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Speed. It&#x27;s been so many years using Scala that I forgot how fast can a CPU. Both compilation and execution are &lt;em&gt;fast&lt;&#x2F;em&gt;, and help with keeping the development flow. No time for a small break on Twitter, or similar.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Typeclasses (using Traits). I got too used to Typeclasses and it would be hard to move to a language without them. The restriction on implementing instances of a Typeclass which doesn&#x27;t belong to your package have been a bit of a nuisance at some stages, but I understand the motivation behind that call, and it&#x27;s not a deal breaker.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Cargo. It&#x27;s what &lt;code&gt;sbt&lt;&#x2F;code&gt; should be. The only tool you need as a developer to compile, test, benchmark, or publish to a central repository. Which, by the way, is a trivial to do (compared to the nightmare of publishing to Sonatype).&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Local documentation. The fact that you can, with a single cargo command, open the documentation of your dependencies for the specific version you are using is a life-saver. In this particular project the library that interacts with Twitter has changed a lot between the last published version and the current version under development, thus going to the online documentation could be very confusing.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;the-less-good&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-less-good&quot; aria-label=&quot;Anchor link for: the-less-good&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The Less Good&lt;&#x2F;h2&gt;
+&lt;p&gt;Nothing is perfect, less so when you are experimenting with a new language. Some aspects that made the learning-curve harder:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Lifetimes. It&#x27;s one of the main features of Rust, it comes with major benefits, but it was a pain to manage. I had to refactor a lot of code because at the top level a closure would give me a lifetime error that I couldn&#x27;t fix. I guess with experience you get better at it, and it forces you to make smaller methods to avoid odd dependencies, but... it can be a pain. Garbage collection is a blessing, sometimes.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Semicolons. Used to Scala, having to add semicolons at the end of most of the lines wasn&#x27;t a great experience. The worst is exactly that &lt;em&gt;most of the lines&lt;&#x2F;em&gt; part, as there are lines in which you don&#x27;t want semicolons as they change the meaning of the expression. Not hard to grasp, but feels like a step backwards.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Snake Case. Ok, it&#x27;s something minor, but after so many years in the JVM world, moving to Snake case wasn&#x27;t easy, habits die hard. And &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;rust-lang&#x2F;rust-clippy&quot;&gt;clippy&lt;&#x2F;a&gt; was complaining non-stop about it.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;Bigger files. In Rust it is idiomatic to add your unit tests at the end of the file. The issue is that you end up having very long files, which are harder to navigate. It may be due to being used to the JVM way, but having a separate test folder with specific code in there feels, somehow, cleaner.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;conclusions&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#conclusions&quot; aria-label=&quot;Anchor link for: conclusions&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Conclusions&lt;&#x2F;h2&gt;
+&lt;p&gt;I feel that Rust is great for low level work, but currently it can&#x27;t replace a stack like &lt;code&gt;http4s&lt;&#x2F;code&gt; and &lt;code&gt;cats&lt;&#x2F;code&gt; due to a lack of libraries supporting it. There are a set of community pages (the &lt;code&gt;AreWe&lt;&#x2F;code&gt; pages, as seen before) that explain the progress in some areas. Looking at, for example, &lt;a href=&quot;https:&#x2F;&#x2F;areweasyncyet.rs&quot;&gt;Are We Async&lt;&#x2F;a&gt; one can see that today (February 2019) several &lt;code&gt;RFC&lt;&#x2F;code&gt; are still in progress and some &lt;code&gt;unresolved&lt;&#x2F;code&gt; questions remain open.&lt;&#x2F;p&gt;
+&lt;p&gt;I hope they catch up soon, as the speed on both compilation and execution plus the FP support may make it a worthy alternative to Scala. But, right now, I think I&#x27;ll stick to my trusted tools for backend development, and dable with Rust only for specific needs.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all for now, I hope this was informative and useful. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Rust is not, at this stage, a new language. But I have to confess that I had not checked it out until now. I built a small tool to test it out. In this post I'll briefly talk about how it felt working with Rust from the point of view of a Scala developer.
+…</summary>
+        </entry>
+</feed>

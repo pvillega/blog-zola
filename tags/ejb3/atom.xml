@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>ejb3</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - ejb3</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/ejb3/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/ejb3/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2010-02-16T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/ejb3/atom.xml</id><entry xml:lang="en">
+        <title>EJB Concepts and Services</title>
+        <published>2010-02-16T00:00:00+00:00</published>
+        <updated>2010-02-16T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/ejb-concepts-and-services/" type="text/html"/>
+        <id>https://perevillega.com/posts/ejb-concepts-and-services/</id>
+        
+            <content type="html">&lt;p&gt;This page contains a brief summary of &lt;strong&gt;EJB 3.0 Services&lt;&#x2F;strong&gt; and related concepts. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like &lt;strong&gt;EJB3 in Action&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Next I will describe some key concepts related to EJB 3.0&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;ejb-context&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#ejb-context&quot; aria-label=&quot;Anchor link for: ejb-context&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+EJB Context&lt;&#x2F;h2&gt;
+&lt;p&gt;The EJBContext interface (definition available &lt;a href=&quot;http:&#x2F;&#x2F;docs.oracle.com&#x2F;javaee&#x2F;5&#x2F;api&#x2F;javax&#x2F;ejb&#x2F;EJBContext.html&quot;&gt;here&lt;&#x2F;a&gt;) provides methods to interact with services like transaction, security, timer or even to do JNDI lookups. Both Session and Message beans implement this interface through inheritance.&lt;&#x2F;p&gt;
+&lt;p&gt;You can access this interface through the SessionContext object to be able to call its methods. Depending on which bean are you using (Session or MDB) the container will add some extra methods to the object that may be useful for your bean. Examples of use of context in Session and Message-Driven beans:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+public class PlaceBean implements PlaceLocal {
+
+  @Resource
+  private SessionContext context;
+
+}
+
+
+@MessageDriven
+public class MDBTestBean implements MessageListener {
+
+  @Resource
+  private MessageDrivenContext context;
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;dependency-injection&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#dependency-injection&quot; aria-label=&quot;Anchor link for: dependency-injection&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Dependency Injection&lt;&#x2F;h2&gt;
+&lt;p&gt;JEE 5 introduces dependency injection to remove all the hassle related to JNDI calls. You still can do JNDI calls using SessionContext objects but the easiest and recommended way is to use DI.&lt;&#x2F;p&gt;
+&lt;p&gt;There are several annotations for this purpose. @EJB is used to inject beans while @Resource can be used as a more versatile mechanism of DI. @Resource allows you to provide a JNDI name of a resource defined in the container and it processes all the calls needed to load that resource, and it can be related to an instance variable or a setter method that follows java bean format.&lt;&#x2F;p&gt;
+&lt;p&gt;Examples of dependency injection:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+public class OtherBeanBean implements OtherBeanLocal {
+
+ @Resource(name = &amp;quot;jms&amp;#x2F;ShippingErrorQueue&amp;quot;)
+ private Destination errorQueue;
+
+}
+
+@Stateless
+public class PlaceBean implements PlaceLocal {
+
+ @EJB
+ private OtherBeanLocal otherBeanBean;
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;interceptors&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#interceptors&quot; aria-label=&quot;Anchor link for: interceptors&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Interceptors&lt;&#x2F;h2&gt;
+&lt;p&gt;Interceptors are a form of Aspect-Oriented Programming (AOP) in EJB 3. They are objects that are automatically triggered when some EJB method is invoked.&lt;&#x2F;p&gt;
+&lt;p&gt;This is achieved using the @Interceptors annotation, which can be applied to a method or an entire class (in that case it will affect all methods of the class, you can use the annotation @ExcludeClassInterceptors on a method to ignore the interceptor for that method). The annotation receives as parameters a list of class objects that are used as interceptors.&lt;&#x2F;p&gt;
+&lt;p&gt;Each interceptor class must contain one (and only one) method annotated as @AroundInvoke, that signals the method to be used as interceptor. This method always has the same format, returning an Object and receiving as its only parameter an InvocationContext object. This class provides methods to check the name of the method called, parameters and other details and allows us to modify the parameters passed to the business method if needed.&lt;&#x2F;p&gt;
+&lt;p&gt;The interceptor to end always with a call to the &quot;proceed&quot; method of InvocationContext to signal the container it can proceed with the next step (next interceptor or the original method itself). Not calling proceed will halt the chain and the business method will never be accessed. One example of an interceptor and the method intercepted:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+public class InterceptorExample {
+
+  @AroundInvoke
+  public Object logMethod(InvocationContext invocationContext)
+    throws Exception{
+      log.warn(&amp;quot;Method: &amp;quot;+invocationContext.getMethod().getName());
+      return invocationContext.proceed();
+  }
+
+}
+
+
+
+@Stateless
+public class PlaceBean implements PlaceLocal {
+
+  @Interceptors(InterceptorExample.class)
+  public void method(){
+
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;timer&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#timer&quot; aria-label=&quot;Anchor link for: timer&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Timer&lt;&#x2F;h2&gt;
+&lt;p&gt;EJB 3 includes a basic timer service to schedule jobs. You can queue objects into the timer inside a bean and assign a method of that bean to process the timer events. Timer can be used to schedule single-events or recurring ones.&lt;&#x2F;p&gt;
+&lt;p&gt;One bean can have only one @Timeout method and it must follow the same structure (void return and receiving a Timer as parameter). You can only receive timer events in the same bean they were created (not same instance!) so you can&#x27;t use Timer to send message across beans by itself, you will need to use JMS in the @Timeout method.&lt;&#x2F;p&gt;
+&lt;p&gt;Example of a simple timer service with a method setting the timer and the @Timeout consumer:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+public class PlaceBean implements PlaceLocal {
+
+  @Resource
+  TimerService timerService;
+
+  public void createTimer(){
+    String attachment = &amp;quot;attachment&amp;quot;;
+    timerService.createTimer(10*1000, 10*1000, attachment);
+  }
+
+  @Timeout
+  public void scheduledMethod(Timer timer){
+    String attachment = (String) timer.getInfo();
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;transactions&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#transactions&quot; aria-label=&quot;Anchor link for: transactions&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Transactions&lt;&#x2F;h2&gt;
+&lt;p&gt;The JEE container does most of the heavy lifting on transactions, as implementing a working transaction manager is no easy task and is prone to errors. You should review concepts like ACID (atomicity, Consistency, Isolation, Durability) and two-phase commit before proceeding, to properly understand what&#x27;s going on behind the scenes. In JEE the JTA API is responsible of transaction management.&lt;&#x2F;p&gt;
+&lt;p&gt;There are two kind of transactions, container managed transaction (CMT) and bean managed transaction (BMT). CMT is simpler and the container does most of the work while the BMT provides more control over the process in exchange of more coding effort.&lt;&#x2F;p&gt;
+&lt;p&gt;To use CMT we annotate with @TransactionManagement the class of the bean, indicating with the parameter the transaction will be managed by the container. Then we can flag the class or any transactional methods with @TransactionAttribute. This annotation tells the container how to behave when running the bean&#x2F;method annotated: create a new transaction, reuse any existing transaction, never use a transaction... We must be aware our method may be called form another method that has started its own transaction, so its important to specify the behaviour of our bean. It has 6 choices: Required, Requires New, Supports, Mandatory, Not Supported and Never.&lt;&#x2F;p&gt;
+&lt;p&gt;To rollback a transaction you must use the EJBContext, calling its &quot;setRollbackOnly&quot; method. You can check if any underlying CMT transaction has been marked for rollback using &quot;getRollbackOnly&quot;, that way you can exit long operations before they finish as the transaction will fail anyway. An example of a CMT bean:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
+public class CMTBean implements CMTLocal {
+
+  @Resource
+  private SessionContext context;
+
+  @TransactionAttribute(TransactionAttributeType.REQUIRED)
+  public void transactionMethod(String p1, String p2) {
+    try{
+        &amp;#x2F;&amp;#x2F;code
+    }catch(Exception e){
+        context.setRollbackOnly();
+    }
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;BMT is the other type of transaction, one which gives us a granular control over the transaction itself. Instead of it being related to a method we can specify the start of the transaction and its end. It works around the UserTransaction interface of the JTA API, using this interface to start, commit and rollback the transaction. The only annotation used is @TransactionManagement, to tell the container this bean is BMT.&lt;&#x2F;p&gt;
+&lt;p&gt;The interface also contains some additional methods to manage the transactions. The method &quot;setRollbackOnly&quot; is used to mark the transaction as &quot;roll back&quot; if our BMT interacts with CMT beans, The method &quot;getStatus&quot; gives us detailed information of the transactional status, while &quot;setTransactionTimeout&quot; allows us to change the timeout of the transaction.&lt;&#x2F;p&gt;
+&lt;p&gt;An example of BMT:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+@TransactionManagement(TransactionManagementType.BEAN)
+public class BMTBean implements CMTLocal {
+
+  @Resource
+  private UserTransaction userTransaction;
+
+  public void transactionMethod(String p1, String p2) {
+    try{
+        userTransaction.begin();
+        &amp;#x2F;&amp;#x2F;code
+        userTransaction.commit();
+    }catch(Exception e){
+        userTransaction.rollback();
+    }
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;security&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#security&quot; aria-label=&quot;Anchor link for: security&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Security&lt;&#x2F;h2&gt;
+&lt;p&gt;JEE provides a flexible security model, based on the standard concepts of users, groups and roles, that manages both authentication and authorization. This is achieved using the JASS API, that abstract the underlying authentication systems (like LDAP). If you use a web front-end you will probably define some security aspects in web.xml. This section will only review the part related to EJB.&lt;&#x2F;p&gt;
+&lt;p&gt;The most common use case is called &quot;declarative security&quot;, consisting on some annotations that tell the container who can access which method. One example should be enough to understand it:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@DeclareRoles({&amp;quot;RoleA&amp;quot;, &amp;quot;RoleB&amp;quot;, &amp;quot;RoleC&amp;quot;})
+@Stateless
+public class DeclarativeSecurityBean implements DeclarativeSecurityLocal {
+
+  @RolesAllowed({&amp;quot;RoleA&amp;quot;,&amp;quot;RoleC&amp;quot;})
+  public void businessMethod1() {
+  }
+
+  @PermitAll
+  public void businessMethod2() {
+  }
+
+  @DenyAll
+  public void businessMethod3() {
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;On the other hand, programmatic security uses the EJBContext to check the role of the user. This system should not be used unless completely necessary due to requirements, as it makes the security layer much harder to manage, One good point about this kind of security is that it can be used along interceptors, but even with this advantage if we have several roles managing the system is no easy task.&lt;&#x2F;p&gt;
+&lt;p&gt;One example will show why it&#x27;s not recommended (think about an application with several beans and roles):&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+public class ProgrammaticSecBean implements ProgrammaticSecurityLocal {
+
+  @Resource
+  private SessionContext context;
+
+  public void businessMethod() {
+    if(!context.isCallerInRole(&amp;quot;RoleA&amp;quot;)
+       &amp;amp;&amp;amp; !context.isCallerInRole(&amp;quot;RoleB&amp;quot;)){
+       return;
+    }
+    &amp;#x2F;&amp;#x2F;code for other roles
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        <summary type="html">This page contains a brief summary of EJB 3.0 Services and related concepts. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Message-Driven Beans</title>
+        <published>2010-02-05T00:00:00+00:00</published>
+        <updated>2010-02-05T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/message-driven-beans/" type="text/html"/>
+        <id>https://perevillega.com/posts/message-driven-beans/</id>
+        
+            <content type="html">&lt;p&gt;This page contains a brief summary of &lt;strong&gt;EJB 3.0 Message-Driven Beans (MDB)&lt;&#x2F;strong&gt;. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like &lt;strong&gt;EJB3 in Action&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Message-Driven Beans are an abstraction over Java Messaging Service (JMS). They are used to send and receive messages in your application without having to know all the details about JMS. That said a good understanding of JMS is important for the correct use of MDB. The advantages of MDB over standard JMS coding are the services provided by the container (like pooling) and the reduction on code size due to automation of tasks.&lt;&#x2F;p&gt;
+&lt;p&gt;By message (in the context of a JEE application) we mean an asynchronous and loosely coupled communication between system components. Using Message-Oriented Middleware (MOM) messages sent are stored until a consumer is available to read them. We consider two types of communication:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Point-to-point&lt;&#x2F;strong&gt;: the message is stored in a queue and received by one of the N possible consumers of the message&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Publish-Subscribe&lt;&#x2F;strong&gt;: message is received by N subscribers that belong to a specific group of receivers&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;MDB are POJOs like other EJB and require a public constructor without arguments. You can&#x27;t throw any RuntimeException or RemoteException as that would cause the MDB to be terminated. They also have the following requirements:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Implement MessageListener interface&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;use @MessageDriven annotation to configure the queue they are listening and some JMS properties (using @ActivationConfigProperty). Values include:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;acknowledgeMode: (on Queues) to notify the consumption of the message&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;subscriptionDurability: (on Topics) guaranties delivery of message to offline subscribers&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;messageSelector: filters messages consumed using a property of the message included in the message header&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;it has two lifecycle callbacks (@PreDestroy and @PostConstruct) equivalent to the Session Bean ones.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;can send messages but you need to follow the JMS API for that, using a Connection Factory, etc.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;by default the &quot;onMessage&quot; method creates a transaction that rolls-back if there&#x27;s any error while processing the message, leaving the message in the queue for another consumer.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Example of MDB listening to a Queue (point-to-point communication) named SampleServerQueue:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@MessageDriven(mappedName = &amp;quot;SampleServerQueue&amp;quot;, activationConfig = {
+  @ActivationConfigProperty(propertyName = &amp;quot;acknowledgeMode&amp;quot;,
+     propertyValue = &amp;quot;Auto-acknowledge&amp;quot;),
+  @ActivationConfigProperty(propertyName = &amp;quot;destinationType&amp;quot;,
+     propertyValue = &amp;quot;javax.jms.Queue&amp;quot;)
+})
+public class MDBTestBean implements MessageListener {
+
+  &amp;#x2F;&amp;#x2F;create the references to a destination Queue
+  &amp;#x2F;&amp;#x2F;where we will send messages using DI
+  @Resource(name = &amp;quot;jms&amp;#x2F;ShippingErrorQueue&amp;quot;)
+  private Destination errorQueue;
+
+  @Resource(name = &amp;quot;jms&amp;#x2F;QueueConnectionFactory&amp;quot;)
+  private ConnectionFactory connectionFactory;
+
+  private Connection jmsConnection;
+
+  public MDBTestBean() { }
+
+  &amp;#x2F;&amp;#x2F;message consumer, reads a message from the queue
+  public void onMessage(Message message) {
+    &amp;#x2F;&amp;#x2F; code
+  }
+
+  &amp;#x2F;&amp;#x2F;send a message
+  public void sendMessage() {
+
+    try {
+      Session session = jmsConnection.
+        createSession(true, Session.AUTO_ACKNOWLEDGE);
+      MessageProducer producer = session.createProducer(errorQueue);
+      ObjectMessage message = session.createObjectMessage();
+
+      &amp;#x2F;&amp;#x2F;add info to message
+      message.setObject(&amp;quot;Message&amp;quot;);
+
+      producer.send(message);
+      session.close();
+
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+
+  @PostConstruct
+  private void onConstruct() {
+
+    try {
+      jmsConnection = connectionFactory.createConnection();
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+
+  @PreDestroy
+  private void onDestroy() {
+
+    try {
+      jmsConnection.close();
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        <summary type="html">This page contains a brief summary of EJB 3.0 Message-Driven Beans (MDB). It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+…</summary>
+        </entry>
+</feed>

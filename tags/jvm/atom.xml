@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>jvm</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - jvm</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/jvm/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/jvm/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2011-07-19T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/jvm/atom.xml</id><entry xml:lang="en">
+        <title>Scala: Move Forward</title>
+        <published>2011-07-19T00:00:00+00:00</published>
+        <updated>2011-07-19T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/scala-move-forward/" type="text/html"/>
+        <id>https://perevillega.com/posts/scala-move-forward/</id>
+        
+            <content type="html">&lt;p&gt;Soon Java 7 will be released. A bit delayed, yes, but it&#x27;s here. Even so the question lingers: is it enough? I believe the answer nowadays is NO, but of course this is an open discussion in which each developer will have a different (and valid) opinion as per each one&#x27;s background. Let&#x27;s give some arguments for the no, then. Let&#x27;s talk about &lt;a href=&quot;http:&#x2F;&#x2F;www.scala-lang.org&#x2F;&quot;&gt;Scala&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;why-scala&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#why-scala&quot; aria-label=&quot;Anchor link for: why-scala&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Why Scala?&lt;&#x2F;h2&gt;
+&lt;p&gt;You may be wondering why should you learn a new language. If you want to be the average run-of-the-mill developer, no need to. But by learning new languages you improve your skills due to the exposure to new methodologies and idioms. If you&#x27;ve read &lt;a href=&quot;http:&#x2F;&#x2F;pragprog.com&#x2F;book&#x2F;tpp&#x2F;the-pragmatic-programmer&quot;&gt;The Pragmatic Programmer&lt;&#x2F;a&gt; you know what I mean.&lt;&#x2F;p&gt;
+&lt;p&gt;So, why Scala? Because:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;with Scala you will enter the world of functional programming, without leaving the comfort of Object Oriented development. Functional programming helps scalability and testability. Nowadays, with the rise of multicore processors, using a language that facilitates multithreading by removing the need of locks and threads is a huge win.&lt;&#x2F;li&gt;
+&lt;li&gt;Scala syntax and libraries reduce the lines of code you need to write. And LOC have &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Source_lines_of_code#Relation_with_security_faults&quot;&gt;a direct relation&lt;&#x2F;a&gt; with bugs: less lines, less bugs.&lt;&#x2F;li&gt;
+&lt;li&gt;Scala runs in the JVM, and it compiles to the same bytecode as Java. This means you can mix Java and Scala code in a program, giving you access to the vast number of existing Java libraries.&lt;&#x2F;li&gt;
+&lt;li&gt;Scala removes some of the issues with Java. For example, no more need of Guava collections, Scala gives you what you need.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;With great web frameworks like &lt;a href=&quot;http:&#x2F;&#x2F;scala.playframework.org&#x2F;&quot;&gt;Play&lt;&#x2F;a&gt; using Scala for web development, good IDE support (like Eclipse or IntelliJ) and knowing you won&#x27;t leave the JVM, there are no real excuses to not start learning Scala. Besides laziness, that is.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;but-that-s-for-geeks-no-one-uses-it&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#but-that-s-for-geeks-no-one-uses-it&quot; aria-label=&quot;Anchor link for: but-that-s-for-geeks-no-one-uses-it&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+But that&#x27;s for geeks, no one uses it&lt;&#x2F;h2&gt;
+&lt;p&gt;Not quite true. Yes, early adopters of Scala were geeks, as any early adopter usually is. But nowadays Scala is widely used, and its adoption is growing. You may not see it in &quot;traditional&quot; companies like Accenture. But you know &lt;a href=&quot;https:&#x2F;&#x2F;twitter.com&#x2F;&quot;&gt;Twitter&lt;&#x2F;a&gt;? They use Scala. &lt;a href=&quot;http:&#x2F;&#x2F;www.guardian.co.uk&#x2F;&quot;&gt;The Guardian&lt;&#x2F;a&gt;? Scala. &lt;a href=&quot;http:&#x2F;&#x2F;press.linkedin.com&#x2F;about&quot;&gt;LinkedIn&lt;&#x2F;a&gt;? Scala. &lt;a href=&quot;https:&#x2F;&#x2F;foursquare.com&#x2F;about&#x2F;new?from=hp&quot;&gt;FourSquare&lt;&#x2F;a&gt;. &lt;a href=&quot;http:&#x2F;&#x2F;www.nature.com&#x2F;&quot;&gt;Nature&lt;&#x2F;a&gt;. Well, &lt;a href=&quot;http:&#x2F;&#x2F;www.scala-lang.org&#x2F;node&#x2F;1658&quot;&gt;check by yourself&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;ok-but-how-to-start&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#ok-but-how-to-start&quot; aria-label=&quot;Anchor link for: ok-but-how-to-start&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Ok, but how to start?&lt;&#x2F;h2&gt;
+&lt;p&gt;First, get your hands on a copy of &lt;a href=&quot;http:&#x2F;&#x2F;www.artima.com&#x2F;shop&#x2F;programming_in_scala_2ed&quot;&gt;Programming in Scala&lt;&#x2F;a&gt;. Read it. And then start coding using Scala as if you coded in Java, don&#x27;t worry about the new stuff. Just code. Check &lt;a href=&quot;http:&#x2F;&#x2F;stackoverflow.com&#x2F;questions&#x2F;tagged&#x2F;scala&quot;&gt;Stack Overflow&lt;&#x2F;a&gt; when in doubt. Read other people&#x27;s code. As time goes you will find better ways to use the new constructs the language provides, and after a few weeks you will fall into &quot;Scala mode&quot;.&lt;&#x2F;p&gt;
+&lt;p&gt;Recently I was in a Scala talk organised by TypeSafe, the company behind Scala. They mentioned that (in their experience) people starts getting as productive in Scala as in Java after using the language for 4-6 weeks.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;a href=&quot;http:&#x2F;&#x2F;www.scala-lang.org&#x2F;node&#x2F;960&quot;&gt;official Scala site&lt;&#x2F;a&gt; can help you a bit more.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;what-does-scala-give-me&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#what-does-scala-give-me&quot; aria-label=&quot;Anchor link for: what-does-scala-give-me&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+What does Scala give me?&lt;&#x2F;h2&gt;
+&lt;p&gt;I won&#x27;t list all of Scala capabilities, there is a book you should have bought already for that ;) But if you are curious, some of the features that make Scala great:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Closure_%28computer_science%29&quot;&gt;Closures&lt;&#x2F;a&gt;: Scala supports closures. In Scala a function is a 1st-level construct and as such it can be assigned, passed as parameter, etc.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.scala-lang.org&#x2F;node&#x2F;135&quot;&gt;Currying&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Mixin&quot;&gt;Traits&lt;&#x2F;a&gt;, a type of Mixin that makes composition much more powerful than simple Interfaces in Java&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.scala-lang.org&#x2F;node&#x2F;107&quot;&gt;Case classes&lt;&#x2F;a&gt;, which along the built-in &lt;a href=&quot;http:&#x2F;&#x2F;www.scala-lang.org&#x2F;node&#x2F;120&quot;&gt;pattern matching&lt;&#x2F;a&gt; provides a very flexible tool for your algorithms&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;http:&#x2F;&#x2F;www.scala-lang.org&#x2F;node&#x2F;131&quot;&gt;XML&lt;&#x2F;a&gt; as part of the language (XML as literal)&lt;&#x2F;li&gt;
+&lt;li&gt;Powerful syntax that allows you to define &lt;a href=&quot;http:&#x2F;&#x2F;www.scala-lang.org&#x2F;node&#x2F;118&quot;&gt;operators&lt;&#x2F;a&gt; with names like +, perfect to create &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Domain-specific_language&quot;&gt;DSL&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;Parallel Collections, which you can use as normal collections but behind the scenes break themselves automatically into pieces to take advantage of multiple processors for certain operations (like map, filter, etc).&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And &lt;a href=&quot;http:&#x2F;&#x2F;www.scala-lang.org&#x2F;node&#x2F;104&quot;&gt;some more&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;With Scala you can do everything you can do in Java. With less code, less effort, less bugs. And you can do some things Java won&#x27;t be able to do in the near future.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;to-sum-it-up&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#to-sum-it-up&quot; aria-label=&quot;Anchor link for: to-sum-it-up&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+To sum it up&lt;&#x2F;h2&gt;
+&lt;p&gt;I believe Java 7 is not enough. A good step, but not enough. And the reason is that you can use Scala. Java needs to change too much to catch up, even more with the bureaucracy associated to Java processes, and in the meantime Scala will keep evolving.&lt;&#x2F;p&gt;
+&lt;p&gt;The Java king is dead, long live the Scala king!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Soon Java 7 will be released. A bit delayed, yes, but it's here. Even so the question lingers: is it enough? I believe the answer nowadays is NO, but of course this is an open discussion in which each developer will have a different (and valid) opinion as per each one's background. Let's give some arguments for the no, then. Let's talk about Scala.
+…</summary>
+        </entry>
+</feed>

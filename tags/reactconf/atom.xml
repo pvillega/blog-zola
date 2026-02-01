@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>reactconf</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - reactconf</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/reactconf/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/reactconf/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2014-04-13T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/reactconf/atom.xml</id><entry xml:lang="en">
+        <title>ReactConf and ORM future</title>
+        <published>2014-04-13T00:00:00+00:00</published>
+        <updated>2014-04-13T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/reactconf-and-orm-future/" type="text/html"/>
+        <id>https://perevillega.com/posts/reactconf-and-orm-future/</id>
+        
+            <content type="html">&lt;p&gt;I&#x27;ve been pretty busy lately at &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt;, but I still got time to publish some posts in our &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;&quot;&gt;Dev Team blog&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;The first one, which has got quite a lot of traction, is &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;the-end-of-orm-dc0540008b23&quot;&gt;The end of ORM&lt;&#x2F;a&gt; where I talk about how Akka persistence may be the solution for the headaches ORM cause.&lt;&#x2F;p&gt;
+&lt;p&gt;The second, split in two parts, is a summary of the talks in &lt;a href=&quot;http:&#x2F;&#x2F;reactconf.com&#x2F;&quot;&gt;React.conf 2014&lt;&#x2F;a&gt;. I was very lucky to attend that event, and I posted the notes I took on &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;react-conf-day-1-a929d3b6e9b0&quot;&gt;day 1&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;react-conf-day-2-fcbe386ea776&quot;&gt;day 2&lt;&#x2F;a&gt;. Be warned that the notes are not curated, just details on the talks for those who couldn&#x27;t attend and wanted to get some more details before the videos are released.&lt;&#x2F;p&gt;
+&lt;p&gt;As always, feedback via Twitter&#x2F;Email is more than welcome.&lt;&#x2F;p&gt;
+&lt;p&gt;UPDATE: I added a review &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;react-conf-review-5eec60082282&quot;&gt;on React.Conf&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">I've been pretty busy lately at Gumtree, but I still got time to publish some posts in our Dev Team blog.
+…</summary>
+        </entry>
+</feed>

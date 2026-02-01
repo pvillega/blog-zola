@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>ejb</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - ejb</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/ejb/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/ejb/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2010-02-16T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/ejb/atom.xml</id><entry xml:lang="en">
+        <title>EJB Concepts and Services</title>
+        <published>2010-02-16T00:00:00+00:00</published>
+        <updated>2010-02-16T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/ejb-concepts-and-services/" type="text/html"/>
+        <id>https://perevillega.com/posts/ejb-concepts-and-services/</id>
+        
+            <content type="html">&lt;p&gt;This page contains a brief summary of &lt;strong&gt;EJB 3.0 Services&lt;&#x2F;strong&gt; and related concepts. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like &lt;strong&gt;EJB3 in Action&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Next I will describe some key concepts related to EJB 3.0&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;ejb-context&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#ejb-context&quot; aria-label=&quot;Anchor link for: ejb-context&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+EJB Context&lt;&#x2F;h2&gt;
+&lt;p&gt;The EJBContext interface (definition available &lt;a href=&quot;http:&#x2F;&#x2F;docs.oracle.com&#x2F;javaee&#x2F;5&#x2F;api&#x2F;javax&#x2F;ejb&#x2F;EJBContext.html&quot;&gt;here&lt;&#x2F;a&gt;) provides methods to interact with services like transaction, security, timer or even to do JNDI lookups. Both Session and Message beans implement this interface through inheritance.&lt;&#x2F;p&gt;
+&lt;p&gt;You can access this interface through the SessionContext object to be able to call its methods. Depending on which bean are you using (Session or MDB) the container will add some extra methods to the object that may be useful for your bean. Examples of use of context in Session and Message-Driven beans:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+public class PlaceBean implements PlaceLocal {
+
+  @Resource
+  private SessionContext context;
+
+}
+
+
+@MessageDriven
+public class MDBTestBean implements MessageListener {
+
+  @Resource
+  private MessageDrivenContext context;
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;dependency-injection&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#dependency-injection&quot; aria-label=&quot;Anchor link for: dependency-injection&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Dependency Injection&lt;&#x2F;h2&gt;
+&lt;p&gt;JEE 5 introduces dependency injection to remove all the hassle related to JNDI calls. You still can do JNDI calls using SessionContext objects but the easiest and recommended way is to use DI.&lt;&#x2F;p&gt;
+&lt;p&gt;There are several annotations for this purpose. @EJB is used to inject beans while @Resource can be used as a more versatile mechanism of DI. @Resource allows you to provide a JNDI name of a resource defined in the container and it processes all the calls needed to load that resource, and it can be related to an instance variable or a setter method that follows java bean format.&lt;&#x2F;p&gt;
+&lt;p&gt;Examples of dependency injection:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+public class OtherBeanBean implements OtherBeanLocal {
+
+ @Resource(name = &amp;quot;jms&amp;#x2F;ShippingErrorQueue&amp;quot;)
+ private Destination errorQueue;
+
+}
+
+@Stateless
+public class PlaceBean implements PlaceLocal {
+
+ @EJB
+ private OtherBeanLocal otherBeanBean;
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;interceptors&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#interceptors&quot; aria-label=&quot;Anchor link for: interceptors&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Interceptors&lt;&#x2F;h2&gt;
+&lt;p&gt;Interceptors are a form of Aspect-Oriented Programming (AOP) in EJB 3. They are objects that are automatically triggered when some EJB method is invoked.&lt;&#x2F;p&gt;
+&lt;p&gt;This is achieved using the @Interceptors annotation, which can be applied to a method or an entire class (in that case it will affect all methods of the class, you can use the annotation @ExcludeClassInterceptors on a method to ignore the interceptor for that method). The annotation receives as parameters a list of class objects that are used as interceptors.&lt;&#x2F;p&gt;
+&lt;p&gt;Each interceptor class must contain one (and only one) method annotated as @AroundInvoke, that signals the method to be used as interceptor. This method always has the same format, returning an Object and receiving as its only parameter an InvocationContext object. This class provides methods to check the name of the method called, parameters and other details and allows us to modify the parameters passed to the business method if needed.&lt;&#x2F;p&gt;
+&lt;p&gt;The interceptor to end always with a call to the &quot;proceed&quot; method of InvocationContext to signal the container it can proceed with the next step (next interceptor or the original method itself). Not calling proceed will halt the chain and the business method will never be accessed. One example of an interceptor and the method intercepted:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+public class InterceptorExample {
+
+  @AroundInvoke
+  public Object logMethod(InvocationContext invocationContext)
+    throws Exception{
+      log.warn(&amp;quot;Method: &amp;quot;+invocationContext.getMethod().getName());
+      return invocationContext.proceed();
+  }
+
+}
+
+
+
+@Stateless
+public class PlaceBean implements PlaceLocal {
+
+  @Interceptors(InterceptorExample.class)
+  public void method(){
+
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;timer&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#timer&quot; aria-label=&quot;Anchor link for: timer&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Timer&lt;&#x2F;h2&gt;
+&lt;p&gt;EJB 3 includes a basic timer service to schedule jobs. You can queue objects into the timer inside a bean and assign a method of that bean to process the timer events. Timer can be used to schedule single-events or recurring ones.&lt;&#x2F;p&gt;
+&lt;p&gt;One bean can have only one @Timeout method and it must follow the same structure (void return and receiving a Timer as parameter). You can only receive timer events in the same bean they were created (not same instance!) so you can&#x27;t use Timer to send message across beans by itself, you will need to use JMS in the @Timeout method.&lt;&#x2F;p&gt;
+&lt;p&gt;Example of a simple timer service with a method setting the timer and the @Timeout consumer:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+public class PlaceBean implements PlaceLocal {
+
+  @Resource
+  TimerService timerService;
+
+  public void createTimer(){
+    String attachment = &amp;quot;attachment&amp;quot;;
+    timerService.createTimer(10*1000, 10*1000, attachment);
+  }
+
+  @Timeout
+  public void scheduledMethod(Timer timer){
+    String attachment = (String) timer.getInfo();
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;transactions&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#transactions&quot; aria-label=&quot;Anchor link for: transactions&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Transactions&lt;&#x2F;h2&gt;
+&lt;p&gt;The JEE container does most of the heavy lifting on transactions, as implementing a working transaction manager is no easy task and is prone to errors. You should review concepts like ACID (atomicity, Consistency, Isolation, Durability) and two-phase commit before proceeding, to properly understand what&#x27;s going on behind the scenes. In JEE the JTA API is responsible of transaction management.&lt;&#x2F;p&gt;
+&lt;p&gt;There are two kind of transactions, container managed transaction (CMT) and bean managed transaction (BMT). CMT is simpler and the container does most of the work while the BMT provides more control over the process in exchange of more coding effort.&lt;&#x2F;p&gt;
+&lt;p&gt;To use CMT we annotate with @TransactionManagement the class of the bean, indicating with the parameter the transaction will be managed by the container. Then we can flag the class or any transactional methods with @TransactionAttribute. This annotation tells the container how to behave when running the bean&#x2F;method annotated: create a new transaction, reuse any existing transaction, never use a transaction... We must be aware our method may be called form another method that has started its own transaction, so its important to specify the behaviour of our bean. It has 6 choices: Required, Requires New, Supports, Mandatory, Not Supported and Never.&lt;&#x2F;p&gt;
+&lt;p&gt;To rollback a transaction you must use the EJBContext, calling its &quot;setRollbackOnly&quot; method. You can check if any underlying CMT transaction has been marked for rollback using &quot;getRollbackOnly&quot;, that way you can exit long operations before they finish as the transaction will fail anyway. An example of a CMT bean:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+@TransactionManagement(TransactionManagementType.CONTAINER)
+public class CMTBean implements CMTLocal {
+
+  @Resource
+  private SessionContext context;
+
+  @TransactionAttribute(TransactionAttributeType.REQUIRED)
+  public void transactionMethod(String p1, String p2) {
+    try{
+        &amp;#x2F;&amp;#x2F;code
+    }catch(Exception e){
+        context.setRollbackOnly();
+    }
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;BMT is the other type of transaction, one which gives us a granular control over the transaction itself. Instead of it being related to a method we can specify the start of the transaction and its end. It works around the UserTransaction interface of the JTA API, using this interface to start, commit and rollback the transaction. The only annotation used is @TransactionManagement, to tell the container this bean is BMT.&lt;&#x2F;p&gt;
+&lt;p&gt;The interface also contains some additional methods to manage the transactions. The method &quot;setRollbackOnly&quot; is used to mark the transaction as &quot;roll back&quot; if our BMT interacts with CMT beans, The method &quot;getStatus&quot; gives us detailed information of the transactional status, while &quot;setTransactionTimeout&quot; allows us to change the timeout of the transaction.&lt;&#x2F;p&gt;
+&lt;p&gt;An example of BMT:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+@TransactionManagement(TransactionManagementType.BEAN)
+public class BMTBean implements CMTLocal {
+
+  @Resource
+  private UserTransaction userTransaction;
+
+  public void transactionMethod(String p1, String p2) {
+    try{
+        userTransaction.begin();
+        &amp;#x2F;&amp;#x2F;code
+        userTransaction.commit();
+    }catch(Exception e){
+        userTransaction.rollback();
+    }
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;security&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#security&quot; aria-label=&quot;Anchor link for: security&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Security&lt;&#x2F;h2&gt;
+&lt;p&gt;JEE provides a flexible security model, based on the standard concepts of users, groups and roles, that manages both authentication and authorization. This is achieved using the JASS API, that abstract the underlying authentication systems (like LDAP). If you use a web front-end you will probably define some security aspects in web.xml. This section will only review the part related to EJB.&lt;&#x2F;p&gt;
+&lt;p&gt;The most common use case is called &quot;declarative security&quot;, consisting on some annotations that tell the container who can access which method. One example should be enough to understand it:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@DeclareRoles({&amp;quot;RoleA&amp;quot;, &amp;quot;RoleB&amp;quot;, &amp;quot;RoleC&amp;quot;})
+@Stateless
+public class DeclarativeSecurityBean implements DeclarativeSecurityLocal {
+
+  @RolesAllowed({&amp;quot;RoleA&amp;quot;,&amp;quot;RoleC&amp;quot;})
+  public void businessMethod1() {
+  }
+
+  @PermitAll
+  public void businessMethod2() {
+  }
+
+  @DenyAll
+  public void businessMethod3() {
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;On the other hand, programmatic security uses the EJBContext to check the role of the user. This system should not be used unless completely necessary due to requirements, as it makes the security layer much harder to manage, One good point about this kind of security is that it can be used along interceptors, but even with this advantage if we have several roles managing the system is no easy task.&lt;&#x2F;p&gt;
+&lt;p&gt;One example will show why it&#x27;s not recommended (think about an application with several beans and roles):&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+public class ProgrammaticSecBean implements ProgrammaticSecurityLocal {
+
+  @Resource
+  private SessionContext context;
+
+  public void businessMethod() {
+    if(!context.isCallerInRole(&amp;quot;RoleA&amp;quot;)
+       &amp;amp;&amp;amp; !context.isCallerInRole(&amp;quot;RoleB&amp;quot;)){
+       return;
+    }
+    &amp;#x2F;&amp;#x2F;code for other roles
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        <summary type="html">This page contains a brief summary of EJB 3.0 Services and related concepts. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Java Persistence API</title>
+        <published>2010-02-10T00:00:00+00:00</published>
+        <updated>2010-02-10T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/java-persistence-api/" type="text/html"/>
+        <id>https://perevillega.com/posts/java-persistence-api/</id>
+        
+            <content type="html">&lt;p&gt;This page contains a brief summary of &lt;strong&gt;Java Persistence API (JPA)&lt;&#x2F;strong&gt;. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like &lt;strong&gt;EJB3 in Action&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Persistence is probably one of the biggest concerns of most enterprise applications. Data is key and we have to be sure it&#x27;s consistent and our application can manage its changes properly. To that end lots of alternatives have been developed, with O&#x2F;R mapping systems taking the led in the latest years due to the benefits of using an intermediate API that&#x27;s closer to the OO model used in the business layer instead of direct interaction with the RDBMS.&lt;&#x2F;p&gt;
+&lt;p&gt;EJB entities are the answer of EJB 3,0 to the persistence issue and it&#x27;s implementation using JPA follows the same basic patterns as other components like session beans. That means they are POJOs with specific annotations (@Entity for JPA entities) that are capable of inheritance and whose non-abstract classes requires a public or protected no-argument constructor.&lt;&#x2F;p&gt;
+&lt;p&gt;JPA is the most complex part of EJB 3.0. Not only controls the most critical component of our application but it provides a large number of options for a developer to be able to adapt it to his needs. I will try to break this complexity in some sections, like they do in the book EJB in Action, focussing on a few aspects of JPA. Remember this is just a quick summary that won&#x27;t cover lots of aspects of JPA.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;basic-domain-concepts-entities-and-primary-keys&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#basic-domain-concepts-entities-and-primary-keys&quot; aria-label=&quot;Anchor link for: basic-domain-concepts-entities-and-primary-keys&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Basic domain concepts: entities and primary keys&lt;&#x2F;h2&gt;
+&lt;p&gt;As said above JPA is an O&#x2F;R mapping system. That means it maps Java POJOs (objects) to data stored in the database as tables and rows (relational data). To achieve this JPA does a heavy use of annotations. In this section I will show basic POJOs with some common annotations and explain how they are used. That will enables us to map our tables to the application, although by itself it won&#x27;t let our application work. Let&#x27;s start with a basic entity:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Entity
+public class BasicEntity implements Serializable {
+
+  private static final long serialVersionUID = 1L;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
+
+  @Transient
+  private String disposableCode;
+
+  &amp;#x2F;**
+   * Get the value of disposableCode
+   *
+   * @return the value of disposableCode
+   *&amp;#x2F;
+  public String getDisposableCode() {
+    return disposableCode;
+  }
+
+  &amp;#x2F;**
+   * Set the value of disposableCode
+   *
+   * @param disposableCode new value of disposableCode
+   *&amp;#x2F;
+  public void setDisposableCode(String name) {
+    this.disposableCode = name;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  @Override
+  public int hashCode() {
+    int hash = 0;
+    hash += (id != null ? id.hashCode() : 0);
+    return hash;
+  }
+
+  @Override
+  public boolean equals(Object object) {
+    &amp;#x2F;&amp;#x2F; TODO: Warning - this method won&amp;#x27;t work if id fields are not set
+    if (!(object instanceof BasicEntity)) {
+        return false;
+    }
+
+    BasicEntity other = (BasicEntity) object;
+    if ((this.id == null &amp;amp;&amp;amp; other.id != null)
+        || (this.id != null &amp;amp;&amp;amp; !this.id.equals(other.id))) {
+        return false;
+    }
+
+    return true;
+  }
+
+  @Override
+  public String toString() {
+    return &amp;quot;jpa.BasicEntity[id=&amp;quot; + id + &amp;quot;]&amp;quot;;
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this example we can see some interesting characteristics of an entity. First one, the entity is marked with the @Entity annotation, that identifies this POJO as an EJB 3,0 entity. Another important step is to override the methods hashcode, equals and toString. This is not mandatory but it&#x27;s considered a best practice to implement hashcode and equals so they use our primary key to identify our entity, and changing toString allows us to log and debug the application easily.&lt;&#x2F;p&gt;
+&lt;p&gt;The persistence provider will store the values of any property or field that has public or protected setters and getters, which can&#x27;t be declared final, so no especial annotation is required to enable their persistence. In this example you can see we use a @Transient annotation in one field. This is equivalent to the transient keyword related to Serialization and tells the persistence manager to not persist that specific field.&lt;&#x2F;p&gt;
+&lt;p&gt;Another detail about the annotations: in this example they are on the fields of the classes. You could write them on the getter methods of those fields, but whatever system you choose you have to stick to it for all you entities. The only difference is that using field-annotation you could make your fields public and not use any getter or setter method and they would be persisted, while using the annotation in the getter method obliges you to implement all the getters&#x2F;setters and make the field private. Given that the first way is a very dangerous and bad practice, so you will have a private field with getter and setters in your entities, choosing one over the other is usually a matter of taste.&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;ve left the @Id annotation for last. This annotation, as you can guess, tells the entity where is stored our unique id. The field that can be marked as Id has some restrictions: it must be a primitive, its wrapper or a Serializable type. Types like double or float are forbidden due to their lack of precision (due to the way computers work, you should know what I mean) and that could cause two different entities to be considered the same.&lt;&#x2F;p&gt;
+&lt;p&gt;But the @Id annotation is marking only one field and we can&#x27;t have more than one @Id in our class, so what happens if we have a primary key that uses several fields? There are two approaches to it.&lt;&#x2F;p&gt;
+&lt;p&gt;The first approach uses the @IdClass annotation as follows:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Entity
+@IdClass(BasicEntityPK.class)
+public class BasicEntity implements Serializable {
+
+  @Id
+  private Long id;
+
+  @Id
+  private String name;
+
+  &amp;#x2F;&amp;#x2F;other non Id fields
+  &amp;#x2F;&amp;#x2F;no need to implement equals and hashcode
+  &amp;#x2F;&amp;#x2F;getters and setters
+}
+
+public class BasicEntityPK implements Serializable {
+
+   Long id;
+   String name;
+
+   public BasicEntityPK(){}
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see we have our main entity class with several @Id fields assigned and a related class that contains the same fields. In this case we implement the equals and hashcode methods in the PK class, not in our entity. With this approach the container will use the entity to persist data and will map internally the fields to the PK class, which will be used when it needs to compare two entities.&lt;&#x2F;p&gt;
+&lt;p&gt;The other alternative is the use of the @EmbeddedId annotation, like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Entity
+public class BasicEntity implements Serializable {
+
+  @EmbeddedId
+  private BasicEntityPK basicEntityPk;
+  &amp;#x2F;&amp;#x2F;other fields
+  &amp;#x2F;&amp;#x2F;no need to implement equals and hashcode
+  &amp;#x2F;&amp;#x2F;getters and setters
+
+}
+
+@Embeddable
+public class BasicEntityPK{
+
+  Long id;
+  String name;
+
+  public BasicEntityPK(){}
+  &amp;#x2F;&amp;#x2F;implement equals and hashcode
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The skeleton is quite similar to the @IdClass one but in this case instead of having the primary key fields on both classes, we just put them in our PK class, and we embed that class into our entity as its primary key. Choosing between any of those methods is a matter of personal taste: one is harder to maintain due to replication, the other makes access to PK fields more awkward. Keep in mind that although you can use those structures sometimes is preferable the use of a surrogate key (we will review it later) as Id, as it will free you code from extra classes and it has better performance.&lt;&#x2F;p&gt;
+&lt;p&gt;Now that we have talk about the @Embeddable annotation it might be a good time to explain its meaning. In our data model we may have some data that&#x27;s always related to a certain object but that has sense by itself, like the address of a user. This address contains several fields (city, street) so it may be an entity but it&#x27;s always related to a user. So in the object model it makes sense to implement it as its own object but in the relational model it will be in the same table as the user. To solve this JPA has the option to embed objects into entities, allowing us to declare this kind of relationship. An example:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Entity
+public class UserEntity implements Serializable {
+
+  @Id
+  protected Long id;
+  protected String name;
+  &amp;#x2F;&amp;#x2F;other fields
+
+  @Embedded
+  protected Address address;
+
+  &amp;#x2F;&amp;#x2F;implement equals and hashcode
+  &amp;#x2F;&amp;#x2F;getters and setters
+
+}
+
+
+@Embeddable
+public class Address implements Serializable {
+
+  protected String street;
+  protected String city;
+  &amp;#x2F;&amp;#x2F;other fields
+
+  &amp;#x2F;&amp;#x2F;implement equals and hashcode
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;basic-domain-concepts-entities-relationships&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#basic-domain-concepts-entities-relationships&quot; aria-label=&quot;Anchor link for: basic-domain-concepts-entities-relationships&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Basic domain concepts: entities relationships&lt;&#x2F;h2&gt;
+&lt;p&gt;The data components in our model will have some kind of relationships between them: one-to-one, one-to-many, many-to-one or many-to-many. These relationships must be defined in our entities so the persistence provider can maintain the proper relations and the data consistency. In this section I will describe the annotations that manage that.&lt;&#x2F;p&gt;
+&lt;p&gt;First one is the @OneToOne annotation, that defines a one-to-one relationship.This relationship can be unidirectional or bidirectional. Let&#x27;s start with a bidirectional one:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Entity
+public class UserEntity implements Serializable {
+
+  @Id
+  protected Long id;
+
+  @OneToOne
+  protected VisaInfoEntity visaInfoEntity;
+  &amp;#x2F;&amp;#x2F;other fields
+
+  &amp;#x2F;&amp;#x2F;implement equals and hashcode
+  &amp;#x2F;&amp;#x2F;getters and setters
+
+}
+
+@Entity
+public class VisaInfoEntity implements Serializable {
+
+  @Id
+  protected Long id;
+
+  @OneToOne(mapedBy = &amp;quot;visaInfoEntity&amp;quot;, optional = &amp;quot;false&amp;quot;)
+  protected UserEntity userEntity;
+
+  &amp;#x2F;&amp;#x2F;other fields
+  &amp;#x2F;&amp;#x2F;implement equals and hashcode
+  &amp;#x2F;&amp;#x2F;getters and setters
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;In this example we see the relation defined by the annotations in the parameters. Each class contain a parameter of the class that represents the entity related to it marked with @OneToOne. Notice that VisaInfoEntity adds some parameters to it&#x27;s annotation, telling the persistence provider that the &quot;owner&quot; of the relation is the UserEntity class and which field is leading that mapping. The optional parameter set to false tells us there will always be a VisaInfoEntity for each user and a user for each VisaInfoEntity. If we want to convert this to a unidirectional link we just need to remove the reference to UserEntity and its annotation from VisaInfoEntity. With that the container will know our UserEntity may have zero or one VisaInfoEntity related to it.&lt;&#x2F;p&gt;
+&lt;p&gt;The second type of relation is defined by the annotations @OneToMany and @ManyToOne. Those annotations usually go in pair to define both sides of the relation one-to-many. Usually in these relations one entity has a field of type Set or List of the other entity. One example:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Entity
+public class UserEntity implements Serializable {
+
+  @Id
+  protected Long id;
+
+  @OneToMany (mappedBy =&amp;quot;userEntity&amp;quot;);
+  protected Set visaInfoEntity;
+  &amp;#x2F;&amp;#x2F;other fields
+  &amp;#x2F;&amp;#x2F;implement equals and hashcode
+  &amp;#x2F;&amp;#x2F;getters and setters
+
+}
+
+
+@Entity
+public class VisaInfoEntity implements Serializable {
+
+  @Id
+  protected Long id;
+
+  @ManyToOne
+  protected UserEntity userEntity;
+
+  &amp;#x2F;&amp;#x2F;other fields
+  &amp;#x2F;&amp;#x2F;implement equals and hashcode
+  &amp;#x2F;&amp;#x2F;getters and setters
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;As you can see the owning part of the relation is VisaInfoEntity. In these type of relations the many-to-one part is always the leader, something to be aware of.&lt;&#x2F;p&gt;
+&lt;p&gt;Last type of relations is defined by the annotation @ManyToMany. The relation is quite similar to the one-to-many explained above, but we can choose which entity is leading the relationship. An example:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Entity
+public class UserEntity implements Serializable {
+
+  @Id
+  protected Long id;
+
+  @ManyToMany (mappedBy =&amp;quot;userEntity&amp;quot;);
+  protected Set visaInfoEntity;
+
+  &amp;#x2F;&amp;#x2F;other fields
+  &amp;#x2F;&amp;#x2F;implement equals and hashcode
+  &amp;#x2F;&amp;#x2F;getters and setters
+
+}
+
+
+@Entity
+public class VisaInfoEntity implements Serializable {
+
+  @Id
+  protected Long id;
+
+  @ManyToMany
+  protected Set userEntity;
+
+  &amp;#x2F;&amp;#x2F;other fields
+  &amp;#x2F;&amp;#x2F;implement equals and hashcode
+  &amp;#x2F;&amp;#x2F;getters and setters
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;mapping-entities-to-db&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#mapping-entities-to-db&quot; aria-label=&quot;Anchor link for: mapping-entities-to-db&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Mapping entities to DB&lt;&#x2F;h2&gt;
+&lt;p&gt;We know how to build entities and define relations between them. Now we need to map those entities to the tables of the database, as we will see next. Before looking at the example, be aware that using annotations for that purpose hard-codes the structure, so any changes to it will require a new version of the application. This is usually not a big deal but if you need to be able to change the mappings without compiling, use the XML descriptor version of the fields.&lt;&#x2F;p&gt;
+&lt;p&gt;Next there&#x27;s an example of a mapped entity. The meaning of the annotations is quite obvious, I will comment them after the code:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Entity
+@Table(name = &amp;quot;USERS&amp;quot;)
+@SecondaryTable(name = &amp;quot;USER_PICTURES&amp;quot;,
+   pkJoinColumns = @PrimaryKeyJoinColumn(name = &amp;quot;USER_ID&amp;quot;))
+public class UserEntity implements Serializable {
+
+  private static final long serialVersionUID = 1L;
+
+  @Id
+  @Column(name = &amp;quot;USER_ID&amp;quot;, nullable = false,
+     insertable=false, updatable=false)
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  protected Long id;
+
+
+  @Column(name = &amp;quot;USER_NAME&amp;quot;, nullable = false)
+  protected String name;
+
+  @Column(name = &amp;quot;USER_LOGIN&amp;quot;, nullable = false, length = 5)
+  protected String login; @Enumerated(EnumType.ORDINAL)
+
+  @Column(name = &amp;quot;USER_TYPE&amp;quot;, nullable = false)
+  protected UserType userType;
+
+  @Column(name = &amp;quot;PICTURE&amp;quot;, table = &amp;quot;USER_PICTURES&amp;quot;)
+  @Lob
+  @Basic(fetch = FetchType.LAZY)
+  protected byte[] picture;
+
+  @Column(name = &amp;quot;CREATION_DATE&amp;quot;, nullable = false)
+  @Temporal(TemporalType.DATE)
+  protected Date creationDate;
+
+  @Embedded
+  protected Address address;
+
+  &amp;#x2F;&amp;#x2F;setters, getters, hashcode, equals, etc
+
+}
+
+@Embeddable
+public class Address implements Serializable {
+
+  &amp;#x2F;&amp;#x2F;fields, setters, getters, hashcode, equals, etc
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;The first annotation which we must pay attention to is @Table. This annotation specifies which table contains the columns we will use for the entity. If not specified (both the name or the tag) the system will use a table with the same name as the class.&lt;&#x2F;p&gt;
+&lt;p&gt;The @Column annotation declares the mapping to a column of the table. As you can see, accepts some extra parameters to indicate if the field can be null or it can be modified using update or insert. The persistence manager assumes the columns exist in the class table, but you can specify another table if needed as you can see at the picture field. As with the @Table annotation, if you don&#x27;t define the name of the column or you8 don&#x27;t add the annotation it will be assumed the column has the same name as the field.&lt;&#x2F;p&gt;
+&lt;p&gt;There are some extra annotations for specific types of data. The @Enumerated annotation allows us to store enumerations. We can use two modes: Ordinal or String. The first will store the integer associated to the enumeration value while the second will store the complete string.&lt;&#x2F;p&gt;
+&lt;p&gt;The @Lob annotation tell the manager this field will be stored in a CLOB (for char[] or String fields) or BLOB (any other type) column in the database. Usually you add the @Basic annotation to a @Lob object to enable lazy loading, as @Lob objects are usually very memory intensive.&lt;&#x2F;p&gt;
+&lt;p&gt;The @Temporal allows us to store date-related information. By default it uses a granularity of timestamp, but we can choose between DATE, TIME or TIMESTAMP.&lt;&#x2F;p&gt;
+&lt;p&gt;For the primary key of the application you may use (if it&#x27;s a surrogate key) the @GeneratedValue annotation. This annotation will tell the persistence manager the field&#x27;s value is generated by the database. That means it will only exist once the entity has been committed, so we careful when accessing items not committed yet as they will have a null here.&lt;&#x2F;p&gt;
+&lt;p&gt;The @GeneratedValue annotation has 4 available strategies to assign the value. The simplest one is IDENTITY and assigns an incremental value to the key. The second one is SEQUENCE, that requires a sequence to be defined both in the database and in EJB (using @SequenceGenerator). The third one is TABLE, which uses a a table as generator of the values (with @TableGenerator). The last strategy is AUTO, where the persistence manager decides which one is the best strategy.&lt;&#x2F;p&gt;
+&lt;p&gt;I have skipped an annotation in the class header, @SecondaryTable. This one is used when we need to map an entity to several tables, in this case because we store the BLOB object in another table. As you can see, we tell the annotation which table it has to use and the name of join field. You can use several secondary tables in the same entity. Although this annotation doesn&#x27;t seem so useful, it allows you to distribute content on several tables, which can improve the performance of the RDBMS as it happens in this example where the BLOB would slow queries done to the user table. That said be aware that this annotation is not the same as @Embedded, which we saw before and refers to content in the same table.&lt;&#x2F;p&gt;
+&lt;p&gt;As you look at the code, you might wonder if maybe we need to specify join keys for tables relationship as we did in the @SecondaryTable annotation. The answer is yes, there are some annotations (three) to that end. I will briefly comment them:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;@JoinColumn&lt;&#x2F;strong&gt;: this annotation allows you to specify primary&#x2F;foreign relations in the database model, when the referencing entity has a primary key and the referenced entity it&#x27;s own primary key and a foreign key mapped to the primary key of the referencing entity. It can be used in one-to-one and one-to-many&#x2F;many-to-one relations.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;@PrimaryKeyJoinColumn&lt;&#x2F;strong&gt;: this annotation allows you to specify primary&#x2F;foreign relations in the database model when both referencing and referenced entities share the primary key of the referencing table and the referenced table uses it&#x27;s primary key as foreign key. It can be used in one-to-one relations.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;@JoinTable&lt;&#x2F;strong&gt;: this annotation allows you to specify primary&#x2F;foreign relations in the database model when you have a many-to-many relation so you need to use an intermediate table to store the mappings. Is used in conjunction with the @JoinColumn annotation to specify the relation between the main tables and the intermediate one.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;One last subject to talk about is how to map inheritance. As we said, JPA are POJO and they can use OO characteristics as inheritance, but how can we write that into the database? I won&#x27;t enter in too much detail, but to this aim we have the @Inheritance annotation. It has 3 related strategies:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Single table&lt;&#x2F;strong&gt;: all data of the different subclases will be stored in the same table and we use one column (specified in the @DiscriminatorColumn annotation) to differentiate between subclasses. Each subclass will be marked with @DiscriminatorValue to tell the persistence manager which value maps to that type of entity.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Joined Tables&lt;&#x2F;strong&gt;: we use one-to-one relations to model the inheritance. @DiscriminatorColumn and @DiscriminatorValue are used the same way but we also need to define the @PrimaryKeyJoinColumn between the tables. Is the recommended method.&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Table per class&lt;&#x2F;strong&gt;: we use one table per class, including one for the parent entity. No relations must be defined, and the inherited columns are duplicated across tables.Due to possible issues with polymorphism and entity retrieving, is not recommended to use this method&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;entity-manager&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#entity-manager&quot; aria-label=&quot;Anchor link for: entity-manager&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Entity Manager&lt;&#x2F;h2&gt;
+&lt;p&gt;We&#x27;ve seen how to map the entities to the database, but you&#x27;ll probably noticed I said nothing about how the entities are persisted. This section will talk about the Entity Manager, the interface responsible of all CRUD operations that allows you to retrieve and store entities from&#x2F;into the database. An important consequence of this is that JPA being managed by this interface and not the container they don&#x27;t have access to services like injection, timers, etc. It&#x27;s not a big loose due to the way entities are (commonly) used but it&#x27;s something to be aware of. I won&#x27;t talk about the lifecycle in detail, just keep in mind the Entity Manager is only aware of entities in it&#x27;s context (that can be as short as a method call or as long as a session), and an entity is not managed until you persist it.&lt;&#x2F;p&gt;
+&lt;p&gt;A basic demonstration of the use of the Entity Manager follows. I won&#x27;t comment the code as it&#x27;s quite obvious:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Stateless
+public class ItemManagerBeanBean implements ItemManagerBeanLocal {
+
+  @PersistenceContext(unitName=&amp;quot;contextName&amp;quot;)
+  private EntityManager em;
+
+  public Item addItem(String[] params...){
+    Item it = new Item();
+    &amp;#x2F;&amp;#x2F;do something
+    em.persist(it);
+    return it;
+  }
+
+  public Item updateItem(Item it){
+    em.merge(it);
+    return it;
+  }
+
+  public Item undoItemChanges(Item it){
+    &amp;#x2F;&amp;#x2F;we merge to attach to the entity manager before refreshing
+    em.refresh(em.merge(it));
+    return it;
+  }
+
+  public void deleteItem(Item it){
+    &amp;#x2F;&amp;#x2F;we merge to attach to the entity manager before removing
+    em.remove(em.merge(it));
+  }
+
+  public Item getItem(long key){
+    return em.find(Item.class, key);
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;There&#x27;s a scenario that we must discuss in more detail. We may have an entity that contains another entity (maybe in a one-to-one relation) and both are new entities not stored (yet) in the database. Although it seems a logic behaviour that when we persist the enclosing entity both are saved into the database, this is not the default behaviour. This is justified as cascading can be resource intensive when propagating to several instances, and probably most of them have not been modified which means we are wasting resources.&lt;&#x2F;p&gt;
+&lt;p&gt;This functionality is defined by the &quot;cascade&quot; property that you can set when declaring relationships between entities (@OneToOne, etc). By default this property is empty so no persistence operation applied to one entity is propagated to related entities. You can change this by setting cascade to one of these values: MERGE, PERSIST, REFRESH, REMOVE or ALL. The first four tell the Entity Manager to propagate only the selected operation while the last one propagates all the persistence operations.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;query-api&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#query-api&quot; aria-label=&quot;Anchor link for: query-api&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Query API&lt;&#x2F;h2&gt;
+&lt;p&gt;The query API is a mechanism that allows you to find entities using SQL or JPQL, hiding the datasource behind the Entity Manager. It&#x27;s a complement to the find method that allows you to recover several related entities a once. It allows for two kind of queries: named and dynamic.&lt;&#x2F;p&gt;
+&lt;p&gt;Named queries are intended to be stored and reused, allowing for some optimizations. They are defined at class level and can receive parameters, and one entity may have several named queries. Using named queries you can isolate the SQL&#x2F;JPQL from the places where is used, making it more maintainable. You may even define them in xml descriptors, decoupling them from the code.&lt;&#x2F;p&gt;
+&lt;p&gt;An example of a named query would be:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@Entity
+@NameQuery(name=&amp;quot;findAll&amp;quot;,
+   query=&amp;quot;Select c from category c where c.name like :name&amp;quot;);
+public class category implements Serializable{
+  &amp;#x2F;&amp;#x2F;fields and methods
+
+  public Category getCategoryByName(String name){
+   &amp;#x2F;&amp;#x2F;assume em is an instance of the Persistence Manager (Entity Manager)
+   &amp;#x2F;&amp;#x2F;find named query by name
+   Query query = em.createNamedQuery(&amp;quot;findAll&amp;quot;);
+   query.setParamenter(&amp;quot;name&amp;quot;,name);
+   return query.getResultList(); &amp;#x2F;&amp;#x2F;returns list of entities
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Dynamic queries are generated &quot;on the fly&quot;, usually queries received from some other component. When possible is recommended to work with named queries, due to the performance enhancements they allow. En example of a dynamic query:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+&amp;#x2F;&amp;#x2F;assume em is an instance of the Persistence Manager (Entity Manager)
+Query query = em.createQuery(&amp;quot;Select c from categories c&amp;quot;);
+return query.getResultList(); &amp;#x2F;&amp;#x2F;returns list of entities
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;jpql-and-sql&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#jpql-and-sql&quot; aria-label=&quot;Anchor link for: jpql-and-sql&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+JPQL and SQL&lt;&#x2F;h2&gt;
+&lt;p&gt;JPA accepts both JPQL and SQL for queries. Although they look quite similar, SQL works with the relational environment while JPQL works with entities, thus behaving in quite a different way behind the curtain. The recommendation for JPA is to use JPQL always, unless some odd exception requires us to use SQL.&lt;&#x2F;p&gt;
+&lt;p&gt;I wont enter in details about JPQL as a brief tutorial won&#x27;t cut it. I recommend you to check a good book on the subject.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">This page contains a brief summary of Java Persistence API (JPA). It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Message-Driven Beans</title>
+        <published>2010-02-05T00:00:00+00:00</published>
+        <updated>2010-02-05T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/message-driven-beans/" type="text/html"/>
+        <id>https://perevillega.com/posts/message-driven-beans/</id>
+        
+            <content type="html">&lt;p&gt;This page contains a brief summary of &lt;strong&gt;EJB 3.0 Message-Driven Beans (MDB)&lt;&#x2F;strong&gt;. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like &lt;strong&gt;EJB3 in Action&lt;&#x2F;strong&gt;.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Message-Driven Beans are an abstraction over Java Messaging Service (JMS). They are used to send and receive messages in your application without having to know all the details about JMS. That said a good understanding of JMS is important for the correct use of MDB. The advantages of MDB over standard JMS coding are the services provided by the container (like pooling) and the reduction on code size due to automation of tasks.&lt;&#x2F;p&gt;
+&lt;p&gt;By message (in the context of a JEE application) we mean an asynchronous and loosely coupled communication between system components. Using Message-Oriented Middleware (MOM) messages sent are stored until a consumer is available to read them. We consider two types of communication:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Point-to-point&lt;&#x2F;strong&gt;: the message is stored in a queue and received by one of the N possible consumers of the message&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Publish-Subscribe&lt;&#x2F;strong&gt;: message is received by N subscribers that belong to a specific group of receivers&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;MDB are POJOs like other EJB and require a public constructor without arguments. You can&#x27;t throw any RuntimeException or RemoteException as that would cause the MDB to be terminated. They also have the following requirements:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Implement MessageListener interface&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;use @MessageDriven annotation to configure the queue they are listening and some JMS properties (using @ActivationConfigProperty). Values include:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;acknowledgeMode: (on Queues) to notify the consumption of the message&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;subscriptionDurability: (on Topics) guaranties delivery of message to offline subscribers&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;messageSelector: filters messages consumed using a property of the message included in the message header&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;it has two lifecycle callbacks (@PreDestroy and @PostConstruct) equivalent to the Session Bean ones.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;can send messages but you need to follow the JMS API for that, using a Connection Factory, etc.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;
+&lt;p&gt;by default the &quot;onMessage&quot; method creates a transaction that rolls-back if there&#x27;s any error while processing the message, leaving the message in the queue for another consumer.&lt;&#x2F;p&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Example of MDB listening to a Queue (point-to-point communication) named SampleServerQueue:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;java&quot; class=&quot;language-java &quot;&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;
+@MessageDriven(mappedName = &amp;quot;SampleServerQueue&amp;quot;, activationConfig = {
+  @ActivationConfigProperty(propertyName = &amp;quot;acknowledgeMode&amp;quot;,
+     propertyValue = &amp;quot;Auto-acknowledge&amp;quot;),
+  @ActivationConfigProperty(propertyName = &amp;quot;destinationType&amp;quot;,
+     propertyValue = &amp;quot;javax.jms.Queue&amp;quot;)
+})
+public class MDBTestBean implements MessageListener {
+
+  &amp;#x2F;&amp;#x2F;create the references to a destination Queue
+  &amp;#x2F;&amp;#x2F;where we will send messages using DI
+  @Resource(name = &amp;quot;jms&amp;#x2F;ShippingErrorQueue&amp;quot;)
+  private Destination errorQueue;
+
+  @Resource(name = &amp;quot;jms&amp;#x2F;QueueConnectionFactory&amp;quot;)
+  private ConnectionFactory connectionFactory;
+
+  private Connection jmsConnection;
+
+  public MDBTestBean() { }
+
+  &amp;#x2F;&amp;#x2F;message consumer, reads a message from the queue
+  public void onMessage(Message message) {
+    &amp;#x2F;&amp;#x2F; code
+  }
+
+  &amp;#x2F;&amp;#x2F;send a message
+  public void sendMessage() {
+
+    try {
+      Session session = jmsConnection.
+        createSession(true, Session.AUTO_ACKNOWLEDGE);
+      MessageProducer producer = session.createProducer(errorQueue);
+      ObjectMessage message = session.createObjectMessage();
+
+      &amp;#x2F;&amp;#x2F;add info to message
+      message.setObject(&amp;quot;Message&amp;quot;);
+
+      producer.send(message);
+      session.close();
+
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+
+  @PostConstruct
+  private void onConstruct() {
+
+    try {
+      jmsConnection = connectionFactory.createConnection();
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+
+  @PreDestroy
+  private void onDestroy() {
+
+    try {
+      jmsConnection.close();
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+}
+
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        <summary type="html">This page contains a brief summary of EJB 3.0 Message-Driven Beans (MDB). It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+…</summary>
+        </entry>
+</feed>

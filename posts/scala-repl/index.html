@@ -1,0 +1,84 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://perevillega.com name=base><title>Software serves the Business • Scala REPL</title><link href=https://perevillega.com/icons/favicon.ico rel=icon type=image/png><link title="Software serves the Business - Atom Feed" href=https://perevillega.com/atom.xml rel=alternate type=application/atom+xml><link href="https://perevillega.com/inter_subset_en.css?h=d8cf4ad058d6c3a4015b" rel=stylesheet><link href="https://perevillega.com/main.css?h=149ff9e737409b86f9c3" rel=stylesheet><link href="https://perevillega.com/custom.css?h=ff5a5712d2f0bc9d9ac2" rel=stylesheet><meta content="light dark" name=color-scheme><meta content=#087e96 name=theme-color><meta content="One of the things people love about Scala is the REPL. I have to be honest;
+I never paid too much attention to it as IntelliJ provides a handy Scala Worksheet. But it is time to fix this..
+…" name=description><meta content="One of the things people love about Scala is the REPL. I have to be honest;
+I never paid too much attention to it as IntelliJ provides a handy Scala Worksheet. But it is time to fix this..
+…" property=og:description><meta content="index, nofollow" name=robots><meta content="Scala REPL" property=og:title><meta content=article property=og:type><meta content="https://perevillega.com/social_cards/index.png?h=125d02cc3c86eaf88fa6" property=og:image><meta content=2088 property=og:image:width><meta content=1000 property=og:image:height><meta content="https://perevillega.com/social_cards/index.png?h=125d02cc3c86eaf88fa6" name=twitter:image><meta content=summary_large_image name=twitter:card><meta content=en_GB property=og:locale><meta content=https://perevillega.com/posts/scala-repl/ property=og:url><meta content="Software serves the Business" property=og:site_name><meta content="default-src 'self';font-src 'self' data: 'self';img-src 'self' https://* data:;media-src 'self' https://cdn.jsdelivr.net/;style-src 'self' 'unsafe-inline';frame-src 'self' player.vimeo.com https://www.youtube-nocookie.com https://view.officeapps.live.com;connect-src 'self' https://umami.villegawilcz.com;script-src 'self' https://umami.villegawilcz.com 'self'" http-equiv=Content-Security-Policy><noscript><link href=https://perevillega.com/no_js.css rel=stylesheet></noscript><script src=https://perevillega.com/js/initializeTheme.min.js></script><script defer src=https://perevillega.com/js/themeSwitcher.min.js></script><script async data-do-not-track=true data-website-id=7bdfa858-bebc-479d-9a1f-bea833a709a8 defer src=https://umami.villegawilcz.com/script.js></script><meta content=@pvillega@mastodon.social name=fediverse:creator><script src="https://perevillega.com/search_index.en.js?h=5e3427c9b8d057d8989e" defer></script><script src="https://perevillega.com/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e" defer></script><body><header><nav class=navbar><div class=nav-title><a class=home-title href=https://perevillega.com>Software serves the Business</a></div><div class=nav-navs><ul><li><a class="nav-links no-hover-padding" href=https://perevillega.com/posts/> blog </a><li><a class="nav-links no-hover-padding" href=https://perevillega.com/tags/> tags </a></li><div class=nav-navs id=menu-icons-group><li class=js><div aria-label="Click or press $SHORTCUT to open search" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" id=search-button role=button tabindex=0><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div><li class="theme-switcher-wrapper js"><div aria-label="Toggle dark mode" title="Toggle dark/light mode" aria-pressed=false class=theme-switcher role=button tabindex=0></div><div aria-label="Reset mode to default" class="theme-resetter arrow" title="Reset mode to default" aria-hidden=true role=button tabindex=0></div></div></ul></div></nav></header><div class=content><main><article><h1 class=article-title>Scala REPL</h1><ul class=meta><li>3rd Jul 2015<li title="452 words"><span aria-hidden=true class=separator>•</span>3 min read<li class=tag><span aria-hidden=true class=separator>•</span>Tags: <li class=tag><a href=https://perevillega.com/tags/scala/>scala</a>, <li class=tag><a href=https://perevillega.com/tags/repl/>repl</a></ul><section class=body><p>One of the things people love about Scala is the <a href=https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop>REPL</a>. I have to be honest; I never paid too much attention to it as IntelliJ provides a handy <a href=http://blog.jetbrains.com/scala/2014/05/23/meet-the-new-scala-worksheets-in-intellij-idea/>Scala Worksheet</a>. But it is time to fix this..</p><span id=continue-reading></span><p>The main reason is that my old desktop started misbehaving and running IntelliJ slows it down to a crawl. While I find a suitable replacement, I had to settle with using Sublime Text 2 to toy around with some Scala code. Is at this point that my lack of knowledge of the REPL became obvious, and a hindrance. And what better way to help fix that issue than to document the relevant parts :)<p>Most likely you are using the new <a href=http://www.typesafe.com/community/core-tools/activator-and-sbt>Activator</a> to generate your projects. Activator has a lot of commands:<pre><code>$ ./activator
+[info] Loading project definition from /home/pvillega/Dropbox/Projectes/scala-fp-exercises/project
+[info] Set current project to scala-fp-exercises (in build file:/home/pvillega/Dropbox/Projectes/scala-fp-exercises/)
+> help
+
+  help                                    Displays this help message or prints detailed help on requested commands (run 'help &LTcommand>').
+  completions                             Displays a list of completions for the given argument string (run 'completions &LTstring>').
+  about                                   Displays basic information about sbt and the build.
+  tasks                                   Lists the tasks defined for the current project.
+  settings                                Lists the settings defined for the current project.
+  reload                                  (Re)loads the current project or changes to plugins project or returns from it.
+  projects                                Lists the names of available projects or temporarily adds/removes extra builds to the session.
+  project                                 Displays the current project or changes to the provided `project`.
+  set [every] &LTsetting>                   Evaluates a Setting and applies it to the current project.
+  session                                 Manipulates session settings.  For details, run 'help session'.
+  inspect [uses|tree|definitions] &LTkey>   Prints the value for 'key', the defining scope, delegates, related definitions, and dependencies.
+  &LTlog-level>                             Sets the logging level to 'log-level'.  Valid levels: debug, info, warn, error
+  plugins                                 Lists currently available plugins.
+  ; &LTcommand> (; &LTcommand>)*              Runs the provided semicolon-separated commands.
+  ~ &LTcommand>                             Executes the specified command whenever source files change.
+  last                                    Displays output from a previous command or the output from a specific task.
+  last-grep                               Shows lines from the last output for 'key' that match 'pattern'.
+  export &LTtasks>+                         Executes tasks and displays the equivalent command lines.
+  exit                                    Terminates the build.
+  --&LTcommand>                             Schedules a command to run before other commands on startup.
+  show &LTkey>                              Displays the result of evaluating the setting or task associated with 'key'.
+  all &LTtask>+                             Executes all of the specified tasks concurrently.
+
+More command help available using 'help &LTcommand>' for:
+  !, +, ++, <, alias, append, apply, eval, iflast, onFailure, reboot, shell
+</code></pre><p>The snippet above only shows the most relevant ones, but there are plenty more (278 as I write this) although just a few are used very often:<pre><code>> projects        # lists the projects available
+> project &LTname>  # changes to the given project (run will execute the selected project now)
+> plugins         # lists all plugins
+> reload          # reloads all the config and plugins without leaving the session
+> run             # runs the current project
+> ~test           # runs the tests. The initial ~ means it will run them all every time a source file changes, handy for TDD
+> exit            # leaves activator
+> console         # launches Scala REPL
+</code></pre><p>As you can see with a few commands you cover most of your development needs. But as we were talking about REPL the command I want to focus on is <code>console</code>, which starts a REPL in the currently selected project:<pre><code>> console
+[info] Starting scala interpreter...
+[info]
+Welcome to Scala version 2.11.6 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_45).
+Type in expressions to have them evaluated.
+Type :help for more information.
+
+scala> :help
+All commands can be abbreviated, e.g., :he instead of :help.
+:edit &LTid>|&LTline>        edit history
+:help [command]          print this summary or command-specific help
+:history [num]           show the history (optional num is commands to show)
+:h? &LTstring>             search the history
+:imports [name name ...] show import history, identifying sources of names
+:implicits [-v]          show the implicits in scope
+:javap &LTpath|class>      disassemble a file or class name
+:line &LTid>|&LTline>        place line(s) at the end of history
+:load &LTpath>             interpret lines in a file
+:paste [-raw] [path]     enter paste mode or paste a file
+:power                   enable power user mode
+:quit                    exit the interpreter
+:replay [options]        reset the repl and replay all previous commands
+:require &LTpath>          add a jar to the classpath
+:reset [options]         reset the repl to its initial state, forgetting all session entries
+:save &LTpath>             save replayable session to a file
+:sh &LTcommand line>       run a shell command (result is implicitly => List[String])
+:settings &LToptions>      update compiler options, if possible; see reset
+:silent                  disable/enable automatic printing of results
+:type [-v] &LTexpr>        display the type of an expression without evaluating it
+:kind [-v] &LTexpr>        display the kind of expression's type
+:warnings                show the suppressed warnings from the most recent line which had any
+</code></pre><p>As you can see there aren't many commands in the REPL, which makes it very easy to use even for the uninitiated. Some of them deserve additional attention as you will run them often.<p>For example <code>:implicits</code> will show a list of all implicits in scope. Given implicits are problematic (judging by <a href="http://stackoverflow.com/search?q=%5Bscala%5D+implicit">Stack Overflow</a> questions), this may help when debugging your app.<p>One of the main drawbacks of a REPL is to type all the context (imports, type definitions, etc) you need before you can test stuff. Two commands remove this pain: <code>:load &LTpath></code> will read and interpret a file as if you had typed it into the terminal; the command <code>:paste</code> works similarly by starting a <em>paste mode</em> that allows you to copy-paste relevant code into the REPL.<pre><code>scala> :paste
+// Entering paste mode (ctrl-D to finish)
+
+val s = 3
+def g = (x: Int) => x*x
+
+// Exiting paste mode, now interpreting.
+
+s: Int = 3
+g: Int => Int
+</code></pre><p>Alongside <code>:load</code> there is a corresponding <code>:save &LTpath></code> command which saves the current status of the REPL into a file that can be loaded later on to continue your work at that point.<p>There are other commands you may want to check, like <code>:require</code> or <code>:history</code>, but with just the ones above working inside the REPL becomes a much more pleasant experience and not having a full fledge IDE is less of an issue.<p>That's all. As always, feedback via Twitter/Email is more than welcome. Cheers!</section><nav class="full-width article-navigation"><div><a aria-describedby=left_title aria-label=Next href=https://perevillega.com/posts/emacs-and-scala-in-mac-os-x-yosemite/><span class=arrow>←</span> Next</a><p aria-hidden=true id=left_title>Emacs and Scala in Mac OS X Yosemite</div><div><a aria-describedby=right_title aria-label=Prev href=https://perevillega.com/posts/using-docker-in-heroku/>Prev <span class=arrow>→</span></a><p aria-hidden=true id=right_title>Using Docker in Heroku</div></nav></article></main><script defer src=https://perevillega.com/js/mermaid.min.js></script><span class=hidden id=copy-success> Copied! </span><span class=hidden id=copy-init> Copy code to clipboard </span><script defer src=https://perevillega.com/js/copyCodeToClipboard.min.js></script></div><footer><section><nav class="socials nav-navs"><ul><li><a class="nav-links no-hover-padding social" href=https://perevillega.com/atom.xml> <img alt=feed loading=lazy src=https://perevillega.com/social_icons/rss.svg title=feed> </a><li class=js><a class="nav-links no-hover-padding social" data-encoded-email=cHZpbGxlZ2ErYmxvZ0BhcmFjb24uY29t href=#><img alt=email loading=lazy src=https://perevillega.com/social_icons/email.svg title=email> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://github.com/pvillega> <img alt=github loading=lazy src=https://perevillega.com/social_icons/github.svg title=github> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://gitlab.com/pvillega> <img alt=gitlab loading=lazy src=https://perevillega.com/social_icons/gitlab.svg title=gitlab> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://bsky.app/profile/perevillega.com> <img alt=bluesky loading=lazy src=https://perevillega.com/social_icons/bluesky.svg title=bluesky> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://www.linkedin.com/in/perevillega/> <img alt=linkedin loading=lazy src=https://perevillega.com/social_icons/linkedin.svg title=linkedin> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://stackoverflow.com/users/116791/pere-villega> <img alt="stack overflow" title="stack overflow" loading=lazy src=https://perevillega.com/social_icons/stack-overflow.svg> </a></ul></nav><nav class=nav-navs><small> <ul><li><a class="nav-links no-hover-padding" href=https://perevillega.com/sitemap.xml> sitemap </a></ul> </small></nav><div class=credits><small> Powered by <a href=https://www.getzola.org>Zola</a> & <a href=https://github.com/welpo/tabi>tabi</a> </small></div></section><script async src=https://perevillega.com/js/decodeMail.min.js></script><div class="search-modal js" aria-labelledby=modalTitle id=searchModal role=dialog><h1 class=visually-hidden id=modalTitle>Search</h1><div id=modal-content><div id=searchBar><div aria-hidden=true class=search-icon><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div><input aria-controls=results-container aria-expanded=false autocomplete=off id=searchInput placeholder=Search… role=combobox spellcheck=false><div class="close-icon interactive-icon" title="Clear search" id=clear-search role=button tabindex=0><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div></div><div id=results-container><div id=results-info><span id=zero_results> No results</span><span id=one_results> $NUMBER result</span><span id=many_results> $NUMBER results</span><span id=two_results> $NUMBER results</span><span id=few_results> $NUMBER results</span></div><div id=results role=listbox></div></div></div></div></footer>

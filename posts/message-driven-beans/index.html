@@ -1,0 +1,79 @@
+<!doctype html><html lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><meta content=https://perevillega.com name=base><title>Software serves the Business • Message-Driven Beans</title><link href=https://perevillega.com/icons/favicon.ico rel=icon type=image/png><link title="Software serves the Business - Atom Feed" href=https://perevillega.com/atom.xml rel=alternate type=application/atom+xml><link href="https://perevillega.com/inter_subset_en.css?h=d8cf4ad058d6c3a4015b" rel=stylesheet><link href="https://perevillega.com/main.css?h=149ff9e737409b86f9c3" rel=stylesheet><link href="https://perevillega.com/custom.css?h=ff5a5712d2f0bc9d9ac2" rel=stylesheet><meta content="light dark" name=color-scheme><meta content=#087e96 name=theme-color><meta content="This page contains a brief summary of EJB 3.0 Message-Driven Beans (MDB). It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+…" name=description><meta content="This page contains a brief summary of EJB 3.0 Message-Driven Beans (MDB). It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like EJB3 in Action.
+…" property=og:description><meta content="index, nofollow" name=robots><meta content="Message-Driven Beans" property=og:title><meta content=article property=og:type><meta content="https://perevillega.com/social_cards/index.png?h=125d02cc3c86eaf88fa6" property=og:image><meta content=2088 property=og:image:width><meta content=1000 property=og:image:height><meta content="https://perevillega.com/social_cards/index.png?h=125d02cc3c86eaf88fa6" name=twitter:image><meta content=summary_large_image name=twitter:card><meta content=en_GB property=og:locale><meta content=https://perevillega.com/posts/message-driven-beans/ property=og:url><meta content="Software serves the Business" property=og:site_name><meta content="default-src 'self';font-src 'self' data: 'self';img-src 'self' https://* data:;media-src 'self' https://cdn.jsdelivr.net/;style-src 'self' 'unsafe-inline';frame-src 'self' player.vimeo.com https://www.youtube-nocookie.com https://view.officeapps.live.com;connect-src 'self' https://umami.villegawilcz.com;script-src 'self' https://umami.villegawilcz.com 'self'" http-equiv=Content-Security-Policy><noscript><link href=https://perevillega.com/no_js.css rel=stylesheet></noscript><script src=https://perevillega.com/js/initializeTheme.min.js></script><script defer src=https://perevillega.com/js/themeSwitcher.min.js></script><script async data-do-not-track=true data-website-id=7bdfa858-bebc-479d-9a1f-bea833a709a8 defer src=https://umami.villegawilcz.com/script.js></script><meta content=@pvillega@mastodon.social name=fediverse:creator><script src="https://perevillega.com/search_index.en.js?h=5e3427c9b8d057d8989e" defer></script><script src="https://perevillega.com/js/searchElasticlunr.min.js?h=3626c0ef99daa745b31e" defer></script><body><header><nav class=navbar><div class=nav-title><a class=home-title href=https://perevillega.com>Software serves the Business</a></div><div class=nav-navs><ul><li><a class="nav-links no-hover-padding" href=https://perevillega.com/posts/> blog </a><li><a class="nav-links no-hover-padding" href=https://perevillega.com/tags/> tags </a></li><div class=nav-navs id=menu-icons-group><li class=js><div aria-label="Click or press $SHORTCUT to open search" class="search-icon interactive-icon" title="Click or press $SHORTCUT to open search" id=search-button role=button tabindex=0><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div><li class="theme-switcher-wrapper js"><div aria-label="Toggle dark mode" title="Toggle dark/light mode" aria-pressed=false class=theme-switcher role=button tabindex=0></div><div aria-label="Reset mode to default" class="theme-resetter arrow" title="Reset mode to default" aria-hidden=true role=button tabindex=0></div></div></ul></div></nav></header><div class=content><main><article><h1 class=article-title>Message-Driven Beans</h1><ul class=meta><li>5th Feb 2010<li title="359 words"><span aria-hidden=true class=separator>•</span>2 min read<li class=tag><span aria-hidden=true class=separator>•</span>Tags: <li class=tag><a href=https://perevillega.com/tags/java/>java</a>, <li class=tag><a href=https://perevillega.com/tags/ejb/>ejb</a>, <li class=tag><a href=https://perevillega.com/tags/ejb3/>ejb3</a>, <li class=tag><a href=https://perevillega.com/tags/mdb/>mdb</a></ul><section class=body><p>This page contains a brief summary of <strong>EJB 3.0 Message-Driven Beans (MDB)</strong>. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some book like <strong>EJB3 in Action</strong>.</p><span id=continue-reading></span><p>Message-Driven Beans are an abstraction over Java Messaging Service (JMS). They are used to send and receive messages in your application without having to know all the details about JMS. That said a good understanding of JMS is important for the correct use of MDB. The advantages of MDB over standard JMS coding are the services provided by the container (like pooling) and the reduction on code size due to automation of tasks.<p>By message (in the context of a JEE application) we mean an asynchronous and loosely coupled communication between system components. Using Message-Oriented Middleware (MOM) messages sent are stored until a consumer is available to read them. We consider two types of communication:<ul><li><strong>Point-to-point</strong>: the message is stored in a queue and received by one of the N possible consumers of the message<li><strong>Publish-Subscribe</strong>: message is received by N subscribers that belong to a specific group of receivers</ul><p>MDB are POJOs like other EJB and require a public constructor without arguments. You can't throw any RuntimeException or RemoteException as that would cause the MDB to be terminated. They also have the following requirements:<ul><li><p>Implement MessageListener interface</p><li><p>use @MessageDriven annotation to configure the queue they are listening and some JMS properties (using @ActivationConfigProperty). Values include:</p> <ul><li><p>acknowledgeMode: (on Queues) to notify the consumption of the message</p><li><p>subscriptionDurability: (on Topics) guaranties delivery of message to offline subscribers</p><li><p>messageSelector: filters messages consumed using a property of the message included in the message header</p></ul><li><p>it has two lifecycle callbacks (@PreDestroy and @PostConstruct) equivalent to the Session Bean ones.</p><li><p>can send messages but you need to follow the JMS API for that, using a Connection Factory, etc.</p><li><p>by default the "onMessage" method creates a transaction that rolls-back if there's any error while processing the message, leaving the message in the queue for another consumer.</p></ul><p>Example of MDB listening to a Queue (point-to-point communication) named SampleServerQueue:<pre class=language-java data-lang=java><code class=language-java data-lang=java>
+@MessageDriven(mappedName = "SampleServerQueue", activationConfig = {
+  @ActivationConfigProperty(propertyName = "acknowledgeMode",
+     propertyValue = "Auto-acknowledge"),
+  @ActivationConfigProperty(propertyName = "destinationType",
+     propertyValue = "javax.jms.Queue")
+})
+public class MDBTestBean implements MessageListener {
+
+  //create the references to a destination Queue
+  //where we will send messages using DI
+  @Resource(name = "jms/ShippingErrorQueue")
+  private Destination errorQueue;
+
+  @Resource(name = "jms/QueueConnectionFactory")
+  private ConnectionFactory connectionFactory;
+
+  private Connection jmsConnection;
+
+  public MDBTestBean() { }
+
+  //message consumer, reads a message from the queue
+  public void onMessage(Message message) {
+    // code
+  }
+
+  //send a message
+  public void sendMessage() {
+
+    try {
+      Session session = jmsConnection.
+        createSession(true, Session.AUTO_ACKNOWLEDGE);
+      MessageProducer producer = session.createProducer(errorQueue);
+      ObjectMessage message = session.createObjectMessage();
+
+      //add info to message
+      message.setObject("Message");
+
+      producer.send(message);
+      session.close();
+
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+
+  @PostConstruct
+  private void onConstruct() {
+
+    try {
+      jmsConnection = connectionFactory.createConnection();
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+
+  @PreDestroy
+  private void onDestroy() {
+
+    try {
+      jmsConnection.close();
+    } catch (JMSException ex) {
+      Logger.getLogger(MDBTestBean.class.getName()).
+        log(Level.SEVERE, null, ex);
+    }
+
+  }
+
+}
+
+</code></pre></section><nav class="full-width article-navigation"><div><a aria-describedby=left_title aria-label=Next href=https://perevillega.com/posts/java-persistence-api/><span class=arrow>←</span> Next</a><p aria-hidden=true id=left_title>Java Persistence API</div><div><a aria-describedby=right_title aria-label=Prev href=https://perevillega.com/posts/ubuntu-server-maintenance/>Prev <span class=arrow>→</span></a><p aria-hidden=true id=right_title>Ubuntu Server Maintenance</div></nav></article></main><script defer src=https://perevillega.com/js/mermaid.min.js></script><span class=hidden id=copy-success> Copied! </span><span class=hidden id=copy-init> Copy code to clipboard </span><script defer src=https://perevillega.com/js/copyCodeToClipboard.min.js></script></div><footer><section><nav class="socials nav-navs"><ul><li><a class="nav-links no-hover-padding social" href=https://perevillega.com/atom.xml> <img alt=feed loading=lazy src=https://perevillega.com/social_icons/rss.svg title=feed> </a><li class=js><a class="nav-links no-hover-padding social" data-encoded-email=cHZpbGxlZ2ErYmxvZ0BhcmFjb24uY29t href=#><img alt=email loading=lazy src=https://perevillega.com/social_icons/email.svg title=email> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://github.com/pvillega> <img alt=github loading=lazy src=https://perevillega.com/social_icons/github.svg title=github> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://gitlab.com/pvillega> <img alt=gitlab loading=lazy src=https://perevillega.com/social_icons/gitlab.svg title=gitlab> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://bsky.app/profile/perevillega.com> <img alt=bluesky loading=lazy src=https://perevillega.com/social_icons/bluesky.svg title=bluesky> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://www.linkedin.com/in/perevillega/> <img alt=linkedin loading=lazy src=https://perevillega.com/social_icons/linkedin.svg title=linkedin> </a><li><a class="nav-links no-hover-padding social" rel=" me" href=https://stackoverflow.com/users/116791/pere-villega> <img alt="stack overflow" title="stack overflow" loading=lazy src=https://perevillega.com/social_icons/stack-overflow.svg> </a></ul></nav><nav class=nav-navs><small> <ul><li><a class="nav-links no-hover-padding" href=https://perevillega.com/sitemap.xml> sitemap </a></ul> </small></nav><div class=credits><small> Powered by <a href=https://www.getzola.org>Zola</a> & <a href=https://github.com/welpo/tabi>tabi</a> </small></div></section><script async src=https://perevillega.com/js/decodeMail.min.js></script><div class="search-modal js" aria-labelledby=modalTitle id=searchModal role=dialog><h1 class=visually-hidden id=modalTitle>Search</h1><div id=modal-content><div id=searchBar><div aria-hidden=true class=search-icon><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg></div><input aria-controls=results-container aria-expanded=false autocomplete=off id=searchInput placeholder=Search… role=combobox spellcheck=false><div class="close-icon interactive-icon" title="Clear search" id=clear-search role=button tabindex=0><svg viewbox="0 -960 960 960" xmlns=http://www.w3.org/2000/svg><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></div></div><div id=results-container><div id=results-info><span id=zero_results> No results</span><span id=one_results> $NUMBER result</span><span id=many_results> $NUMBER results</span><span id=two_results> $NUMBER results</span><span id=few_results> $NUMBER results</span></div><div id=results role=listbox></div></div></div></div></footer>

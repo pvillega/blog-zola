@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>health</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - health</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/health/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/health/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2010-07-10T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/health/atom.xml</id><entry xml:lang="en">
+        <title>How to Heal and Prevent Computer Injury (RSI)</title>
+        <published>2010-07-10T00:00:00+00:00</published>
+        <updated>2010-07-10T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/how-to-heal-and-prevent-computer-injury-rsi/" type="text/html"/>
+        <id>https://perevillega.com/posts/how-to-heal-and-prevent-computer-injury-rsi/</id>
+        
+            <content type="html">&lt;p&gt;As somebody who spends too many hours in front of a computer I&#x27;ve developed some injuries in my tendons, specially in the right arm. It&#x27;s not nice to work with pain (and I blame my low APM to it!). Although I go to physio and I&#x27;m recovering well, it would be good to avoid this happening again in the future.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Luckily, the other day I found &lt;a href=&quot;http:&#x2F;&#x2F;www.teamliquid.net&#x2F;forum&#x2F;viewmessage.php?topic_id=134466&quot;&gt;this post&lt;&#x2F;a&gt; about treating and preventing your RSI, created by a suffering gamer. Gamers do cry. I think it&#x27;s important to spread this information. Nowadays all of us spend too much time in front of electronic devices (computers, tablets and more) and this can mess our bodies quite badly. So, read it and hopefully avoid RSI!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">As somebody who spends too many hours in front of a computer I've developed some injuries in my tendons, specially in the right arm. It's not nice to work with pain (and I blame my low APM to it!). Although I go to physio and I'm recovering well, it would be good to avoid this happening again in the future.
+…</summary>
+        </entry>
+</feed>

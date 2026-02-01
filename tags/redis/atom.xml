@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>redis</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - redis</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/redis/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/redis/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2013-02-24T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/redis/atom.xml</id><entry xml:lang="en">
+        <title>Using Redis PubSub with Play 2.1.0</title>
+        <published>2013-02-24T00:00:00+00:00</published>
+        <updated>2013-02-24T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/using-redis-pubsub-with-play-2-dot-1-0/" type="text/html"/>
+        <id>https://perevillega.com/posts/using-redis-pubsub-with-play-2-dot-1-0/</id>
+        
+            <content type="html">&lt;p&gt;Last week I was experimenting a bit with &lt;a href=&quot;http:&#x2F;&#x2F;redis.io&#x2F;&quot;&gt;Redis&lt;&#x2F;a&gt; and its &lt;a href=&quot;http:&#x2F;&#x2F;redis.io&#x2F;topics&#x2F;pubsub&quot;&gt;Publish-Subscribe&lt;&#x2F;a&gt; module. The idea was to try to implement a chat with it (something I&#x27;ll need for my next project) and from all the options I evaluated this seemed the best. Loving Redis so far, whoever called it the swiss-knife of databases was completely right.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;As to be expected with programming I had some trouble, in this scenario using Redis PubSub with Play 2.1.0 blocked the application. So I decided to publish this in case someone else has the same issue. If you don&#x27;t want to read the details just go to the &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pvillega&#x2F;play21-redis-pubsub&quot;&gt;GitHub repository&lt;&#x2F;a&gt; and clone the source. It contains a very simple application in which Play subscribes to a Redis channel and sends messages to it via Akka actors, while using a listener to notify about reception of the same messages. The &lt;code&gt;Readme&lt;&#x2F;code&gt; file gives more detail on how it works.&lt;&#x2F;p&gt;
+&lt;p&gt;So now let&#x27;s talk about Redis and the issue I had.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;using-redis-with-play&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#using-redis-with-play&quot; aria-label=&quot;Anchor link for: using-redis-with-play&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Using Redis with Play&lt;&#x2F;h2&gt;
+&lt;p&gt;Using Redis with Play is very straightforward. Typesafe provides a &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;typesafehub&#x2F;play-plugins&#x2F;tree&#x2F;master&#x2F;redis&quot;&gt;play plugin&lt;&#x2F;a&gt; to manage the interactions. The plugin is based on &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;pk11&#x2F;sedis&quot;&gt;Sedis&lt;&#x2F;a&gt;, the Scala library for Redis, which in turn is a wrapper over &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;xetorthio&#x2F;jedis&#x2F;&quot;&gt;Jedis&lt;&#x2F;a&gt;, the most popular JVM library for Redis.&lt;&#x2F;p&gt;
+&lt;p&gt;At the time of this writing the dependencies for Play 2.1 are not working perfectly so you need to add an additional resolver to your project to be able to download all of them:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;resolvers += &amp;quot;org.sedis&amp;quot; at &amp;quot;http:&amp;#x2F;&amp;#x2F;pk11-scratch.googlecode.com&amp;#x2F;svn&amp;#x2F;trunk&amp;quot;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;but once done you can use Redis as both Cache layer and Database for Play.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-issue&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#the-issue&quot; aria-label=&quot;Anchor link for: the-issue&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+The issue&lt;&#x2F;h2&gt;
+&lt;p&gt;Simple as it is, things got a bit more complex when using PubSub. The way PubSub works with Redis is as follows:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;first of all you set a client to subscribe to a channel. The subscription call accepts a listener class that will trigger method calls as response to events in the channel (messages being passed around, etc.)&lt;&#x2F;li&gt;
+&lt;li&gt;then you need clients to send messages to the channel via the &lt;code&gt;publish&lt;&#x2F;code&gt; operation.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;So the resulting code for subscription would be something like this:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;pool.withJedisClient{ client =&amp;gt;
+  client.subscribe(listener, CHANNEL)
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;but as it happens &lt;code&gt;subscribe&lt;&#x2F;code&gt; is a blocking call. This means that every time we execute it, a thread will be locked into receiving notifications from Redis. And the result is that Play will stop working as all threads get consumed by calls to this operation.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;solution&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#solution&quot; aria-label=&quot;Anchor link for: solution&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Solution&lt;&#x2F;h2&gt;
+&lt;p&gt;Thankfully Play 2.1.0 introduces a new concept that solves this issue: &lt;a href=&quot;http:&#x2F;&#x2F;www.playframework.com&#x2F;documentation&#x2F;2.1.0&#x2F;ThreadPools&quot;&gt;ExecutionContexts&lt;&#x2F;a&gt;. An &lt;code&gt;ExecutionContext&lt;&#x2F;code&gt; is nothing more than a set of threads, independent from the ones managing the Play app itself, to be used when we have slow or blocking operations. This ensures some specialized thread takes care of that operation without impacting the performance of the application itself.&lt;&#x2F;p&gt;
+&lt;p&gt;In our case, as we have a blocking call, we simply want to run the &lt;code&gt;subscribe&lt;&#x2F;code&gt; operation inside its own &lt;code&gt;ExecutionContext&lt;&#x2F;code&gt;, which will consist on threads devoted to listening to Redis, while the standard &lt;code&gt;ExecutionContext&lt;&#x2F;code&gt; manages other Play calls. So our code will become as follows:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;scala&quot; class=&quot;language-scala &quot;&gt;&lt;code class=&quot;language-scala&quot; data-lang=&quot;scala&quot;&gt;object Contexts {
+  &amp;#x2F;&amp;#x2F; Execution context used to avoid blocking on subscribe
+  implicit val myExecutionContext: ExecutionContext =
+Akka.system.dispatchers.lookup(&amp;quot;akka.actor.redis-pubsub-context&amp;quot;)
+}
+
+Future {
+  &amp;#x2F;&amp;#x2F; subscribe in a Future using a specific ExecutionContext
+  &amp;#x2F;&amp;#x2F; use Sedis pool to launch the subscribe operation
+  pool.withJedisClient{ client =&amp;gt;
+    client.subscribe(listener, CHANNEL)
+  }
+}(Contexts.myExecutionContext)
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;And that&#x27;s it. A simple way to avoid blocking operations slowing your app or consuming all the threads it needs. If you&#x27;ve had this issue this will solve it for you.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Last week I was experimenting a bit with Redis and its Publish-Subscribe module. The idea was to try to implement a chat with it (something I'll need for my next project) and from all the options I evaluated this seemed the best. Loving Redis so far, whoever called it the swiss-knife of databases was completely right.
+…</summary>
+        </entry>
+</feed>

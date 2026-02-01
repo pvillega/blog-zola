@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>performance</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - performance</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/performance/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/performance/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2013-08-26T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/performance/atom.xml</id><entry xml:lang="en">
+        <title>Breaking the 1000ms Time to Glass Mobile Barrier</title>
+        <published>2013-08-26T00:00:00+00:00</published>
+        <updated>2013-08-26T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/breaking-the-1000ms-time-to-glass-mobile-barrier/" type="text/html"/>
+        <id>https://perevillega.com/posts/breaking-the-1000ms-time-to-glass-mobile-barrier/</id>
+        
+            <content type="html">&lt;p&gt;Mobile is the new king and HTML 5 allows developers to, at last, build once and run everywhere: tablets, phones, desktops...&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;Nothing controversial in that sentence, but unfortunately Mobile is still &lt;em&gt;slow&lt;&#x2F;em&gt;. And even if we see again and again that we should do &lt;em&gt;mobile first&lt;&#x2F;em&gt; when building a web site, that doesn&#x27;t seem to work. At east judging by the rendering time of a normal page in my smartphone. And &lt;a href=&quot;http:&#x2F;&#x2F;www.fastcompany.com&#x2F;1825005&#x2F;how-one-second-could-cost-amazon-16-billion-sales&quot;&gt;page load time is money&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a href=&quot;http:&#x2F;&#x2F;youtu.be&#x2F;Il4swGfTOSM&quot;&gt;Breaking the 1000ms Time to Glass Mobile Barrier&lt;&#x2F;a&gt; is an amazing video from Ilya Grigorik in which he explains how to prepare your website to it renders fast in mobile. Fast as in under 1s.&lt;&#x2F;p&gt;
+&lt;p&gt;The video is completely worth your time, but as a kind of &lt;em&gt;TL;DR&lt;&#x2F;em&gt; some of the most relevant hints in it:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Render in &lt;em&gt;100ms&lt;&#x2F;em&gt; feels instant, &lt;em&gt;250ms&lt;&#x2F;em&gt; is the maximum for a good usability experience&lt;&#x2F;li&gt;
+&lt;li&gt;Mobile leaves you &lt;em&gt;400-500ms&lt;&#x2F;em&gt; for server and client processing due to network innate slowness&lt;&#x2F;li&gt;
+&lt;li&gt;This means we have &lt;em&gt;100ms&lt;&#x2F;em&gt; for server processing, &lt;em&gt;100ms&lt;&#x2F;em&gt; for client processing and &lt;em&gt;200ms&lt;&#x2F;em&gt; to download external resources and run javascript. Tight!&lt;&#x2F;li&gt;
+&lt;li&gt;Reuse connections, do bulk transfers and compress data to fight the mobile network latency&lt;&#x2F;li&gt;
+&lt;li&gt;Do progressive enhancement&lt;&#x2F;li&gt;
+&lt;li&gt;Optimizing images for size is a must&lt;&#x2F;li&gt;
+&lt;li&gt;Turn javascript &lt;em&gt;async&lt;&#x2F;em&gt; whenever possible&lt;&#x2F;li&gt;
+&lt;li&gt;Inline the critical CSS (the one to render things above the fold) and load the rest asynchronously via javascript&lt;&#x2F;li&gt;
+&lt;li&gt;Minimize the use of javascript, don&#x27;t use any in the critical rendering path, only after loading the page&lt;&#x2F;li&gt;
+&lt;li&gt;Chrome has a critical path explorer to highlight the fragments that block rendering&lt;&#x2F;li&gt;
+&lt;li&gt;Chrome can also &lt;em&gt;audit&lt;&#x2F;em&gt; the page for unused CSS styles&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;And with this, you can render your app &lt;em&gt;fast&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">Mobile is the new king and HTML 5 allows developers to, at last, build once and run everywhere: tablets, phones, desktops...
+…</summary>
+        </entry>
+</feed>

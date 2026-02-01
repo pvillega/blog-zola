@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>vscode</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - vscode</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/vscode/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/vscode/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2020-05-09T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/vscode/atom.xml</id><entry xml:lang="en">
+        <title>Using a remote server to build your Scala projects</title>
+        <published>2020-05-09T00:00:00+00:00</published>
+        <updated>2020-05-09T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/remote-build-servers-with-vs-code-and-metals/" type="text/html"/>
+        <id>https://perevillega.com/posts/remote-build-servers-with-vs-code-and-metals/</id>
+        
+            <content type="html">&lt;p&gt;VS Code has released tooling &lt;a href=&quot;https:&#x2F;&#x2F;code.visualstudio.com&#x2F;docs&#x2F;remote&#x2F;ssh&quot;&gt;for remote development via ssh&lt;&#x2F;a&gt;. In Scala the combo of &lt;a href=&quot;https:&#x2F;&#x2F;scalameta.org&#x2F;metals&#x2F;&quot;&gt;Metals&lt;&#x2F;a&gt; and &lt;a href=&quot;https:&#x2F;&#x2F;code.visualstudio.com&#x2F;&quot;&gt;VS Code&lt;&#x2F;a&gt; for development has become the norm for many people. How easy and convenient may it be to use them while on ssh with a remote server? Let&#x27;s discover it.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;&lt;h2 id=&quot;why-would-someone-do-that&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#why-would-someone-do-that&quot; aria-label=&quot;Anchor link for: why-would-someone-do-that&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Why would someone do that&lt;&#x2F;h2&gt;
+&lt;p&gt;First of all we should tackle an obvious question: why would a developer do that? The answer is that there are many valid scenarios for this approach:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;someone may work in a big corporation that gives lower-end Windows laptops, but has several servers available for developers to use&lt;&#x2F;li&gt;
+&lt;li&gt;someone may not have enough budget to replace their aging laptop, and it is looking at the cloud as a cheaper alternative&lt;&#x2F;li&gt;
+&lt;li&gt;an employer has Intellectual Property concerns and would like tight controls on where is the codebase cloned to&lt;&#x2F;li&gt;
+&lt;li&gt;a developer uses mainly a desktop and they don&#x27;t want to buy a powerful laptop, but recently they need to travel more and still code&lt;&#x2F;li&gt;
+&lt;li&gt;a developer is fed up with seeing iStats show 90+ C degrees on the cpu sensor of their laptop, sustained while sbt compiles the project&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Or, if none of them applies, just because we can. We&#x27;ll talk about cost-effectiveness of this approach towards the end of the post.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;setting-up-your-environment&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#setting-up-your-environment&quot; aria-label=&quot;Anchor link for: setting-up-your-environment&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Setting up your environment&lt;&#x2F;h2&gt;
+&lt;p&gt;To make this work you will need:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;a local machine capable of running Visual Studio Code.&lt;&#x2F;li&gt;
+&lt;li&gt;a remote server, preferably with Linux (we use Ubuntu 20.04 LTS).&lt;&#x2F;li&gt;
+&lt;li&gt;to read and follow the steps in this post, adapting as needed if you use a different OS on your remote host.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The requirements for Visual Studio Code &lt;a href=&quot;https:&#x2F;&#x2F;code.visualstudio.com&#x2F;Docs&#x2F;supporting&#x2F;requirements&quot;&gt;are quite low&lt;&#x2F;a&gt;, remember that the heavy lifting (compiling) won&#x27;t be done in the local machine, so even old laptops should work fine.&lt;&#x2F;p&gt;
+&lt;p&gt;Ideally you have some internet exposed desktop or server that you can use as the remote host. If you don&#x27;t have any at hand, look at a VPS service like &lt;a href=&quot;https:&#x2F;&#x2F;www.linode.com&quot;&gt;Linode&lt;&#x2F;a&gt; or &lt;a href=&quot;https:&#x2F;&#x2F;www.hetzner.com&#x2F;&quot;&gt;Hetzner&lt;&#x2F;a&gt;. We&#x27;d recommend against AWS or GCP as they seem to be more expensive for worse performance. This post will use Linode, for no other reason that we used it in the past and we were happy with it. No affiliation with the brand.&lt;&#x2F;p&gt;
+&lt;p&gt;Important note: if you are creating a new account in a VPS, expect to provide a valid credit card number to cover for the costs of any usage. There may also be a delay while they verify your account details; a new account via a UK-based Ltd company with Linode took 30m to be verified.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;creating-your-remote-developer-instance&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#creating-your-remote-developer-instance&quot; aria-label=&quot;Anchor link for: creating-your-remote-developer-instance&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Creating your remote developer instance&lt;&#x2F;h2&gt;
+&lt;p&gt;First of all, provision an instance for the server if you need it. We use &lt;code&gt;Linode Dedicated CPU&lt;&#x2F;code&gt; instances as they are supposed to have better CPU performance. You can follow &lt;a href=&quot;https:&#x2F;&#x2F;www.linode.com&#x2F;docs&#x2F;platform&#x2F;dedicated-cpu&#x2F;getting-started-with-dedicated-cpu&#x2F;&quot;&gt;these steps&lt;&#x2F;a&gt; to create one. We chose the following settings:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;OS: Ubuntu 20.04 LTS&lt;&#x2F;li&gt;
+&lt;li&gt;Region: London&lt;&#x2F;li&gt;
+&lt;li&gt;Plan: Dedicated 8 Gb (4 cores, 8 Gb RAM)&lt;&#x2F;li&gt;
+&lt;li&gt;Provide root password and ssh key for your local machine&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Provisioning takes around one minute, and then you can ssh into the box with &lt;code&gt;ssh root@&amp;lt;ip&amp;gt;&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Important note: on new accounts with Linode, you need to open a ticket with support to enable Dedicated 16 Gb and Dedicated 32 Gb Linode for your account. Otherwise you won&#x27;t be allowed to create those instances. Other VPS may have similar rules.&lt;&#x2F;p&gt;
+&lt;p&gt;Once the machine is up, ssh into it. The next step is to install a valid JDK. You can use &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;adoptopenjdk&#x2F;adoptopenjdk-rpm-and-deb-files-7003ba38144e&quot;&gt;Adopt OpenJDK&lt;&#x2F;a&gt; by running the following:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&amp;gt; wget -qO - https:&amp;#x2F;&amp;#x2F;adoptopenjdk.jfrog.io&amp;#x2F;adoptopenjdk&amp;#x2F;api&amp;#x2F;gpg&amp;#x2F;key&amp;#x2F;public | sudo apt-key add
+&amp;gt; add-apt-repository --yes https:&amp;#x2F;&amp;#x2F;adoptopenjdk.jfrog.io&amp;#x2F;adoptopenjdk&amp;#x2F;deb&amp;#x2F;
+&amp;gt; apt-get update
+&amp;gt; apt-get install adoptopenjdk-11-hotspot
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Then edit your &lt;code&gt;.profile&lt;&#x2F;code&gt; and add an export for &lt;code&gt;JAVA_HOME&lt;&#x2F;code&gt; to it:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;export JAVA_HOME=&amp;#x27;&amp;#x2F;usr&amp;#x2F;lib&amp;#x2F;jvm&amp;#x2F;adoptopenjdk-11-hotspot-amd64&amp;#x2F;&amp;#x27;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;We also want to increase the number of file descriptors available to avoid issues with VS Code and large projects. To that end, edit &lt;code&gt;&#x2F;etc&#x2F;sysctl.conf&lt;&#x2F;code&gt;
+and add to the bottom of the file &lt;code&gt;fs.inotify.max_user_watches=524288&lt;&#x2F;code&gt; and run &lt;code&gt;sysctl -p&lt;&#x2F;code&gt; to reapply the changes.&lt;&#x2F;p&gt;
+&lt;p&gt;We also want &lt;code&gt;sbt&lt;&#x2F;code&gt; and &lt;code&gt;npm&lt;&#x2F;code&gt; (for &lt;code&gt;scala.js&lt;&#x2F;code&gt;), which we can install as follows:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&amp;gt; echo &amp;quot;deb https:&amp;#x2F;&amp;#x2F;dl.bintray.com&amp;#x2F;sbt&amp;#x2F;debian &amp;#x2F;&amp;quot; | sudo tee -a &amp;#x2F;etc&amp;#x2F;apt&amp;#x2F;sources.list.d&amp;#x2F;sbt.list
+&amp;gt; apt-key adv --keyserver hkp:&amp;#x2F;&amp;#x2F;keyserver.ubuntu.com:80 --recv 2EE0EA64E40A89B84B2DF73499E82A75642AC823
+&amp;gt; apt-get update
+&amp;gt; apt-get -y install sbt npm
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;To be able to work with Github, you will need to add the ssh public key of this instance to your profile. To generate a key, run:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;&amp;gt; ssh-keygen -t rsa -b 4096 -C &amp;quot;your_email@example.com&amp;quot;  # don&amp;#x27;t add a password
+&amp;gt; cat ~&amp;#x2F;.ssh&amp;#x2F;id_rsa.pub
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Copy the output of the last command and add it to your SSH key list in Github.&lt;&#x2F;p&gt;
+&lt;p&gt;As the last step, clone the repository of &lt;code&gt;cats&lt;&#x2F;code&gt; so that we can run some tests on it later:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;git clone git@github.com:typelevel&amp;#x2F;cats.git
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;With these, your remote server should be ready to run scala code. As the next step, we need to connect a VS Code instance to it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;connecting-visual-studio-code&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#connecting-visual-studio-code&quot; aria-label=&quot;Anchor link for: connecting-visual-studio-code&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Connecting Visual Studio Code&lt;&#x2F;h2&gt;
+&lt;p&gt;Open your VS Code and install the extension &lt;a href=&quot;https:&#x2F;&#x2F;marketplace.visualstudio.com&#x2F;items?itemName=ms-vscode-remote.remote-ssh&quot;&gt;Remote - SSH&lt;&#x2F;a&gt;.
+Then follow the &lt;a href=&quot;https:&#x2F;&#x2F;code.visualstudio.com&#x2F;docs&#x2F;remote&#x2F;ssh&quot;&gt;official documentation&lt;&#x2F;a&gt; to connect to the remote server:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;open the &lt;code&gt;Remote Explorer&lt;&#x2F;code&gt; menu and add your server&lt;&#x2F;li&gt;
+&lt;li&gt;once configured, you can &lt;code&gt;connect&lt;&#x2F;code&gt; to the server. This will open a new VS Code window. The bottom panel will show (on the left side) that you are connected to a remote server&lt;&#x2F;li&gt;
+&lt;li&gt;extensions are (usually) installed on the server, which means you will need to reinstall Metals. Open the &lt;code&gt;Extensions&lt;&#x2F;code&gt; panel, in there you will see that extensions are split between &lt;code&gt;local&lt;&#x2F;code&gt; and &lt;code&gt;ssh&lt;&#x2F;code&gt;. Scroll the &lt;code&gt;local&lt;&#x2F;code&gt; list and press the green &lt;code&gt;install in ssh&lt;&#x2F;code&gt; button for all those extensions you want to enable on your remote machine.&lt;&#x2F;li&gt;
+&lt;li&gt;if you haven&#x27;t done so, search for &lt;code&gt;Metals&lt;&#x2F;code&gt; and install it. Then reload the window.&lt;&#x2F;li&gt;
+&lt;li&gt;Edit VS Code settings for Metals, on the &lt;code&gt;ssh&lt;&#x2F;code&gt; section for your remote machine set the proper path for &lt;code&gt;Java Home&lt;&#x2F;code&gt; in &lt;code&gt;Metals&lt;&#x2F;code&gt; (see previous section of this post for the path). This will require another reload of VS Code.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;If you installed the &lt;code&gt;Live Share&lt;&#x2F;code&gt; extension, you may be prompted to install additional components, which requires yet another window refresh.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;loading-your-project&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#loading-your-project&quot; aria-label=&quot;Anchor link for: loading-your-project&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Loading your project&lt;&#x2F;h2&gt;
+&lt;p&gt;Once the VS Code window has reloaded and reconnected to the server, you can just go to &lt;code&gt;File &amp;gt; Open&lt;&#x2F;code&gt; and select the &lt;code&gt;cats&lt;&#x2F;code&gt; project you cloned when setting up the server.
+Metals will let you know that this is an &lt;code&gt;sbt&lt;&#x2F;code&gt; project and it will request to load it.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s it. Once Metals completes the set up, you are ready to go and code as you are used to.&lt;&#x2F;p&gt;
+&lt;p&gt;Important: Note that any &lt;code&gt;terminal&lt;&#x2F;code&gt; you open while in the &lt;code&gt;ssh&lt;&#x2F;code&gt; window will open directly in the remote server.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;backing-up-your-remote-server&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#backing-up-your-remote-server&quot; aria-label=&quot;Anchor link for: backing-up-your-remote-server&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Backing up your remote server&lt;&#x2F;h2&gt;
+&lt;p&gt;At this point you want to create an image of your server. Note that Linode (and most other platforms) will still charge you for the box if you stop it, as it is still provisioned for you.&lt;&#x2F;p&gt;
+&lt;p&gt;To reduce costs what you want is to have an image with the latest changes to your server, which you can do &lt;a href=&quot;https:&#x2F;&#x2F;www.linode.com&#x2F;docs&#x2F;platform&#x2F;disk-images&#x2F;linode-images&#x2F;&quot;&gt;following these steps&lt;&#x2F;a&gt;. Building the image took less than 2 minutes for our server. Once you have the image, you can delete your instance and create a new one when needed, using that image as a starting point. The image will keep the same ssh public key, which means you can interact with Github using your account without any additional steps.&lt;&#x2F;p&gt;
+&lt;p&gt;Note that in Linode you have some restrictions on images but even so this should be enough for your purposes. Alternatively, you could use &lt;a href=&quot;https:&#x2F;&#x2F;www.linode.com&#x2F;docs&#x2F;platform&#x2F;stackscripts&#x2F;&quot;&gt;Stack Scripts&lt;&#x2F;a&gt; or some other automated system to create images on demand.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;performance&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#performance&quot; aria-label=&quot;Anchor link for: performance&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Performance&lt;&#x2F;h2&gt;
+&lt;p&gt;Now that we have everything set up, we need to verify how fast is this setup. How does it compare to running everything locally? To test this we downloaded &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;typelevel&#x2F;cats&quot;&gt;cats&lt;&#x2F;a&gt; and we run &lt;code&gt;;clean;test&lt;&#x2F;code&gt; in &lt;code&gt;sbt&lt;&#x2F;code&gt; a few times. The following is a completely non-scientific table of the measurements:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Machine&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: right&quot;&gt;Avg&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Macbook 16&quot; late 2019 (8 cores)&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: right&quot;&gt;3:28&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Linode 4 cores&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: right&quot;&gt;Error&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Linode 8 cores&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: right&quot;&gt;11:48&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Linode 16 cores&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: right&quot;&gt;4:46&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;All Linode instances are &#x27;Dedicated CPU&#x27; instances. On the &#x27;Linode 4&#x27; instance,&lt;code&gt;sbt&lt;&#x2F;code&gt; was often killed by the OS when running alongside VS Code.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s be realistic, the performance is worse. The fastest Linode test, using the 16 cores machine, is over 1 minute slower than a test using a local environment. Unless you have a remote server you own and with a decent cpu, you are going to lose at least some performance. But it&#x27;s not too terrible.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;enter-hydra&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#enter-hydra&quot; aria-label=&quot;Anchor link for: enter-hydra&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Enter Hydra&lt;&#x2F;h2&gt;
+&lt;p&gt;Remember that we are trying to find a way to run compilation in remote servers for cases where a local setup is not an option. Maybe we can improve on it? &lt;a href=&quot;https:&#x2F;&#x2F;triplequote.com&quot;&gt;Triplequote&lt;&#x2F;a&gt; offers &lt;code&gt;Hydra&lt;&#x2F;code&gt;, a parallel compiler for Scala. This would increase costs, but can this turn it into a viable alternative?&lt;&#x2F;p&gt;
+&lt;p&gt;We followed the &lt;a href=&quot;https:&#x2F;&#x2F;docs.triplequote.com&#x2F;trial&#x2F;sbt&#x2F;&quot;&gt;instructions for a trial&lt;&#x2F;a&gt; with &lt;code&gt;Hydra&lt;&#x2F;code&gt; and we run the tests again in Linode. The trial license uses a &lt;code&gt;Developer (Enterprise)&lt;&#x2F;code&gt; license which can take advantage of up to 8 cores.&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Machine (with Hydra)&lt;&#x2F;th&gt;&lt;th style=&quot;text-align: right&quot;&gt;Avg&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;Linode 8 cores&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: right&quot;&gt;6:39&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Linode 16 cores&lt;&#x2F;td&gt;&lt;td style=&quot;text-align: right&quot;&gt;1:30&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;We can see Hydra makes a big difference as it is able to take advantage of the number of cores available. In the lower spec Linode we halve the compile time, while in the Linode with 16 cores we compile cats in a third of the time it originally took. The improvements would be similar in a local setup, but let&#x27;s remember that we are looking at scenarios where you need (want) to use a remote setup.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cost-of-the-setup&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#cost-of-the-setup&quot; aria-label=&quot;Anchor link for: cost-of-the-setup&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Cost of the setup&lt;&#x2F;h2&gt;
+&lt;p&gt;A MacBook Pro 16&quot; 2019, with the maximum RAM (64 Gb) and CPU (8 core 2.4 Ghz) currently costs $3,799.00, taxes aside. Other non-Apple laptops and desktops will be cheaper, but I use this as a reference as it is the one many companies give to their developers, so it is a fair benchmark for comparison.&lt;&#x2F;p&gt;
+&lt;p&gt;A Linode (Dedicated CPU) with 8 cores and 16 Gb RAM costs USD0.18&#x2F;hour. For a standard work schedule of 45h per week and 50 weeks per year (and you should really work less than that), it adds up to USD8.1 per week, and USD405 for the year. Assuming the same use pattern, a Linode with 16 cores and 32 Gb of RAM (USD0.36&#x2F;hr) costs twice as much: $16.2 per week, USD910 per year.&lt;&#x2F;p&gt;
+&lt;p&gt;A &lt;code&gt;Developer - Enterprise&lt;&#x2F;code&gt; license for &lt;code&gt;Hydra&lt;&#x2F;code&gt; costs $1,080&#x2F;year per seat, to take advantage of up to 8 cores.&lt;&#x2F;p&gt;
+&lt;p&gt;The slower Linode with 8 cores, with Hydra, would cost $1,485&#x2F;year but it is twice as slow as the laptop we compare it with, which makes it a less appealing choice. Without Hydra the compilation times become too high to even consider it as an option.&lt;&#x2F;p&gt;
+&lt;p&gt;But with the Linode 16 cores the story changes, as the performance is closer to what we get with a local machine. You could pay USD910 for the Linode instance and get compile times around 30% slower, but at 25% of the cost of the laptop. Or, if you add Hydra and increase the cost to USD1,990, you can be 60% faster than the laptop for around 50% of the price.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;conclusions&quot;&gt;&lt;a class=&quot;header-anchor no-hover-padding&quot; href=&quot;#conclusions&quot; aria-label=&quot;Anchor link for: conclusions&quot;&gt;&lt;span class=&quot;link-icon&quot; aria-hidden=&quot;true&quot;&gt;&lt;&#x2F;span&gt;&lt;&#x2F;a&gt;
+Conclusions&lt;&#x2F;h2&gt;
+&lt;p&gt;Is it cloud computing ready to become your development server? As with most things in development, it depends. If you need to squeeze every bit of performance
+from your machines, then a local setup is still preferred. And you should get a Hydra license, period.&lt;&#x2F;p&gt;
+&lt;p&gt;But if not, you can get reasonable performance from dedicated machines. A Linode with 16 cores and without Hydra is a quarter of the price of a top of the shelf laptop,
+and you still get reasonable performance. If you add Hydra on top, then we are looking at remote setups that outperform a local setup, while costing you less upfront. A hard-to-beat proposition.&lt;&#x2F;p&gt;
+&lt;p&gt;There are multiple caveats, of course. For example, the SSH extension for Visual Studio Code is still on &lt;code&gt;preview&lt;&#x2F;code&gt; and there may be glitches. Also, things that are easily achieved with a local workflow may be slightly more complicated with a remote one.&lt;&#x2F;p&gt;
+&lt;p&gt;But not many project will be as demanding as &lt;code&gt;cats&lt;&#x2F;code&gt; for compilation, due to its multiple compile targets. And there are other possible benefits, like being to replace docker services running locally by ones in remote servers, reducing pressure on the computer even more. Given that we would expect costs for
+cloud computing to decrease as time goes by, this setup can only become better as time goes by. Yes, it is unlikely to beat a local setup on raw performance, but sometimes that is not the only constraint.&lt;&#x2F;p&gt;
+&lt;p&gt;That&#x27;s all for now, I hope this was informative and useful. As always, feedback via Twitter&#x2F;Email is more than welcome. Cheers!&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">VS Code has released tooling for remote development via ssh. In Scala the combo of Metals and VS Code for development has become the norm for many people. How easy and convenient may it be to use them while on ssh with a remote server? Let's discover it.
+…</summary>
+        </entry>
+</feed>

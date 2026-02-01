@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>company culture</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - company culture</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/company-culture/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/company-culture/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2014-06-21T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/company-culture/atom.xml</id><entry xml:lang="en">
+        <title>Meetup: Building a Developer Centred Company Culture</title>
+        <published>2014-06-21T00:00:00+00:00</published>
+        <updated>2014-06-21T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/meetup-building-a-developer-centred-company-culture/" type="text/html"/>
+        <id>https://perevillega.com/posts/meetup-building-a-developer-centred-company-culture/</id>
+        
+            <content type="html">&lt;p&gt;I wrote another post for &lt;a href=&quot;http:&#x2F;&#x2F;www.gumtree.com&#x2F;&quot;&gt;Gumtree&lt;&#x2F;a&gt; developer blog. I attended a meetup in StackCareers office in London. I&#x27;ve attended a few meetups (less than I&#x27;d like!) since I came to the City and joined Gumtree, but I consider this one to be one of the best.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;The subject was Building a Developer Centred Company Culture, which is of particular interest to me, but the speakers did good presentations and the ideas they shared captured my attention more than other events I&#x27;ve attended.&lt;&#x2F;p&gt;
+&lt;p&gt;I took notes during the talks and I&#x27;d like to share a summary of the main points, as it is a relevant subject for many developers.
+First of all a disclaimer: the text below tries to be a raw summary of what I understood. Any errors are mine and of my transcription. That said, I hope I could capture the more relevant parts.&lt;&#x2F;p&gt;
+&lt;p&gt;You can read it  &lt;a href=&quot;https:&#x2F;&#x2F;medium.com&#x2F;@GumtreeDevTeam&#x2F;meetup-building-a-developer-centred-company-culture-2c9fac60ba9b&quot;&gt;here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;As always, feedback via Twitter&#x2F;Email is more than welcome.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">I wrote another post for Gumtree developer blog. I attended a meetup in StackCareers office in London. I've attended a few meetups (less than I'd like!) since I came to the City and joined Gumtree, but I consider this one to be one of the best.
+…</summary>
+        </entry>
+</feed>

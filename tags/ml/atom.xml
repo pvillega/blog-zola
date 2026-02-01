@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="https://perevillega.com/feed_style.xsl" type="text/xsl"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <tabi:metadata xmlns:tabi="https://github.com/welpo/tabi">
+        <tabi:separator>
+            •
+        </tabi:separator>
+        <tabi:about_feeds>This is a web feed, also known as an Atom feed. Subscribe by copying the URL from the address bar into your newsreader. Visit About Feeds to learn more and get started. It&#x27;s free.</tabi:about_feeds>
+        <tabi:visit_the_site>Visit website</tabi:visit_the_site>
+        <tabi:recent_posts>Recent posts</tabi:recent_posts>
+        <tabi:last_updated_on>Updated on $DATE</tabi:last_updated_on>
+        <tabi:default_theme></tabi:default_theme>
+        <tabi:post_listing_date>date</tabi:post_listing_date>
+        <tabi:current_section>ml</tabi:current_section>
+    </tabi:metadata><title>Software serves the Business - ml</title>
+        <subtitle>Pere Villega&#x27;s blog</subtitle>
+    <link href="https://perevillega.com/tags/ml/atom.xml" rel="self" type="application/atom+xml"/>
+    <link href="https://perevillega.com/tags/ml/" rel="alternate" type="text/html"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2015-05-04T00:00:00+00:00</updated>
+    <id>https://perevillega.com/tags/ml/atom.xml</id><entry xml:lang="en">
+        <title>Wearables: Google vs Apple</title>
+        <published>2015-05-04T00:00:00+00:00</published>
+        <updated>2015-05-04T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/wearables-google-vs-apple/" type="text/html"/>
+        <id>https://perevillega.com/posts/wearables-google-vs-apple/</id>
+        
+            <content type="html">&lt;p&gt;After a weekend wasted in bed (food poisoning sucks) I&#x27;ve spent some hours catching up with tech news. And I&#x27;ve found a very interesting, if brief, comment about a new war between Apple and Google that may impact their success in wearables.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;If you read &lt;a href=&quot;http:&#x2F;&#x2F;highscalability.com&#x2F;blog&#x2F;2015&#x2F;5&#x2F;1&#x2F;stuff-the-internet-says-on-scalability-for-may-1st-2015.html&quot;&gt;this post&lt;&#x2F;a&gt; you may notice something very relevant in the way Apple and Google are managing their ecosystem. I am talking about this fragment:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A telling difference between Google and Apple: Google Now becomes a more robust platform with 70 new partner apps. Apple takes an app-centric view of the world and Google not  surprisingly takes a data centric view. With Google developers feed Google data for Google to display. With Apple developers feed Apple apps for users to consume. On Apple developers push their own brand and control functionality through bundled extensions, but Google will have the perspective to really let their deep learning prowess sing. So there&#x27;s a real choice.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;I&#x27;m aware that at first glance this seems a minor difference, just the standard approach both companies have when treating their apps and their ecosystem. But this week brings some additional context: you may have noticed Twitter swamped by images of people showing off their Apple watches. And, in that context, this difference in approach becomes much more relevant.&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s assume that wearables are here to stay. One of their selling points is to streamline your access to app notifications, making it easier to act on them. On the other hand, you don&#x27;t want to get swamped by alerts as they become distracting and may drain the battery too fast. Thus, you expect only relevant alerts to appear in your fancy watch.&lt;&#x2F;p&gt;
+&lt;p&gt;And here comes the big difference in approach: with Apple you relay on developers behaving nicely and not swamping the user with notifications. You expect them apps to be smart and show only what&#x27;s relevant. This may require each app to learn about each user&#x27;s preferences, which in the current era of machine learning is not hard, but it means each app needs to do this. And I won&#x27;t comment on expecting apps not to spam you, we all have our experiences on that.&lt;&#x2F;p&gt;
+&lt;p&gt;Google&#x27;s approach (unless misunderstood) seems to be radically different: let&#x27;s remove the burden of learning about user preferences from the app, we will take care of that via Google Now. You just send us the data and we will send the relevant alerts. The impact for developers is massive: you don&#x27;t need to develop your own machine learning process, you can rely on Google&#x27;s far superior pool of data and expertise. And you don&#x27;t have to be worried about how many notifications are too many, Google will adjust that by tailoring notifications, taking decisions based on data that is not available to you but to which they have access, due to aggregation.&lt;&#x2F;p&gt;
+&lt;p&gt;They say we are in the deep learning era, where personalisation is the key for success, and this includes not only your experience with an individual app but also your experience with a device in itself. I feel Google&#x27;s approach is a winner. It allows developers to stop worrying about notifications and how relevant are they, and focus on the app itself. At the same time the user will get a very streamlined experience, with relevant notifications at relevant times. I wonder if Apple needs to revisit their philosophy in this area.&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">After a weekend wasted in bed (food poisoning sucks) I've spent some hours catching up with tech news. And I've found a very interesting, if brief, comment about a new war between Apple and Google that may impact their success in wearables.
+…</summary>
+        </entry><entry xml:lang="en">
+        <title>Machine Learning at Coursera</title>
+        <published>2015-02-08T00:00:00+00:00</published>
+        <updated>2015-02-08T00:00:00+00:00</updated>
+        <author>
+            <name>Pere Villega</name>
+        </author>
+        <link rel="alternate" href="https://perevillega.com/posts/machine-learning-at-coursera/" type="text/html"/>
+        <id>https://perevillega.com/posts/machine-learning-at-coursera/</id>
+        
+            <content type="html">&lt;p&gt;And more work in the &lt;a href=&quot;http:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Data_science&quot;&gt;data science&lt;&#x2F;a&gt; world. I&#x27;ve joined yet another &lt;a href=&quot;https:&#x2F;&#x2F;www.coursera.org&#x2F;&quot;&gt;Coursera&lt;&#x2F;a&gt; class: &lt;a href=&quot;https:&#x2F;&#x2F;class.coursera.org&#x2F;ml-008&#x2F;&quot;&gt;Machine Learning&lt;&#x2F;a&gt;. Yes, I might be overdoing it.&lt;&#x2F;p&gt;
+&lt;span id=&quot;continue-reading&quot;&gt;&lt;&#x2F;span&gt;
+&lt;p&gt;To be honest this is a class I started time ago but I had to drop due to lack of time. So it was great news to realise that it was running again, just when I want to focus on this area. The videos are very helpful and after doing the first practical exercise I&#x27;m very happy as the hands-on experience allows you to play around and imagine areas in which you could already apply this. Very motivating.&lt;&#x2F;p&gt;
+&lt;p&gt;Not only that, the lessons about Octave proved beneficial as it facilitated solving the exercises in the other class I&#x27;m taking, &lt;a href=&quot;https:&#x2F;&#x2F;class.coursera.org&#x2F;mmds-002&quot;&gt;Mining Massive Datasets&lt;&#x2F;a&gt;. As I wrote in my last post, I wasn&#x27;t sure if to continue that class as I didn&#x27;t want to spend hours doing matrix calculations by hand (laziness, or maybe just trying to be more efficient). Octave solved that by letting me automate the process. A win - win situation!&lt;&#x2F;p&gt;
+&lt;p&gt;I&#x27;d love to publish the code in Octave, but unfortunately this goes against the Code of Honour, so... maybe another time :)&lt;&#x2F;p&gt;
+</content>
+        <summary type="html">And more work in the data science world. I've joined yet another Coursera class: Machine Learning. Yes, I might be overdoing it.
+…</summary>
+        </entry>
+</feed>
