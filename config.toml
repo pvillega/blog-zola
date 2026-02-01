@@ -84,15 +84,12 @@ generate_robots_txt = true
 
 # Configuration of the Markdown rendering
 [markdown]
-# When set to "true", all code blocks are highlighted.
-highlight_code = true
 
-# A list of directories used to search for additional `.sublime-syntax` and `.tmTheme` files.
-extra_syntaxes_and_themes = []
-
-# The theme to use for code highlighting.
-# See below for list of allowed values.
-highlight_theme = "css"
+# Configuration for syntax highlighting
+[markdown.highlighting]
+style = "class"
+light_theme = "github-light"
+dark_theme = "github-dark"
 
 # When set to "true", emoji aliases translated to their corresponding
 # Unicode emoji equivalent in the rendered Markdown files. (e.g.: :smile: => 😄)
@@ -310,7 +307,7 @@ allowed_domains = [
     { directive = "media-src", domains = ["'self'", "https://cdn.jsdelivr.net/"] },
     { directive = "script-src", domains = ["'self'"] },
     { directive = "style-src", domains = ["'self'"] },
-    { directive = "frame-src", domains = ["player.vimeo.com", "https://www.youtube-nocookie.com"] },
+    { directive = "frame-src", domains = ["'self'", "player.vimeo.com", "https://www.youtube-nocookie.com", "https://view.officeapps.live.com"] },
 ]
 
 # Enable the CSP directives configured (or default).
