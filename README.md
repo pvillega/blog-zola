@@ -4,22 +4,23 @@
 
 Built using:
 
-- Zola: https://www.getzola.org
-- Theme: https://www.getzola.org/themes/tabi/
-- Uses shortcodes for diagrams, see <https://deepthought-theme.netlify.app/docs/extended-shortcodes/> 
+- Astro: https://astro.build
+- Theme: AstroPaper (https://github.com/satnaing/astro-paper)
 - Favicon generator: https://www.favicon-generator.org
 
-On first clone, remember to run `init_submodules.sh` to initialise the submodules added for the themes
+## Getting started
 
-See https://welpo.github.io/tabi/blog/ for instructions on how to use the theme.
-See https://welpo.github.io/tabi/blog/shortcodes/#mermaid-diagrams for Mermaid diagrams and other markdown tricks
-
+```bash
+npm install
+npm run dev
+```
 
 ## Important files:
 
-- `run.sh`: starts the blog in http://localhost:1111
-- `update_theme.sh`: updates the theme submodule
-
+- `run.sh`: starts the blog in http://localhost:4321
+- `Dockerfile`: builds the production container image
+- `scripts/purge-cloudflare-cache.sh`: purges Cloudflare cache after deployment
+- `docs/DEPLOYMENT.md`: deployment guide for Coolify and Cloudflare
 
 ## License
 

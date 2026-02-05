@@ -10,13 +10,11 @@
     "astro": "astro",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "lint": "eslint .",
-    "migrate": "node scripts/migrate-content.mjs"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
-    "@iarna/toml": "^2.2.5",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.6",
