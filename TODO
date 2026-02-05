@@ -1,0 +1,14 @@
+>> /superpowers:brainstorm "this is currently a zola blog.
+Due to some reasons, I want to convert it to an astro-based blog.
+
+The strategy is as follows:
+- keep a similar layout and theme, we want the same kind of links and functionality on the website
+- we want to deploy this astro website to coolify, so we will need instructions to help redirecting the cloudflare domain, etc
+- we want cloudflare to cache as much as possible, we currently have a free account so consider how much can we cache and what are the mechanisms so that this happen, so that the blog loads very very fast for users
+- we want deployment to coolify to be automated when we push changes to the repo
+- we want to remove any zola-specific code and files, and make sure the astro website is clean and only has astro-related code
+The output of this step should be a plan written using the write-plans skill on how to proceed, on the @specs/ folder
+"
+
+
+what about astro-paper replacemnt as we add more functioanlity?
