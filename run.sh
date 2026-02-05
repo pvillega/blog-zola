@@ -1,3 +1,3 @@
 #!/bin/bash
 
-zola serve
+npm run dev
