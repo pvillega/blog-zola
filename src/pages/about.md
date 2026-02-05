@@ -7,7 +7,7 @@ title: "About"
 
 I'm a principal engineer (currently freelancing) with over 20 years of industry experience.
 I write about software engineering, and how to build better solutions for your business.
-I live in Switzerland, but I've been working remotely or hybrid since 2014.
+I live in Sitges (Barcelona) but I've been working remotely or hybrid since 2014.
 
 ## About This Blog
 
