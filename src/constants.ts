@@ -11,6 +11,7 @@ import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
 import IconPinterest from "@/assets/icons/IconPinterest.svg";
 import IconBrandX from "@/assets/icons/IconBrandX.svg";
+import IconRss from "@/assets/icons/IconRss.svg";
 import { SITE } from "@/config";
 
 interface Social {
@@ -18,6 +19,7 @@ interface Social {
   href: string;
   linkTitle: string;
   icon: (_props: Props) => Element;
+  color?: string;
 }
 
 export const SOCIALS: Social[] = [
@@ -26,30 +28,42 @@ export const SOCIALS: Social[] = [
     href: "https://github.com/pvillega",
     linkTitle: `${SITE.author} on GitHub`,
     icon: IconGitHub,
+    color: "#333",
   },
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/perevillega/",
     linkTitle: `${SITE.author} on LinkedIn`,
     icon: IconLinkedin,
+    color: "#0A66C2",
   },
   {
     name: "Bluesky",
     href: "https://bsky.app/profile/perevillega.com",
     linkTitle: `${SITE.author} on Bluesky`,
     icon: IconBluesky,
+    color: "#0085FF",
   },
   {
     name: "StackOverflow",
     href: "https://stackoverflow.com/users/116791/pere-villega",
     linkTitle: `${SITE.author} on StackOverflow`,
     icon: IconStackOverflow,
+    color: "#F48024",
   },
   {
     name: "Mail",
     href: "mailto:pvillega+blog@aracon.com",
     linkTitle: `Send an email to ${SITE.author}`,
     icon: IconMail,
+    color: "#EA4335",
+  },
+  {
+    name: "RSS",
+    href: "/rss.xml",
+    linkTitle: "RSS Feed",
+    icon: IconRss,
+    color: "#FFA500",
   },
 ] as const;
 
