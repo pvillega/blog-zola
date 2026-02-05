@@ -1,9 +1,22 @@
-FROM ghcr.io/getzola/zola:v0.19.2 AS zola
+FROM node:20-alpine AS build
+WORKDIR /app
 
-COPY . /project
-WORKDIR /project
-RUN ["zola", "build"]
+# Copy package files
+COPY package*.json ./
 
+# Install dependencies
+RUN npm ci
+
+# Copy source
+COPY . .
+
+# Build the site
+RUN npm run build
+
+# Production image using static-web-server
 FROM ghcr.io/static-web-server/static-web-server:2
 WORKDIR /
-COPY --from=zola /project/public /public
+COPY --from=build /app/dist /public
+
+# Expose port 80
+EXPOSE 80
