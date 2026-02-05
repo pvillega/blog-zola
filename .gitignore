@@ -5,3 +5,4 @@ dist/
 .idea
 .worktrees/
 node_modules/
+public/pagefind/
