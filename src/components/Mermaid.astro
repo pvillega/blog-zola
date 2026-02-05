@@ -1,0 +1,57 @@
+---
+interface Props {
+  chart: string;
+}
+
+const { chart } = Astro.props;
+---
+
+<div class="mermaid">
+  <Fragment set:html={chart} />
+</div>
+
+<script>
+  import mermaid from "mermaid";
+
+  function initMermaid() {
+    const theme = document.documentElement.dataset.theme === "dark" ? "dark" : "default";
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: theme,
+    });
+    mermaid.run();
+  }
+
+  // Initialize on page load
+  initMermaid();
+
+  // Re-render on theme change
+  const observer = new MutationObserver(() => {
+    const theme = document.documentElement.dataset.theme === "dark" ? "dark" : "default";
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: theme,
+    });
+    // Re-render all mermaid diagrams
+    document.querySelectorAll(".mermaid").forEach((el) => {
+      el.removeAttribute("data-processed");
+    });
+    mermaid.run();
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+
+  // Re-initialize on Astro page navigation
+  document.addEventListener("astro:page-load", initMermaid);
+</script>
+
+<style>
+  .mermaid {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+</style>
