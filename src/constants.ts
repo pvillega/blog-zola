@@ -28,12 +28,6 @@ export const SOCIALS: Social[] = [
     icon: IconGitHub,
   },
   {
-    name: "GitLab",
-    href: "https://gitlab.com/pvillega",
-    linkTitle: `${SITE.author} on GitLab`,
-    icon: IconGitLab,
-  },
-  {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/perevillega/",
     linkTitle: `${SITE.author} on LinkedIn`,
@@ -46,12 +40,6 @@ export const SOCIALS: Social[] = [
     icon: IconBluesky,
   },
   {
-    name: "Mastodon",
-    href: "https://mastodon.social/@pvillega",
-    linkTitle: `${SITE.author} on Mastodon`,
-    icon: IconMastodon,
-  },
-  {
     name: "StackOverflow",
     href: "https://stackoverflow.com/users/116791/pere-villega",
     linkTitle: `${SITE.author} on StackOverflow`,
@@ -59,7 +47,7 @@ export const SOCIALS: Social[] = [
   },
   {
     name: "Mail",
-    href: "mailto:pvillegaw+blog@aracon.com",
+    href: "mailto:pvillega+blog@aracon.com",
     linkTitle: `Send an email to ${SITE.author}`,
     icon: IconMail,
   },
@@ -83,6 +71,12 @@ export const SHARE_LINKS: Social[] = [
     href: "https://x.com/intent/post?url=",
     linkTitle: `Share this post on X`,
     icon: IconBrandX,
+  },
+  {
+    name: "Bluesky",
+    href: "https://bsky.app/intent/compose?text=",
+    linkTitle: `Share this post on Bluesky`,
+    icon: IconBluesky,
   },
   {
     name: "Telegram",
