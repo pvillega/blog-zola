@@ -21,16 +21,20 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
   <Header />
   <main id="main-content" data-layout="index" class="app-layout">
     <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
-      <div class="flex flex-col-reverse items-center gap-6 sm:flex-row sm:items-start sm:justify-between">
+      <div
+        class="flex flex-col-reverse items-center gap-6 sm:flex-row sm:items-start sm:justify-between"
+      >
         <div class="flex-1">
-          <h1 class="my-4 text-4xl font-bold whitespace-nowrap sm:my-8 sm:text-5xl">
+          <h1
+            class="my-4 text-4xl font-bold whitespace-nowrap sm:my-8 sm:text-5xl"
+          >
             Hi! I'm Pere Villega
           </h1>
 
           <p>
-            I'm a principal engineer (currently freelancing) with over 20 years of industry experience.
-            I write about software engineering, and how to build better solutions for your business.
-            I live in Sitges (Barcelona) but I've been working remotely or hybrid since 2014.
+            I'm a principal engineer with over 20 years of industry experience.
+            I provide AI and software consulting to companies. I live in Barcelona and have been
+            working remotely or hybrid since 2014.
           </p>
 
           <div class="mt-4 flex flex-wrap items-center gap-x-2">
@@ -74,7 +78,9 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
           <ul>
             {recentPosts.map(
               (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" hideDate {...data} />
+                index < SITE.postPerIndex && (
+                  <Card variant="h3" hideDate {...data} />
+                )
             )}
           </ul>
         </section>
