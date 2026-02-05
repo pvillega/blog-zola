@@ -1,5 +1,7 @@
-public/
+dist/
+.astro/
 .history/
 .DS_Store
 .idea
 .worktrees/
+node_modules/
