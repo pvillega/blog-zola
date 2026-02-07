@@ -1,0 +1,18 @@
+# Series metadata file.
+# Each entry defines a series that groups related blog posts.
+#
+# Fields:
+#   id: string - unique identifier, must match the `series` frontmatter value in posts
+#   title: string - display name for the series
+#   description: string - short description shown on series cards and detail pages
+#   coverImage: string - path to cover image relative to src/assets/series/
+#   status: "ongoing" | "complete" - whether the series is still being written
+#
+# Example:
+#   - id: "durable-computing"
+#     title: "Durable Computing Deep Dive"
+#     description: "A comprehensive exploration of durable computing patterns..."
+#     coverImage: "./durable-computing.png"
+#     status: "ongoing"
+
+[]
