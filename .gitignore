@@ -6,7 +6,8 @@ dist/
 .worktrees/
 node_modules/
 public/pagefind/
+.playwright-mcp/
 .serena/
 .claude/
 
-TODO 
+TODO.md
