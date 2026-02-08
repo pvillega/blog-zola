@@ -1,0 +1,99 @@
+---
+import type { SeriesMeta, SeriesPost } from "@/utils/getSeries";
+import { getPath } from "@/utils/getPath";
+
+type Props = {
+  seriesMeta: SeriesMeta;
+  posts: SeriesPost[];
+  currentOrder: number;
+};
+
+const { seriesMeta, posts, currentOrder } = Astro.props;
+const isCollapsible = posts.length >= 4;
+---
+
+<aside
+  class="mb-8 rounded-lg border border-border/40 bg-muted/20 p-4"
+  data-series-box
+>
+  <div class="flex items-center justify-between gap-2">
+    <div class="flex items-center gap-2">
+      <a
+        href={`/series/${seriesMeta.id}`}
+        class="font-medium text-accent decoration-dashed underline-offset-4 hover:underline"
+      >
+        {seriesMeta.title}
+      </a>
+      <span
+        class:list={[
+          "rounded-full px-2 py-0.5 text-xs font-medium",
+          seriesMeta.status === "complete"
+            ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
+            : "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+        ]}
+      >
+        {seriesMeta.status === "complete" ? "Complete" : "Ongoing"}
+      </span>
+    </div>
+    {
+      isCollapsible && (
+        <button
+          data-series-toggle
+          class="text-xs opacity-60 hover:opacity-100"
+          aria-expanded="false"
+          aria-controls="series-parts-list"
+        >
+          Part {currentOrder} of {posts.length}
+          <span data-toggle-icon>&#9660;</span>
+        </button>
+      )
+    }
+  </div>
+
+  <ol
+    id="series-parts-list"
+    class:list={[
+      "mt-3 space-y-1",
+      { hidden: isCollapsible },
+    ]}
+    data-series-list
+  >
+    {
+      posts.map(({ post, seriesOrder }) => (
+        <li class="flex items-baseline gap-2 text-sm">
+          <span class="shrink-0 font-mono text-xs opacity-50">
+            {seriesOrder}.
+          </span>
+          {seriesOrder === currentOrder ? (
+            <span class="font-semibold">{post.data.title}</span>
+          ) : (
+            <a
+              href={getPath(post.id, post.filePath)}
+              class="text-accent/80 decoration-dashed underline-offset-4 hover:underline"
+            >
+              {post.data.title}
+            </a>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</aside>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const toggleButtons = document.querySelectorAll("[data-series-toggle]");
+    toggleButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const box = btn.closest("[data-series-box]");
+        const list = box?.querySelector("[data-series-list]");
+        const icon = btn.querySelector("[data-toggle-icon]");
+        if (!list) return;
+        const isHidden = list.classList.contains("hidden");
+        list.classList.toggle("hidden");
+        btn.setAttribute("aria-expanded", String(isHidden));
+        if (icon) icon.innerHTML = isHidden ? "&#9650;" : "&#9660;";
+      });
+    });
+  });
+</script>
