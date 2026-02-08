@@ -49,27 +49,31 @@ const { meta, seriesPosts } = Astro.props;
     <ol class="space-y-4">
       {
         seriesPosts.map(({ post, seriesOrder }) => (
-          <li class="rounded-lg border border-border/40 p-4">
-            <div class="flex items-start gap-3">
-              <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
-                {seriesOrder}
-              </span>
-              <div class="min-w-0">
-                <a
-                  href={getPath(post.id, post.filePath)}
-                  class="text-lg font-medium text-accent decoration-dashed underline-offset-4 hover:underline"
-                >
-                  {post.data.title}
-                </a>
-                <div class="mt-1">
-                  <Datetime
-                    pubDatetime={post.data.pubDatetime}
-                    modDatetime={post.data.modDatetime}
-                  />
+          <li class="rounded-lg border border-border/40 transition-colors hover:bg-muted/30">
+            <a
+              href={getPath(post.id, post.filePath)}
+              class="group block p-4"
+            >
+              <div class="flex items-start gap-3">
+                <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                  {seriesOrder}
+                </span>
+                <div class="min-w-0">
+                  <span class="text-lg font-medium text-accent decoration-dashed underline-offset-4 group-hover:underline">
+                    {post.data.title}
+                  </span>
+                  <div class="mt-1">
+                    <Datetime
+                      pubDatetime={post.data.pubDatetime}
+                      modDatetime={post.data.modDatetime}
+                    />
+                  </div>
+                  <p class="mt-1 text-sm opacity-80">
+                    {post.data.description}
+                  </p>
                 </div>
-                <p class="mt-1 text-sm opacity-80">{post.data.description}</p>
               </div>
-            </div>
+            </a>
           </li>
         ))
       }
