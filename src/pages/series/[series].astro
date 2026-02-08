@@ -1,0 +1,78 @@
+---
+import { getCollection } from "astro:content";
+import Main from "@/layouts/Main.astro";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Datetime from "@/components/Datetime.astro";
+import { getSeriesWithPosts } from "@/utils/getSeries";
+import { getPath } from "@/utils/getPath";
+import { SITE } from "@/config";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  const seriesList = getSeriesWithPosts(posts);
+
+  return seriesList.map(({ meta, posts: seriesPosts }) => ({
+    params: { series: meta.id },
+    props: { meta, seriesPosts },
+  }));
+}
+
+const { meta, seriesPosts } = Astro.props;
+---
+
+<Layout title={`${meta.title} | ${SITE.title}`}>
+  <Header />
+  <Main
+    pageTitle={[`Series:`, ` ${meta.title}`]}
+    titleTransition={`series-${meta.id}`}
+    pageDesc={meta.description}
+  >
+    <div class="mb-6 flex items-center gap-3">
+      <span
+        class:list={[
+          "rounded-full px-2.5 py-0.5 text-xs font-medium",
+          meta.status === "complete"
+            ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
+            : "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+        ]}
+      >
+        {meta.status === "complete" ? "Complete" : "Ongoing"}
+      </span>
+      <span class="text-sm opacity-60">
+        {seriesPosts.length} {seriesPosts.length === 1 ? "part" : "parts"}
+      </span>
+    </div>
+
+    <ol class="space-y-4">
+      {
+        seriesPosts.map(({ post, seriesOrder }) => (
+          <li class="rounded-lg border border-border/40 p-4">
+            <div class="flex items-start gap-3">
+              <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                {seriesOrder}
+              </span>
+              <div class="min-w-0">
+                <a
+                  href={getPath(post.id, post.filePath)}
+                  class="text-lg font-medium text-accent decoration-dashed underline-offset-4 hover:underline"
+                >
+                  {post.data.title}
+                </a>
+                <div class="mt-1">
+                  <Datetime
+                    pubDatetime={post.data.pubDatetime}
+                    modDatetime={post.data.modDatetime}
+                  />
+                </div>
+                <p class="mt-1 text-sm opacity-80">{post.data.description}</p>
+              </div>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </Main>
+  <Footer />
+</Layout>
