@@ -41,7 +41,8 @@ const { meta, seriesPosts } = Astro.props;
         {meta.status === "complete" ? "Complete" : "Ongoing"}
       </span>
       <span class="text-sm opacity-60">
-        {seriesPosts.length} {seriesPosts.length === 1 ? "part" : "parts"}
+        {seriesPosts.length}
+        {seriesPosts.length === 1 ? "part" : "parts"}
       </span>
     </div>
 
