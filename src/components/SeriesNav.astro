@@ -14,7 +14,8 @@ const { seriesMeta, posts, currentOrder } = Astro.props;
 
 const currentIndex = posts.findIndex(p => p.seriesOrder === currentOrder);
 const prevPart = currentIndex > 0 ? posts[currentIndex - 1] : null;
-const nextPart = currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
+const nextPart =
+  currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;
 
 // Don't render if this is the only part
 if (!prevPart && !nextPart) return;
