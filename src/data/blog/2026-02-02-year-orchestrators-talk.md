@@ -8,7 +8,7 @@ tags:
   - orchestrators
   - talks
   - presentation
-description: "Last week, thanks to David Morgan-Brown and Patchwork Health, I had the opportunity to do something I’ve genuinely missed: presenting in front of a live audience. The subject? Orchestrators, the la..."
+description: "Last week, thanks to David Morgan-Brown and Patchwork Health, I had the opportunity to do something I've genuinely missed: presenting in front of a live audience. The subject? Orchestrators, the la..."
 ---
 
 Last week, thanks to [David Morgan-Brown](https://www.linkedin.com/in/morganbrown/) and [Patchwork Health](https://patchwork.health/), I had the opportunity to do something I’ve genuinely missed: presenting in front of a live audience. The subject? Orchestrators, the latest buzzword currently dominating the AI landscape.
