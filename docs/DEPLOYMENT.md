@@ -46,9 +46,29 @@ Enable webhook for automatic deployment when pushing to `main`.
 
 ## Cloudflare Configuration
 
+### DNS Migration from GitHub Pages
+
+1. In Cloudflare Dashboard > DNS, **delete** the existing GitHub Pages records:
+   - Remove any A records pointing to GitHub's IPs (`185.199.108-111.153`)
+   - Remove any CNAME record pointing to `*.github.io`
+2. In the GitHub repository settings, **disable** GitHub Pages
+
 ### Tunnel Setup
 
-Ensure your Cloudflare Tunnel routes `perevillega.com` to the Coolify container.
+The Coolify server is not publicly exposed. All traffic goes through a Cloudflare Tunnel.
+
+1. Go to **Cloudflare Zero Trust** > **Networks** > **Tunnels**
+2. Select your existing tunnel
+3. Go to the **Public Hostname** tab
+4. Click **Add a public hostname**
+5. Configure:
+   - **Domain**: `perevillega.com`
+   - **Subdomain**: (leave empty for root domain, or set as needed)
+   - **Service Type**: HTTP
+   - **URL**: `localhost:<coolify-app-port>` (the port Coolify exposes for the container, typically 80)
+6. Cloudflare automatically creates the required CNAME DNS record pointing to your tunnel
+
+**Note**: Use **HTTP** (not HTTPS) as the service type since SSL terminates at Cloudflare's edge. The tunnel itself encrypts traffic between Cloudflare and your server, so no certificate is needed on the Coolify side.
 
 ### Cache Rules
 
