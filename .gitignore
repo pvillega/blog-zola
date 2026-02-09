@@ -9,5 +9,6 @@ public/pagefind/
 .playwright-mcp/
 .serena/
 .claude/
+.envrc
 
 TODO.md
