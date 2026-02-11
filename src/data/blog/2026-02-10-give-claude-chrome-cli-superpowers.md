@@ -1,7 +1,7 @@
 ---
 author: Pere Villega
 pubDatetime: 2026-02-10
-title: Using Claude for Chrome better
+title: Give Claude in Chrome Your CLI Superpowers
 draft: false
 tags:
   - ai
@@ -45,4 +45,3 @@ claude --chrome --append-system-prompt "$(cat "specific-instructions.md")"
 ```
 
 which helps even more with the aim of having a well-targeted set of tools and behaviour for some tasks.
-
