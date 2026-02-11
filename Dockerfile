@@ -14,7 +14,7 @@ COPY . .
 RUN npm run build
 
 # Production image using static-web-server
-FROM ghcr.io/static-web-server/static-web-server:2
+FROM ghcr.io/static-web-server/static-web-server:2-alpine
 WORKDIR /
 COPY --from=build /app/dist /public
 
