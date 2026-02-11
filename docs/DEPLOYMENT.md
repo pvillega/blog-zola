@@ -37,7 +37,7 @@ Add these secrets in Coolify:
 In Coolify application settings, add post-deployment command:
 
 ```bash
-./scripts/purge-cloudflare-cache.sh
+/scripts/purge-cloudflare-cache.sh
 ```
 
 ### Auto-Deploy

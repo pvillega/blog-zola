@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Purge Cloudflare cache after deployment
 # Requires CLOUDFLARE_ZONE_ID and CLOUDFLARE_API_TOKEN environment variables
