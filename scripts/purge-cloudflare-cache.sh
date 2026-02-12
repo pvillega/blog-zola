@@ -17,12 +17,12 @@ fi
 
 echo "Purging Cloudflare cache for zone ${CLOUDFLARE_ZONE_ID}..."
 
-response=$(curl -s -X POST "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
+response=$(curl -sS -X POST "https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache" \
   -H "Authorization: Bearer ${CLOUDFLARE_API_TOKEN}" \
   -H "Content-Type: application/json" \
   --data '{"purge_everything":true}')
 
-success=$(echo "$response" | grep -o '"success":true')
+success=$(echo "$response" | grep -o '"success":\s*true' || true)
 
 if [ -n "$success" ]; then
   echo "Cache purged successfully!"
