@@ -4,8 +4,8 @@ pubDatetime: 2014-06-21
 title: "Meetup: Building a Developer Centred Company Culture"
 draft: false
 tags:
-  - miscellanea
-  - company culture
+  - career
+  - opinion
 description: "I wrote another post for Gumtree developer blog. I attended a meetup in StackCareers office in London. I've attended a few meetups (less than I'd like!) since I came to the City and joined Gumtree,..."
 ---
 

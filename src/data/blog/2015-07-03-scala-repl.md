@@ -5,7 +5,7 @@ title: Scala REPL
 draft: false
 tags:
   - scala
-  - repl
+  - tutorial
 description: One of the things people love about Scala is the REPL. I have to be honest; I never paid too much attention to it as IntelliJ provides a handy Scala Worksheet. But it is time to fix this..
 ---
 

@@ -4,8 +4,7 @@ pubDatetime: 2013-12-15
 title: Gumtree blog is live
 draft: false
 tags:
-  - miscellanea
-  - gumtree
+  - meta
 description: "It's been a busy couple of months. I recently moved from Dublin to London to start working at Gumtree (and loving it so far!). If moving is always a hassle, moving across countries is that hassle t..."
 ---
 

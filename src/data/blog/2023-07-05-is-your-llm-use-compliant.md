@@ -4,10 +4,8 @@ pubDatetime: 2023-07-05
 title: "Chaordic collaboration: Is your LLM use compliant?"
 draft: false
 tags:
-  - chaordic
-  - collaboration
-  - llm
   - ai
+  - opinion
 description: "I've written a new blog post, a collaboration with Chaordic, that you can read in their blog: Is your LLM use compliant?. I hope you enjoy it."
 ---
 

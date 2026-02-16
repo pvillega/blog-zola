@@ -5,8 +5,7 @@ title: Builder Pattern and Inheritance in Java
 draft: false
 tags:
   - java
-  - pattern
-  - builder
+  - design-patterns
 description: At Gumtree we are currently doing some changes to the back-end of the site. To that aim we have spent some weeks building tools and scaffolding that will facilitate our next tasks. Planning is impo...
 ---
 

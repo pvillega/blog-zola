@@ -5,7 +5,7 @@ title: Ubuntu Server Maintenance
 draft: false
 tags:
   - devops
-  - ubuntu
+  - tutorial
 description: "This guide will show some basic stuff you might need to maintain an Ubuntu server. You might not need all of them, but thy are handy enough and I've had to use them at least once."
 ---
 

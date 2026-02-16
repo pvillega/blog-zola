@@ -4,8 +4,8 @@ pubDatetime: 2011-07-19
 title: "Scala: Move Forward"
 draft: false
 tags:
-  - jvm
   - scala
+  - opinion
 description: "Soon Java 7 will be released. A bit delayed, yes, but it's here. Even so the question lingers: is it enough? I believe the answer nowadays is NO, but of course this is an open discussion in which e..."
 ---
 

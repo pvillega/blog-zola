@@ -4,8 +4,8 @@ pubDatetime: 2010-07-10
 title: How to Heal and Prevent Computer Injury (RSI)
 draft: false
 tags:
-  - miscellanea
   - health
+  - personal
 description: "As somebody who spends too many hours in front of a computer I've developed some injuries in my tendons, specially in the right arm. It's not nice to work with pain (and I blame my low APM to it!)...."
 ---
 

@@ -5,8 +5,7 @@ title: Enums to JSON in Scala
 draft: false
 tags:
   - scala
-  - json
-  - enumerations
+  - tutorial
 description: "Scala gives the developer the possibility of using Enumerations. If they should be used or if Case Classes are better is a debate I'm not going to start here. They exist and they can be used."
 ---
 

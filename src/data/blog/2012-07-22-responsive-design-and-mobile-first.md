@@ -4,9 +4,8 @@ pubDatetime: 2012-07-22
 title: Responsive Design and Mobile First
 draft: false
 tags:
-  - webapp
-  - responsive
-  - mobile
+  - web-development
+  - opinion
 description: "Mobile browsing is becoming the norm. With the advent of devices like the new iPad or the Nexus 7, predictions that mobile will surpass desktop in 2014 seem wrong: it may happen even earlier. I fin..."
 ---
 

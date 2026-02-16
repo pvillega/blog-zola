@@ -4,9 +4,8 @@ pubDatetime: 2023-04-25
 title: "Chaordic collaboration: Yes, Code: How AI can challenge the No-Code movement"
 draft: false
 tags:
-  - chaordic
-  - collaboration
   - ai
+  - opinion
 description: "I've written a new blog post, a collaboration with Chaordic, that you can read in their blog: Yes, Code: How AI can challenge the No-Code movement. I hope you enjoy it."
 ---
 

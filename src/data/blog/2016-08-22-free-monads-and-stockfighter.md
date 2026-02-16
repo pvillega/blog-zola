@@ -5,10 +5,9 @@ title: Free Monads and Stockfighter
 draft: false
 tags:
   - scala
-  - monad
-  - fp
-  - free monad
-  - stockfighter
+  - functional-programming
+  - free-monad
+  - tutorial
 description: StockFighter is a game by Patrick McKenzie (Hi Patrick!) and others that makes you compete in a virtual Stock Exchange to accomplish certain objectives. They use it as a recruitment tool (kind of, ...
 ---
 

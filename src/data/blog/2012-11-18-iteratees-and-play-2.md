@@ -5,9 +5,8 @@ title: Iteratees and Play 2
 draft: false
 tags:
   - scala
-  - play2
-  - playframework
-  - iteratee
+  - play-framework
+  - tutorial
 description: From time to time I like to test some new functionality of Play 2.0. Creating a tiny for-fun project allows me to see that functionality in action, to solve the initial pitfalls related to it and t...
 ---
 

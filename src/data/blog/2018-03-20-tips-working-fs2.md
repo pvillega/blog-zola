@@ -5,9 +5,8 @@ title: Tips for working with FS2 at Underscore blog
 draft: false
 tags:
   - scala
-  - fs2
-  - fp
-  - underscore
+  - functional-programming
+  - tutorial
 description: "This is just a short entry to make you aware of a new post at Underscore's blog."
 ---
 

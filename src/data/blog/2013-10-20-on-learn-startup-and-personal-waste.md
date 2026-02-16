@@ -4,9 +4,8 @@ pubDatetime: 2013-10-20
 title: On Learn Startup and Personal Waste
 draft: false
 tags:
-  - miscellanea
-  - waste
-  - lean startup
+  - opinion
+  - career
 description: I recently finished reading The Lean Startup, a (relatively) new approach on development and innovation on software companies. An interesting and recommended reading for anyone involved in software...
 ---
 

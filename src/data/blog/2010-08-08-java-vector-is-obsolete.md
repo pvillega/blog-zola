@@ -5,7 +5,7 @@ title: Java Vector is Obsolete
 draft: false
 tags:
   - java
-  - vector
+  - tutorial
 description: Today I was working with a unit test class for my Google Summer of Code project. Launching the test raised a concurrency exception due to me using ContiPerf to check the performance of some methods...
 ---
 

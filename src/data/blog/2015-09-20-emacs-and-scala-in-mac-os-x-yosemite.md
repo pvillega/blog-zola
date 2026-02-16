@@ -5,8 +5,8 @@ title: Emacs and Scala in Mac OS X Yosemite
 draft: false
 tags:
   - scala
-  - emacs
-  - macos
+  - tools
+  - tutorial
 description: "After hearing a lot about the benefits of using Emacs to code in Scala, I've decided to give it a go and also to document the steps to work with it, in case anyone else feels crazy enough to try this."
 ---
 

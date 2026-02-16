@@ -6,7 +6,6 @@ draft: false
 tags:
   - java
   - ejb
-  - jpa
 description: This page contains a brief summary of Java Persistence API (JPA). It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference or some bo...
 ---
 

@@ -5,7 +5,7 @@ title: Scala Exchange 2015 Day One
 draft: false
 tags:
   - scala
-  - scalax
+  - conference
 description: Scala Exchange 2015 is on! I will be updating this entry with summaries on the talks I attended. Typos a plenty, be warned, but I hope this proves useful to somebody while we wait for the videos to...
 ---
 

@@ -4,8 +4,7 @@ pubDatetime: 2009-08-01
 title: Moved and Lost
 draft: false
 tags:
-  - miscellanea
-  - blog
+  - meta
 description: "So, the blog has been migrated. Sadly, due to format issues and my sloppiness, several posts have been lost. Like in gone. Forever. Nothing too relevant that can't be found in other places, but ove..."
 ---
 

@@ -4,8 +4,8 @@ pubDatetime: 2012-10-15
 title: Learning Scala in Coursera
 draft: false
 tags:
-  - coursera
   - scala
+  - tutorial
 description: Scala is growing, a lot. The (relatively) recent investment of $14M in the company ensures that the language will be taken care of and any remaining issues (like some necessary improvements for the...
 ---
 

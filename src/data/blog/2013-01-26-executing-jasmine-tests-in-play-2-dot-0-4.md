@@ -5,10 +5,9 @@ title: Executing Jasmine Tests in Play 2.0.4
 draft: false
 tags:
   - scala
-  - play2
-  - playframework
-  - angularjs
-  - jasmine
+  - play-framework
+  - web-development
+  - tutorial
 description: "Christmas break is over, and on a whim I started to check AngularJs. If you haven't tested it yet, do it. I've toyed around  with Backbone and some other Javascript single page app frameworks, and ..."
 ---
 

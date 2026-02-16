@@ -5,9 +5,8 @@ title: Finch post at Underscore blog
 draft: false
 tags:
   - scala
-  - finch
-  - fp
-  - underscore
+  - functional-programming
+  - web-development
 description: "This is just a short entry to make you aware of a new post by yours truly at Underscore's blog."
 ---
 

@@ -5,11 +5,8 @@ title: Refining your data post at Underscore blog
 draft: false
 tags:
   - scala
-  - pureconfig
-  - refine
-  - doobie
-  - fp
-  - underscore
+  - functional-programming
+  - tutorial
 description: "This is just a short entry to make you aware of a new post (again!) at Underscore's blog."
 ---
 

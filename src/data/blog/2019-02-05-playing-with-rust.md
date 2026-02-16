@@ -5,7 +5,7 @@ title: Playing with Rust
 draft: false
 tags:
   - rust
-  - twitter
+  - tutorial
 description: "Rust is not, at this stage, a new language. But I have to confess that I had not checked it out until now. I built a small tool to test it out. In this post I'll briefly talk about how it felt work..."
 ---
 

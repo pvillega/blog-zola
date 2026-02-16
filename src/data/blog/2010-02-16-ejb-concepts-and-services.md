@@ -6,7 +6,6 @@ draft: false
 tags:
   - java
   - ejb
-  - ejb3
 description: This page contains a brief summary of EJB 3.0 Services and related concepts. It only gives basic information, for more details about life cycle and other functionalities check the EJB 3.0 reference...
 ---
 

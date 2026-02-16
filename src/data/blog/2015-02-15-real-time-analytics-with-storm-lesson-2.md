@@ -5,8 +5,8 @@ title: Real-Time Analytics With Storm - Lesson 2
 draft: false
 tags:
   - scala
-  - udacity
-  - storm
+  - data-engineering
+  - tutorial
 description: I just finished the second lesson of Real-Time Analytics with Apache Storm. At this stage I should be able to understand how Sprouts and Bolts interact, and to parse data from Twitter in real time.
 ---
 

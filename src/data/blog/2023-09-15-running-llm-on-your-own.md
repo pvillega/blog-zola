@@ -4,10 +4,8 @@ pubDatetime: 2023-09-15
 title: "Chaordic collaboration: Running LLMs on your own"
 draft: false
 tags:
-  - chaordic
-  - collaboration
-  - llm
   - ai
+  - tutorial
 description: "I've written a new blog post, a collaboration with Chaordic, that you can read in their blog: Running LLMs on your own. I hope you enjoy it."
 ---
 

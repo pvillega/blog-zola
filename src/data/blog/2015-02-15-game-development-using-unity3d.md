@@ -4,8 +4,8 @@ pubDatetime: 2015-02-15
 title: Game Development Using Unity3D
 draft: false
 tags:
-  - unity3d
-  - development
+  - game-development
+  - tutorial
 description: "I think that most software developers have a secret desire: to build their own game. Unfortunately the golden times of the 80's where simplistic games with almost no graphics succeeded are gone. Mu..."
 ---
 

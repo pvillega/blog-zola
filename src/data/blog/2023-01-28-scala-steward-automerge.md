@@ -5,9 +5,8 @@ title: Automerge your Scala Steward pull-requests
 draft: false
 tags:
   - scala
-  - sbt
-  - scala steward
-  - automerge
+  - devops
+  - tutorial
 description: If you code in Scala, it is likely that you use Scala Steward to keep your dependencies up-to-date. But merging all the pull-requests it generates is tiring. This blog post tries to solve that.
 ---
 

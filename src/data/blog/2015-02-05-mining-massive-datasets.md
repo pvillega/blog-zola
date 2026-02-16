@@ -4,9 +4,8 @@ pubDatetime: 2015-02-05
 title: Mining Massive Datasets
 draft: false
 tags:
-  - scala
-  - coursera
-  - datasets
+  - data-science
+  - tutorial
 description: "As part of my efforts to understand more of the data science world, I've joined another Coursera class: Mining Massive Datasets. First week done, how was it?"
 ---
 

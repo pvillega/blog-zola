@@ -5,8 +5,8 @@ title: Real-Time Analytics With Apache Storm at Udacity
 draft: false
 tags:
   - scala
-  - udacity
-  - storm
+  - data-engineering
+  - tutorial
 description: Marc Andreessen famously said that Why Software Is Eating the World. There is a lot of truth in this but if we think about it a bit more it feels that, nowadays, the way this is happening is via ma...
 ---
 

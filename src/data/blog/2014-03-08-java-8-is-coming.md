@@ -5,7 +5,7 @@ title: Java 8 is coming
 draft: false
 tags:
   - java
-  - java8
+  - opinion
 description: "It's March and Java 8 is coming soon. A delayed and very expected release of Java with plenty of new tools: lambdas, default methods, etc."
 ---
 

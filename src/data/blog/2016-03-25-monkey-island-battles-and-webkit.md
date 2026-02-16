@@ -4,9 +4,9 @@ pubDatetime: 2016-03-25
 title: Monkey Island Battles and WebKit
 draft: false
 tags:
-  - lambda
-  - development
-  - webkit
+  - web-development
+  - cloud
+  - tutorial
 description: Have you heard about AWS Lambda? Do you like Monkey Island)? Are you into Insult Sword Fighting? Then, come along, this may interest you ;)
 ---
 

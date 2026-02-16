@@ -4,9 +4,8 @@ pubDatetime: 2023-03-02
 title: "Chaordic collaboration: Use Wardley Maps to stop software development waste"
 draft: false
 tags:
-  - chaordic
-  - collaboration
-  - wardley maps
+  - architecture
+  - opinion
 description: "I've written a new blog post, a collaboration with Chaordic, that you can read in their blog: Use Wardley Maps to stop software development waste. I hope you enjoy it."
 ---
 

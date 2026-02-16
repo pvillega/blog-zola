@@ -6,7 +6,8 @@ draft: false
 tags:
   - scala
   - docker
-  - heroku
+  - devops
+  - tutorial
 description: "Heroku has announced beta support for Docker containers running in its platform. As I have some time in my hands, I've tried how well it integrates."
 ---
 

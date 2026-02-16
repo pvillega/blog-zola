@@ -5,9 +5,7 @@ title: Redmine on Ubuntu 9.04 with NGinx
 draft: false
 tags:
   - devops
-  - redmine
-  - nginx
-  - ubuntu
+  - tutorial
 description: Originally I wanted to install Launchpad on my server to manage my projects. As of 17th of August of 2009, Launchpad is not yet ready for production. The only way to install it is using an script, ...
 ---
 

@@ -4,9 +4,8 @@ pubDatetime: 2015-02-08
 title: Machine Learning at Coursera
 draft: false
 tags:
-  - scala
-  - coursera
-  - ml
+  - machine-learning
+  - tutorial
 description: "And more work in the data science world. I've joined yet another Coursera class: Machine Learning. Yes, I might be overdoing it."
 ---
 

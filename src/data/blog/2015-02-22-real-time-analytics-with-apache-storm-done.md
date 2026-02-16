@@ -5,8 +5,8 @@ title: Real-Time Analytics With Storm - Done!
 draft: false
 tags:
   - scala
-  - udacity
-  - storm
+  - data-engineering
+  - tutorial
 description: "And Real-Time Analytics with Apache Storm it's over. Kinda. But it has been a fun road to travel."
 ---
 

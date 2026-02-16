@@ -5,10 +5,9 @@ title: Using a remote server to build your Scala projects
 draft: false
 tags:
   - scala
-  - sbt
-  - vscode
-  - linode
-  - triplequote
+  - devops
+  - tools
+  - tutorial
 description: VS Code has released tooling for remote development via ssh. In Scala the combo of Metals and VS Code for development has become the norm for many people. How easy and convenient may it be to use t...
 ---
 

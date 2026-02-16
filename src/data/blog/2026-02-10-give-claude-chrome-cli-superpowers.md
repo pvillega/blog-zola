@@ -5,9 +5,8 @@ title: Give Claude in Chrome Your CLI Superpowers
 draft: false
 tags:
   - ai
-  - claude
-  - chrome
-  - til
+  - tutorial
+  - tools
 description: "A TIL on using the --chrome flag with Claude Code CLI to enhance Claude in Chrome with custom skills, commands, and a tailored system prompt for more powerful browser automation."
 ---
 

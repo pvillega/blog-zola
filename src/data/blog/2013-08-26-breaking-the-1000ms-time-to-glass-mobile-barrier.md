@@ -4,9 +4,8 @@ pubDatetime: 2013-08-26
 title: Breaking the 1000ms Time to Glass Mobile Barrier
 draft: false
 tags:
-  - webapp
-  - performance
-  - mobile
+  - web-development
+  - opinion
 description: "Mobile is the new king and HTML 5 allows developers to, at last, build once and run everywhere: tablets, phones, desktops..."
 ---
 

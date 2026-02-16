@@ -5,9 +5,7 @@ title: Raspberry Pi as NAS with Samba
 draft: false
 tags:
   - devops
-  - raspberry
-  - crashplan
-  - deluged
+  - tutorial
 description: "This year I've bought a Raspberry Pi. I've wanted to play with it for a long time, but it was one of these things you keep delaying as I wasn't sure what to use it for. After moving to London, and ..."
 ---
 

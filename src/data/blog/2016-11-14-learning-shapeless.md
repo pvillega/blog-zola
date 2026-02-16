@@ -5,8 +5,8 @@ title: Learning Shapeless
 draft: false
 tags:
   - scala
-  - shapeless
-  - generic programming
+  - functional-programming
+  - tutorial
 description: Shapeless is a type class and dependent type based generic programming library for Scala. It had its origins in several talks by Miles Sabin, and he has been the main contributor to the project.
 ---
 

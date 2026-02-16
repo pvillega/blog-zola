@@ -5,9 +5,9 @@ title: On Free Monads
 draft: false
 tags:
   - scala
-  - monad
-  - fp
-  - free monad
+  - functional-programming
+  - free-monad
+  - tutorial
 description: "The concept of Free Monad is becoming popular, or at least I've seen plenty of mentions about it in the Scala Functional Programming community as of late. Why is it relevant?"
 ---
 

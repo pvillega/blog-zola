@@ -5,8 +5,8 @@ title: WebAssembly, Rust, and Edge Computing
 draft: false
 tags:
   - rust
-  - edge computing
   - webassembly
+  - cloud
 description: Serverless has been out there for a while, seemingly surviving the hype cycle. In fact it has recently received an upgrade of sorts with Edge Computing. In this blog post I write about my experienc...
 ---
 

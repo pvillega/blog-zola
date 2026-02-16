@@ -5,10 +5,9 @@ title: Free Monads using FreeK
 draft: false
 tags:
   - scala
-  - monad
-  - fp
-  - free monad
-  - freek
+  - functional-programming
+  - free-monad
+  - tutorial
 description: My previous post on Free Monad implemented a few DSL using Free Monads. The same day I published it I discovered FreeK by Pascal Voitot. How does FreeK help you when building a Free Monad?
 ---
 

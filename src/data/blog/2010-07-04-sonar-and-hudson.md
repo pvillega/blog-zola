@@ -4,10 +4,8 @@ pubDatetime: 2010-07-04
 title: Sonar and Hudson
 draft: false
 tags:
-  - devops
-  - sonar
-  - hudson
   - java
+  - devops
 description: "Due to my current tasks at Google Summer of Code 2010 I've been setting up a small CI system for my personal use. Yes, it is an overkill, but I wanted to test it and, truth be told, the statistics ..."
 ---
 

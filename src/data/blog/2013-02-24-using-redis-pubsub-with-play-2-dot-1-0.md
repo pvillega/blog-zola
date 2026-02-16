@@ -5,9 +5,8 @@ title: Using Redis PubSub with Play 2.1.0
 draft: false
 tags:
   - scala
-  - play2
-  - redis
-  - pubsub
+  - play-framework
+  - tutorial
 description: "Last week I was experimenting a bit with Redis and its Publish-Subscribe module. The idea was to try to implement a chat with it (something I'll need for my next project) and from all the options I..."
 ---
 

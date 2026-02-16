@@ -4,8 +4,7 @@ pubDatetime: 2010-07-02
 title: "I'm from Barcelona"
 draft: false
 tags:
-  - miscellanea
-  - barcelona
+  - personal
 description: "I'm from Barcelona. This simple and straightforward fact always raises expressions of incredulity amongst the people I meet here in Dublin when I tell them I live here:"
 ---
 

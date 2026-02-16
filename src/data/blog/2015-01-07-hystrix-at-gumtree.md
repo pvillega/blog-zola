@@ -5,7 +5,7 @@ title: Hystrix at Gumtree
 draft: false
 tags:
   - java
-  - hystrix
+  - architecture
 description: Happy new year! After many months, busy with the responsive Gumtree project, I wrote another post for our developer blog. This time talking about Hystrix, a Netflix library for application resilience.
 ---
 

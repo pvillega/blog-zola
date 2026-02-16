@@ -5,7 +5,7 @@ title: "Java 7: What's New"
 draft: false
 tags:
   - java
-  - java7
+  - tutorial
 description: "Java 7 will be released soon, so it's time to check what's new. The official announcement is here. A list of the new additions to our beloved JVM follows:"
 ---
 

@@ -5,9 +5,7 @@ title: The year of the Orchestrator
 draft: false
 tags:
   - ai
-  - orchestrators
-  - talks
-  - presentation
+  - conference
 description: "Last week, thanks to David Morgan-Brown and Patchwork Health, I had the opportunity to do something I've genuinely missed: presenting in front of a live audience. The subject? Orchestrators, the la..."
 ---
 

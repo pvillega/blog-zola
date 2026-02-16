@@ -4,10 +4,9 @@ pubDatetime: 2024-11-12
 title: "The Cloud Exit Mirage: A Practical Guide to AWS Alternatives"
 draft: false
 tags:
-  - aws
   - cloud
-  - cloud alternatives
-  - cloud economics
+  - architecture
+  - opinion
 description: "There's a trend that has been going on for a while now. Companies announce they are leaving \"The Cloud\" (meaning, usually, AWS), for huge savings. This seems counter to all they have ever told us a..."
 ---
 

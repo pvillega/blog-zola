@@ -5,9 +5,9 @@ title: Using Ansible to deploy Play Framework apps in EC2 instances
 draft: false
 tags:
   - scala
-  - play2
-  - ansible
-  - ec2
+  - devops
+  - cloud
+  - tutorial
 description: "TL;DR: Clone Ansible for Play Framework to automate the task of deploying Play 2.x projects from a git repository into an EC2 instance."
 ---
 

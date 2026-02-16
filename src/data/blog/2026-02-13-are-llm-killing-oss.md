@@ -5,9 +5,9 @@ title: Are LLMs killing Open Source
 draft: false
 tags:
   - ai
-  - open source
-  - skills
-  - hiring
+  - open-source
+  - career
+  - opinion
 description: "How LLM-generated slop PRs and shrinking small libraries are reshaping open source, eroding hiring signals, and making deep domain expertise the most defensible way for developers to stand out."
 ---
 

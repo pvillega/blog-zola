@@ -4,8 +4,8 @@ pubDatetime: 2010-07-12
 title: "Estatut de Catalunya: a Review"
 draft: false
 tags:
-  - miscellanea
-  - barcelona
+  - opinion
+  - personal
 description: "Let's spur some controversy! Outside Spain very few know about the reality of Catalonia. For those of you who don't know about it, a brief summary of its history:"
 ---
 

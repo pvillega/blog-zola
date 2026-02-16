@@ -4,10 +4,8 @@ pubDatetime: 2015-05-04
 title: "Wearables: Google vs Apple"
 draft: false
 tags:
-  - miscellanea
-  - google
-  - ml
-  - apple
+  - opinion
+  - machine-learning
 description: "After a weekend wasted in bed (food poisoning sucks) I've spent some hours catching up with tech news. And I've found a very interesting, if brief, comment about a new war between Apple and Google ..."
 ---
 

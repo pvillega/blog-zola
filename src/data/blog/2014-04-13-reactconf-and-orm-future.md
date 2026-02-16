@@ -4,8 +4,8 @@ pubDatetime: 2014-04-13
 title: ReactConf and ORM future
 draft: false
 tags:
-  - miscellanea
-  - reactconf
+  - conference
+  - opinion
 description: "I've been pretty busy lately at Gumtree, but I still got time to publish some posts in our Dev Team blog."
 ---
 

@@ -4,8 +4,8 @@ pubDatetime: 2015-03-07
 title: QCon London - Microservices
 draft: false
 tags:
-  - qcon
-  - development
+  - conference
+  - architecture
   - microservices
 description: Yesterday I was at QCon London thanks to Gumtree.
 ---

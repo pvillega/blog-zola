@@ -4,8 +4,7 @@ pubDatetime: 2010-05-09
 title: Renaming Files
 draft: false
 tags:
-  - miscellanea
-  - files
+  - tutorial
 description: "I own a Lacie Big5 to backup my files, which amount to almost 2 Tb right now. Lately I've had some compatibility issues as some files I copied from my Windows Vista machine were not readable from m..."
 ---
 

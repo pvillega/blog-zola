@@ -5,9 +5,8 @@ title: Twilio and Play Framework
 draft: false
 tags:
   - scala
-  - play2
-  - playframework
-  - twilio
+  - play-framework
+  - tutorial
 description: "Another year, more technology to test :) Busy as I am in Gumtree, I've been able to test some interesting stuff. You know, evaluation of technologies to see if they make sense from a business persp..."
 ---
 
