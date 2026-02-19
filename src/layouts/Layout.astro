@@ -122,6 +122,12 @@ const structuredData = {
       title={SITE.title}
       href={new URL("rss.xml", Astro.site)}
     />
+    <link
+      rel="alternate"
+      type="application/atom+xml"
+      title={SITE.title}
+      href={new URL("atom.xml", Astro.site)}
+    />
 
     <meta name="theme-color" content="" />
 
