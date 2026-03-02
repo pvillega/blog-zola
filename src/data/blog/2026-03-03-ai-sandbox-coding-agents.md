@@ -2,7 +2,7 @@
 author: Pere Villega
 pubDatetime: 2026-03-03
 title: "I Built Yet Another Sandbox for AI Coding Agents — Here's Why"
-draft: true
+draft: false
 tags:
   - ai
   - devtools
