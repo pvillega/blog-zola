@@ -4,17 +4,26 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import postFilter from "./postFilter";
 
+export interface SectionMeta {
+  id: string;
+  title: string;
+  description: string;
+  order: number;
+}
+
 export interface SeriesMeta {
   id: string;
   title: string;
   description: string;
   coverImage: string;
   status: "ongoing" | "complete";
+  sections?: SectionMeta[];
 }
 
 export interface SeriesPost {
   post: CollectionEntry<"blog">;
   seriesOrder: number;
+  seriesSection?: string;
 }
 
 export interface SeriesWithPosts {
@@ -43,9 +52,10 @@ export function getSeriesWithPosts(
     .map(meta => {
       const seriesPosts = publishedPosts
         .filter(p => p.data.series === meta.id)
-        .map(p => ({
+        .map((p): SeriesPost => ({
           post: p,
           seriesOrder: p.data.seriesOrder ?? 0,
+          seriesSection: p.data.seriesSection,
         }))
         .sort((a, b) => a.seriesOrder - b.seriesOrder);
 
@@ -81,9 +91,10 @@ export function getSeriesForPost(
   const publishedPosts = allPosts.filter(postFilter);
   const seriesPosts = publishedPosts
     .filter(p => p.data.series === meta.id)
-    .map(p => ({
+    .map((p): SeriesPost => ({
       post: p,
       seriesOrder: p.data.seriesOrder ?? 0,
+      seriesSection: p.data.seriesSection,
     }))
     .sort((a, b) => a.seriesOrder - b.seriesOrder);
 
@@ -92,6 +103,48 @@ export function getSeriesForPost(
     posts: seriesPosts,
     currentOrder: post.data.seriesOrder ?? 0,
   };
+}
+
+export interface SectionWithPosts {
+  section: SectionMeta;
+  posts: SeriesPost[];
+}
+
+export function groupPostsBySections(
+  meta: SeriesMeta,
+  posts: SeriesPost[]
+): { sections: SectionWithPosts[]; unsectioned: SeriesPost[] } {
+  if (!meta.sections || meta.sections.length === 0) {
+    return { sections: [], unsectioned: posts };
+  }
+
+  const sortedSections = [...meta.sections].sort(
+    (a, b) => a.order - b.order
+  );
+
+  const unsectioned: SeriesPost[] = [];
+  const sectionMap = new Map<string, SeriesPost[]>();
+
+  for (const section of sortedSections) {
+    sectionMap.set(section.id, []);
+  }
+
+  for (const sp of posts) {
+    if (sp.seriesSection && sectionMap.has(sp.seriesSection)) {
+      sectionMap.get(sp.seriesSection)!.push(sp);
+    } else {
+      unsectioned.push(sp);
+    }
+  }
+
+  const sections: SectionWithPosts[] = sortedSections
+    .map(section => ({
+      section,
+      posts: sectionMap.get(section.id) ?? [],
+    }))
+    .filter(s => s.posts.length > 0);
+
+  return { sections, unsectioned };
 }
 
 export function hasAnySeries(): boolean {
