@@ -1,5 +1,6 @@
 ---
 import type { SeriesMeta, SeriesPost } from "@/utils/getSeries";
+import { groupPostsBySections } from "@/utils/getSeries";
 import { getPath } from "@/utils/getPath";
 
 type Props = {
@@ -10,6 +11,8 @@ type Props = {
 
 const { seriesMeta, posts, currentOrder } = Astro.props;
 const isCollapsible = posts.length >= 4;
+const { sections, unsectioned } = groupPostsBySections(seriesMeta, posts);
+const hasSections = sections.length > 0;
 ---
 
 <aside
@@ -43,38 +46,92 @@ const isCollapsible = posts.length >= 4;
           aria-expanded="false"
           aria-controls="series-parts-list"
         >
-          Part {currentOrder} of {posts.length}
+          Chapter {currentOrder} of {posts.length}
           <span data-toggle-icon>&#9660;</span>
         </button>
       )
     }
   </div>
 
-  <ol
+  <div
     id="series-parts-list"
-    class:list={["mt-3 space-y-1", { hidden: isCollapsible }]}
+    class:list={["mt-3", { hidden: isCollapsible }]}
     data-series-list
   >
     {
-      posts.map(({ post, seriesOrder }) => (
-        <li class="flex items-baseline gap-2 text-sm">
-          <span class="shrink-0 font-mono text-xs opacity-50">
-            {seriesOrder}.
-          </span>
-          {seriesOrder === currentOrder ? (
-            <span class="font-semibold">{post.data.title}</span>
-          ) : (
-            <a
-              href={getPath(post.id, post.filePath)}
-              class="text-accent/80 decoration-dashed underline-offset-4 hover:underline"
-            >
-              {post.data.title}
-            </a>
+      hasSections ? (
+        <div class="space-y-2">
+          {unsectioned.length > 0 && (
+            <ol class="space-y-1">
+              {unsectioned.map(({ post, seriesOrder }) => (
+                <li class="flex items-baseline gap-2 text-sm">
+                  <span class="shrink-0 font-mono text-xs opacity-50">
+                    {seriesOrder}.
+                  </span>
+                  {seriesOrder === currentOrder ? (
+                    <span class="font-semibold">{post.data.title}</span>
+                  ) : (
+                    <a
+                      href={getPath(post.id, post.filePath)}
+                      class="text-accent/80 decoration-dashed underline-offset-4 hover:underline"
+                    >
+                      {post.data.title}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ol>
           )}
-        </li>
-      ))
+          {sections.map(({ section, posts: sectionPosts }) => (
+            <div>
+              <p class="mt-1 text-xs font-semibold uppercase tracking-wide opacity-50">
+                {section.title}
+              </p>
+              <ol class="mt-1 space-y-1">
+                {sectionPosts.map(({ post, seriesOrder }) => (
+                  <li class="flex items-baseline gap-2 text-sm">
+                    <span class="shrink-0 font-mono text-xs opacity-50">
+                      {seriesOrder}.
+                    </span>
+                    {seriesOrder === currentOrder ? (
+                      <span class="font-semibold">{post.data.title}</span>
+                    ) : (
+                      <a
+                        href={getPath(post.id, post.filePath)}
+                        class="text-accent/80 decoration-dashed underline-offset-4 hover:underline"
+                      >
+                        {post.data.title}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <ol class="space-y-1">
+          {posts.map(({ post, seriesOrder }) => (
+            <li class="flex items-baseline gap-2 text-sm">
+              <span class="shrink-0 font-mono text-xs opacity-50">
+                {seriesOrder}.
+              </span>
+              {seriesOrder === currentOrder ? (
+                <span class="font-semibold">{post.data.title}</span>
+              ) : (
+                <a
+                  href={getPath(post.id, post.filePath)}
+                  class="text-accent/80 decoration-dashed underline-offset-4 hover:underline"
+                >
+                  {post.data.title}
+                </a>
+              )}
+            </li>
+          ))}
+        </ol>
+      )
     }
-  </ol>
+  </div>
 </aside>
 
 <script>
