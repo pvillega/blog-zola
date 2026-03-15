@@ -7,6 +7,14 @@
 #   description: string - short description shown on series cards and detail pages
 #   coverImage: string - path to cover image relative to src/assets/series/
 #   status: "ongoing" | "complete" - whether the series is still being written
+#   sections: (optional) array of section objects for hierarchical organization
+#     - id: string - unique within this series, must match posts' `seriesSection` value
+#       title: string - display name for the section
+#       description: string - explanatory text shown when section is expanded
+#       order: number - position of this section within the series
+#
+# Posts reference their section via the `seriesSection` frontmatter field.
+# Series without sections display chapters in a flat list (backwards compatible).
 #
 # Example:
 #   - id: "durable-computing"
@@ -14,5 +22,14 @@
 #     description: "A comprehensive exploration of durable computing patterns..."
 #     coverImage: "./durable-computing.png"
 #     status: "ongoing"
+#     sections:
+#       - id: "foundations"
+#         title: "Part I: Foundations"
+#         description: "Core concepts and motivation behind durable computing."
+#         order: 1
+#       - id: "patterns"
+#         title: "Part II: Patterns"
+#         description: "Practical patterns for building durable systems."
+#         order: 2
 
 []
