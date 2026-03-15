@@ -32,4 +32,17 @@
 #         description: "Practical patterns for building durable systems."
 #         order: 2
 
-[]
+- id: "durable-computing"
+  title: "Durable Computing Deep Dive"
+  description: "A comprehensive exploration of durable computing patterns and how they change the way we build reliable systems."
+  coverImage: "./durable-computing.png"
+  status: "ongoing"
+  sections:
+    - id: "foundations"
+      title: "Part I: Foundations"
+      description: "Core concepts, motivation, and the fundamental building blocks of durable computing. Start here if you're new to the topic."
+      order: 1
+    - id: "patterns"
+      title: "Part II: Patterns"
+      description: "Practical patterns and implementation strategies for building durable systems in production."
+      order: 2

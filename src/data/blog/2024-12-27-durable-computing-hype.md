@@ -7,8 +7,9 @@ tags:
   - architecture
   - opinion
 description: Durable computing has emerged as a topic in systems design. It may just be my bubble, but it feels as if, suddenly, AI stopped being the next big thing and durable computing is going to solve all o...
-# series: "durable-computing"
-# seriesOrder: 1
+series: "durable-computing"
+seriesOrder: 1
+seriesSection: "foundations"
 ---
 
 Durable computing has emerged as a topic in systems design. It may just be my bubble, but it feels as if, suddenly, AI stopped being the next big thing and durable computing is going to solve all our problems.
