@@ -5,7 +5,10 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Datetime from "@/components/Datetime.astro";
-import { getSeriesWithPosts } from "@/utils/getSeries";
+import {
+  getSeriesWithPosts,
+  groupPostsBySections,
+} from "@/utils/getSeries";
 import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
 
@@ -20,6 +23,8 @@ export async function getStaticPaths() {
 }
 
 const { meta, seriesPosts } = Astro.props;
+const { sections, unsectioned } = groupPostsBySections(meta, seriesPosts);
+const hasSections = sections.length > 0;
 ---
 
 <Layout title={`${meta.title} | ${SITE.title}`}>
@@ -42,42 +47,131 @@ const { meta, seriesPosts } = Astro.props;
       </span>
       <span class="text-sm opacity-60">
         {seriesPosts.length}
-        {seriesPosts.length === 1 ? "part" : "parts"}
+        {seriesPosts.length === 1 ? "chapter" : "chapters"}
       </span>
     </div>
 
-    <ol class="space-y-4">
-      {
-        seriesPosts.map(({ post, seriesOrder }) => (
-          <li class="rounded-lg border border-border/40 transition-colors hover:bg-muted/30">
-            <a
-              href={getPath(post.id, post.filePath)}
-              class="group block p-4"
-            >
-              <div class="flex items-start gap-3">
-                <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
-                  {seriesOrder}
-                </span>
-                <div class="min-w-0">
-                  <span class="text-lg font-medium text-accent decoration-dashed underline-offset-4 group-hover:underline">
-                    {post.data.title}
+    {
+      hasSections ? (
+        <div class="space-y-6">
+          {unsectioned.length > 0 && (
+            <ol class="space-y-4">
+              {unsectioned.map(({ post, seriesOrder }) => (
+                <li class="rounded-lg border border-border/40 transition-colors hover:bg-muted/30">
+                  <a
+                    href={getPath(post.id, post.filePath)}
+                    class="group block p-4"
+                  >
+                    <div class="flex items-start gap-3">
+                      <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                        {seriesOrder}
+                      </span>
+                      <div class="min-w-0">
+                        <span class="text-lg font-medium text-accent decoration-dashed underline-offset-4 group-hover:underline">
+                          {post.data.title}
+                        </span>
+                        <div class="mt-1">
+                          <Datetime
+                            pubDatetime={post.data.pubDatetime}
+                            modDatetime={post.data.modDatetime}
+                          />
+                        </div>
+                        <p class="mt-1 text-sm opacity-80">
+                          {post.data.description}
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ol>
+          )}
+
+          {sections.map(({ section, posts: sectionPosts }) => (
+            <details class="group rounded-lg border border-border/40" data-section>
+              <summary class="cursor-pointer select-none p-5 transition-colors hover:bg-muted/30">
+                <div class="inline-flex items-center gap-2">
+                  <span class="text-lg font-semibold text-accent">
+                    {section.title}
                   </span>
-                  <div class="mt-1">
-                    <Datetime
-                      pubDatetime={post.data.pubDatetime}
-                      modDatetime={post.data.modDatetime}
-                    />
-                  </div>
-                  <p class="mt-1 text-sm opacity-80">
-                    {post.data.description}
-                  </p>
+                  <span class="text-xs opacity-50">
+                    ({sectionPosts.length}{" "}
+                    {sectionPosts.length === 1 ? "chapter" : "chapters"})
+                  </span>
+                  <span class="text-xs opacity-40 transition-transform group-open:rotate-180">
+                    &#9660;
+                  </span>
                 </div>
+              </summary>
+              <div class="border-t border-border/40 px-5 pt-4 pb-5">
+                <p class="mb-4 text-sm opacity-80">{section.description}</p>
+                <ol class="space-y-3">
+                  {sectionPosts.map(({ post, seriesOrder }) => (
+                    <li class="rounded-lg border border-border/20 transition-colors hover:bg-muted/20">
+                      <a
+                        href={getPath(post.id, post.filePath)}
+                        class="group/ch block p-3"
+                      >
+                        <div class="flex items-start gap-3">
+                          <span class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-semibold text-accent">
+                            {seriesOrder}
+                          </span>
+                          <div class="min-w-0">
+                            <span class="font-medium text-accent decoration-dashed underline-offset-4 group-hover/ch:underline">
+                              {post.data.title}
+                            </span>
+                            <div class="mt-1">
+                              <Datetime
+                                pubDatetime={post.data.pubDatetime}
+                                modDatetime={post.data.modDatetime}
+                              />
+                            </div>
+                            <p class="mt-1 text-sm opacity-80">
+                              {post.data.description}
+                            </p>
+                          </div>
+                        </div>
+                      </a>
+                    </li>
+                  ))}
+                </ol>
               </div>
-            </a>
-          </li>
-        ))
-      }
-    </ol>
+            </details>
+          ))}
+        </div>
+      ) : (
+        <ol class="space-y-4">
+          {seriesPosts.map(({ post, seriesOrder }) => (
+            <li class="rounded-lg border border-border/40 transition-colors hover:bg-muted/30">
+              <a
+                href={getPath(post.id, post.filePath)}
+                class="group block p-4"
+              >
+                <div class="flex items-start gap-3">
+                  <span class="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-sm font-semibold text-accent">
+                    {seriesOrder}
+                  </span>
+                  <div class="min-w-0">
+                    <span class="text-lg font-medium text-accent decoration-dashed underline-offset-4 group-hover:underline">
+                      {post.data.title}
+                    </span>
+                    <div class="mt-1">
+                      <Datetime
+                        pubDatetime={post.data.pubDatetime}
+                        modDatetime={post.data.modDatetime}
+                      />
+                    </div>
+                    <p class="mt-1 text-sm opacity-80">
+                      {post.data.description}
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ol>
+      )
+    }
   </Main>
   <Footer />
 </Layout>
