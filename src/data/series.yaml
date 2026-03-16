@@ -32,17 +32,18 @@
 #         description: "Practical patterns for building durable systems."
 #         order: 2
 
-- id: "durable-computing"
-  title: "Durable Computing Deep Dive"
-  description: "A comprehensive exploration of durable computing patterns and how they change the way we build reliable systems."
-  coverImage: "./durable-computing.png"
+
+- id: "ai-developer-evolution"
+  title: "A Practitioner's Guide to AI-Assisted Development"
+  description: "Exploring how AI is reshaping software development — from the tools we use to the skills we need and the way we think about building software."
+  coverImage: "./ai-developer-evolution.png"
   status: "ongoing"
   sections:
-    - id: "foundations"
-      title: "Part I: Foundations"
-      description: "Core concepts, motivation, and the fundamental building blocks of durable computing. Start here if you're new to the topic."
+    - id: "introduction"
+      title: "About This Series"
+      description: "AI is transforming software development at a pace that's hard to keep up with. It can feel overwhelming. This series is an attempt to make sense of it all: how AI changes what it means to be a developer, what skills matter now, and where things are heading. Each section explores a different facet of this evolution, grounded in practical experience rather than hype."
       order: 1
-    - id: "patterns"
-      title: "Part II: Patterns"
-      description: "Practical patterns and implementation strategies for building durable systems in production."
+    - id: "working-with-agents"
+      title: "Part I: Working with Agents"
+      description: "AI coding agents are becoming everyday tools for developers. This section examines how to use these new tools."
       order: 2
