@@ -4,6 +4,7 @@ import Main from "@/layouts/Main.astro";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { Image } from "astro:assets";
 import Datetime from "@/components/Datetime.astro";
 import {
   getSeriesWithPosts,
@@ -11,6 +12,11 @@ import {
 } from "@/utils/getSeries";
 import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
+
+const seriesImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/series/*.{png,jpg,jpeg,webp,gif}",
+  { eager: true }
+);
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -34,22 +40,32 @@ const hasSections = sections.length > 0;
     titleTransition={`series-${meta.id}`}
     pageDesc={meta.description}
   >
-    <div class="mb-6 flex items-center gap-3">
-      <span
-        class:list={[
-          "rounded-full px-2.5 py-0.5 text-xs font-medium",
-          meta.status === "complete"
-            ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-            : "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
-        ]}
-      >
-        {meta.status === "complete" ? "Complete" : "Ongoing"}
-      </span>
-      <span class="text-sm opacity-60">
-        {seriesPosts.length}
-        {seriesPosts.length === 1 ? "chapter" : "chapters"}
-      </span>
-    </div>
+    <div class="mb-6 flex items-start gap-6">
+      {meta.coverImage && seriesImages[`/src/assets/series/${meta.coverImage.replace("./", "")}`] && (
+        <Image
+          src={seriesImages[`/src/assets/series/${meta.coverImage.replace("./", "")}`].default}
+          alt={meta.title}
+          width={350}
+          class="shrink-0 rounded-lg"
+        />
+      )}
+      <div class="min-w-0 flex-1 space-y-6">
+        <div class="flex items-center gap-3">
+          <span
+            class:list={[
+              "rounded-full px-2.5 py-0.5 text-xs font-medium",
+              meta.status === "complete"
+                ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
+                : "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+            ]}
+          >
+            {meta.status === "complete" ? "Complete" : "Ongoing"}
+          </span>
+          <span class="text-sm opacity-60">
+            {seriesPosts.length}
+            {seriesPosts.length === 1 ? "chapter" : "chapters"}
+          </span>
+        </div>
 
     {
       hasSections ? (
@@ -97,9 +113,6 @@ const hasSections = sections.length > 0;
                   <span class="text-xs opacity-50">
                     ({sectionPosts.length}{" "}
                     {sectionPosts.length === 1 ? "chapter" : "chapters"})
-                  </span>
-                  <span class="text-xs opacity-40 transition-transform group-open:rotate-180">
-                    &#9660;
                   </span>
                 </div>
               </summary>
@@ -172,6 +185,8 @@ const hasSections = sections.length > 0;
         </ol>
       )
     }
+      </div>
+    </div>
   </Main>
   <Footer />
 </Layout>

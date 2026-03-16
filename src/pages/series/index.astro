@@ -4,11 +4,17 @@ import Main from "@/layouts/Main.astro";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { Image } from "astro:assets";
 import { getSeriesWithPosts } from "@/utils/getSeries";
 import { SITE } from "@/config";
 
 const posts = await getCollection("blog");
 const seriesList = getSeriesWithPosts(posts);
+
+const seriesImages = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/series/*.{png,jpg,jpeg,webp,gif}",
+  { eager: true }
+);
 ---
 
 <Layout title={`Series | ${SITE.title}`}>
@@ -18,30 +24,40 @@ const seriesList = getSeriesWithPosts(posts);
       seriesList.length === 0 ? (
         <p class="italic opacity-70">No series yet.</p>
       ) : (
-        <ul class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <ul class="grid grid-cols-1 gap-6">
           {seriesList.map(({ meta, posts: seriesPosts }) => (
-            <li class="rounded-lg border border-border/40 p-5 transition-colors hover:bg-muted/30">
-              <a href={`/series/${meta.id}`} class="block">
-                <div class="mb-2 flex items-center gap-2">
-                  <h2 class="text-lg font-medium text-accent">{meta.title}</h2>
-                  <span
-                    class:list={[
-                      "rounded-full px-2 py-0.5 text-xs font-medium",
-                      meta.status === "complete"
-                        ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
-                        : "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
-                    ]}
-                  >
-                    {meta.status === "complete" ? "Complete" : "Ongoing"}
+            <li class="overflow-hidden rounded-lg border border-border/40 transition-colors hover:bg-muted/30">
+              <a href={`/series/${meta.id}`} class="flex items-start gap-5 p-5">
+                {meta.coverImage && seriesImages[`/src/assets/series/${meta.coverImage.replace("./", "")}`] && (
+                  <Image
+                    src={seriesImages[`/src/assets/series/${meta.coverImage.replace("./", "")}`].default}
+                    alt={meta.title}
+                    width={120}
+                    class="shrink-0 rounded"
+                  />
+                )}
+                <div class="min-w-0">
+                  <div class="mb-2 flex items-center gap-2">
+                    <h2 class="text-lg font-medium text-accent">{meta.title}</h2>
+                    <span
+                      class:list={[
+                        "rounded-full px-2 py-0.5 text-xs font-medium",
+                        meta.status === "complete"
+                          ? "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400"
+                          : "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+                      ]}
+                    >
+                      {meta.status === "complete" ? "Complete" : "Ongoing"}
+                    </span>
+                  </div>
+                  <p class="mb-3 line-clamp-5 text-sm opacity-80">
+                    {meta.description}
+                  </p>
+                  <span class="text-xs opacity-60">
+                    {seriesPosts.length}{" "}
+                    {seriesPosts.length === 1 ? "chapter" : "chapters"}
                   </span>
                 </div>
-                <p class="mb-3 line-clamp-2 text-sm opacity-80">
-                  {meta.description}
-                </p>
-                <span class="text-xs opacity-60">
-                  {seriesPosts.length}{" "}
-                  {seriesPosts.length === 1 ? "chapter" : "chapters"}
-                </span>
               </a>
             </li>
           ))}
