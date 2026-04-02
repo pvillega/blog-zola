@@ -14,6 +14,9 @@
 #       order: number - position of this section within the series
 #
 # Posts reference their section via the `seriesSection` frontmatter field.
+# The `seriesOrder` frontmatter value orders posts WITHIN their section.
+# Global ordering is derived from section order first, then seriesOrder within.
+# This allows expanding earlier sections without renumbering later ones.
 # Series without sections display chapters in a flat list (backwards compatible).
 #
 # Example:
@@ -47,3 +50,7 @@
       title: "Part I: Working with Agents"
       description: "AI coding agents are becoming everyday tools for developers. This section examines how to use these new tools."
       order: 2
+    - id: "appendices"
+      title: "Appendices"
+      description: "Supplementary material, setup guides, and reference content that supports the main series without fitting neatly into a single part."
+      order: 99

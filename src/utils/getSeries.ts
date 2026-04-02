@@ -40,6 +40,25 @@ export function getAllSeriesMeta(): SeriesMeta[] {
   return parsed as SeriesMeta[];
 }
 
+function getSectionOrder(
+  meta: SeriesMeta,
+  sectionId: string | undefined
+): number {
+  if (!sectionId || !meta.sections) return 0;
+  const section = meta.sections.find(s => s.id === sectionId);
+  return section?.order ?? 0;
+}
+
+function sortBySection(meta: SeriesMeta, posts: SeriesPost[]): SeriesPost[] {
+  return [...posts].sort((a, b) => {
+    const sectionDiff =
+      getSectionOrder(meta, a.seriesSection) -
+      getSectionOrder(meta, b.seriesSection);
+    if (sectionDiff !== 0) return sectionDiff;
+    return a.seriesOrder - b.seriesOrder;
+  });
+}
+
 export function getSeriesWithPosts(
   posts: CollectionEntry<"blog">[]
 ): SeriesWithPosts[] {
@@ -50,14 +69,16 @@ export function getSeriesWithPosts(
 
   return allMeta
     .map(meta => {
-      const seriesPosts = publishedPosts
-        .filter(p => p.data.series === meta.id)
-        .map((p): SeriesPost => ({
-          post: p,
-          seriesOrder: p.data.seriesOrder ?? 0,
-          seriesSection: p.data.seriesSection,
-        }))
-        .sort((a, b) => a.seriesOrder - b.seriesOrder);
+      const seriesPosts = sortBySection(
+        meta,
+        publishedPosts
+          .filter(p => p.data.series === meta.id)
+          .map((p): SeriesPost => ({
+            post: p,
+            seriesOrder: p.data.seriesOrder ?? 0,
+            seriesSection: p.data.seriesSection,
+          }))
+      );
 
       if (seriesPosts.length === 0) return null;
 
@@ -81,7 +102,7 @@ export function getSeriesWithPosts(
 export function getSeriesForPost(
   post: CollectionEntry<"blog">,
   allPosts: CollectionEntry<"blog">[]
-): { meta: SeriesMeta; posts: SeriesPost[]; currentOrder: number } | null {
+): { meta: SeriesMeta; posts: SeriesPost[]; currentPostId: string } | null {
   if (!post.data.series) return null;
 
   const allMeta = getAllSeriesMeta();
@@ -89,19 +110,21 @@ export function getSeriesForPost(
   if (!meta) return null;
 
   const publishedPosts = allPosts.filter(postFilter);
-  const seriesPosts = publishedPosts
-    .filter(p => p.data.series === meta.id)
-    .map((p): SeriesPost => ({
-      post: p,
-      seriesOrder: p.data.seriesOrder ?? 0,
-      seriesSection: p.data.seriesSection,
-    }))
-    .sort((a, b) => a.seriesOrder - b.seriesOrder);
+  const seriesPosts = sortBySection(
+    meta,
+    publishedPosts
+      .filter(p => p.data.series === meta.id)
+      .map((p): SeriesPost => ({
+        post: p,
+        seriesOrder: p.data.seriesOrder ?? 0,
+        seriesSection: p.data.seriesSection,
+      }))
+  );
 
   return {
     meta,
     posts: seriesPosts,
-    currentOrder: post.data.seriesOrder ?? 0,
+    currentPostId: post.id,
   };
 }
 

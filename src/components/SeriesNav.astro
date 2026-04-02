@@ -7,12 +7,12 @@ import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 type Props = {
   seriesMeta: SeriesMeta;
   posts: SeriesPost[];
-  currentOrder: number;
+  currentPostId: string;
 };
 
-const { seriesMeta, posts, currentOrder } = Astro.props;
+const { seriesMeta, posts, currentPostId } = Astro.props;
 
-const currentIndex = posts.findIndex(p => p.seriesOrder === currentOrder);
+const currentIndex = posts.findIndex(p => p.post.id === currentPostId);
 const prevPart = currentIndex > 0 ? posts[currentIndex - 1] : null;
 const nextPart =
   currentIndex < posts.length - 1 ? posts[currentIndex + 1] : null;

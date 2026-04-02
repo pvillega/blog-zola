@@ -10,7 +10,7 @@ tags:
   - productivity
 description: The journey from AI-sceptic to agent-native isn't a smooth ramp — it's a series of uncomfortable jumps. This post maps the stages of AI-assisted development and identifies three critical fulcrums where developers get stuck.
 series: "ai-developer-evolution"
-seriesOrder: 0
+seriesOrder: 1
 seriesSection: "introduction"
 ---
 
