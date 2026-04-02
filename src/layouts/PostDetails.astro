@@ -38,7 +38,8 @@ const {
   hideEditPost,
 } = post.data;
 
-const { Content } = await render(post);
+const { Content, remarkPluginFrontmatter } = await render(post);
+const readingTime = remarkPluginFrontmatter.readingTime as string;
 
 const seriesContext = getSeriesForPost(post, posts);
 
@@ -102,7 +103,7 @@ const nextPost =
       {title}
     </h1>
     <div class="my-2 flex items-center gap-2">
-      <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
+      <Datetime {pubDatetime} {modDatetime} {timezone} {readingTime} size="lg" />
       <span
         aria-hidden="true"
         class:list={[
