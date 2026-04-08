@@ -10,5 +10,7 @@ public/pagefind/
 .serena/
 .claude/
 .envrc
+mise.toml
+.gabb/
 
 TODO.md
