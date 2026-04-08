@@ -44,7 +44,7 @@ In my experience, context should focus on the HOW: standard operating procedures
 
 There's also a layer of context that informs architectural decisions: ADRs, mission statements, domain knowledge. These help the agent make choices that align with your organisation's approach rather than defaulting to whatever's most common in its training data. I've lost count of the times an agent has defaulted to using Kubernetes just because the project has a Dockerfile and Kubernetes has a lot of tutorial coverage. Context fixes this.
 
-The most important principle, I think, is that context should be easy to access and, the more important it is, the easier it should be. All general context should be colocated with the codebase as much as feasible. Accessed via CLAUDE.md (just [keep it small](./posts/2026-03-23-the-one-file-that-makes-or-breaks-your-ai-workflow/)), a docs folder in the repo, or reference files loaded on demand via a memory MCP.
+The most important principle, I think, is that context should be easy to access and, the more important it is, the easier it should be. All general context should be colocated with the codebase as much as feasible. Accessed via CLAUDE.md (just [keep it small](./2026-03-23-the-one-file-that-makes-or-breaks-your-ai-workflow/)), a docs folder in the repo, or reference files loaded on demand via a memory MCP.
 
 This includes a plan file for tasks in progress, so that an agent can stop at any point and resume without losing track of work done. If your context window fills up or the agent crashes or goes off on a tangent, the plan file is your recovery mechanism. Most people who complain about agent "forgetfulness" don't have one of these as they are one-shotting things, and that's the actual root cause, not some deficiency in the model.
 
@@ -64,7 +64,7 @@ Some context is harder to colocate, like Slack conversations, ADRs in Confluence
 
 ## Reducing Context Needs
 
-Of course, the best context is the context you don't need. A lot of context takes too much of the limited context window. Yes, limited. Even with 1M context window, the [needle in a haystack problem](https://github.com/gkamradt/LLMTest_NeedleInAHaystack) still exists.
+Of course, the best context is the context you don't need. A lot of context takes too much of the limited context window. Yes, limited. Even with 1M context window, the [needle in a haystack problem](https://arxiv.org/abs/2510.05381) still exists.
 
 There are structural ways to reduce this. None of them are particularly novel, which I suspect is part of why they're undervalued.
 
@@ -78,7 +78,7 @@ Following good engineering practices (surprise!) makes AI tools work better. I s
 
 ## Loading Context at the Right Moment
 
-So you've structured your knowledge base, colocated the important bits, and kept tasks small. But there's a subtlety that's easy to miss: *when* context gets loaded matters almost as much as *what* gets loaded.
+So you've structured your knowledge base, colocated the important bits, and kept tasks small. But there's a subtlety that's easy to miss: _when_ context gets loaded matters almost as much as _what_ gets loaded.
 
 Most CLAUDE.md setups I've seen, including my own early attempts, take a static approach. You list everything the agent might need upfront, or you rely on the agent to figure out what to read. Both have problems. Loading everything upfront wastes context budget on things that turn out to be irrelevant. Relying on the agent to self-serve means it often doesn't; it ploughs ahead with whatever's already in the window, confident it knows enough. (Narrator: it did not know enough.)
 
