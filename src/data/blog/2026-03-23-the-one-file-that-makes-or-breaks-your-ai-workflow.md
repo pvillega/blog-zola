@@ -15,11 +15,11 @@ seriesOrder: 4
 seriesSection: "working-with-agents"
 ---
 
-If you've used Claude Code for more than a few sessions, you've probably noticed something: sometimes it works brilliantly, and sometimes it goes in circles, making the same wrong assumptions over and over until you run out of context window and patience.
+A few months ago I spent the better part of an afternoon watching Claude Code rediscover, for the fourth session in a row, that my project uses `uv` instead of `pip`. Same wrong import. Same correction. Same wasted tokens.
 
-The difference, more often than not, is CLAUDE.md.
+The model was fine. My briefing was the problem.
 
-I have to confess. I spent an embarrassing amount of time blaming the model before I figured this out. The model was fine. My briefing was the problem.
+I'd spent an embarrassing amount of time blaming the model before I figured this out. The difference between an agent that works and one that burns through context going in circles is, more often than not, CLAUDE.md.
 
 ## What CLAUDE.md Is
 
@@ -35,7 +35,7 @@ What's not discussed that often: you should immediately edit what it generates. 
 
 The research backing this is solid. An [ETH Zurich study](https://arxiv.org/abs/2602.11988) tested four agents across SWE-bench and custom benchmarks. LLM-generated context files reduced task success by 2–3% while increasing cost by over 20%. Developer-written files improved success by about 4%, but also increased cost by up to 19%. A separate study by [Lulla et al.](https://arxiv.org/abs/2601.20404) found that human-authored AGENTS.md files reduced median wall-clock runtime by nearly 29% and output token consumption by about 17%. Though that study measured efficiency, not correctness.
 
-The critical finding from ETH Zurich was when they stripped all documentation from repos and *then* tested with LLM-generated context files. Those files improved performance by 2.7%. This proves the auto-generated content isn't useless, it's redundant. The agent could discover all of it by reading the repo. Handing it the same information twice adds noise.
+The critical finding from ETH Zurich was when they stripped all documentation from repos and *then* tested with LLM-generated context files. Those files improved performance by 2.7%. The auto-generated content isn't useless; it's redundant. The agent could discover all of it by reading the repo. Handing it the same information twice adds noise.
 
 Human-written files perform better because they contain things the agent genuinely cannot discover on its own.
 
@@ -56,7 +56,7 @@ Here are examples of things you may see in many CLAUDE.md files that shouldn't b
 - "This project uses a monorepo structure with packages in /packages." The agent finds this in the first directory listing.
 - "The following commands are used to run tests, linting, etc" Claude can read your `package.json` (or equivalent) and knows how to run tests in most programming languages.
 
-When you give an agent a 500-line spec, it treats it as a compliance checklist instead of a conceptual framework. It tries to satisfy every requirement simultaneously rather than focusing on the task at hand. This is the experience of all of us, me included, that started our journey crafting elaborate CLAUDE.md files. We can confirm the ETH Zurich findings from bitter experience: the more instructions, the worse the performance. Their framing is useful: context pollution. The agent's attention gets spread equally across all listed requirements, unable to distinguish universal constraints from task-specific guidance.
+When you give an agent a 500-line spec, it treats it as a compliance checklist instead of a conceptual framework. It tries to satisfy every requirement simultaneously rather than focusing on the task at hand. We've all done this. I certainly did, crafting elaborate CLAUDE.md files that kept growing as the agent kept disappointing. The ETH Zurich findings match the bitter experience: the more instructions, the worse the performance. Their framing is useful: context pollution. The agent's attention gets spread equally across all listed requirements, unable to distinguish universal constraints from task-specific guidance.
 
 The practical threshold they propose is 200–300 lines. Performance drops steeply beyond that. Osmani's analysis focuses on a different filter of "discoverable vs non-discoverable", but both converge on the same conclusion: less is more, as long as what remains is the right less.
 
@@ -94,7 +94,9 @@ Based on months of iteration and the collective experience of the community, her
 
 > Our team shares a single CLAUDE.md for the Claude Code repo. We check it into git, and the whole team contributes multiple times a week. Anytime we see Claude do something incorrectly we add it to the CLAUDE.md, so Claude knows not to do it next time.
 
-This is compounding engineering. Each correction improves every future session for every team member. Over time, the mistake rate measurably drops.
+This is compounding engineering. Each correction improves every future session for every team member. The mistake rate drops, session by session.
+
+The CLAUDE.md is your team's accumulated memory.
 
 Let's say that during review, someone spots an anti-pattern and adds it to CLAUDE.md as part of the PR. Future sessions avoid the issue automatically. The example he gives: `never use enums, always prefer literal unions`. That's a correction that, once made, never needs to be made again, and it can cover scenarios where a linter is not enough to specify the rule.
 
@@ -112,16 +114,18 @@ Think of CLAUDE.md as a diagnostic tool. Every line signals something in the cod
 
 Agent keeps putting utilities in the wrong directory? Reorganise the structure. Agent reaching for a deprecated dependency? Fix the import structure. Agent forgetting type checks? Automate it in the build pipeline.
 
-Martin Fowler made this point directly in a [February 2026 blog fragment](https://martinfowler.com/fragments/2026-02-13.html), titling one section "The Venn Diagram of Developer Experience and Agent Experience is a circle." The practices that make a codebase easier for humans to navigate — clear modularity, descriptive naming, well-organised directories — are the same practices that make it easier for agents. Every time you fix a CLAUDE.md instruction by improving the codebase instead, you're simultaneously improving both the human and agent experience.
+Martin Fowler made this point directly in a [February 2026 blog fragment](https://martinfowler.com/fragments/2026-02-13.html), titling one section "The Venn Diagram of Developer Experience and Agent Experience is a circle." The practices that make a codebase easier for humans to read — clear modularity, descriptive naming, well-organised directories — are the same practices that make it easier for agents. Every time you fix a CLAUDE.md instruction by improving the codebase instead, you're simultaneously improving both the human and agent experience.
 
-The code might be fine. The humans might not understand it. And the agent might be confused for the same reasons the humans are confused. The fix, more often than not, isn't better documentation, it's a better codebase.
+The code might be fine. The humans might not understand it. The agent might be confused for the same reasons the humans are confused. The fix, more often than not, isn't better documentation; it's a better codebase.
 
 The ideal CLAUDE.md is nearly empty, not because you haven't invested in it, but because you've fixed the underlying issues it was compensating for.
 
 ## Getting Started
 
-If you're starting from scratch, here's my recommendation: begin with a nearly empty CLAUDE.md containing one instruction: "If you encounter something surprising or confusing in this project, flag it as a comment." Run a few sessions. See what Claude flags. Fix what you can in the codebase. Add the rest to CLAUDE.md.
+If you're starting from scratch, my recommendation: begin with a nearly empty CLAUDE.md containing one instruction: "If you encounter something surprising or confusing in this project, flag it as a comment." Run a few sessions. See what Claude flags. Fix what you can in the codebase. Add the rest to CLAUDE.md.
 
 Most agent-proposed additions are indicators of where the codebase is unclear. Use them as a diagnostic, not just an instruction manual.
 
-And invest in curating this file. It is the same as investing in your developer tooling. The return compounds with every session, and unlike most investments in your stack, this one pays off starting tomorrow.
+Invest in curating this file. It's the same as investing in your developer tooling. The return compounds with every session, starting with the next one.
+
+The model was fine. The briefing was the problem.

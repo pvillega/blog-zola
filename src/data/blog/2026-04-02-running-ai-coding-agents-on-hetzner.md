@@ -20,17 +20,17 @@ seriesOrder: 1
 seriesSection: "appendices"
 ---
 
-Everyone, myself included, recommends that people run agents in sandboxed environments. This is all good and well, except the way people sandbox their environments is, often, a docker container that has a volume mounted, where the default permissions enable agents to access the host. There is no issue, until the issue happens and you need to test how well your backups work. I hope you trust them.
+Everyone, myself included, recommends running agents in sandboxed environments. Then everyone, myself included, reaches for a docker container with a volume mounted and default permissions that quietly let the agent touch the host. No issue. Until the issue happens, and you're testing how well your backups work. I hope you trust them.
 
-The solution is straightforward: use a remote machine for development. This is even more relevant nowadays, where Claude's `remote` and `dispatch` extensions mean you may want your box reachable online, so that you can unblock your agents when not in front of your daily machine.
+The solution is straightforward: use a remote machine for development. It's even more relevant now Claude's `remote` and `dispatch` extensions mean you may want your box reachable online, so you can unblock agents when not in front of your daily machine.
 
-So I built a remote box for myself, and I wrote down what I learned. This post covers the full stack: provisioning and hardening a Hetzner VPS, securing it with Tailscale and Cloudflare Tunnel, and figuring out which machines actually work for running Claude Code with multiple parallel subagents. I've included automation scripts so you can reproduce the setup without the trial-and-error phase I went through.
+So I built a remote box for myself, and I wrote down what I learned. This post covers the full stack: provisioning and hardening a Hetzner VPS, securing it with Tailscale and Cloudflare Tunnel, and working out which machines actually run Claude Code with multiple parallel subagents. I've included automation scripts so you can reproduce the setup without the trial-and-error phase I went through.
 
-Fair warning: this is a long one. Grab a coffee.
+Fair warning: this is a long one.
 
 ## Why Hetzner?
 
-If you've been running AI coding agents on your laptop, you've probably noticed the limitations. Your machine gets hot, battery life tanks, and if you're running multiple agents in parallel via [worktrees](https://code.claude.com/docs/en/common-workflows) everything else grinds to a halt. Compiling 4 copies of your app at once can have that effect, indeed.
+If you've been running AI coding agents on your laptop, you've probably noticed the limitations. Your machine gets hot, battery life tanks, and if you're running multiple agents in parallel via [worktrees](https://code.claude.com/docs/en/common-workflows) everything else grinds to a halt. Compiling four copies of your app at once has that effect.
 
 The obvious solution is to offload this to a remote server. And if you're in Europe (or don't mind your agent traffic crossing the Atlantic), [Hetzner](https://www.hetzner.com) remains the best price-to-performance ratio in the VPS market by a comfortable margin, being typically 30–50% cheaper than DigitalOcean or Linode for equivalent specs.
 
@@ -57,7 +57,7 @@ One Hetzner-specific detail that's bitten me: a primary IPv4 address costs +€0
 
 Security on a VPS isn't optional, especially when you're running AI agents that can execute arbitrary shell commands. The goal is defence in depth: SSH key-only authentication, a non-root user, UFW firewall, fail2ban for brute-force protection, and unattended-upgrades for automatic patching. Once Tailscale is set up (next section), we can close the public SSH port entirely.
 
-Hetzner's Cloud Console accepts [cloud-init](https://cloudinit.readthedocs.io/) YAML during server creation. This is where I do the bulk of the hardening as everything runs before I ever SSH in. Here's a production ready config, evolved over several iterations (the [Hetzner community tutorial](https://community.hetzner.com/tutorials/basic-cloud-config/) was the starting point):
+Hetzner's Cloud Console accepts [cloud-init](https://cloudinit.readthedocs.io/) YAML during server creation. This is where I do the bulk of the hardening as everything runs before I ever SSH in. Here's a production-ready config, evolved over several iterations (the [Hetzner community tutorial](https://community.hetzner.com/tutorials/basic-cloud-config/) was the starting point):
 
 ```yaml
 #cloud-config
@@ -154,7 +154,7 @@ final_message: "The system is ready after $UPTIME seconds"
 ```
 You can adjust it as needed, Claude is **very** good at infrastructure work and can tailor it and provide suggestions, like new options not available at the time of this writing.
 
-Notice the 8 GB swap file. This isn't optional, it's insurance against the Claude Code memory leak bugs that can spike RAM usage to 10x expected levels when subagents are involved. Better safe than sorry with an undesired OOM.
+Notice the 8 GB swap file. This isn't optional; it's insurance against the Claude Code memory leak bugs that can spike RAM to 10x expected levels once subagents get involved. The OOM killer has no sense of humour.
 
 
 A quick note on Hetzner's firewall architecture: you can use the Cloud Firewall (edge-level, managed via Console/API) alongside UFW (host-level). I use both. The Cloud Firewall acts as a first line of defence, UFW acts as a safety net. Redundant, but safer in case of accidental misconfigurations. Just be careful they don't conflict. And remember: your Cloud Firewall needs to allow ICMP if you want uptime monitoring tools like [HetrixTools](https://hetrixtools.com/) to work.
@@ -220,7 +220,7 @@ If you need to access white-listed services for your development tasks and you n
 
 ## Cloudflare Tunnel
 
-Here's a question I see regularly: should you use Tailscale or Cloudflare Tunnel? The answer is both, they solve fundamentally different problems and coexist without conflict.
+Tailscale or Cloudflare Tunnel? Both. They solve different problems and coexist without conflict.
 
 **Tailscale** operates at the network layer via WireGuard. It's for private access: SSH, internal tools, admin panels. End-to-end encrypted, no one in the middle.
 
@@ -257,7 +257,7 @@ Create the Access application *before* setting up the tunnel route, otherwise th
 
 ## Claude Code resource requirements
 
-Claude Code's resource requirements are modest in theory, as the inference runs on Anthropic's servers, after all; your local process just handles context management and tool execution. But in practice, resource consumption is wildly unpredictable, and the parallel subagent story is — to put it diplomatically — a work in progress.
+Claude Code's resource requirements are modest in theory. Inference runs on Anthropic's servers; your local process just handles context management and tool execution. In practice, resource consumption is wildly unpredictable, and the parallel subagent story is, to put it diplomatically, a work in progress.
 
 ### A single instance
 
@@ -307,7 +307,7 @@ tmux attach -t claude
 
 If you use a Claude.ai subscription, you can log in to Claude the first time you start the agent in the server. You will need a browser available to complete the process.
 
-Usually in here one would see the comments about being careful if you use `--dangerously-skip-permissions` mode, but the point of this article is to configure an isolated environment. So that's ok. Of course, be careful with which API keys and data you give access to, use narrowly scoped keys with access only to local and development environments, and mock data, to be safe. But you don't risk wiping your work machine by mistake.
+This is usually where you'd get the warning about `--dangerously-skip-permissions`. Skipping it. The whole point of this article is an isolated environment you can afford to lose. Do be careful with which API keys and data you hand the agent: narrowly scoped keys, development environments only, mock data where you can. But you don't risk wiping your work machine by mistake.
 
 
 ## Automation scripts
@@ -425,6 +425,8 @@ echo "  4. Authenticate Claude Code: claude login"
 
 The infrastructure for running AI coding agents on remote machines is surprisingly straightforward once you know the gotchas. Tailscale eliminates the SSH key management headache and lets you close public ports entirely. Cloudflare Tunnel handles anything that needs a public URL with proper DDoS protection. Hetzner provides the compute at a fraction of what you'd pay on AWS or GCP.
 
-The one area where I'd urge genuine caution is parallel subagent resource planning. For most developers doing serious work with Claude Code, a CCX33 or a dedicated AX42, hardened with the cloud-init config above, and Tailscale for access is the setup I'd recommend. From zero to a working, hardened environment in under five minutes with the right automation.
+The one area where I'd urge genuine caution is parallel subagent resource planning. For most developers doing serious work with Claude Code, a CCX33 or a dedicated AX42, hardened with the cloud-init above and fronted by Tailscale, is what I'd reach for. From zero to a working, hardened environment in under five minutes with the right automation.
 
-The scripts and configs above are deliberately minimal. I've installed the bare essentials and nothing more, because every developer has their own preferred tools, shell setup, and workflow quirks. Your tmux config is not my tmux config, and that's fine. The good news is that Claude is excellent at adapting infrastructure scripts. Hand it your cloud-init and tell it you want zsh with starship, or neovim instead of nano, or whatever else you care about. It will tailor the setup to your preferences without you having to dig through documentation. No reason to install things you'll never use just because some blog post told you to.
+The scripts and configs above are deliberately minimal. Bare essentials and nothing more, because every developer has their own preferred tools, shell setup, and workflow quirks. Your tmux config is not my tmux config, and that's fine. Hand Claude your cloud-init and tell it you want zsh with starship, or neovim instead of nano, or whatever else you care about. It will tailor the setup without you digging through documentation.
+
+Back to the backups question from the opener. The point of this whole exercise isn't that remote is inherently safer than local; it's that a remote box is one you can afford to burn down and rebuild. If the agent does something stupid, you rerun the scripts. You don't restore from a backup you never tested.

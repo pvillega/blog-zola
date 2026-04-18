@@ -15,7 +15,7 @@ description: "Claude Code has shipped more features in four months than most too
 
 If you blinked sometime between late November 2025 and now, you missed a lot.
 
-I've been using Claude Code daily since before Opus 4.5 dropped, and even I've had moments of discovering a feature that apparently shipped three weeks ago while I wasn't paying attention. The release cadence has been relentless. We're talking about weekly updates, sometimes multiple times per week, each quietly adding capabilities that would have warranted their own blog post if any other company had shipped them. The [CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) reads like a firehose.
+I've been using Claude Code daily since before Opus 4.5 dropped, and even I've had moments of discovering a feature that apparently shipped three weeks ago while I wasn't paying attention. The release cadence has been relentless. Weekly updates, sometimes multiple per week, each quietly adding capabilities that would have warranted their own blog post if any other company had shipped them. The [CHANGELOG](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) reads like a firehose.
 
 This post is my attempt to catalogue what's actually changed since Opus 4.5 (November 2025) and make sense of which bits matter. It's not comprehensive as I'd need a small book for that, but it covers the changes that have altered how I work day to day, plus a few I'm still evaluating. If you've been heads-down in your codebase and relying on muscle memory from six months ago, consider this your catch-up guide.
 
@@ -24,9 +24,9 @@ Fair warning: this is a long one. Grab a coffee. Or two.
 
 ## From Tool to Platform
 
-The single most important shift is conceptual, not technical. Claude Code is no longer "a coding assistant in your terminal." It's an agent platform that happens to live in your terminal. The combination of skills, hooks, plugins, custom agents, background tasks, remote control, MCP servers, and Teams means you can now build workflows on top of Claude Code that look nothing like "ask AI to write a function."
+The single most important shift is conceptual, not technical. Claude Code is no longer "a coding assistant in your terminal"; it's an agent platform that happens to live in your terminal. The combination of skills, hooks, plugins, custom agents, background tasks, remote control, MCP servers, and Teams means you can now build workflows on top of Claude Code that look nothing like "ask AI to write a function."
 
-Whether that excites you or makes you nervous probably depends on which fulcrum you're currently sitting at (I wrote about [those fulcrums recently](https://perevillega.com/posts/2026-03-15-fulcrums-of-ai-developer-evolution)). But let's get into the specifics.
+Whether that excites you or makes you nervous probably depends on which fulcrum you're currently sitting at (I wrote about [those fulcrums recently](https://perevillega.com/posts/2026-03-15-fulcrums-of-ai-developer-evolution)). On to the specifics.
 
 
 ## Opus 4.6
@@ -38,7 +38,7 @@ In practice, what this means is that tasks I used to break into three or four st
 
 ## Rules: Improving CLAUDE.md
 
-Here's a pattern I suspect many of us fell into: your CLAUDE.md started at 30 lines. Then it grew to 100. Then 300. Then Claude started ignoring half of it because when everything is high priority, nothing is. Surprising, I know.
+A pattern I suspect many of us fell into: your CLAUDE.md started at 30 lines. Then it grew to 100. Then 300. Then Claude started ignoring half of it because when everything is high priority, nothing is. Surprising, I know.
 
 The [rules system](https://code.claude.com/docs/en/memory) fixes this. Instead of one monolithic file, you create focused rule files in `.claude/rules/` that are scoped to specific file patterns using glob matching. A rule about React component conventions only loads when Claude is working on `.tsx` files. Database migration safety rules only appear when touching migration files. Your Python linting preferences don't pollute your Rust context.
 
@@ -121,7 +121,7 @@ In practice, this means you can tell Claude to "implement the feature described 
 
 The most impactful recent MCP change is tool search, enabled by default since early 2026. Previously, all MCP tool schemas loaded into context at session start. If you had a few servers with dozens of tools each, that ate a meaningful chunk of your context window before you even started working. If you ever run `/context` after enabling the GitHub MCP or Playwright MCP, you know what I am talking about.
 
-Tool search flips this. Only tool names load at startup. When Claude encounters a task that might need an MCP tool, it uses a search tool to discover relevant ones, and only the tools it actually uses enter context. The reported reduction in context consumption is up to 85%, which sounds less impressive with the new 1M context window, but it was a game-changer with smaller context windows. It still is.
+Tool search flips this. Only tool names load at startup. When Claude encounters a task that might need an MCP tool, it uses a search tool to discover relevant ones, and only the tools it actually uses enter context. The reported reduction in context consumption is up to 85%, which sounds less impressive with the new 1M context window, but it made a meaningful difference with smaller context windows. It still does.
 
 Although the tool is enabled by default, you can configure the behaviour:
 
@@ -178,7 +178,7 @@ A practical improvement: MCP servers configured both locally and via claude.ai c
 
 I'll be direct here: MCP servers can read and write your codebase. Every server you install is a potential attack surface. The community has flagged supply chain concerns, and MCP servers require the same vetting as any dependency you'd add to a project. Audit each server before granting permanent authorisation. Use `claude mcp add` with explicit environment variables rather than blanket permissions.
 
-If you're running production MCP servers with sensitive data, keep an eye on the evolving security standards: NIST announced an AI Agent Standards Initiative in February 2026 that's directly relevant, if it moves forward. There's also a Google-led effort to add gRPC transport to MCP, which signals that enterprise adoption is pushing the protocol toward more robust infrastructure. The agent infrastructure layer is maturing faster than the governance layer around it, and that gap is where problems will emerge.
+If you're running production MCP servers with sensitive data, keep an eye on the evolving security standards: NIST announced an AI Agent Standards Initiative in February 2026 that's directly relevant, if it moves forward. There's also a Google-led effort to add gRPC transport to MCP, which signals that enterprise adoption is pushing the protocol toward more serious infrastructure. The agent infrastructure layer is maturing faster than the governance layer around it, and that gap is where problems will emerge.
 
 ### Doubtful future
 
@@ -191,7 +191,7 @@ This one confused me for a while, so let me try to spare you the same experience
 
 Claude Code used to have two separate systems: **commands** (markdown files in `.claude/commands/`) and **skills** (markdown files in `.claude/skills/<n>/SKILL.md`). They've been merged. Both paths now create the same `/slash-command` interface, and Anthropic recommends the skills path going forward because it supports features that plain commands don't.
 
-What makes skills interesting isn't the name change, it's the capabilities the new system supports:
+The name change isn't what matters; the new capabilities are:
 
 **Frontmatter control.** Skills can now declare metadata that changes how they behave. `disable-model-invocation: true` means only you can trigger it (the agent won't invoke it automatically, use this for anything that needs supervision). `user-invocable: false` means only Claude can trigger it (useful for background conventions you want the agent to follow automatically). `allowed-tools` restricts which tools Claude can use, handy for read-only research skills that shouldn't be editing files.
 
@@ -218,7 +218,7 @@ Review these changes for correctness and potential issues.
 
 **Supporting files.** Skills are directories, not single files. You can include templates, reference docs, example code, and scripts alongside your `SKILL.md`. Claude has access to all of it when the skill is invoked.
 
-**Skill-scoped hooks.** As mentioned in the hooks section, skills can declare their own hooks in the frontmatter. These only fire during that skill's execution. This means a skill can be a fully self-contained workflow with its own validation, safety gates, and cleanup — a mini application, really.
+**Skill-scoped hooks.** As mentioned in the hooks section, skills can declare their own hooks in the frontmatter. These only fire during that skill's execution. A skill can be a fully self-contained workflow with its own validation, safety gates, and cleanup. A mini application, really.
 
 But the most relevant change to skills is likely the [revamped skill-creator](https://claude.com/blog/improving-skill-creator-test-measure-and-refine-agent-skills). This is a [plugin](https://claude.com/plugins/skill-creator) for Claude Code that helps you develop skills. The key detail is that it runs evals and benchmarks on the skills you create or want to update, ensuring that the changes have measurable impact. You are no longer restricted to gut feeling regarding a skill, you can prove that it really performs better.
 
@@ -235,7 +235,7 @@ You can optionally pass a focus area: `/simplify error handling` or `/simplify r
 
 ### /review
 
-`/review` is the correctness-focused sibling of `/simplify`. Without arguments, it reviews your recent local changes. Pass a PR number (`/review 123`) or URL and it reviews that pull request instead. My workflow is typically: make changes → `/review` for correctness → fix flagged issues → `/simplify` for cleanliness. The two skills complement each other well: `/review` for "is this right?" and `/simplify` for "is this clean?"
+`/review` is the correctness-focused sibling of `/simplify`. Without arguments, it reviews your recent local changes. Pass a PR number (`/review 123`) or URL and it reviews that pull request instead. My workflow is typically: make changes → `/review` for correctness → fix flagged issues → `/simplify` for cleanliness. The two skills complement each other: `/review` for "is this right?" and `/simplify` for "is this clean?"
 
 ### /batch
 
@@ -278,7 +278,7 @@ A practical tip: if `/diff` reveals something you don't like, `/rewind` and rest
 
 Not new, but worth mentioning because it now accepts focus instructions: `/compact focus on the API changes and the list of modified files`. You can also add standing instructions to your CLAUDE.md: "When compacting, preserve the full list of modified files and current test status."
 
-That said, I prefer to start new sessions instead of compacting, as there is always a risk of context being lost. I rather keep the specs in markdown. But many sources mention manual `/compact` at around 50% context usage as the sweet spot, so I had to mention it.
+I prefer to start new sessions instead of compacting, as there is always a risk of context being lost. I rather keep the specs in markdown. But many sources mention manual `/compact` at around 50% context usage as the sweet spot, so I had to mention it.
 
 
 ### /voice
@@ -326,7 +326,7 @@ This is the feature that got the most attention when it shipped in February 2026
 
 The critical detail: your code never leaves your machine. Only chat messages flow through the encrypted bridge. Your files, MCP servers, environment variables, and project settings all stay local. The phone or browser is just a window into your local session. The security model is straightforward: outbound HTTPS only, no inbound ports, multiple short-lived credentials scoped to specific purposes.
 
-This immediately solved a pain point I had. You kick off a long-running task at your desk, then need to step away. Previously that meant either waiting or hoping it finishes, often to come back to see Claude asking for something. Now you check progress from your phone, approve tool calls, and send follow-up instructions from wherever you are.
+This immediately solved a pain point I had. You kick off a long-running task at your desk, then need to step away. Previously that meant either waiting or hoping it finishes, often to come back and find Claude waiting on a confirmation. Now you check progress from your phone, approve tool calls, and send follow-up instructions from wherever you are.
 
 
 The main constraint is still approvals. Because tool calls require confirmation, sessions aren't fully hands-off unless you pre-configure permissions. This is where hooks (PreToolUse auto-approval for safe operations) combine with Remote Control to create something closer to truly autonomous remote development.
@@ -375,7 +375,7 @@ Plugins can bundle commands, skills, agents, hooks, and MCP server configuration
 
 Plugin startup has been optimised recently. Skills, and agents now load from disk cache without re-fetching, which removes the startup tax that was previously noticeable.
 
-Given how many issues we have with supply chain hacks recently, it is important to repeat that the risk is real, and adding random marketplaces and plugins is a risk. Do vet anything you install carefully. But the ecosystem is growing fast, and the best plugins genuinely save time. Just don't install blindly. Check who maintains it. Don't trust Claude links blindly, you can find repositories with similar names to a well-known plugin but with just 3 stars and 1 maintainer. The same due diligence you'd apply to any npm package applies here, arguably more so given the level of access.
+Given how many supply chain hacks we've seen recently, it is important to repeat that the risk is real, and adding random marketplaces and plugins is a risk. Vet anything you install carefully. The marketplace is growing fast, and the best plugins genuinely save time. Just don't install blindly. Check who maintains it. Don't trust Claude links blindly, you can find repositories with similar names to a well-known plugin but with just 3 stars and 1 maintainer. The same due diligence you'd apply to any npm package applies here, arguably more so given the level of access.
 
 
 ## Agent Teams: Coordinated Multi-Agent Development
@@ -433,7 +433,7 @@ They're *not* effective for sequential tasks, same-file edits, or work with many
 
 Each teammate has its own context window, so token usage scales with the number of active teammates, which will exhaust your session faster. A practical mitigation: run the lead on Opus for strategic coordination while teammates run on Sonnet for focused implementation. The lead needs strong reasoning for task decomposition; teammates doing scoped work often perform well on the cheaper model.
 
-Agent teams are experimental, and the rough edges are real. Despite all that, I've found agent teams genuinely useful for the right kind of task. The experience of watching four agents work in parallel on different parts of a feature — and seeing them message each other to resolve interface contracts — is closer to managing a small engineering team than it is to using a coding tool. Whether that excites you or makes you wonder about the future of junior engineering roles is, I suppose, a matter of perspective.
+Agent teams are experimental, and the rough edges are real. Even so, I've found them genuinely useful for the right kind of task. Watching four agents work in parallel on different parts of a feature, messaging each other to resolve interface contracts, feels closer to managing a small engineering team than to using a coding tool. Whether that excites you or makes you wonder about junior engineering roles is, I suppose, a matter of perspective.
 
 ## Auto Mode
 
@@ -441,7 +441,7 @@ Shipped [March 24, 2026](https://claude.com/blog/auto-mode), auto mode fills the
 
 The mechanism is more sophisticated than I initially assumed. When auto mode is enabled, a **separate Sonnet 4.6 safety classifier** evaluates every tool call before execution. This classifier runs in the background, checking for three categories of risk: scope escalation (is Claude doing something beyond what you asked for?), untrusted infrastructure (is the action targeting systems the classifier doesn't recognise?), and destructive operations (force-pushes, production deploys, `curl | bash`, etc.). Safe operations proceed without prompting. Risky operations get blocked, and Claude falls back to asking you for approval.
 
-Auto mode automates the routine approvals while catching the dangerous operations that genuinely need a human eye. It uses more tokens (the classifier adds overhead per action) and adds latency, but eliminates the flow-destroying permission prompts that make long sessions painful, without having to enter YOLO mode.
+Auto mode automates the routine approvals while catching the dangerous operations that genuinely need a human eye. It uses more tokens (the classifier adds overhead per action) and adds latency, but removes the flow-destroying permission prompts that make long sessions painful, without having to enter YOLO mode.
 
 The annoying part is that it is currently only available for Team plans, not other subscriptions (yet).
 
@@ -455,11 +455,11 @@ A grab bag of things that individually seem minor but collectively make the tool
 
 **Native VS Code extension**. Highlights code blocks, invokes Claude for explanations or refactoring, shows suggested changes inline. Real-time diffs in a dedicated sidebar panel. I still do most work in the terminal, but the extension is useful for quick contextual queries. It now also shows rate limit warning banners with usage percentage and reset time.
 
-**LSP (Language Server Protocol) tool.** Added for code intelligence features: go-to-definition, find references, hover documentation. This means Claude can now navigate your codebase the way an IDE does rather than relying solely on grep and file reads. Available for every major language via plugins. This quietly makes Claude significantly better at understanding large codebases.
+**LSP (Language Server Protocol) tool.** Added for code intelligence features: go-to-definition, find references, hover documentation. Claude can now traverse your codebase the way an IDE does rather than relying solely on grep and file reads. Available for every major language via plugins. This quietly makes Claude significantly better at understanding large codebases.
 
 **[Chrome extension](https://code.claude.com/docs/en/chrome#use-claude-code-with-chrome-beta) integration.** Claude in Chrome lets you automate browser actions from Claude Code. Start a task in the terminal, let Claude handle work in the browser reading console errors, network requests, and DOM state to help debug issues. Also supports recording workflows that Claude can learn and repeat.
 
-**Channels**. Enabled with a flag, `--channels`, it allows MCP servers to push messages into your session. External services can proactively notify your coding session about events rather than you polling for them. Very early, but combined with `/loop` for scheduled checks and Remote Control for mobile access, Claude Code is starting to look less like a tool you invoke and more like a system that's always present.
+**Channels**. Enabled with a flag, `--channels`, it allows MCP servers to push messages into your session. External services can proactively notify your coding session about events rather than you polling for them. Very early, but combined with `/loop` for scheduled checks and Remote Control for mobile access, Claude Code is starting to behave less like a tool you invoke and more like a system that's always present.
 
 **`--bare` mode.** For scripted `-p` calls — skips hooks, LSP, plugin sync, and skill directory walks. Faster startup for automation.
 
@@ -494,4 +494,4 @@ The elephant in the room is that this pace of change is itself a challenge. Feat
 
 My honest advice: don't try to follow weekly or to adopt everything at once. You will hear about the most important changes when they happen. From the ones in this list you may have missed, pick two or three changes that address friction you're currently experiencing, integrate those, and revisit in a month. The other features will still be there. Probably with three new ones you'll need to learn about.
 
-As with most things in this space: in a few months half of this post will be already outdated. But someone else will have written a summary of the main changes released in the meantime I can refer to. 
+As with most things in this space: in a few months half of this post will already be outdated. But someone else will have written a summary of the changes released in the meantime. I'll just read that one.

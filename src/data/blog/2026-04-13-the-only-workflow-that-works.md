@@ -43,7 +43,7 @@ It starts with **brainstorming a detailed specification with the AI.** Describe 
 
 Once the spec exists, **break the plan into small, logical, bite-sized tasks.** You can iterate on this, editing and asking the AI to critique or refine it. Each task should be small enough for a subagent to handle within its context window.
 
-Then **implement each task, in order, committing results.** Because the tasks are small, the implementation is straightforward. But here's the real benefit: small tasks are easier to review. The output is stochastic. You need to verify that the code is what you expect and the tests make sense. Small commits with good messages document the development process, which helps during [code review](https://simonwillison.net/guides/agentic-engineering-patterns/anti-patterns/), and as Simon Willison puts it, if you open a PR with hundreds of lines of unreviewed agent code, you're delegating the actual work to your collaborators.
+Then **implement each task, in order, committing results.** Because the tasks are small, the implementation is straightforward. Small tasks are easier to review. The output is stochastic. You need to verify that the code is what you expect and the tests make sense. Small commits with good messages document the development process, which helps during [code review](https://simonwillison.net/guides/agentic-engineering-patterns/anti-patterns/), and as Simon Willison puts it, if you open a PR with hundreds of lines of unreviewed agent code, you're delegating the actual work to your collaborators.
 
 Finally, **provide a way for the AI to [check its own work](https://www.philschmid.de/closing-the-loop).** CI/CD, linters, type checkers, test suites, etc. These become your feedback loops. The agent writes code, the automated tools catch issues, the agent fixes them, with you overseeing the high-level direction.
 
@@ -59,7 +59,7 @@ The normal flow works. But is there a way to make it better?
 
 **Phase 2: Planning.** The agent writes `plan.md` as a real artefact. Not using the built-in plan mode but producing an actual file you can open in your editor. Plans include the approach, code snippets, file paths, and trade-offs considered.
 
-**Phase 3: The annotation cycle.** This is where the magic happens. You open the plan in your editor and add inline notes:
+**Phase 3: The annotation cycle.** This is where the work actually happens. You open the plan in your editor and add inline notes:
 
 "Use drizzle:generate for migrations, not raw SQL."
 "No, this should be PATCH, not PUT."
@@ -97,7 +97,7 @@ The approach can be extended to work in a specific phase. For example, the spec 
 
 This bears repeating: always review output before committing. Challenge things. Ask why a particular approach was chosen. The output is stochastic; just because it makes sense doesn't mean it's correct.
 
-I'm not talking about reviewing the generated code. At the stage of use we are discussing in this section, the size of the code to review is likely manageable. But as we delegate more and more to agents, this won't be the case, so code review (assuming you are testing the result, verifying it does what it should) is optional. But spec review is not. A bad spec will generate the wrong code, often in subtle ways.
+I'm not talking about reviewing the generated code. At the stage of use we are discussing in this section, the size of the code to review is likely manageable. But as we delegate more and more to agents, this won't be the case, so code review (assuming you are testing the result, verifying it does what it should) is optional. Spec review is not. A bad spec will generate the wrong code, often in subtle ways.
 
 The good news is that rewriting code with an LLM is cheap. If the approach is wrong, throw it away and try again with better constraints in your spec. The cost of regeneration is tiny compared to the cost of shipping something broken. This is a genuine mindset shift: code is now disposable. The spec and the tests are the valuable artefacts.
 

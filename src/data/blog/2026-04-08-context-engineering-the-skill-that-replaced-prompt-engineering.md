@@ -19,7 +19,7 @@ seriesSection: "working-with-agents"
 
 I spent an embarrassingly long time optimising prompts before I realised I was solving the wrong problem.
 
-Your prompt is 200 tokens. The model's context window is 1,000,000. That means your carefully crafted instruction is 0.1% (well, more like 0.0002%) of what the model actually sees. The other 99.99% is context engineering: CLAUDE.md files, tool definitions, MCP outputs, files the agent has read, conversation history. If your agent isn't performing, I'd argue you shouldn't rewrite the prompt. You should redesign the context.
+Your prompt is 200 tokens. The model's context window is 1,000,000. That means your carefully crafted instruction is 0.1% (well, more like 0.0002%) of what the model actually sees. The other 99.9% is context engineering: CLAUDE.md files, tool definitions, MCP outputs, files the agent has read, conversation history. If your agent isn't performing, I'd argue you shouldn't rewrite the prompt. You should redesign the context.
 
 ## The Distinction That Matters
 
@@ -28,7 +28,7 @@ Prompt engineering optimises the instruction. Context engineering optimises the 
 If prompt engineering is not the way, what should we do? What are the steps towards that useful environment?
 There's a framework I find useful for thinking about this. It uses a prompt, but encodes four perspectives or layers on it, each building on the one below.
 
-The first layer is **prompt craft**: writing clear, specific instructions. This is table stakes. Every tutorial teaches it and, although I suspect this is a controversial take, I consider it the least important layer once you move beyond toy examples. It's necessary, but it's not where the real leverage is.
+The first layer is **prompt craft**: writing clear, specific instructions. This is table stakes. Every tutorial teaches it and, although I suspect this is a controversial take, I consider it the least important layer once you move beyond toy examples. It's necessary, but it's not where the real wins are.
 
 The second is **context engineering**: curating everything in the context window beyond your prompt. What the model sees, how it's structured, what's missing. This is where most of the gains live for coding agents, and it's what this post is about.
 
@@ -44,7 +44,7 @@ In my experience, context should focus on the HOW: standard operating procedures
 
 There's also a layer of context that informs architectural decisions: ADRs, mission statements, domain knowledge. These help the agent make choices that align with your organisation's approach rather than defaulting to whatever's most common in its training data. I've lost count of the times an agent has defaulted to using Kubernetes just because the project has a Dockerfile and Kubernetes has a lot of tutorial coverage. Context fixes this.
 
-The most important principle, I think, is that context should be easy to access and, the more important it is, the easier it should be. All general context should be colocated with the codebase as much as feasible. Accessed via CLAUDE.md (just [keep it small](./2026-03-23-the-one-file-that-makes-or-breaks-your-ai-workflow/)), a docs folder in the repo, or reference files loaded on demand via a memory MCP.
+The most important principle, I think, is that context should be easy to access and, the more important it is, the easier it should be. All general context should be co-located with the codebase as much as feasible. Accessed via CLAUDE.md (just [keep it small](./2026-03-23-the-one-file-that-makes-or-breaks-your-ai-workflow/)), a docs folder in the repo, or reference files loaded on demand via a memory MCP.
 
 This includes a plan file for tasks in progress, so that an agent can stop at any point and resume without losing track of work done. If your context window fills up or the agent crashes or goes off on a tangent, the plan file is your recovery mechanism. Most people who complain about agent "forgetfulness" don't have one of these as they are one-shotting things, and that's the actual root cause, not some deficiency in the model.
 
@@ -60,7 +60,7 @@ What failed for them was a massive instruction file telling the agent everything
 
 What worked was treating instructions as a table of contents pointing to a structured knowledge base. All the design docs, architecture decision records, API schemas, domain models. All version-controlled, all in-repo, all machine-readable. The instructions tell the agent where to look, not what to think, and the agent loads on demand.
 
-Some context is harder to colocate, like Slack conversations, ADRs in Confluence, or GitHub PRs. These should be given access via MCP if necessary, but with the understanding that by its nature this context may not always be loaded completely or when needed. Anything critical should be colocated and documented properly. If you're relying on an MCP connection to Slack for knowledge that determines whether the agent builds the right thing, then you're setting yourself up for a bad time.
+Some context is harder to colocate, like Slack conversations, ADRs in Confluence, or GitHub PRs. These should be given access via MCP if necessary, but with the understanding that by its nature this context may not always be loaded completely or when needed. Anything critical should be co-located and documented properly. If you're relying on an MCP connection to Slack for knowledge that determines whether the agent builds the right thing, then you're setting yourself up for a bad time.
 
 ## Reducing Context Needs
 
@@ -78,7 +78,7 @@ Following good engineering practices (surprise!) makes AI tools work better. I s
 
 ## Loading Context at the Right Moment
 
-So you've structured your knowledge base, colocated the important bits, and kept tasks small. But there's a subtlety that's easy to miss: _when_ context gets loaded matters almost as much as _what_ gets loaded.
+So you've structured your knowledge base, co-located the important bits, and kept tasks small. But there's a subtlety that's easy to miss: _when_ context gets loaded matters almost as much as _what_ gets loaded.
 
 Most CLAUDE.md setups I've seen, including my own early attempts, take a static approach. You list everything the agent might need upfront, or you rely on the agent to figure out what to read. Both have problems. Loading everything upfront wastes context budget on things that turn out to be irrelevant. Relying on the agent to self-serve means it often doesn't; it ploughs ahead with whatever's already in the window, confident it knows enough. (Narrator: it did not know enough.)
 

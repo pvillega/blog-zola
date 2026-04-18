@@ -16,13 +16,15 @@ seriesSection: "introduction"
 
 If you've been anywhere near the developer discourse lately, you've probably noticed a pattern: half the industry is convinced AI agents will replace us all by next Tuesday, and the other half insists it's all hype and refuses to try Cursor. As usual, the truth is somewhere in the middle, and it's more interesting than either camp admits.
 
-Over the past year or so, I've gone from sceptic to daily user of agentic coding tools. Not because I saw the light in some dramatic revelation, but because the tools quietly crossed a threshold where ignoring them started costing more than learning them. And along the way, I noticed something that I don't see discussed enough: the journey from "this is just autocomplete" to "I'm shipping with multiple agents in parallel" isn't a smooth ramp. It's a series of uncomfortable jumps.
+A year ago I was a sceptic. I'd tried the tools, got bad results, and dismissed them. Today I run multiple agents in parallel on a daily basis. Nothing dramatic happened in between. The tools quietly crossed a threshold where ignoring them started costing more than learning them, and I grudgingly came along.
+
+Along the way I noticed something I don't see discussed enough: the journey from "this is just autocomplete" to "I'm shipping with multiple agents in parallel" isn't a smooth ramp. It's a series of uncomfortable jumps.
 
 This post is the introduction to a series where I'll break down that journey: what it actually looks like in practice, what the hard parts are, and what I wish someone had told me earlier.
 
 ## The Stages
 
-The progression from AI-sceptic to agent-native follows a rough path that several people have mapped in different ways. Steve Yegge described it in his "Gas Town" essay, Geoffrey Huntley has been documenting his own journey through his ghuntley.com posts, and Justin Abrahms synthesised much of this into a clear stage model. Drawing from all of them (and from my own experience), it looks something like this:
+The progression from AI-sceptic to agent-native follows a rough path that several people have mapped in different ways. Steve Yegge described it in his ["Welcome to Gas Town"](https://steve-yegge.medium.com/welcome-to-gas-town-4f25ee16dd04) essay, [Geoffrey Huntley](https://ghuntley.com/) has been documenting his own journey on his blog, and Justin Abrahms synthesised much of this into a [clear stage model](https://justin.abrah.ms/blog/2026-01-08-yegge-s-developer-agent-evolution-model.html). Drawing from all of them (and from my own experience), it looks something like this:
 
 1. **Dismissal.** "It's just hype." You tried it once, got a bad result, and moved on.
 2. **Fear.** Someone on your team ships a feature in an afternoon using Cursor. You start wondering about job security.
@@ -54,7 +56,7 @@ It isn't. But it feels like it.
 
 This one is operational, not emotional. By now you've accepted that the agent does the work. The problem is that *you* are the bottleneck. You can't review everything a single agent produces, let alone multiple agents.
 
-The shift is from code review to designing constraints: tests, lints, CI pipelines, success criteria that validate work without you reading every line. Huntley calls this "backpressure," and it's a good term. You're essentially becoming an engineering manager of machines. If you've never managed people, this feels alien. If you have, it feels eerily familiar.
+The shift is from code review to designing constraints: tests, lints, CI pipelines, success criteria that validate work without you reading every line. Huntley calls this ["backpressure"](https://ghuntley.com/pressure/), and it's a good term. You're becoming an engineering manager of machines. If you've never managed people, this feels alien. If you have, it feels eerily familiar.
 
 ### Fulcrum 3: Human Limits (Stages 9 → 10)
 
@@ -74,4 +76,4 @@ In the posts that follow, I'll walk through the practical side of this journey: 
 
 I'll be drawing from my own daily workflow with Claude Code, from the practitioners and writers who've been mapping this territory (Yegge, Huntley, Abrahms, among others), and from the mistakes I've made along the way. Because I've made plenty. That's kind of the point.
 
-As with most things I write: most likely in a few months I'll revisit this and realise I was wrong about half of it. But, hey, learning.
+As with most things I write: in a few months I'll revisit this and realise I was wrong about half of it. That's how it goes. A year ago I was the sceptic.

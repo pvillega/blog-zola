@@ -24,7 +24,7 @@ That's a 43-percentage-point gap between perception and reality. I'll be honest:
 
 If you stop at the headline, the conclusion writes itself: AI tools don't work, full stop. But the study doesn't say that. It says bolting AI onto existing workflows makes things worse. Those are very different claims.
 
-The METR study (a proper randomised controlled trial with 16 experienced open-source developers, 246 real tasks, screen recordings, and $150/hour compensation) is one of the most methodologically rigorous studies of AI developer productivity to date. The developers used primarily Cursor Pro with Claude 3.5/3.7 Sonnet, frontier models at the time. Tasks averaged two hours each, on repositories the developers had contributed to for years, averaging over a million lines of code and 22,000+ GitHub stars.
+The [METR study](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) (a proper randomised controlled trial with 16 experienced open-source developers, 246 real tasks, screen recordings, and $150/hour compensation) is one of the most methodologically rigorous studies of AI developer productivity to date. The developers used primarily [Cursor](https://www.cursor.com/) Pro with Claude 3.5/3.7 Sonnet, frontier models at the time. Tasks averaged two hours each, on repositories the developers had contributed to for years, averaging over a million lines of code and 22,000+ GitHub stars.
 
 This is the J-curve productivity dip. Every major tool adoption goes through it. Early digital cameras produced worse photos than film for experienced photographers. The first automobiles were slower and less reliable than a good horse. The tools are optimised for a different way of working, and your existing processes create friction that negates or reverses the speed gains. The 19% slowdown is not a verdict on AI. It's a verdict on unreformed workflows.
 
@@ -34,7 +34,7 @@ I recognise this in myself. On days when I lean heavily on AI tools, I feel like
 
 Domenic Denicola, the jsdom maintainer and one of the study participants, pushed back on the "learning curve" explanation. Agent mode, he said, "is just not that hard to learn." The real factors were different: these were expert developers on codebases they'd worked on for five or more years with 1,500+ commits. They were already fast. The room for AI to help was narrow, and the overhead of integrating AI suggestions into deeply familiar code was real.
 
-Google's 2024 DORA report confirms the pattern at enterprise scale. As I discussed in the previous chapter, 75% of developers felt more productive with AI tools while measurable delivery speed and system stability both declined with increased adoption. The perception-reality gap isn't limited to a 16-person study. It's systemic.
+Google's 2024 [DORA report](https://dora.dev/) confirms the pattern at enterprise scale. As I discussed in the previous chapter, 75% of developers felt more productive with AI tools while measurable delivery speed and system stability both declined with increased adoption. The perception-reality gap isn't limited to a 16-person study. It's systemic.
 
 The fix isn't better prompts. It's redesigning how you work.
 
@@ -50,7 +50,7 @@ A third admitted to biased task selection: "I avoid issues like AI can finish th
 
 METR concluded that the selection effects made the new data unreliable. But I'd argue the selection effects themselves are the finding. Developers who experienced AI tools, even ones that measurably slowed them down, can't go back. Something about the experience is compelling enough to override the productivity data.
 
-I get it. I genuinely do. The cognitive texture of coding with AI assistance is different in a way that's hard to articulate to someone who hasn't experienced it. It's not that every task is faster. It's that the frustrating parts are less frustrating, and that changes how the entire workday feels. More on why in a moment.
+I get it. The cognitive texture of coding with AI assistance is different in a way that's hard to articulate to someone who hasn't experienced it. It's not that every task is faster. It's that the frustrating parts are less frustrating, and that changes how the entire workday feels.
 
 For the subset of original developers who did participate in the later study, METR estimated an 18% speedup, a dramatic reversal from the 19% slowdown. They caution against reading too much into this given the selection bias, but the direction is suggestive: tools got better, developers adapted their workflows, and the J-curve may be bending upward.
 
@@ -80,7 +80,7 @@ Ford's EksoVest, deployed in 15 plants across 7 countries, produced an 83% decre
 
 In the military, the Sarcos Guardian XO provides 20:1 strength amplification: 100 pounds feels like 5 pounds. The exoskeleton keeps the soldier operational. It doesn't fight for them.
 
-There are many more examples. But the pattern is the same every time: the exoskeleton never replaces the human. It amplifies what the human can already do. The human is still doing the work: dramatically more of it, more sustainably, with less fatigue. AI fulfils the same role for knowledge workers.
+There are many more examples. The pattern is the same every time: the exoskeleton never replaces the human. It amplifies what the human can already do. The human is still doing the work, just more of it and with less fatigue. AI fulfils the same role for knowledge workers.
 
 This, I think, explains the METR follow-up study. The developers who can't go back aren't making an irrational choice. Even when the wall-clock time was higher, the subjective experience was of lower cognitive effort per unit of progress. They still tackled the whole thing, but they had more left at the end, able to do more.
 
@@ -102,19 +102,19 @@ Technical debt lives in the code. Cognitive debt lives in the developers' minds.
 
 Storey coached a student team that used AI to "prompt" features into existence for weeks. By weeks 7-8, they hit a wall. They could no longer make even simple changes without breaking something unexpected. The team initially blamed technical debt, but the real problem was deeper: no one could explain why certain design decisions had been made or how parts of the system worked together. Their shared theory of the code had fragmented.
 
-Simon Willison reports the same phenomenon on his own projects: after prompting entire features without reviewing their implementations, he found himself getting lost, no longer having a firm mental model of what the code can do and how it works.
+[Simon Willison](https://simonwillison.net/) reports the same phenomenon on his own projects: after prompting entire features without reviewing their implementations, he found himself getting lost, no longer having a firm mental model of what the code can do and how it works.
 
 I've felt the early signs of this myself. There's a specific moment I've learned to recognise: when I accept a large AI-generated change without fully understanding it because "the tests pass and I need to move on." Each time that happens, my mental model of the codebase gets a little blurrier. Do it enough times and you're navigating by GPS in a city you used to know by heart. You can still get where you're going, but you've lost the ability to take shortcuts or spot when the directions are wrong.
 
-Martin Fowler, commenting on Storey's work, drew a useful parallel to his own long-standing distinction between "cruft" and "debt" in codebases. The cognitive equivalent of cruft is ignorance, of the code and of the domain. The debt metaphor still applies: either it costs more to add new capabilities (paying interest), or you make an explicit investment to gain knowledge (paying down principal). Which you do depends on the relative costs.
+[Martin Fowler](https://martinfowler.com/), commenting on Storey's work, drew a useful parallel to his own long-standing distinction between "cruft" and "debt" in codebases. The cognitive equivalent of cruft is ignorance, of the code and of the domain. The debt metaphor still applies: either it costs more to add new capabilities (paying interest), or you make an explicit investment to gain knowledge (paying down principal). Which you do depends on the relative costs.
 
-Fowler also noted something that connects cognitive debt to context engineering: "The Venn Diagram of Developer Experience and Agent Experience is a circle." The practices that make codebases easier for humans to understand, like clear modularity, descriptive naming, good documentation, also make them easier for AI agents to work with. Fixing cognitive debt and improving agent performance are the same activity. I find that insight deeply reassuring. It means investing in code quality isn't at odds with AI-assisted development, it's a prerequisite for it.
+Fowler also noted something that connects cognitive debt to context engineering: "The Venn Diagram of Developer Experience and Agent Experience is a circle." The practices that make codebases easier for humans to understand, like clear modularity, descriptive naming, good documentation, also make them easier for AI agents to work with. Fixing cognitive debt and improving agent performance are the same activity. Investing in code quality isn't at odds with AI-assisted development; it's a prerequisite for it.
 
 This is the real risk of AI-assisted development. Not that the code is bad, it might be fine. But velocity without understanding isn't sustainable. The exoskeleton makes you stronger, but you still need to know where you're going.
 
 ## The Adoption Journey
 
-Mitchell Hashimoto, creator of Terraform, Vagrant, and the Ghostty terminal, described his personal AI adoption journey in a way that resonated with my own experience. His framing: meaningful tool adoption necessarily goes through inefficiency, then adequacy, then workflow-altering discovery. You must force yourself through the first two phases. There are no shortcuts.
+[Mitchell Hashimoto](https://mitchellh.com/), creator of Terraform, Vagrant, and the [Ghostty](https://ghostty.org/) terminal, described his personal AI adoption journey in a way that resonated with my own experience. His framing: meaningful tool adoption necessarily goes through inefficiency, then adequacy, then workflow-altering discovery. You must force yourself through the first two phases. There are no shortcuts.
 
 Hashimoto's first move was to reproduce all his manual commits with agentic ones, literally doing the work twice. Excruciating, but he rediscovered from first principles what others were saying. Three things emerged:
 
@@ -122,7 +122,7 @@ Hashimoto's first move was to reproduce all his manual commits with agentic ones
 - Second, for vague requests, split into planning versus execution sessions.
 - Third, and this is the most important, if you give an agent a way to verify its work, it usually fixes its own mistakes and prevents regressions.
 
-He also found the edges of what agents were and weren't good at. Part of the efficiency gains came from knowing when *not* to reach for an agent. That negative space is something very important. There are tasks where one can be genuinely faster with AI, and tasks where reaching for it is a procrastination mechanism dressed up as productivity. Learning to tell the difference is half the battle.
+He also found the edges of what agents were and weren't good at. Part of the efficiency gains came from knowing when *not* to reach for an agent. The negative space matters. There are tasks where one is genuinely faster with AI, and tasks where reaching for it is procrastination dressed up as productivity. Learning to tell the difference is half the battle.
 
 ## The Window
 

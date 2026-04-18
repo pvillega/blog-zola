@@ -14,7 +14,7 @@ seriesOrder: 1
 seriesSection: "working-with-agents"
 ---
 
-Kent Beck, the person who gave us Extreme Programming and popularised Test-Driven Development, tweeted something in April 2023 that should have been a wake-up call for every developer alive:
+[Kent Beck](https://tidyfirst.substack.com/), the person who gave us Extreme Programming and popularised Test-Driven Development, tweeted something in April 2023 that should have been a wake-up call for every developer alive:
 
 > 90% of my skills just went to zero dollars. 10% of my skills just went up 1000x.
 
@@ -24,7 +24,7 @@ If you've been paying attention, you already know what the 90% is. And if you ha
 
 ## The $350K Weekend Project
 
-Paul Ford, former CEO of Postlight and one of the sharpest observers of the technology industry, described what happened when Anthropic gave Pro plan subscribers $1,000 in free Claude Code credits in November 2025. Ford, a self-described "reasonably effective coder and horrific dilettante", set out to burn $100 a day on side projects that had been sitting in folders for a decade.
+Paul Ford, former CEO of Postlight and one of the sharpest observers of the technology industry, described what happened when [Anthropic](https://www.anthropic.com/) gave Pro plan subscribers $1,000 in free [Claude Code](https://www.claude.com/product/claude-code) credits in November 2025. Ford, a self-described "reasonably effective coder and horrific dilettante", set out to burn $100 a day on side projects that had been sitting in folders for a decade.
 
 Ford can put real numbers on this because he spent years as a professional software cost estimator. He knows exactly what things cost to build. Claude Code itself would estimate project costs and those estimates were, in Ford's words, "extremely on the nose — for 2022." But in 2025, one can type "do all of that; sounds like a bargain" and it gets done in fifteen minutes for maybe 50 cents.
 
@@ -46,9 +46,9 @@ Planning. Estimating. Feature prioritisation. Code review. Architecture review. 
 
 Coding agents just dropped the cost of that part through the floor.
 
-In his September 2025 essay "Programming Deflation," Beck explored what happens when the cost of code production drops continuously. His conclusion isn't that we'll need fewer programmers, it's that cheaper code unlocks latent demand. There are millions of problems nobody bothered solving because the cost of a software solution exceeded the value. When code costs plummet, those problems become worth solving. The total amount of software in the world goes up, not down.
+In his September 2025 essay "Programming Deflation," Beck explored what happens when the cost of code production drops continuously. His conclusion isn't that we'll need fewer programmers; it's that cheaper code surfaces latent demand. There are millions of problems nobody bothered solving because the cost of a software solution exceeded the value. When code costs plummet, those problems become worth solving. The total amount of software in the world goes up, not down.
 
-Simon Willison, creator of Datasette and one of the most thoughtful practitioners writing about AI-assisted development, captures this shift well in his Agentic Engineering Patterns guide. His heuristic is beautifully simple: any time your instinct says "don't build that, it's not worth the time," fire off a prompt anyway in an asynchronous agent session. The worst case is you check ten minutes later and find it wasn't worth the tokens.
+[Simon Willison](https://simonwillison.net/), creator of Datasette and one of the most thoughtful practitioners writing about AI-assisted development, captures this shift well in his Agentic Engineering Patterns guide. His heuristic is beautifully simple: any time your instinct says "don't build that, it's not worth the time," fire off a prompt anyway in an asynchronous agent session. The worst case is you check ten minutes later and find it wasn't worth the tokens.
 
 That heuristic only makes sense in a world where code is cheap. Six months ago, it would have been absurd.
 
@@ -64,7 +64,7 @@ This is, paradoxically, what makes LLMs so powerful for coding compared to other
 
 But verification requires knowing what "correct" looks like. And that's where the 10% that went up 1000x lives.
 
-Google's 2024 DORA report confirms the paradox from the other direction: 75% of developers reported feeling more productive with AI tools, but every 25% increase in AI adoption showed a 1.5% dip in delivery speed and a 7.2% drop in system stability. Meanwhile, 39% of respondents reported having little or no trust in AI-generated code. The tools make us feel faster. The data suggests we're not, unless we change how we work. More on that in following chapters.
+Google's [2024 DORA report](https://dora.dev/research/) confirms the paradox from the other direction: 75% of developers reported feeling more productive with AI tools, but every 25% increase in AI adoption showed a 1.5% dip in delivery speed and a 7.2% drop in system stability. Meanwhile, 39% of respondents reported having little or no trust in AI-generated code. The tools make us feel faster. The data suggests we're not, unless we change how we work. More on that in following chapters.
 
 ## The Nail Gun Analogy
 
@@ -96,7 +96,7 @@ Which, of course, in a sector where companies have been trying to "be agile" and
 
 The skill set needed to use AI agents well turns out to be a mixture of product manager and development team manager. You need to know what to build, why it matters, what "done" looks like, and how to verify the result. You need to specify outcomes, not implementations. Declarative development, "here's what I want, figure out how", beats imperative micromanagement every time.
 
-Developers who try to micromanage agent output will struggle. Developers who learn to specify, verify, and iterate will thrive. The 10% that went up 1000x is judgment, specification, and verification. The 90% that went to zero is the typing.
+Developers who try to micromanage agent output will struggle. Developers who learn to specify, verify, and iterate will thrive. The 10% that went up 1000x is judgement and verification. The 90% that went to zero is the typing.
 
 Ford captured the emotional complexity of this moment perfectly: "All of the people I love hate this stuff, and all the people I hate love it." The social friction is real. Developers adopting AI tools often face pushback from within their professional communities. It adds a psychological layer to what is fundamentally an economic shift.
 

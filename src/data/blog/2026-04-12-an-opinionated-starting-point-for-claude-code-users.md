@@ -17,24 +17,24 @@ seriesOrder: 2
 seriesSection: "appendices"
 ---
 
-Every Claude Code user I've spoken to has the same trajectory. You install it, run it vanilla for a week, then spend the next month accumulating a bespoke pile of plugins, skills, MCP servers, shell aliases, and sandbox settings. All held together by tribal knowledge and a vague memory of which blog post told you to add that one hook.
+A few weeks ago I tried to set up Claude Code on a fresh sandbox and realised I couldn't remember half of what I'd accumulated. Plugins from one blog post. A skill I'd installed from a Twitter thread. A hook that was definitely important because past-me had left a comment saying "don't remove this" with no further context. The install took the best part of an evening, and I still missed things.
 
-I know the pain well; I also did exactly this. And when I started trying to use different sandboxes, that was a problem: reproducing that configuration in a new remote server for AI agents wasn't trivial, and it was easy to miss something.
+Every Claude Code user I've spoken to has the same trajectory. Install it, run it vanilla for a week, then spend the next month accumulating a bespoke pile of plugins, skills, MCP servers, shell aliases, and sandbox settings. All held together by tribal knowledge and a vague memory of which blog post told you to add that one hook.
 
-So, after Anthropic released `marketplaces`, I decided I should do better. I packaged my configuration into a repository: [claude-templates](https://github.com/pvillega/claude-templates).
+So after Anthropic released `marketplaces`, I decided I should do better. I packaged my configuration into a repository: [claude-templates](https://github.com/pvillega/claude-templates).
 
 This post explains what it is, how to install it, and how to use it day-to-day. Fair warning up front: this is _my_ opinionated configuration. It reflects how I work, which tools I've found useful after months of tinkering, and where I've landed on the safety-versus-autonomy spectrum. You should absolutely fork it and make it yours; more on that at the end.
 
 
 ## What Problem Does This Solve?
 
-Claude Code is powerful out of the box, but "out of the box" leaves a lot on the table. The ecosystem around it is genuinely useful but scattered across dozens of repositories, documentation pages, and community posts. You have plugins from the [marketplace](https://claude.com/plugins), skills from [skills.sh](https://skills.sh), CLI tools that Claude can leverage, or [sandbox configurations](https://code.claude.com/docs/en/sandboxing) that stop it from reading your SSH keys. Knowing what to install is half the battle; knowing how to make it all play nicely together is the other half.
+Claude Code is powerful out of the box, but "out of the box" leaves a lot on the table. The community around it is genuinely useful but scattered across dozens of repositories, documentation pages, and community posts. You have plugins from the [marketplace](https://claude.com/plugins), skills from [skills.sh](https://skills.sh), CLI tools that Claude can call, or [sandbox configurations](https://code.claude.com/docs/en/sandboxing) that stop it from reading your SSH keys. Knowing what to install is half the battle; knowing how to make it all play nicely together is the other half.
 
 Setting all of this up manually is tedious and error-prone. Worse, when you inevitably want to update everything or reproduce the setup on another machine, you're back to square one with a browser history full of GitHub READMEs. Claude-templates solves this by providing a single `install.sh` that handles the lot: plugins, skills, CLI tools, sandbox settings, shell aliases, and a sensible set of defaults.
 
 The project is designed for YOLO mode (`--dangerously-skip-permissions`). If that phrase makes you nervous: good, it should. Simon Willison has written persuasively about the [lethal trifecta](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/) of unrestricted agent access, and I'd recommend reading that before deciding how much trust to extend. The configuration compensates by blocking access to sensitive system files, denying destructive commands like `rm -rf` and `git push --force`, and encouraging sandboxed execution. It's not bulletproof (nothing is when you hand an agent unrestricted tool access), but it's a significant improvement over running YOLO mode with no guardrails at all.
 
-That said, use a sandbox. Ideally, an external machine built for that purpose but, if not possible, try projects like [this sandbox](https://github.com/pvillega/sandbox-claude). There are plenty online; it feels like every second AI user is building one.
+Either way, use a sandbox. Ideally, an external machine built for that purpose but, if not possible, try projects like [this sandbox](https://github.com/pvillega/sandbox-claude). There are plenty online; it feels like every second AI user is building one.
 
 ## Installation
 
@@ -76,7 +76,7 @@ Beyond those two, you get a [code review plugin](https://claude.com/plugins/code
 
 ### CLI Tools
 
-The installer sets up roughly 15 CLI tools that Claude can use during sessions. The most impactful ones are [`fd`](https://github.com/sharkdp/fd) (aliased as `find`), [`ripgrep`](https://github.com/BurntSushi/ripgrep) (aliased as `grep`), and [`rtk`](https://github.com/rtk-ai/rtk). That last one is a token-optimised CLI proxy written in Rust that reduces tool output by 60-90%. If you've ever watched Claude chew through 2,000 tokens of raw `git status` output when it only needed 200, you'll understand why this matters. Context windows aren't infinite, and every wasted token is context you can't use for actual reasoning.
+The installer sets up roughly 15 CLI tools that Claude can use during sessions. The ones I reach for most are [`fd`](https://github.com/sharkdp/fd) (aliased as `find`), [`ripgrep`](https://github.com/BurntSushi/ripgrep) (aliased as `grep`), and [`rtk`](https://github.com/rtk-ai/rtk). That last one is a token-optimised CLI proxy written in Rust that reduces tool output by 60-90%. If you've ever watched Claude chew through 2,000 tokens of raw `git status` output when it only needed 200, you'll understand why this matters. Context windows aren't infinite, and every wasted token is context you can't use for actual reasoning.
 
 You also get [`gh`](https://cli.github.com/) for GitHub operations, [`jscpd`](https://github.com/kucherenko/jscpd) for copy-paste detection, [`semgrep`](https://semgrep.dev/) for SAST scanning, [`gitleaks`](https://github.com/gitleaks/gitleaks) as a pre-commit hook for secret detection, and [`agent-browser`](https://github.com/vercel-labs/agent-browser) for browser automation. For accessibility, the installer adds [`axe-core`](https://github.com/dequelabs/axe-core) and [`pa11y`](https://github.com/pa11y/pa11y) for WCAG auditing. [`Nuclei`](https://github.com/projectdiscovery/nuclei) and [`ZAP`](https://www.zaproxy.org/) handle DAST scanning (ZAP requires Docker).
 
@@ -86,7 +86,7 @@ Two MCP servers are also configured: [Gabb](https://github.com/gabb-software/gab
 
 Skills are instruction sets that Claude loads on demand when it recognises a relevant task. Think of them as specialised playbooks rather than full extensions. The configuration installs about 15 of them globally (via `npx skills add`), covering web research ([Tavily](https://github.com/tavily-ai/skills), [Context7](https://github.com/upstash/context7)), browser automation and QA testing (agent-browser, dogfood, webapp-testing), database work (PostgreSQL via [PlanetScale's skill](https://github.com/planetscale/database-skills)), [Obsidian](https://github.com/kepano/obsidian-skills) vault management, [shadcn](https://github.com/shadcn/ui) component handling, and security review from [Sentry's skill collection](https://github.com/getsentry/skills).
 
-The key insight with skills is that they're installed globally (`-g`), so they're available in every project without per-repo configuration. You can browse what's available at [skills.sh](https://skills.sh) and add more by editing the `SKILLS` array in [`config.sh`](https://github.com/pvillega/claude-templates/blob/main/config.sh).
+The important bit: skills are installed globally (`-g`), so they're available in every project without per-repo configuration. You can browse what's available at [skills.sh](https://skills.sh) and add more by editing the `SKILLS` array in [`config.sh`](https://github.com/pvillega/claude-templates/blob/main/config.sh).
 
 ### Sandbox and Safety
 
@@ -116,7 +116,7 @@ The typical flow begins with planning, which I know sounds ceremonial but genuin
 
 Why bother with this ceremony? Because the planning phase catches misunderstandings before they become 500-line diffs that need rewriting. I've lost count of the times a quick brainstorming session revealed that I was solving the wrong problem, or, more embarrassingly, solving the right problem with an approach that already existed elsewhere in the codebase. Better to discover that before Claude has cheerfully implemented the wrong solution across twelve files.
 
-Not only that, the latest versions of the skill can start a local server that shows, different options visually in an HTML page. This is ideal when you want to compare multiple layouts in a webpage or to decide which architecture is better. Sometimes, text is too ambiguous, and a visual aid makes the difference.
+The latest versions of the skill can also start a local server that shows different options visually in an HTML page. Useful when you want to compare multiple layouts or decide which architecture is better. Text is sometimes too ambiguous, and a visual aid makes the difference.
 
 ### Writing Code
 
@@ -150,4 +150,6 @@ Some things you'll almost certainly want to change. Maybe you don't use PostgreS
 
 The repo README warns that I modify it regularly as I experiment with new approaches. This is both a feature and a reason to fork: forking gives you stability while letting you cherry-pick updates that look useful.
 
-What I'd recommend: clone it, run `install.sh`, work with it for a week, and take notes on what annoys you. Then start pruning, adding, and reshaping. Run `/claude-automation-recommender` (from the [Claude Code Setup](https://claude.com/plugins/claude-code-setup) plugin) on your projects to discover project-specific optimisations; it's surprisingly good at suggesting things you hadn't considered. Use [Hookify](https://claude.com/plugins/hookify) to create custom hooks for behaviours unique to your codebase. The generic configuration gets you 80% of the way there; the last 20% is where the real value lives, and only you can build that part.
+What I'd recommend: clone it, run `install.sh`, work with it for a week, and take notes on what annoys you. Then start pruning, adding, and reshaping. Run `/claude-automation-recommender` (from the [Claude Code Setup](https://claude.com/plugins/claude-code-setup) plugin) on your projects to discover project-specific optimisations; it's surprisingly good at suggesting things you hadn't considered. Use [Hookify](https://claude.com/plugins/hookify) to create custom hooks for behaviours unique to your codebase.
+
+The generic configuration gets you most of the way there. The rest is yours to build. And when you next try to set up Claude Code on a fresh sandbox, past-you will have left something more useful behind than a cryptic "don't remove this" comment.
